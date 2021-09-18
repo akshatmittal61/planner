@@ -1,3 +1,7 @@
+# Planner
+
+This project is to be used as a planner for all purposes. You get a calendar, an event manager, a notes manager and a tesks manager, built in one.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

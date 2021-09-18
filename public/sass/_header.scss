@@ -1,0 +1,124 @@
+@import "./variables";
+.header{
+    width: 100vw;
+    height: $head-height;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    background-color: var(--bgcolor);
+    color: var(--tcolor);
+    box-shadow: 0 4px 5px 0px rgba(0, 0, 0, 0.5);
+    &-left{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        padding: 0 1rem;
+        &>*{
+            margin: 0.25rem;
+            padding: 0.25rem;
+        }
+        &__burger{
+            transition: background var(--transition-time) ease-in-out, box-shadow var(--transition-time) cubic-bezier(.4,0,1,1), transform var(--transition-time) ease-in-out;
+            border-radius: 500px;
+            cursor: pointer;
+            padding: 0.75rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            &:hover{
+                background-color: var(--back-shadow);
+            }
+        }
+        &__title{
+            padding: 0.5rem;
+            font-size: 1.75rem;
+            letter-spacing: 0.1rem;
+            user-select: none;
+            cursor: pointer;
+        }
+    }
+    &-right{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &-links{
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            padding: 0 1rem;
+        }
+        &-link{
+            margin: 0.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background var(--transition-time) ease-in-out, box-shadow var(--transition-time) cubic-bezier(.4,0,1,1), transform var(--transition-time) ease-in-out;
+            border-radius: 500px;
+            &>*{
+                padding: 0.5rem;
+                cursor: pointer;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            &.help{
+                padding: 0.25rem;
+                &>*{
+                    padding: 0.25rem;
+                }
+            }
+            &:hover{
+                background-color: var(--back-shadow);
+            }
+            &__text{
+                @include respond(tab){
+                    display: none;
+                }
+            }
+        }
+    }
+    &-appbox{
+        width: 30vh;
+        height: 30vh;
+        position: fixed;
+        top: $head-height+2vh;
+        right: 2vh;
+        background-color: var(--bgcolor-400);
+        border-radius: $border-radius/2;
+        //overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        box-shadow:
+            0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+            0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+            0 12.5px 10px rgba(0, 0, 0, 0.06),
+            0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+            0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+            0 100px 80px rgba(0, 0, 0, 0.12);
+        &-link{
+            width: 50%;
+            height: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-flow: column;
+            border-radius: $border-radius/2;
+            transition: all var(--transition-time) ease-in-out;
+            &__icon{
+                padding: 0.5rem;
+            }
+            &:hover{
+                background-color: var(--bgcolor-700);
+            }
+        }
+    }
+}
