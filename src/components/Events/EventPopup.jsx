@@ -1,13 +1,13 @@
 import React from 'react'
 
-const EventPopup = ({ allEvents, show, close, onDelete }) => {
+const EventPopup = ({ allEvents, show, close, onDelete,onEdit }) => {
     return (
         <div className="event-popup">
             <div className="event-popup-box">
                 <div className={`event-popup-box__image event-popup-box__image__${allEvents[show].type}`} />
                 <div className="event-popup-box-content">
                     <div className="event-popup-box-buttons">
-                        <div className="event-popup-box-edit">
+                        <div className="event-popup-box-edit" onClick={onEdit}>
                             <span className="material-icons event-popup-box-edit__icon">edit</span>
                         </div>
                         <div className="event-popup-box-delete" onClick={onDelete}>

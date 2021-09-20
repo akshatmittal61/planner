@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import MenuIcon from '@material-ui/icons/Menu';
-import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
-import AppsIcon from '@material-ui/icons/Apps';
+import MenuIcon from '@mui/icons-material/Menu';
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import AppsIcon from '@mui/icons-material/Apps';
 import Theme from '../theme';
-import AppBox from './AppBox';
+import AppBoxLink from './AppBoxLink';
+import AppLinks from '../AppLinks.js';
 
-const Header = ({ sideBar }) => {
+const Header = ({ sideBar, GoTo }) => {
     const [appBoxExpand, setAppBoxExpand] = useState(false);
     return (
         <header className="header">
@@ -37,7 +38,15 @@ const Header = ({ sideBar }) => {
                     </div>
                 </div>
             </div>
-            {appBoxExpand && <AppBox />}
+            {
+                appBoxExpand && <div className="header-appbox">
+                    {
+                        AppLinks.map(((AppLink, index) => (
+                            <AppBoxLink icon={AppLink.icon} label={AppLink.label} GoToLink={() => { GoTo(index) }} />
+                        )))
+                    }
+                </div>
+            }
         </header>
     )
 }

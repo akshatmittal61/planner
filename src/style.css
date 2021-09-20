@@ -87,8 +87,8 @@
 
 .light {
   --bgcolor: #f0f0f0;
-  --bgcolor-400: #d2d2d2;
   --bgcolor-100: #e1e1e1;
+  --bgcolor-400: #d2d2d2;
   --bgcolor-700: #c3c3c3;
   --tcolor: #121212;
   --tcolor-100: #1d1d1d;
@@ -104,8 +104,8 @@
   --bgcolor-400: #333333;
   --bgcolor-700: #272727;
   --tcolor: #f0f0f0;
-  --tcolor-400: #d2d2d2;
   --tcolor-100: #e1e1e1;
+  --tcolor-400: #d2d2d2;
   --tcolor-700: #c3c3c3;
   --back-shadow: rgba(255,255,255,0.2);
   --back-shadow-light: rgba(255,255,255,0.1);
@@ -381,6 +381,106 @@
         height: 100%;
         overflow: hidden; }
 
+.calendar-edit {
+  background-color: rgba(0, 0, 0, 0.2);
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 200;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all var(--transition-time) ease-in-out; }
+  .calendar-edit-box {
+    width: 40vw;
+    height: 60vh;
+    background-color: var(--bgcolor-100);
+    color: var(--tcolor);
+    border-radius: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-flow: column;
+    position: relative;
+    overflow: hidden;
+    transition: all var(--transition-time) ease-in-out;
+    box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12); }
+    @media (max-width: 768px) {
+      .calendar-edit-box {
+        width: 65vw;
+        height: 45vh; } }
+    @media (max-width: 576px) {
+      .calendar-edit-box {
+        width: 90vw;
+        height: 50vh; } }
+    .calendar-edit-box-topbar {
+      width: 100%;
+      height: 10%;
+      background-color: var(--bgcolor-400);
+      filter: opacity(0.7);
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 1rem; }
+      .calendar-edit-box-topbar__close {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 500px;
+        padding: 0.35rem;
+        transition: all var(--transition-time) ease-in-out;
+        cursor: pointer; }
+        .calendar-edit-box-topbar__close:hover {
+          background-color: var(--bgcolor-700); }
+    .calendar-edit-box-form {
+      width: 100%;
+      height: 90%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-flow: column; }
+      .calendar-edit-box-form__content {
+        width: 90%;
+        height: 75%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-flow: column; }
+      .calendar-edit-box-form__group {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        margin: 0.25rem 0; }
+      .calendar-edit-box-form__label {
+        width: 15%;
+        display: flex;
+        justify-content: center;
+        align-items: center; }
+      .calendar-edit-box-form__input {
+        color: var(--tcolor);
+        width: 85%;
+        height: 2rem;
+        margin: 0.25rem 0;
+        padding: 0 1rem;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        border-radius: 20px; }
+      .calendar-edit-box-form #typeSuggestions {
+        background-color: transparent; }
+      .calendar-edit-box-form__buttons {
+        width: 100%;
+        height: 20%;
+        display: flex;
+        justify-content: center;
+        align-items: center; }
+    .calendar-edit-box__button {
+      margin: 0 0.5rem; }
+
 .events {
   background-color: var(--bgcolor);
   color: var(--tcolor);
@@ -612,6 +712,206 @@
             background-color: var(--back-shadow); }
           .event-popup-box-buttons > * .material-icons {
             font-size: 1.25rem; }
+
+.event-add {
+  background-color: rgba(0, 0, 0, 0.2);
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 200;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all var(--transition-time) ease-in-out; }
+  .event-add-box {
+    width: 40vw;
+    height: 60vh;
+    background-color: var(--bgcolor-100);
+    color: var(--tcolor);
+    border-radius: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-flow: column;
+    position: relative;
+    overflow: hidden;
+    transition: all var(--transition-time) ease-in-out;
+    box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12); }
+    @media (max-width: 768px) {
+      .event-add-box {
+        width: 65vw;
+        height: 45vh; } }
+    @media (max-width: 576px) {
+      .event-add-box {
+        width: 90vw;
+        height: 50vh; } }
+    .event-add-box-topbar {
+      width: 100%;
+      height: 10%;
+      background-color: var(--bgcolor-400);
+      filter: opacity(0.7);
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 1rem; }
+      .event-add-box-topbar__close {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 500px;
+        padding: 0.35rem;
+        transition: all var(--transition-time) ease-in-out;
+        cursor: pointer; }
+        .event-add-box-topbar__close:hover {
+          background-color: var(--bgcolor-700); }
+    .event-add-box-form {
+      width: 100%;
+      height: 90%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-flow: column; }
+      .event-add-box-form__content {
+        width: 90%;
+        height: 75%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-flow: column; }
+      .event-add-box-form__group {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        margin: 0.25rem 0; }
+      .event-add-box-form__label {
+        width: 15%;
+        display: flex;
+        justify-content: center;
+        align-items: center; }
+      .event-add-box-form__input {
+        color: var(--tcolor);
+        width: 85%;
+        height: 2rem;
+        margin: 0.25rem 0;
+        padding: 0 1rem;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        border-radius: 20px; }
+      .event-add-box-form #typeSuggestions {
+        background-color: transparent; }
+    .event-add-box__buttons {
+      width: 100%;
+      height: 20%;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+    .event-add-box__button {
+      margin: 0 0.5rem; }
+
+.event-edit {
+  background-color: rgba(0, 0, 0, 0.2);
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 200;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all var(--transition-time) ease-in-out; }
+  .event-edit-box {
+    width: 40vw;
+    height: 60vh;
+    background-color: var(--bgcolor-100);
+    color: var(--tcolor);
+    border-radius: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-flow: column;
+    position: relative;
+    overflow: hidden;
+    transition: all var(--transition-time) ease-in-out;
+    box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034), 0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06), 0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12); }
+    @media (max-width: 768px) {
+      .event-edit-box {
+        width: 65vw;
+        height: 45vh; } }
+    @media (max-width: 576px) {
+      .event-edit-box {
+        width: 90vw;
+        height: 50vh; } }
+    .event-edit-box-topbar {
+      width: 100%;
+      height: 10%;
+      background-color: var(--bgcolor-400);
+      filter: opacity(0.7);
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 1rem; }
+      .event-edit-box-topbar__close {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 500px;
+        padding: 0.35rem;
+        transition: all var(--transition-time) ease-in-out;
+        cursor: pointer; }
+        .event-edit-box-topbar__close:hover {
+          background-color: var(--bgcolor-700); }
+    .event-edit-box-form {
+      width: 100%;
+      height: 90%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-flow: column; }
+      .event-edit-box-form__content {
+        width: 90%;
+        height: 75%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-flow: column; }
+      .event-edit-box-form__group {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        margin: 0.25rem 0; }
+      .event-edit-box-form__label {
+        width: 15%;
+        display: flex;
+        justify-content: center;
+        align-items: center; }
+      .event-edit-box-form__input {
+        color: var(--tcolor);
+        width: 85%;
+        height: 2rem;
+        margin: 0.25rem 0;
+        padding: 0 1rem;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        border-radius: 20px; }
+      .event-edit-box-form #typeSuggestions {
+        background-color: transparent; }
+    .event-edit-box__buttons {
+      width: 100%;
+      height: 20%;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+    .event-edit-box__button {
+      margin: 0 0.5rem; }
 
 body, #root {
   font-family: Cabin, sans-serif;

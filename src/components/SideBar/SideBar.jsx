@@ -2,15 +2,15 @@ import React from 'react';
 import AppLinks from '../AppLinks.js';
 import SideLink from './SideLink';
 import SocialObject from './SocialObject';
-const SideBar = ({ aside }) => {
+const SideBar = ({ aside, GoTo }) => {
     return (
         <aside className={`aside aside-${aside ? "expand" : "hide"}`}>
             <div className="side-bar">
                 <nav className="side-bar-nav">
                     <ul className="side-bar-nav-list">
                         {
-                            AppLinks.map((AppLink => (
-                                <SideLink icon={AppLink.icon} label={AppLink.label} link={AppLink.link} />
+                            AppLinks.map(((AppLink, index) => (
+                                <SideLink icon={AppLink.icon} label={AppLink.label} GoToLink={() => { GoTo(index) }} />
                             )))
                         }
                     </ul>

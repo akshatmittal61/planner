@@ -1,7 +1,11 @@
 import React, { useState } from 'react'
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-
+import JumpToMonth from './JumpToMonth';
+import { useTheme } from '@mui/material/styles';
+import Zoom from '@mui/material/Zoom';
+import Fab from '@mui/material/Fab';
+import EventNoteIcon from '@mui/icons-material/EventNote';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 const Calendar = () => {
     const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
     const calDate = [0, 1, 2, 3, 4, 5, 6];
@@ -64,6 +68,17 @@ const Calendar = () => {
         }
         setDatesToDisplay(Day);
     }
+    const [jumpToMonth, setJumpToMonth] = useState(-1);
+    const editMonth = (newMonth) => {
+        const [monthToSet, yearToSet] = [parseInt(newMonth.substring(5, 7)), parseInt(newMonth.substring(0, 4))]
+        console.log(monthToSet + " " + yearToSet);
+        setYearToDisplay(yearToSet);
+        setMonthDisplayIndex(monthToSet);
+        Mon = Month[monthDisplayIndex - 1];
+        setMonthToDisplay(Mon);
+        chdate();
+        setJumpToMonth(-1);
+    }
     const backMonth = () => {
         console.clear();
         if (monthDisplayIndex > 1) {
@@ -96,10 +111,20 @@ const Calendar = () => {
             chdate();
         }
     }
+    const theme = useTheme();
+    const transitionDuration = {
+        enter: theme.transitions.duration.enteringScreen,
+        exit: theme.transitions.duration.leavingScreen,
+    };
+    const fabStyle = {
+        position: 'absolute',
+        bottom: 16,
+        right: 16,
+    };
     return (
         <section className="calendar">
             <div className="calendar-head">
-                <div className="calendar-head-detail">
+                <div className="calendar-head-detail" onClick={() => { console.log(yearToDisplay + " " + monthDisplayIndex + " " + Mon + " " + monthToDisplay + " " + jumpToMonth); }}>
                     <h1 className="year">
                         <span className="month">{monthToDisplay}</span>
                         <span id="year">{yearToDisplay}</span>
@@ -107,7 +132,7 @@ const Calendar = () => {
                 </div>
                 <div className="calendar-head-arrows">
                     <span className="material-icons back calendar-head-arrow back" onClick={backMonth}>
-                        <ArrowBackIosIcon />
+                        <ArrowBackIosNewIcon />
                     </span>
                     <span className="material-icons forward calendar-head-arrow forward" onClick={forwardMonth}>
                         <ArrowForwardIosIcon />
@@ -121,6 +146,24 @@ const Calendar = () => {
                 {calRow.map(row => (<div className="cal-row">
                     {calDate.map(date => (<span className={`cal-date _${(row * 7) + date}`}>{datesToDisplay[(row * 7) + date]}</span>))}
                 </div>))}
+            </div>
+            {
+                jumpToMonth > 0 && <JumpToMonth submit={editMonth} currentMonth={`${yearToDisplay}-${monthDisplayIndex < 10 ? "0" + (monthDisplayIndex) : monthDisplayIndex}`} close={() => { setJumpToMonth(-1) }} />
+            }
+            <div className="calendar-jump-icon">
+                <Zoom
+                    key="primary"
+                    in={2 > 1}
+                    timeout={transitionDuration}
+                    style={{
+                        transitionDelay: `${2 > 1 ? transitionDuration.exit : 0}ms`,
+                    }}
+                    unmountOnExit
+                >
+                    <Fab sx={fabStyle} aria-label="Add" color="primary" onClick={() => { setJumpToMonth(2) }}>
+                        <EventNoteIcon />
+                    </Fab>
+                </Zoom>
             </div>
         </section>
     )
