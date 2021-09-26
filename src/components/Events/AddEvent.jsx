@@ -81,7 +81,7 @@ const AddEvent = ({ close, submit }) => {
                             <Button variant="text" className="event-add-box__button-cancel" onClick={close}>Cancel</Button>
                         </div>
                         <div className="event-add-box__button">
-                            <Button variant="contained" className="event-add-box__button-cancel" type="submit">Save</Button>
+                            <Button variant="contained" className="event-add-box__button-save" type="submit">Save</Button>
                         </div>
                     </div>
                 </form>

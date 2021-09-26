@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
+import { useWebContext } from "./Context/WebContext";
 function Theme() {
-    const [theme, setTheme] = useState("light");
+    //const [theme, setTheme] = useState("light");
+    const { theme, setTheme } =useWebContext();
     const body = document.querySelector("body");
     function changeTheme() {
         setTheme((theme === "light") ? "dark" : "light");

@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import EventNoteIcon from '@mui/icons-material/EventNote';
 import NotesIcon from '@mui/icons-material/Notes';
@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
 import { Input } from '@mui/material';
 
-const EditEvent = ({eventToEdit,close,submit}) => {
+const EditEvent = ({ eventToEdit, close, submit }) => {
     const inputStyle = { color: "var(--tcolor)" };
     const [event, setEvent] = useState({
         title: eventToEdit.title,
@@ -80,7 +80,7 @@ const EditEvent = ({eventToEdit,close,submit}) => {
                             <Button variant="text" className="event-edit-box__button-cancel" onClick={close}>Cancel</Button>
                         </div>
                         <div className="event-edit-box__button">
-                            <Button variant="contained" className="event-edit-box__button-cancel" type="submit">Save</Button>
+                            <Button variant="contained" className="event-edit-box__button-save" type="submit">Save</Button>
                         </div>
                     </div>
                 </form>

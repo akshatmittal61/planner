@@ -1,0 +1,302 @@
+[
+    {
+        "title": "Google I/O",
+        "description": [
+            "Google I/O is back May 18-20, online, and free for everyone. Join us live.",
+            " I/O is live keynotes, hands-on learning with Google experts, and a first look at the latest developer products.",
+            " Make sure to check back for more updates!"
+        ],
+        "linkURL": "https://g.co/io",
+        "linkText": "Google I/O keynote",
+        "color": "blue"
+    },
+    {
+        "title": "Elijah",
+        "description": [
+            "Family is Power, Niklaus."
+        ],
+        "linkURL": "https://www.netflix.com/in/title/70283261",
+        "linkText": "The Originals",
+        "color": "dark-purple"
+    },
+    {
+        "title": "Klaus",
+        "description": [
+            "Read the poem The Poison Apple."
+        ],
+        "linkURL": "https://www.netflix.com/in/title/70283261",
+        "linkText": "The Originals",
+        "color": "dark-purple"
+    },
+    {
+        "title": "Delegation",
+        "description": [
+            "Q. How many programmers does it take to change a light bulb?",
+            " A. None – It’s a hardware problem"
+        ],
+        "linkURL": "",
+        "linkText": "",
+        "color": ""
+    },
+    {
+        "title": "Loops",
+        "description": [
+            "How to keep a programmer in the shower forever.",
+            " Show him the shampoo bottle instructions: Lather. Rinse. Repeat."
+        ],
+        "linkURL": "",
+        "linkText": "",
+        "color": "light-green"
+    },
+    {
+        "title": "Hardware vs. Software",
+        "description": [
+            "What's the difference between hardware and software?",
+            " You can hit your hardware with a hammer, but you can only curse at your software."
+        ],
+        "linkURL": "",
+        "linkText": "",
+        "color": ""
+    },
+    {
+        "title": "Klaus",
+        "description": [
+            "You've heard of me.",
+            " Fantastic!"
+        ],
+        "linkURL": "https://www.netflix.com/in/title/70283261",
+        "linkText": "The Originals",
+        "color": "dark-purple"
+    },
+    {
+        "title": "Arrays",
+        "description": [
+            "Q. Why did the programmer quit his job?",
+            " A. Because he didn't get arrays."
+        ],
+        "linkURL": "",
+        "linkText": "",
+        "color": ""
+    },
+    {
+        "title": "'Coz I kept quiet that day",
+        "description": [
+            "From the glimpses of the past",
+            "By the glitters of today",
+            "For the glimmers of tomorrow",
+            "People come n go n stay",
+            "",
+            "But it opened my eyes",
+            "When I remembered that day",
+            "That's why I kept quiet",
+            "I kept quiet today"
+        ],
+        "linkURL": "https://youtu.be/BIeayNW3Or8",
+        "linkText": "Listen to one of my poems",
+        "color": "pink"
+    },
+    {
+        "title": "Stefan",
+        "description": [
+            "Whenever you are ready for me, I'll be ready for you"
+        ],
+        "linkURL": "https://www.netflix.com/in/title/70143860",
+        "linkText": "The Vampire Diaries",
+        "color": "red"
+    },
+    {
+        "title": "Damon",
+        "description": [
+            "If your are gonna be bad, be bad with purpose.",
+            " Otherwise you're not just forgiving."
+        ],
+        "linkURL": "https://www.netflix.com/in/title/70143860",
+        "linkText": "The Vampire Diaries",
+        "color": "cyan"
+    },
+    {
+        "title": "Ross & Rachel",
+        "description": [
+            "Do you think it's easy for me to see you with somebody else?",
+            " Hey you were the one who ended it, remember ?",
+            " Yes because I was mad at you. Not because I stopped loving you."
+        ],
+        "linkURL": "https://www.netflix.com/in/title/70153404",
+        "linkText": "FRIENDS",
+        "color": "pink"
+    },
+    {
+        "title": "Whack A Mole",
+        "description": [
+            "I have completed my Whack A Mole game"
+        ],
+        "linkURL": "https://akshatmittal61.github.io/Whack-A-Mole",
+        "linkText": "Whack A Mole",
+        "color": "orange"
+    },
+    {
+        "title": "C++ program CSC302_3_20107",
+        "description": [
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+            " Deserunt fugiat neque non esse minus quis ab recusandae, ratione culpa nemo veniam aperiam enim alias! Eligendi laboriosam nemo labore atque deserunt! Voluptas ipsam molestias autem modi obcaecati vel quaerat possimus ipsa ipsum eligendi! Numquam similique, dolorum hic, provident dolorem sit cum veniam pariatur iusto aspernatur sunt perferendis nisi, totam minus aperiam? Rem natus, explicabo aut nesciunt enim adipisci debitis unde.",
+            " Quasi, reiciendis provident aut, ullam neque ea obcaecati, soluta corporis error iure placeat quos? Reprehenderit harum aspernatur ullam error similique impedit! Quod quisquam quidem explicabo, porro similique cupiditate vero amet tempora dolore.",
+            " Labore voluptate quibusdam, commodi fugiat hic perferendis laboriosam, vero quis cum blanditiis ab dolor consectetur excepturi necessitatibus magnam deserunt! Distinctio iste delectus, repellat vel libero, ut sapiente pariatur tempora dolore modi sunt? Dolore asperiores quam soluta laudantium at, eligendi, quas repudiandae aliquam veritatis tempore nobis iste? Vel, odio distinctio.",
+            " Nobis ipsam qui corrupti excepturi saepe maxime labore magnam sapiente nisi reprehenderit, similique architecto corporis laudantium ipsa expedita voluptate dolorem accusamus, quasi ut nemo neque error odio.",
+            " Modi, voluptatum magnam? Repellendus earum nostrum voluptatibus optio explicabo molestias cupiditate repudiandae magnam iure tenetur asperiores sit cumque ad eum voluptates quo nemo quidem natus doloribus consequatur temporibus, tempore distinctio pariatur.",
+            " Ipsam, corrupti.",
+            " Voluptatibus voluptates quae architecto? Omnis consequatur laboriosam deleniti doloremque fugit eos, cum hic ipsam eveniet est dolore, et eaque ea debitis.",
+            " Nisi asperiores ab nostrum voluptatum eveniet mollitia a ipsum! Nulla ad at praesentium quam amet quasi voluptates iste quia laborum, aliquid totam repellat exercitationem eligendi, neque incidunt numquam! Et nobis tempora architecto doloribus neque.",
+            " Ipsum ab laboriosam illum expedita.",
+            " Dicta reprehenderit, sed dolorum nisi illo, magnam suscipit nobis autem quia officia minima ratione quod quo modi recusandae? Iste nihil quam ut unde doloremque minima laboriosam est quis, enim quisquam?"
+        ],
+        "linkURL": "",
+        "linkText": "",
+        "color": ""
+    },
+    {
+        "title": "Color 1",
+        "description": [
+            "Color Test 1"
+        ],
+        "linkURL": "https://mui.com/customization/palette/#heading-palette-colors",
+        "linkText": "Material Colors",
+        "color": "bgcolor"
+    },
+    {
+        "title": "Color 2",
+        "description": [
+            "Color Test 2"
+        ],
+        "linkURL": "https://mui.com/customization/palette/#heading-palette-colors",
+        "linkText": "Material Colors",
+        "color": "red"
+    },
+    {
+        "title": "Color 3",
+        "description": [
+            "Color Test 3"
+        ],
+        "linkURL": "https://mui.com/customization/palette/#heading-palette-colors",
+        "linkText": "Material Colors",
+        "color": "pink"
+    },
+    {
+        "title": "Color 4",
+        "description": [
+            "Color Test 4"
+        ],
+        "linkURL": "https://mui.com/customization/palette/#heading-palette-colors",
+        "linkText": "Material Colors",
+        "color": "purple"
+    },
+    {
+        "title": "Color 5",
+        "description": [
+            "Color Test 5"
+        ],
+        "linkURL": "https://mui.com/customization/palette/#heading-palette-colors",
+        "linkText": "Material Colors",
+        "color": "dark-purple"
+    },
+    {
+        "title": "Color 6",
+        "description": [
+            "Color Test 6"
+        ],
+        "linkURL": "https://mui.com/customization/palette/#heading-palette-colors",
+        "linkText": "Material Colors",
+        "color": "indigo"
+    },
+    {
+        "title": "Color 7",
+        "description": [
+            "Color Test 7"
+        ],
+        "linkURL": "https://mui.com/customization/palette/#heading-palette-colors",
+        "linkText": "Material Colors",
+        "color": "blue"
+    },
+    {
+        "title": "Color 8",
+        "description": [
+            "Color Test 8"
+        ],
+        "linkURL": "https://mui.com/customization/palette/#heading-palette-colors",
+        "linkText": "Material Colors",
+        "color": "light-blue"
+    },
+    {
+        "title": "Color 9",
+        "description": [
+            "Color Test 9"
+        ],
+        "linkURL": "https://mui.com/customization/palette/#heading-palette-colors",
+        "linkText": "Material Colors",
+        "color": "cyan"
+    },
+    {
+        "title": "Color 10",
+        "description": [
+            "Color Test 10"
+        ],
+        "linkURL": "https://mui.com/customization/palette/#heading-palette-colors",
+        "linkText": "Material Colors",
+        "color": "green"
+    },
+    {
+        "title": "Color 11",
+        "description": [
+            "Color Test 11"
+        ],
+        "linkURL": "https://mui.com/customization/palette/#heading-palette-colors",
+        "linkText": "Material Colors",
+        "color": "light-green"
+    },
+    {
+        "title": "Color 12",
+        "description": [
+            "Color Test 12"
+        ],
+        "linkURL": "https://mui.com/customization/palette/#heading-palette-colors",
+        "linkText": "Material Colors",
+        "color": "orange"
+    },
+    {
+        "title": "Color 13",
+        "description": [
+            "Color Test 13"
+        ],
+        "linkURL": "https://mui.com/customization/palette/#heading-palette-colors",
+        "linkText": "Material Colors",
+        "color": "brown"
+    },
+    {
+        "title": "Color 14",
+        "description": [
+            "Color Test 14"
+        ],
+        "linkURL": "https://mui.com/customization/palette/#heading-palette-colors",
+        "linkText": "Material Colors",
+        "color": "grey"
+    },
+    {
+        "title": "Color 15",
+        "description": [
+            "Color Test 15"
+        ],
+        "linkURL": "https://mui.com/customization/palette/#heading-palette-colors",
+        "linkText": "Material Colors",
+        "color": "blue-grey"
+    },
+    {
+        "title": "Eva",
+        "description": [
+            "Isn't it funny ?",
+            "The people who we despise the most, ",
+            "Are the people who are most like us"
+        ],
+        "linkURL": "https://www.netflix.com/in/title/80100172",
+        "linkText": "Dark | Netflix",
+        "color": "dark-purple"
+    }
+]
