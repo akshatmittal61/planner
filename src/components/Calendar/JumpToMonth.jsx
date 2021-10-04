@@ -32,7 +32,16 @@ const JumpToMonth = ({ currentMonth, close, submit }) => {
                             <label className="calendar-edit-box-form__label" htmlFor="month">
                                 <AccessTimeIcon />
                             </label>
-                            <Input type="month" className="calendar-edit-box-form__input" id="month" name="month" placeholder={month} style={inputStyle} value={month} onChange={handleChange} />
+                            <Input
+                                type="month"
+                                className="calendar-edit-box-form__input"
+                                id="month"
+                                name="month"
+                                placeholder={month}
+                                style={inputStyle}
+                                value={month}
+                                onChange={handleChange}
+                            />
                         </div>
                     </div>
                     <div className="calendar-edit-box-form__buttons">

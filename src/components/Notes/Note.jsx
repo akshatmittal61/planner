@@ -1,5 +1,6 @@
 import React from 'react'
 import { useWebContext } from '../Context/WebContext'
+import TasksImage from '../../images/tasks.svg'
 
 const Note = ({ title, description, linkURL, linkText, color, Pop, onColor, onLink, onCopy, onEdit, onDelete }) => {
     const { theme } = useWebContext();
@@ -9,8 +10,8 @@ const Note = ({ title, description, linkURL, linkText, color, Pop, onColor, onLi
             <div className="note-head" onClick={Pop}>
                 <div className="note-head__title">{title}</div>
                 <div className="note-head__image">
-                    <a href={linkURL} target={(linkURL === "" || linkURL === "#") ? "_self" : "_blank"}>
-                        <img src={(linkURL !== "" && linkURL !== "#") ? "https://s2.googleusercontent.com/s2/favicons?domain_url=" + linkURL : document.querySelectorAll("link")[2].getAttribute("href")} className="note-head__img" alt="note link favicon" />
+                    <a href={linkURL} target={(linkURL === "" || linkURL === "#") ? "_self" : "_blank"} rel="noreferrer">
+                        <img src={(linkURL !== "" && linkURL !== "#") ? "https://s2.googleusercontent.com/s2/favicons?domain_url=" + linkURL : TasksImage} className="note-head__img" alt="note link favicon" />
                     </a>
                 </div>
             </div>
@@ -20,7 +21,7 @@ const Note = ({ title, description, linkURL, linkText, color, Pop, onColor, onLi
                         {description.map(line => { return <>{line} <br /> </> })}
                     </div>
                     <div className="note-link">
-                        <a href={linkURL} target={(linkURL === "" || linkURL === "#") ? "_self" : "_blank"}>{linkText}</a>
+                        <a href={linkURL} target={(linkURL === "" || linkURL === "#") ? "_self" : "_blank"} rel="noreferrer">{linkText}</a>
                     </div>
                 </div>
                 <div className="note-controls">

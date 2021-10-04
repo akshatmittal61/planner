@@ -7,6 +7,7 @@ import EventNoteIcon from '@mui/icons-material/EventNote';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 const Calendar = () => {
+    const colors = ["bgcolor", "red", "pink", "purple", "dark-purple", "indigo", "blue", "light-blue", "cyan", "green", "light-green", "orange", "brown", "grey", "blue-grey"];
     const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
     const calDate = [0, 1, 2, 3, 4, 5, 6];
     const calRow = [0, 1, 2, 3, 4];
@@ -123,7 +124,7 @@ const Calendar = () => {
     };
     return (
         <section className="calendar">
-            <div className="calendar-head">
+            <div className="calendar-head" style={{ "backgroundColor": "var(--" + colors[monthDisplayIndex] + "-400)" }}>
                 <div className="calendar-head-detail" onClick={() => { console.log(yearToDisplay + " " + monthDisplayIndex + " " + Mon + " " + monthToDisplay + " " + jumpToMonth); }}>
                     <h1 className="year">
                         <span className="month">{monthToDisplay}</span>
@@ -139,7 +140,7 @@ const Calendar = () => {
                     </span>
                 </div>
             </div>
-            <div className="calendar-body">
+            <div className="calendar-body" style={{ "backgroundColor": "var(--" + colors[monthDisplayIndex] + "-100)" }}>
                 <div className="day-row">
                     {days.map(day => (<span className="day">{day}</span>))}
                 </div>
@@ -148,7 +149,11 @@ const Calendar = () => {
                 </div>))}
             </div>
             {
-                jumpToMonth > 0 && <JumpToMonth submit={editMonth} currentMonth={`${yearToDisplay}-${monthDisplayIndex < 10 ? "0" + (monthDisplayIndex) : monthDisplayIndex}`} close={() => { setJumpToMonth(-1) }} />
+                jumpToMonth > 0 && <JumpToMonth
+                    submit={editMonth}
+                    currentMonth={`${yearToDisplay}-${monthDisplayIndex < 10 ? "0" + (monthDisplayIndex) : monthDisplayIndex}`}
+                    close={() => { setJumpToMonth(-1) }}
+                />
             }
             <div className="calendar-jump-icon">
                 <Zoom

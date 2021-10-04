@@ -8,6 +8,10 @@ import { useTheme } from '@mui/material/styles';
 import Zoom from '@mui/material/Zoom';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
+import { Snackbar } from "@mui/material";
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+
 const Events = () => {
     const [allEvents, setAllEvents] = useState([...events]);
     allEvents.sort((a, b) => {
@@ -22,6 +26,7 @@ const Events = () => {
     const [popupEventBox, setPopupEventBox] = useState(-1);
     const [addEventBox, setAddEventBox] = useState(-1);
     const [editEventBox, setEditEventBox] = useState(-1);
+    const [snackMessage, setSnackMessage] = useState("Action successful");
     const popupEvent = (a) => {
         setPopupEventBox(a);
     }
@@ -31,26 +36,33 @@ const Events = () => {
                 return index !== id;
             })
         })
+        setSnackMessage("Event deleted successfully");
+        setOpen(true);
         setPopupEventBox(-1);
     }
     const addNewEvent = () => {
         setAddEventBox(1);
     }
     const addEvent = (newEvent) => {
+        const condition = newEvent.title === "" && newEvent.type === "" && newEvent.description === "";
         setAllEvents(prev => {
-            return [...prev, newEvent];
+            return (!condition ? [...prev, newEvent] : [...prev]);
         })
-        setAddEventBox(-1);
+        setSnackMessage(condition ? "Can't add an empty event" : "Event added successfully");
+        setOpen(true);
+        setAddEventBox(condition ? 1 : -1);
     }
     const editEvent = (newEvent) => {
-        setAllEvents(()=>{
-            return allEvents.map((event,index)=>{
-                if(index===popupEventBox){
+        setAllEvents(() => {
+            return allEvents.map((event, index) => {
+                if (index === popupEventBox) {
                     return newEvent;
                 }
                 else return event;
             })
         })
+        setSnackMessage("Changes saved");
+        setOpen(true);
         setEditEventBox(-1);
         setPopupEventBox(-1);
     }
@@ -64,6 +76,25 @@ const Events = () => {
         bottom: 16,
         right: 16,
     };
+    const [open, setOpen] = React.useState(false);
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setOpen(false);
+    };
+    const action = (
+        <React.Fragment>
+            <IconButton
+                size="small"
+                aria-label="close"
+                color="inherit"
+                onClick={handleClose}
+            >
+                <CloseIcon fontSize="small" />
+            </IconButton>
+        </React.Fragment>
+    );
     return (
         <section className="events">
             <div className="events-head">
@@ -121,6 +152,15 @@ const Events = () => {
                     eventToEdit={allEvents[popupEventBox]}
                     close={() => { setEditEventBox(-1) }}
                     submit={editEvent}
+                />
+            }
+            {
+                <Snackbar
+                    open={open}
+                    autoHideDuration={3000}
+                    onClose={handleClose}
+                    message={snackMessage}
+                    action={action}
                 />
             }
             <div className="event-add-icon">

@@ -11,6 +11,17 @@
         "color": "blue"
     },
     {
+        "title": "Bugs",
+        "description": [
+            "Calendar: Jump to date dialog box is accepting response in two saves",
+            "",
+            "Events: Images in event popup are not showing in web deployed version"
+        ],
+        "linkURL": "",
+        "linkText": "",
+        "color": "indigo"
+    },
+    {
         "title": "Elijah",
         "description": [
             "Family is Power, Niklaus."
@@ -37,6 +48,18 @@
         "linkURL": "",
         "linkText": "",
         "color": ""
+    },
+    {
+        "title": "The Originals",
+        "description": [
+            "I was never naive enough to think that I was your light, but there is light in you.",
+            "All that anger, the cycle of abuse that Mikael began, you can end it.",
+            "You have to, so you can be the light for your little girl. For Hope.",
+            "— Cami to Klaus in No More Heartbreaks"
+        ],
+        "linkURL": "https://vampirediaries.fandom.com/wiki/Camille_O%27Connell",
+        "linkText": "Camille O' Connell",
+        "color": "pink"
     },
     {
         "title": "Loops",

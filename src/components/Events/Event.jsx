@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Event = ({ Title, Type, Date, Pop }) => {
+const Event = ({ Title, Type, Date, Pop}) => {
     const showIcon = (e) => {
         switch (e) {
             case "birthday":

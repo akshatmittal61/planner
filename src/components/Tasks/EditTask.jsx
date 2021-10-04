@@ -1,0 +1,87 @@
+import React, { useState } from 'react'
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import EventNoteIcon from '@mui/icons-material/EventNote';
+import NotesIcon from '@mui/icons-material/Notes';
+import Button from '@mui/material/Button';
+import CloseIcon from '@mui/icons-material/Close';
+import { Input } from '@mui/material';
+
+const EditTask = ({ taskToEdit, close, submit }) => {
+    const inputStyle = { color: "var(--tcolor)" };
+    const [task, setTask] = useState({
+        title: taskToEdit.title,
+        description: taskToEdit.description,
+        date: taskToEdit.date,
+        time: taskToEdit.time,
+        done: taskToEdit.done
+    });
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setTask(prev => {
+            return {
+                ...prev,
+                [name]: value
+            }
+        })
+    }
+    const submitTask = (e) => {
+        e.preventDefault();
+        submit(task);
+        setTask(() => {
+            return {
+                title: taskToEdit.title,
+                description: taskToEdit.description,
+                date: taskToEdit.date,
+                time: taskToEdit.time,
+                done: taskToEdit.done
+            }
+        })
+    }
+    return (
+        <div className="task-edit">
+            <div className="task-edit-box">
+                <div className="task-edit-box-topbar">
+                    <div className="task-edit-box-topbar__close" onClick={close}>
+                        <CloseIcon />
+                    </div>
+                </div>
+                <form className="task-edit-box-form" onSubmit={submitTask}>
+                    <div className="task-edit-box-form__content">
+                        <div className="task-edit-box-form__group">
+                            <label className="task-edit-box-form__label" htmlFor="title" />
+                            <Input type="text" className="task-edit-box-form__input" id="title" name="title" placeholder="Enter title" style={{ ...inputStyle, fontSize: "1.25rem" }} value={task.title} onChange={handleChange} />
+                        </div>
+                        <div className="task-edit-box-form__group">
+                            <label className="task-edit-box-form__label" htmlFor="description">
+                                <NotesIcon />
+                            </label>
+                            <Input type="text" className="task-edit-box-form__input" id="description" name="description" placeholder="Enter description" style={inputStyle} value={task.description} onChange={handleChange} />
+                        </div>
+                        <div className="task-edit-box-form__group">
+                            <label className="task-edit-box-form__label" htmlFor="date">
+                                <EventNoteIcon />
+                            </label>
+                            <Input type="date" className="task-edit-box-form__input" id="date" name="date" placeholder={task.date} style={inputStyle} value={task.date} onChange={handleChange} />
+                        </div>
+                        <div className="task-edit-box-form__group">
+                            <label className="task-edit-box-form__label" htmlFor="type">
+                                <AccessTimeIcon />
+                            </label>
+                            <Input type="time" className="task-edit-box-form__input" id="time" name="time" placeholder={task.time} style={inputStyle} value={task.time} onChange={handleChange} />
+                        </div>
+                    </div>
+                    <div className="task-edit-box__buttons">
+                        <div className="task-edit-box__button">
+                            <Button variant="text" className="task-edit-box__button-cancel" onClick={close}>Cancel</Button>
+                        </div>
+                        <div className="task-edit-box__button">
+                            <Button variant="contained" className="task-edit-box__button-save" type="submit">Save</Button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    )
+}
+
+export default EditTask

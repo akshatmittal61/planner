@@ -1,0 +1,58 @@
+[
+    {
+        "title": "The poison Apple",
+        "description": "Read the poem The posion Apple",
+        "date": "2021-10-01",
+        "time": "20:00:00",
+        "done": false
+    },
+    {
+        "title": "The Odyssey",
+        "description": "Read the novel",
+        "date": "2021-10-04",
+        "time": "22:00:00",
+        "done": false
+    },
+    {
+        "title": "The Fault in Our Stars",
+        "description": "",
+        "date": "2019-06-25",
+        "time": "00:00:00",
+        "done": true
+    },
+    {
+        "title": "CO practical",
+        "description": "",
+        "date": "2021-10-04",
+        "time": "10:00:00",
+        "done": false
+    },
+    {
+        "title": "Romeo and Juliet",
+        "description": "",
+        "date": "2021-09-25",
+        "time": "23:00:00",
+        "done": true
+    },
+    {
+        "title": "Practicum III project",
+        "description": "",
+        "date": "2021-11-25",
+        "time": "23:00:00",
+        "done": false
+    },
+    {
+        "title": "Talk with IPS",
+        "description": "Eunoia club has a meeting orgainsed with IPS",
+        "date": "2021-10-01",
+        "time": "17:00:00",
+        "done": false
+    },
+    {
+        "title": "Status for talk with IPS",
+        "description": "Eunoia club has a meeting orgainsed with IPS. Put status for that",
+        "date": "2021-10-01",
+        "time": "12:00:00",
+        "done": true
+    }
+]

@@ -5,24 +5,30 @@ import NotePopup from './NotePopup';
 import AddNote from './AddNote';
 import EditNote from './EditNote';
 import NoteLink from './NoteLink';
+import NoteColor from './NoteColor';
 import { useTheme } from '@mui/material/styles';
 import Zoom from '@mui/material/Zoom';
 import Fab from '@mui/material/Fab';
 import CreateIcon from '@mui/icons-material/Create';
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
-import NoteColor from './NoteColor';
+import Snackbar from '@mui/material/Snackbar';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
 
 const Notes = () => {
     const [allNotes, setAllNotes] = useState([...notes]);
     allNotes.map((note) => {
         if (note.color === "") note.color = "bgcolor";
         if (note.linkURL === "" && note.linkText !== "") note.linkURL = "#";
+        else if (note.linkURL !== "" && note.linkText === "") note.linkText = "Click Here";
+        return note;
     })
     const [popupNoteBox, setPopupNoteBox] = useState(-1);
     const [addNoteBox, setAddNoteBox] = useState(-1);
     const [editNoteBox, setEditNoteBox] = useState(-1);
     const [editNoteLinkBox, setEditNoteLinkBox] = useState(-1);
     const [editNoteColorBox, setEditNoteColorBox] = useState(-1);
+    const [snackMessage, setSnackMessage] = useState("Action successful");
     const popupNote = (a) => {
         setPopupNoteBox(a);
     }
@@ -32,13 +38,18 @@ const Notes = () => {
                 return index !== id;
             })
         })
+        setSnackMessage("Note deleted successfully");
+        setOpen(true);
         setPopupNoteBox(-1);
     }
     const addNote = (newNote) => {
+        const condition = newNote.title === "" && newNote.description[0] === "" && newNote.linkURL === "" && newNote.linkText === "";
         setAllNotes(prev => {
-            return [...prev, newNote];
+            return (!condition ? [...prev, newNote] : [...prev]);
         })
-        setAddNoteBox(-1);
+        !condition ? setSnackMessage("Note added successfully") : setSnackMessage("Can't add empty note");
+        setOpen(true);
+        setAddNoteBox(!condition ? -1 : 1);
     }
     const editNote = (newNote) => {
         setAllNotes(() => {
@@ -49,6 +60,8 @@ const Notes = () => {
                 else return note;
             })
         })
+        setSnackMessage("Changes saved");
+        setOpen(true);
         setEditNoteBox(-1);
         setEditNoteLinkBox(-1);
         setEditNoteColorBox(-1);
@@ -57,6 +70,8 @@ const Notes = () => {
     const copyNote = (e) => {
         if (allNotes[e].linkText === "" || allNotes[e].linkURL === "") navigator.clipboard.writeText(allNotes[e].title + '\n\n' + allNotes[e].description + '\n' + allNotes[e].linkURL + allNotes[e].linkText)
         else navigator.clipboard.writeText(allNotes[e].title + '\n\n' + allNotes[e].description + '\n' + allNotes[e].linkURL + " : " + allNotes[e].linkText)
+        setSnackMessage("Note copied successfully");
+        setOpen(true);
     }
     const theme = useTheme();
     const transitionDuration = {
@@ -68,6 +83,25 @@ const Notes = () => {
         bottom: 16,
         right: 16,
     };
+    const [open, setOpen] = React.useState(false);
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setOpen(false);
+    };
+    const action = (
+        <React.Fragment>
+            <IconButton
+                size="small"
+                aria-label="close"
+                color="inherit"
+                onClick={handleClose}
+            >
+                <CloseIcon fontSize="small" />
+            </IconButton>
+        </React.Fragment>
+    );
     return (
         <section className="notes">
             <div className="notes-container">
@@ -128,6 +162,15 @@ const Notes = () => {
                     noteToEdit={allNotes[editNoteColorBox]}
                     close={() => { setEditNoteColorBox(-1) }}
                     submit={editNote}
+                />
+            }
+            {
+                <Snackbar
+                    open={open}
+                    autoHideDuration={3000}
+                    onClose={handleClose}
+                    message={snackMessage}
+                    action={action}
                 />
             }
             <div className="note-add-icon">
