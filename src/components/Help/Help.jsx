@@ -1,6 +1,5 @@
 import React from 'react'
 import Button from '../Button'
-import { useWebContext } from '../Context/WebContext'
 import favicon from '../../images/favicon.svg';
 import ContactImage from '../../images/contact.svg'
 import FeedbackImage from '../../images/feedback.svg'
@@ -11,7 +10,6 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CustomAccordian from './CustomAccordian';
 
 const Help = ({ GoTo }) => {
-    const { theme } = useWebContext();
     const noOfAccordians = Array(5).fill(null);
     const AccordionStyle = { backgroundColor: 'var(--bgcolor-100)', color: 'inherit', width: "85%" };
     const titles = ["Calendar", "Events", "Notes", "Tasks", "Themes"];
@@ -96,7 +94,6 @@ const Help = ({ GoTo }) => {
                         alt="Contact Us"
                         onClick={() => GoTo(6)}
                         color="blue"
-                        style={theme === "light" ? "outline" : "fill"}
                     />
                     <Button
                         text="Send feedback"
@@ -105,7 +102,6 @@ const Help = ({ GoTo }) => {
                         alt="Feedback"
                         onClick={() => GoTo(7)}
                         color="green"
-                        style={theme === "light" ? "outline" : "fill"}
                     />
                 </div>
             </footer>

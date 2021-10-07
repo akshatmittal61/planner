@@ -7,11 +7,12 @@ import Notes from './Notes/Notes'
 import Tasks from './Tasks/Tasks'
 import Help from './Help/Help'
 import ContactUs from './ContactUs'
+import FeedBack from './FeedBack';
 
 const App = () => {
   const [sideBarExpand, setsideBarExpand] = useState((window.innerWidth > 992 ? true : false));
   console.log(window.innerWidth);
-  const [render, setRender] = useState(5);
+  const [render, setRender] = useState(1);
   const handleRender = (link) => {
     console.log(link);
     setRender(link + 1);
@@ -40,7 +41,7 @@ const App = () => {
           render === 7 && <ContactUs />
         }
         {
-          render === 8 && <ContactUs />
+          render === 8 && <FeedBack close={() => setRender(1)} />
         }
       </main>
     </>

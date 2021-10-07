@@ -62,6 +62,17 @@
         "color": "pink"
     },
     {
+        "title": "Rise of Flutter",
+        "description": [
+            "Is flutter going to kill Native Android?",
+            "It already is known fact, flutter can be used for cross platform app development",
+            "Meanwhile Google has came up with the solution of independence from JVMs."
+        ],
+        "linkURL": "https://www.instagram.com/p/CUO2pNoDi0-/",
+        "linkText": "The Flutter Way",
+        "color": "blue"
+    },
+    {
         "title": "Loops",
         "description": [
             "How to keep a programmer in the shower forever.",
@@ -70,16 +81,6 @@
         "linkURL": "",
         "linkText": "",
         "color": "light-green"
-    },
-    {
-        "title": "Hardware vs. Software",
-        "description": [
-            "What's the difference between hardware and software?",
-            " You can hit your hardware with a hammer, but you can only curse at your software."
-        ],
-        "linkURL": "",
-        "linkText": "",
-        "color": ""
     },
     {
         "title": "Klaus",
@@ -119,6 +120,16 @@
         "color": "pink"
     },
     {
+        "title": "Hardware vs. Software",
+        "description": [
+            "What's the difference between hardware and software?",
+            " You can hit your hardware with a hammer, but you can only curse at your software."
+        ],
+        "linkURL": "",
+        "linkText": "",
+        "color": ""
+    },
+    {
         "title": "Stefan",
         "description": [
             "Whenever you are ready for me, I'll be ready for you"
@@ -140,9 +151,9 @@
     {
         "title": "Ross & Rachel",
         "description": [
-            "Do you think it's easy for me to see you with somebody else?",
-            " Hey you were the one who ended it, remember ?",
-            " Yes because I was mad at you. Not because I stopped loving you."
+            "Rachel: Do you think it's easy for me to see you with somebody else?",
+            "Ross: Hey you were the one who ended it, remember ?",
+            "Rachel: Yes because I was mad at you. Not because I stopped loving you."
         ],
         "linkURL": "https://www.netflix.com/in/title/70153404",
         "linkText": "FRIENDS",
@@ -184,132 +195,6 @@
         "linkURL": "https://mui.com/customization/palette/#heading-palette-colors",
         "linkText": "Material Colors",
         "color": "bgcolor"
-    },
-    {
-        "title": "Color 2",
-        "description": [
-            "Color Test 2"
-        ],
-        "linkURL": "https://mui.com/customization/palette/#heading-palette-colors",
-        "linkText": "Material Colors",
-        "color": "red"
-    },
-    {
-        "title": "Color 3",
-        "description": [
-            "Color Test 3"
-        ],
-        "linkURL": "https://mui.com/customization/palette/#heading-palette-colors",
-        "linkText": "Material Colors",
-        "color": "pink"
-    },
-    {
-        "title": "Color 4",
-        "description": [
-            "Color Test 4"
-        ],
-        "linkURL": "https://mui.com/customization/palette/#heading-palette-colors",
-        "linkText": "Material Colors",
-        "color": "purple"
-    },
-    {
-        "title": "Color 5",
-        "description": [
-            "Color Test 5"
-        ],
-        "linkURL": "https://mui.com/customization/palette/#heading-palette-colors",
-        "linkText": "Material Colors",
-        "color": "dark-purple"
-    },
-    {
-        "title": "Color 6",
-        "description": [
-            "Color Test 6"
-        ],
-        "linkURL": "https://mui.com/customization/palette/#heading-palette-colors",
-        "linkText": "Material Colors",
-        "color": "indigo"
-    },
-    {
-        "title": "Color 7",
-        "description": [
-            "Color Test 7"
-        ],
-        "linkURL": "https://mui.com/customization/palette/#heading-palette-colors",
-        "linkText": "Material Colors",
-        "color": "blue"
-    },
-    {
-        "title": "Color 8",
-        "description": [
-            "Color Test 8"
-        ],
-        "linkURL": "https://mui.com/customization/palette/#heading-palette-colors",
-        "linkText": "Material Colors",
-        "color": "light-blue"
-    },
-    {
-        "title": "Color 9",
-        "description": [
-            "Color Test 9"
-        ],
-        "linkURL": "https://mui.com/customization/palette/#heading-palette-colors",
-        "linkText": "Material Colors",
-        "color": "cyan"
-    },
-    {
-        "title": "Color 10",
-        "description": [
-            "Color Test 10"
-        ],
-        "linkURL": "https://mui.com/customization/palette/#heading-palette-colors",
-        "linkText": "Material Colors",
-        "color": "green"
-    },
-    {
-        "title": "Color 11",
-        "description": [
-            "Color Test 11"
-        ],
-        "linkURL": "https://mui.com/customization/palette/#heading-palette-colors",
-        "linkText": "Material Colors",
-        "color": "light-green"
-    },
-    {
-        "title": "Color 12",
-        "description": [
-            "Color Test 12"
-        ],
-        "linkURL": "https://mui.com/customization/palette/#heading-palette-colors",
-        "linkText": "Material Colors",
-        "color": "orange"
-    },
-    {
-        "title": "Color 13",
-        "description": [
-            "Color Test 13"
-        ],
-        "linkURL": "https://mui.com/customization/palette/#heading-palette-colors",
-        "linkText": "Material Colors",
-        "color": "brown"
-    },
-    {
-        "title": "Color 14",
-        "description": [
-            "Color Test 14"
-        ],
-        "linkURL": "https://mui.com/customization/palette/#heading-palette-colors",
-        "linkText": "Material Colors",
-        "color": "grey"
-    },
-    {
-        "title": "Color 15",
-        "description": [
-            "Color Test 15"
-        ],
-        "linkURL": "https://mui.com/customization/palette/#heading-palette-colors",
-        "linkText": "Material Colors",
-        "color": "blue-grey"
     },
     {
         "title": "Eva",

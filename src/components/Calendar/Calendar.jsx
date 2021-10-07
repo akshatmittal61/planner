@@ -16,7 +16,7 @@ const Calendar = () => {
     const Month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const Month_short3 = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     let mon = 31;
-    const null34 = [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null];
+    const null34 = Array(34).fill(null);
     let Day = null34;
     let leap = false;
     let currentMonth_short3 = Date().substring(4, 7);

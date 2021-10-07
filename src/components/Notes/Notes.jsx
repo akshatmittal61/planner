@@ -14,6 +14,8 @@ import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
 import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import Button from '../Button'
+import nullNotes from '../../images/nullNotes.svg'
 
 const Notes = () => {
     const [allNotes, setAllNotes] = useState([...notes]);
@@ -104,27 +106,41 @@ const Notes = () => {
     );
     return (
         <section className="notes">
-            <div className="notes-container">
-                <ResponsiveMasonry columnsCount={3}>
-                    <Masonry>
-                        {
-                            allNotes.map((note, index) => <Note
-                                title={note.title}
-                                description={note.description}
-                                linkURL={note.linkURL}
-                                linkText={note.linkText}
-                                color={note.color}
-                                Pop={() => { popupNote(index) }}
-                                onColor={() => { setEditNoteColorBox(index) }}
-                                onLink={() => { setEditNoteLinkBox(index) }}
-                                onCopy={() => { copyNote(index) }}
-                                onEdit={() => { setEditNoteBox(index) }}
-                                onDelete={() => { deleteNote(index) }}
-                            />)
-                        }
-                    </Masonry>
-                </ResponsiveMasonry>
-            </div>
+            {allNotes.length !== 0 ? (
+                <div className="notes-container">
+                    <ResponsiveMasonry columnsCount={3}>
+                        <Masonry>
+                            {
+                                allNotes.map((note, index) => <Note
+                                    title={note.title}
+                                    description={note.description}
+                                    linkURL={note.linkURL}
+                                    linkText={note.linkText}
+                                    color={note.color}
+                                    Pop={() => { popupNote(index) }}
+                                    onColor={() => { setEditNoteColorBox(index) }}
+                                    onLink={() => { setEditNoteLinkBox(index) }}
+                                    onCopy={() => { copyNote(index) }}
+                                    onEdit={() => { setEditNoteBox(index) }}
+                                    onDelete={() => { deleteNote(index) }}
+                                />)
+                            }
+                        </Masonry>
+                    </ResponsiveMasonry>
+                </div>
+            ) : (
+                <div className="notes-null">
+                    <div className="notes-null-image">
+                        <img className="notes-null-image__img" src={nullNotes} alt="No notes" />
+                    </div>
+                    <div className="notes-null-content">
+                        <div className="notes-null-content__text">No notes yet</div>
+                        <div className="notes-null-content__button">
+                            <Button imgSrc={nullNotes} text="Add a note" onClick={() => { setAddNoteBox(1) }} color="blue" />
+                        </div>
+                    </div>
+                </div>
+            )}
             {
                 popupNoteBox >= 0 && <NotePopup
                     allNotes={allNotes}

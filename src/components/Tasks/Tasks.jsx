@@ -15,6 +15,8 @@ import { Snackbar } from "@mui/material";
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import EditTask from './EditTask';
+import Button from '../Button'
+import nullTasks from '../../images/nullTasks.svg'
 
 const Tasks = () => {
     const [allTasks, setAllTasks] = useState([...tasks])
@@ -107,65 +109,81 @@ const Tasks = () => {
     );
     return (
         <section className="tasks">
-            <Accordion defaultExpanded={true} sx={AccordionStyle}>
-                <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
-                >
-                    <div className="tasks-head">
-                        Your Tasks
+            {allTasks.length !== 0 ? (
+                <>
+                    <Accordion defaultExpanded={true} sx={AccordionStyle}>
+                        <AccordionSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls="panel1a-content"
+                            id="panel1a-header"
+                        >
+                            <div className="tasks-head">
+                                Your Tasks
+                            </div>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <div className="row tasks-row">
+                                {
+                                    allTasks.map((task, index) =>
+                                        !task.done && <Task
+                                            title={task.title}
+                                            description={task.description}
+                                            date={task.date}
+                                            time={task.time}
+                                            done={task.done}
+                                            Pop={() => { popupTask(index) }}
+                                            onEdit={() => { setEditTaskBox(index) }}
+                                            onDelete={() => { deleteTask(index) }}
+                                            handleDone={() => { handleDoneChange(index) }}
+                                        />
+                                    )
+                                }
+                            </div>
+                        </AccordionDetails>
+                    </Accordion>
+                    <Accordion defaultExpanded={false} sx={AccordionStyle}>
+                        <AccordionSummary
+                            expandIcon={<ExpandMoreIcon />}
+                            aria-controls="panel1a-content"
+                            id="panel1a-header"
+                        >
+                            <div className="tasks-head">
+                                Completed Tasks
+                            </div>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                            <div className="row tasks-row">
+                                {
+                                    allTasks.map((task, index) =>
+                                        task.done && <Task
+                                            title={task.title}
+                                            description={task.description}
+                                            date={task.date}
+                                            time={task.time}
+                                            done={task.done}
+                                            Pop={() => { popupTask(index) }}
+                                            onDelete={() => { deleteTask(index) }}
+                                            handleDone={() => { handleDoneChange(index) }}
+                                        />
+                                    )
+                                }
+                            </div>
+                        </AccordionDetails>
+                    </Accordion>
+                </>
+            ) : (
+                <div className="tasks-null">
+                    <div className="tasks-null-image">
+                        <img className="tasks-null-image__img" src={nullTasks} alt="No events" />
                     </div>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <div className="row tasks-row">
-                        {
-                            allTasks.map((task, index) =>
-                                !task.done && <Task
-                                    title={task.title}
-                                    description={task.description}
-                                    date={task.date}
-                                    time={task.time}
-                                    done={task.done}
-                                    Pop={() => { popupTask(index) }}
-                                    onEdit={() => { setEditTaskBox(index) }}
-                                    onDelete={() => { deleteTask(index) }}
-                                    handleDone={() => { handleDoneChange(index) }}
-                                />
-                            )
-                        }
+                    <div className="tasks-null-content">
+                        <div className="tasks-null-content__text">No tasks yet</div>
+                        <div className="tasks-null-content__button">
+                            <Button imgSrc={nullTasks} text="Add a task" onClick={() => { setAddTaskBox(1) }} color="blue" />
+                        </div>
                     </div>
-                </AccordionDetails>
-            </Accordion>
-            <Accordion defaultExpanded={false} sx={AccordionStyle}>
-                <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
-                >
-                    <div className="tasks-head">
-                        Completed Tasks
-                    </div>
-                </AccordionSummary>
-                <AccordionDetails>
-                    <div className="row tasks-row">
-                        {
-                            allTasks.map((task, index) =>
-                                task.done && <Task
-                                    title={task.title}
-                                    description={task.description}
-                                    date={task.date}
-                                    time={task.time}
-                                    done={task.done}
-                                    Pop={() => { popupTask(index) }}
-                                    onDelete={() => { deleteTask(index) }}
-                                    handleDone={() => { handleDoneChange(index) }}
-                                />
-                            )
-                        }
-                    </div>
-                </AccordionDetails>
-            </Accordion>
+                </div>
+            )}
             {
                 popupTaskBox >= 0 && <TaskPopup
                     task={allTasks[popupTaskBox]}

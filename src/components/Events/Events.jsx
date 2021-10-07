@@ -9,8 +9,10 @@ import Zoom from '@mui/material/Zoom';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import { Snackbar } from "@mui/material";
+import Button from '../Button'
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import nullEvents from '../../images/nullEvents.svg'
 
 const Events = () => {
     const [allEvents, setAllEvents] = useState([...events]);
@@ -97,41 +99,57 @@ const Events = () => {
     );
     return (
         <section className="events">
-            <div className="events-head">
-                <div className="events-head-title">Events</div>
-                <div className="events-head-arrows">
-                    <span className="material-icons events-head-arrow up" onClick={() => {
-                        if (start <= 0) return;
-                        setStart(start - l);
-                    }}>
-                        keyboard_arrow_up
-                    </span>
-                    <span className="material-icons events-head-arrow down" onClick={() => {
-                        if (start + l >= allEvents.length) return;
-                        setStart(start + l);
-                    }}>
-                        keyboard_arrow_down
-                    </span>
-                </div>
-            </div>
-            <div className="events-body">
-                <div className="row events-body-row">
-                    {
-                        allEvents.map((event, index) => {
-                            if (index >= start && index < start + k)
-                                return (
-                                    <Event
-                                        Title={event.title}
-                                        Date={event.date}
-                                        Type={event.type}
-                                        Pop={() => { popupEvent(index) }}
-                                    />
-                                )
-                            else return null;
-                        })
-                    }
-                </div>
-            </div>
+            {
+                allEvents.length !== 0 ? (<>
+                    <div className="events-head">
+                        <div className="events-head-title">Events</div>
+                        <div className="events-head-arrows">
+                            <span className="material-icons events-head-arrow up" onClick={() => {
+                                if (start <= 0) return;
+                                setStart(start - l);
+                            }}>
+                                keyboard_arrow_up
+                            </span>
+                            <span className="material-icons events-head-arrow down" onClick={() => {
+                                if (start + l >= allEvents.length) return;
+                                setStart(start + l);
+                            }}>
+                                keyboard_arrow_down
+                            </span>
+                        </div>
+                    </div>
+                    <div className="events-body">
+                        <div className="row events-body-row">
+                            {
+                                allEvents.map((event, index) => {
+                                    if (index >= start && index < start + k)
+                                        return (
+                                            <Event
+                                                Title={event.title}
+                                                Date={event.date}
+                                                Type={event.type}
+                                                Pop={() => { popupEvent(index) }}
+                                            />
+                                        )
+                                    else return null;
+                                })
+                            }
+                        </div>
+                    </div>
+                </>) : (
+                    <div className="events-null">
+                        <div className="events-null-image">
+                            <img className="events-null-image__img" src={nullEvents} alt="No events" />
+                        </div>
+                        <div className="events-null-content">
+                            <div className="events-null-content__text">No events yet</div>
+                            <div className="events-null-content__button">
+                                <Button imgSrc={nullEvents} text="Add an event" onClick={() => { setAddEventBox(1) }} color="blue" />
+                            </div>
+                        </div>
+                    </div>
+                )
+            }
             {
                 popupEventBox >= 0 && <EventPopup
                     allEvents={allEvents}
