@@ -6,7 +6,7 @@ import Theme from '../theme';
 import AppBoxLink from './AppBoxLink';
 import AppLinks from '../AppLinks.js';
 
-const Header = ({ sideBar, GoTo }) => {
+const Header = ({ sideBar, GoTo, onHelp }) => {
     const [appBoxExpand, setAppBoxExpand] = useState(false);
     return (
         <header className="header">
@@ -23,7 +23,7 @@ const Header = ({ sideBar, GoTo }) => {
                     <div className="header-right-link theme">
                         <Theme />
                     </div>
-                    <div className="header-right-link help">
+                    <div className="header-right-link header-right-link-help" onClick={onHelp}>
                         <div className="header-right-link__icon" title="Help & Feedback">
                             <HelpOutlineIcon />
                         </div>

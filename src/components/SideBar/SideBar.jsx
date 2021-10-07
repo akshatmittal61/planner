@@ -1,8 +1,11 @@
 import React from 'react';
 import AppLinks from '../AppLinks.js';
 import SideLink from './SideLink';
-import SocialObject from './SocialObject';
+import ContactImage from '../../images/contact.svg'
+import { useWebContext } from '../Context/WebContext'
+import Button from '../Button';
 const SideBar = ({ aside, GoTo }) => {
+    const { theme } = useWebContext();
     return (
         <aside className={`aside aside-${aside ? "expand" : "hide"}`}>
             <div className="side-bar">
@@ -16,11 +19,16 @@ const SideBar = ({ aside, GoTo }) => {
                     </ul>
                 </nav>
                 <div className="side-bar-social">
-                    <div className="side-bar-social-row row">
-                        <SocialObject link="https://twitter.com/akshatmittal61" name="Twitter" />
-                        <SocialObject link="https://www.linkedin.com/in/akshat-mittal-851073202/" name="LinkedIn" />
-                        <SocialObject link="https://github.com/akshatmittal61" name="GitHub" />
-                        <SocialObject link="mailto:akshatmittal2506@gmail.com" name="Mail" />
+                    <div className="side-bar-social-row">
+                        <Button
+                            text="Contact Us"
+                            className="side-bar-social-row-button"
+                            imgSrc={ContactImage}
+                            alt="Contact Us"
+                            onClick={() => GoTo(6)}
+                            color="blue"
+                            style={theme === "light" ? "outline" : "fill"}
+                        />
                     </div>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useWebContext } from '../Context/WebContext'
-import TasksImage from '../../images/tasks.svg'
+import TasksImage from '../../images/favicon.svg'
 
 const Note = ({ title, description, linkURL, linkText, color, Pop, onColor, onLink, onCopy, onEdit, onDelete }) => {
     const { theme } = useWebContext();
