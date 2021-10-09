@@ -6,11 +6,11 @@ import Events from './Events/Events'
 import Notes from './Notes/Notes'
 import Tasks from './Tasks/Tasks'
 import Help from './Help/Help'
-import ContactUs from './ContactUs'
+import ContactUs from './ContactUs/ContactUs'
 import FeedBack from './FeedBack';
 
 const App = () => {
-  const [sideBarExpand, setsideBarExpand] = useState((window.innerWidth > 992 ? true : false));
+  const [sideBarExpand, setsideBarExpand] = useState((window.innerWidth > 880 ? true : false));
   console.log(window.innerWidth);
   const [render, setRender] = useState(1);
   const handleRender = (link) => {

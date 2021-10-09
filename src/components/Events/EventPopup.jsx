@@ -1,18 +1,23 @@
 import React from 'react'
+import { Tooltip } from '@mui/material';
 
-const EventPopup = ({ allEvents, show, close, onDelete,onEdit }) => {
+const EventPopup = ({ allEvents, show, close, onDelete, onEdit }) => {
     return (
         <div className="event-popup">
             <div className="event-popup-box">
                 <div className={`event-popup-box__image event-popup-box__image__${allEvents[show].type}`} />
                 <div className="event-popup-box-content">
                     <div className="event-popup-box-buttons">
-                        <div className="event-popup-box-edit" onClick={onEdit}>
-                            <span className="material-icons event-popup-box-edit__icon">edit</span>
-                        </div>
-                        <div className="event-popup-box-delete" onClick={onDelete}>
-                            <span className="material-icons event-popup-box-delete__icon">delete</span>
-                        </div>
+                        <Tooltip title="Edit event">
+                            <div className="event-popup-box-edit" onClick={onEdit}>
+                                <span className="material-icons event-popup-box-edit__icon">edit</span>
+                            </div>
+                        </Tooltip>
+                        <Tooltip title="Delete event">
+                            <div className="event-popup-box-delete" onClick={onDelete}>
+                                <span className="material-icons event-popup-box-delete__icon">delete</span>
+                            </div>
+                        </Tooltip>
                         <div className="event-popup-box-close" onClick={close}>
                             <span className="material-icons event-popup-box-close__icon">close</span>
                         </div>

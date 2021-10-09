@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import CloseIcon from '@mui/icons-material/Close'
-import { Button } from '@mui/material'
+import { Button, Tooltip } from '@mui/material'
 import { useWebContext } from '../Context/WebContext'
 
 const NoteColor = ({ noteToEdit, close, submit }) => {
@@ -54,9 +54,11 @@ const NoteColor = ({ noteToEdit, close, submit }) => {
                             {
                                 colors.map((color, index) =>
                                     <div className="note-edit-color-box-form-color col-lg-20 col-md-33 col-sm-33">
-                                        <div className="note-edit-color-box-form-color__content" onClick={() => { handleChange(index) }} data-title={color}>
-                                            <span className="note-edit-color-box-form-color__circle material-icons" style={{ backgroundColor: "var(--" + color + ")" }}>{color === note.color ? "done" : null}</span>
-                                        </div>
+                                        <Tooltip title={color}>
+                                            <div className="note-edit-color-box-form-color__content" onClick={() => { handleChange(index) }}>
+                                                <span className="note-edit-color-box-form-color__circle material-icons" style={{ backgroundColor: "var(--" + color + ")" }}>{color === note.color ? "done" : null}</span>
+                                            </div>
+                                        </Tooltip>
                                     </div>)
                             }
                         </div>

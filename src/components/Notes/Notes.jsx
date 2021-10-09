@@ -7,12 +7,9 @@ import EditNote from './EditNote';
 import NoteLink from './NoteLink';
 import NoteColor from './NoteColor';
 import { useTheme } from '@mui/material/styles';
-import Zoom from '@mui/material/Zoom';
-import Fab from '@mui/material/Fab';
+import { Tooltip, Zoom, Fab, Snackbar, IconButton } from '@mui/material';
 import CreateIcon from '@mui/icons-material/Create';
-import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
-import Snackbar from '@mui/material/Snackbar';
-import IconButton from '@mui/material/IconButton';
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import CloseIcon from '@mui/icons-material/Close';
 import Button from '../Button'
 import nullNotes from '../../images/nullNotes.svg'
@@ -199,9 +196,11 @@ const Notes = () => {
                     }}
                     unmountOnExit
                 >
-                    <Fab sx={fabStyle} aria-label="Add" color="primary" onClick={() => { setAddNoteBox(1) }} style={{ "position": "fixed" }}>
-                        <CreateIcon />
-                    </Fab>
+                    <Tooltip title="Add a note">
+                        <Fab sx={fabStyle} aria-label="Add" color="primary" onClick={() => { setAddNoteBox(1) }} style={{ "position": "fixed" }}>
+                            <CreateIcon />
+                        </Fab>
+                    </Tooltip>
                 </Zoom>
             </div>
         </section>

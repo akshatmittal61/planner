@@ -1,5 +1,6 @@
 import React from 'react'
 import { useWebContext } from '../Context/WebContext'
+import { Tooltip } from '@mui/material';
 import TasksImage from '../../images/favicon.svg'
 
 const Note = ({ title, description, linkURL, linkText, color, Pop, onColor, onLink, onCopy, onEdit, onDelete }) => {
@@ -10,9 +11,11 @@ const Note = ({ title, description, linkURL, linkText, color, Pop, onColor, onLi
             <div className="note-head" onClick={Pop}>
                 <div className="note-head__title">{title}</div>
                 <div className="note-head__image">
-                    <a href={linkURL} target={(linkURL === "" || linkURL === "#") ? "_self" : "_blank"} rel="noreferrer">
-                        <img src={(linkURL !== "" && linkURL !== "#") ? "https://s2.googleusercontent.com/s2/favicons?domain_url=" + linkURL : TasksImage} className="note-head__img" alt="note link favicon" />
-                    </a>
+                    <Tooltip title={(linkURL === "" || linkURL === "#") ? "No external link" : "Visit page"}>
+                        <a href={linkURL} target={(linkURL === "" || linkURL === "#") ? "_self" : "_blank"} rel="noreferrer">
+                            <img src={(linkURL !== "" && linkURL !== "#") ? "https://s2.googleusercontent.com/s2/favicons?domain_url=" + linkURL : TasksImage} className="note-head__img" alt="note link favicon" />
+                        </a>
+                    </Tooltip>
                 </div>
             </div>
             <div className="note-body">
@@ -26,19 +29,29 @@ const Note = ({ title, description, linkURL, linkText, color, Pop, onColor, onLi
                 </div>
                 <div className="note-controls">
                     <div className="note-control color">
-                        <span className="material-icons" onClick={onColor}>palette</span>
+                        <Tooltip title="Change Color">
+                            <span className="material-icons" onClick={onColor}>palette</span>
+                        </Tooltip>
                     </div>
                     <div className="note-control link">
-                        <span className="material-icons" onClick={onLink}>link</span>
+                        <Tooltip title="Edit Link">
+                            <span className="material-icons" onClick={onLink}>link</span>
+                        </Tooltip>
                     </div>
                     <div className="note-control copy">
-                        <span className="material-icons" onClick={onCopy}>content_copy</span>
+                        <Tooltip title="Copy Note">
+                            <span className="material-icons" onClick={onCopy}>content_copy</span>
+                        </Tooltip>
                     </div>
                     <div className="note-control edit">
-                        <span className="material-icons" onClick={onEdit}>edit</span>
+                        <Tooltip title="Edit Note">
+                            <span className="material-icons" onClick={onEdit}>edit</span>
+                        </Tooltip>
                     </div>
                     <div className="note-control delete">
-                        <span className="material-icons" onClick={onDelete}>delete</span>
+                        <Tooltip title="Delete Note">
+                            <span className="material-icons" onClick={onDelete}>delete</span>
+                        </Tooltip>
                     </div>
                 </div>
             </div>

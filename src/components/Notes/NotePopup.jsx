@@ -1,6 +1,7 @@
 import React from 'react'
 import CloseIcon from '@mui/icons-material/Close';
 import { useWebContext } from '../Context/WebContext';
+import { Tooltip } from '@mui/material';
 
 const NotePopup = ({ allNotes, show, close, onColor, onLink, onCopy, onEdit, onDelete }) => {
     const note = allNotes[show];
@@ -32,19 +33,29 @@ const NotePopup = ({ allNotes, show, close, onColor, onLink, onCopy, onEdit, onD
                 <div className="note-popup-box-bottombar">
                     <div className="note-popup-box-controls">
                         <div className="note-popup-box-control color">
-                            <span className="material-icons" onClick={onColor}>palette</span>
+                            <Tooltip title="Change Color">
+                                <span className="material-icons" onClick={onColor}>palette</span>
+                            </Tooltip>
                         </div>
                         <div className="note-popup-box-control link">
-                            <span className="material-icons" onClick={onLink}>link</span>
+                            <Tooltip title="Edit Link">
+                                <span className="material-icons" onClick={onLink}>link</span>
+                            </Tooltip>
                         </div>
                         <div className="note-popup-box-control copy">
-                            <span className="material-icons" onClick={onCopy}>content_copy</span>
+                            <Tooltip title="Copy Note">
+                                <span className="material-icons" onClick={onCopy}>content_copy</span>
+                            </Tooltip>
                         </div>
                         <div className="note-popup-box-control edit">
-                            <span className="material-icons" onClick={onEdit}>edit</span>
+                            <Tooltip title="Edit Note">
+                                <span className="material-icons" onClick={onEdit}>edit</span>
+                            </Tooltip>
                         </div>
                         <div className="note-popup-box-control delete">
-                            <span className="material-icons" onClick={onDelete}>delete</span>
+                            <Tooltip title="Delete Note">
+                                <span className="material-icons" onClick={onDelete}>delete</span>
+                            </Tooltip>
                         </div>
                     </div>
                 </div>

@@ -3,16 +3,10 @@ import Task from './Task';
 import TaskPopup from './TaskPopup';
 import AddTask from './AddTask';
 import tasks from './tasks.json'
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
+import { Tooltip, IconButton, Snackbar, Zoom, Fab, Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useTheme } from '@mui/material/styles';
-import Zoom from '@mui/material/Zoom';
-import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
-import { Snackbar } from "@mui/material";
-import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import EditTask from './EditTask';
 import Button from '../Button'
@@ -222,9 +216,11 @@ const Tasks = () => {
                     }}
                     unmountOnExit
                 >
-                    <Fab sx={fabStyle} aria-label="Add" color="primary" onClick={addNewTask} style={{ "position": "fixed" }}>
-                        <AddIcon />
-                    </Fab>
+                    <Tooltip title="Add a task">
+                        <Fab sx={fabStyle} aria-label="Add" color="primary" onClick={addNewTask} style={{ "position": "fixed" }}>
+                            <AddIcon />
+                        </Fab>
+                    </Tooltip>
                 </Zoom>
             </div>
         </section>

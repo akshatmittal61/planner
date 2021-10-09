@@ -5,6 +5,7 @@ import AppsIcon from '@mui/icons-material/Apps';
 import Theme from '../theme';
 import AppBoxLink from './AppBoxLink';
 import AppLinks from '../AppLinks.js';
+import { Tooltip } from '@mui/material';
 
 const Header = ({ sideBar, GoTo, onHelp }) => {
     const [appBoxExpand, setAppBoxExpand] = useState(false);
@@ -23,19 +24,23 @@ const Header = ({ sideBar, GoTo, onHelp }) => {
                     <div className="header-right-link theme">
                         <Theme />
                     </div>
-                    <div className="header-right-link header-right-link-help" onClick={onHelp}>
-                        <div className="header-right-link__icon" title="Help & Feedback">
-                            <HelpOutlineIcon />
+                    <Tooltip title="Help & Feedback">
+                        <div className="header-right-link header-right-link-help" onClick={onHelp}>
+                            <div className="header-right-link__icon" title="Help & Feedback">
+                                <HelpOutlineIcon />
+                            </div>
+                            <div className="header-right-link__text">
+                                <span>Help</span>
+                            </div>
                         </div>
-                        <div className="header-right-link__text">
-                            <span>Help</span>
+                    </Tooltip>
+                    <Tooltip title="Apps">
+                        <div className="header-right-link apps" onClick={() => { setAppBoxExpand(!appBoxExpand) }}>
+                            <div className="header-right-link__icon">
+                                <AppsIcon />
+                            </div>
                         </div>
-                    </div>
-                    <div className="header-right-link apps" onClick={() => { setAppBoxExpand(!appBoxExpand) }}>
-                        <div className="header-right-link__icon">
-                            <AppsIcon />
-                        </div>
-                    </div>
+                    </Tooltip>
                 </div>
             </div>
             {

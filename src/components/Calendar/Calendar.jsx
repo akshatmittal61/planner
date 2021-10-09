@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import JumpToMonth from './JumpToMonth';
 import { useTheme } from '@mui/material/styles';
-import Zoom from '@mui/material/Zoom';
-import Fab from '@mui/material/Fab';
+import { Tooltip, Zoom, Fab } from '@mui/material';
 import EventNoteIcon from '@mui/icons-material/EventNote';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
@@ -165,9 +164,11 @@ const Calendar = () => {
                     }}
                     unmountOnExit
                 >
-                    <Fab sx={fabStyle} aria-label="Add" color="primary" onClick={() => { setJumpToMonth(2) }}>
-                        <EventNoteIcon />
-                    </Fab>
+                    <Tooltip title="Jump to Date">
+                        <Fab sx={fabStyle} aria-label="Add" color="primary" onClick={() => { setJumpToMonth(2) }}>
+                            <EventNoteIcon />
+                        </Fab>
+                    </Tooltip>
                 </Zoom>
             </div>
         </section>

@@ -1,0 +1,47 @@
+[
+    {
+        "name": "Akshat Mittal",
+        "image": "https://pbs.twimg.com/profile_images/1394509234927067143/5F3_8IGy_400x400.jpg",
+        "skills": [
+            "HTML",
+            "CSS",
+            "SASS",
+            "Javascript",
+            "git",
+            "github",
+            "React",
+            "jQuery",
+            "Bootstrap",
+            "Material UI"
+        ],
+        "summary": "Active frontend react developer",
+        "about": "It's not a crime to love what you cannot explain",
+        "socialLinks": [
+            "https://twitter.com/akshatmittal61",
+            "https://www.linkedin.com/in/akshat-mittal-851073202",
+            "https://www.github.com/akshatmittal61",
+            "akshatmittal2506@gmail.com"
+        ]
+    },
+    {
+        "name": "Sneha Sharma",
+        "image": "https://pbs.twimg.com/profile_images/1354874973131689984/bA0V7dzC_400x400.jpg",
+        "skills": [
+            "HTML",
+            "CSS",
+            "Javascript",
+            "git",
+            "github",
+            "React",
+            "Bootstrap"
+        ],
+        "summary": "Active frontend react developer",
+        "about": "The tragedy of life is not death but what we let die inside of us while we live",
+        "socialLinks": [
+            "https://twitter.com/SnehaSh92572587",
+            "https://www.linkedin.com/in/sneha-sharma-9373601b8/",
+            "https://github.com/snehasharma1111",
+            "snehasharma9205@gmail.com"
+        ]
+    }
+]

@@ -58,11 +58,6 @@ const FeedBack = ({ close }) => {
     return (
         <div className="feedback">
             <div className="feedback-box">
-                <div className="feedback-box-topbar">
-                    <div className="feedback-box-topbar__close" onClick={close}>
-                        <CloseIcon />
-                    </div>
-                </div>
                 <div className="feedback-box-content">
                     <form className="feedback-form" onSubmit={submitFeedback}>
                         <div className="feedback-form__content">
@@ -103,7 +98,7 @@ const FeedBack = ({ close }) => {
                                     label=""
                                     placeholder="Your Message Here"
                                     multiline
-                                    variant="filled"
+                                    variant="standard"
                                     minRows={6}
                                     maxRows={6}
                                     value={feedback.content}

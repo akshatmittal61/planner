@@ -1,6 +1,7 @@
 import React from 'react'
+import { Tooltip } from '@mui/material';
 
-const Event = ({ Title, Type, Date, Pop}) => {
+const Event = ({ Title, Type, Date, Pop }) => {
     const showIcon = (e) => {
         switch (e) {
             case "birthday":
@@ -21,7 +22,9 @@ const Event = ({ Title, Type, Date, Pop}) => {
         <div className="col-lg-33 col-md-50 col-sm-50">
             <div className="events-body-event event" onClick={Pop}>
                 <div className="event__icon">
-                    <span className="material-icons">{showIcon(Type)}</span>
+                    <Tooltip title={Type}>
+                        <span className="material-icons">{showIcon(Type)}</span>
+                    </Tooltip>
                 </div>
                 <div className="event-details">
                     <div className="event-details__title">{Title}</div>

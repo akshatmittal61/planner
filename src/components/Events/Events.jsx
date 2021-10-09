@@ -5,12 +5,9 @@ import AddEvent from "./AddEvent";
 import EditEvent from "./EditEvent";
 import Event from "./Event";
 import { useTheme } from '@mui/material/styles';
-import Zoom from '@mui/material/Zoom';
-import Fab from '@mui/material/Fab';
+import { Tooltip, Zoom, Fab, Snackbar, IconButton } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-import { Snackbar } from "@mui/material";
 import Button from '../Button'
-import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import nullEvents from '../../images/nullEvents.svg'
 
@@ -191,9 +188,11 @@ const Events = () => {
                     }}
                     unmountOnExit
                 >
-                    <Fab sx={fabStyle} aria-label="Add" color="primary" onClick={addNewEvent}>
-                        <AddIcon />
-                    </Fab>
+                    <Tooltip title="Add an event">
+                        <Fab sx={fabStyle} aria-label="Add" color="primary" onClick={addNewEvent}>
+                            <AddIcon />
+                        </Fab>
+                    </Tooltip>
                 </Zoom>
             </div>
         </section>
