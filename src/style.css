@@ -426,12 +426,22 @@
       justify-content: center;
       align-items: center; }
       .calendar-body .day-row .day, .calendar-body .day-row .cal-date, .calendar-body .cal-row .day, .calendar-body .cal-row .cal-date {
+        position: relative;
         display: flex;
         justify-content: center;
         align-items: center;
         width: 14.2857%;
         height: 100%;
         overflow: hidden; }
+      .calendar-body .day-row .cal-date span, .calendar-body .cal-row .cal-date span {
+        position: absolute;
+        width: 2.5rem;
+        height: 2.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 500px;
+        padding: 1rem; }
 
 .calendar-edit {
   background-color: rgba(0, 0, 0, 0.2);
@@ -2021,7 +2031,7 @@
     justify-content: center;
     align-items: center; }
   .contact-card-container {
-    padding: 0 3rem; }
+    padding: 3rem; }
     @media (max-width: 880px) {
       .contact-card-container {
         padding: 2rem; } }
@@ -2070,7 +2080,7 @@
       display: flex;
       justify-content: center;
       align-items: flex-end;
-      width: 50%;
+      width: 45%;
       height: 100%; }
       @media (max-width: 672px) {
         .card-head-image {
@@ -2103,9 +2113,9 @@
     .card-head-content {
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: flex-start;
       flex-flow: column;
-      width: 50%;
+      width: 55%;
       height: 85%; }
       @media (max-width: 672px) {
         .card-head-content {

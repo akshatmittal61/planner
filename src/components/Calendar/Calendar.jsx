@@ -15,9 +15,10 @@ const Calendar = () => {
     const Month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     const Month_short3 = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     let mon = 31;
-    const null34 = Array(34).fill(null);
+    const null34 = Array(35).fill(null);
     let Day = null34;
     let leap = false;
+    let currentDate = parseInt(Date().substring(8, 10));
     let currentMonth_short3 = Date().substring(4, 7);
     let currentMonth, cuurentMonthNumber;
     for (let i = 0; i < 12; ++i) {
@@ -30,34 +31,26 @@ const Calendar = () => {
     let [monthDisplayIndex, setMonthDisplayIndex] = useState(cuurentMonthNumber);
     let [monthToDisplay, setMonthToDisplay] = useState(currentMonth);
     let [yearToDisplay, setYearToDisplay] = useState(currentYear);
-    let year = yearToDisplay;
-    let month = monthDisplayIndex;
     let Mon = monthToDisplay;
-    let i = 0, k = 0;
-    let render1 = (1 + mcode[month - 1] + ycode[year % 28]) % 7;
-    render1 = (render1 > 2) ? render1 - 2 : render1 + 5;
-    for (i = 0; i < 35; ++i) {
-        if (i >= render1 && i <= mon) Day[i] = ++k;
-    }
-    const [datesToDisplay, setDatesToDisplay] = useState(Day);
-    function chdate() {
+    function chdate(m, y) {
         mon = 31;
-        if (yearToDisplay % 4 === 0) {
-            if (yearToDisplay % 100 === 0) {
-                leap = (yearToDisplay % 400 === 0) ? true : false;
+        Day = null34;
+        if (y % 4 === 0) {
+            if (y % 100 === 0) {
+                leap = (y % 400 === 0) ? true : false;
             }
             else leap = true;
         }
         else leap = false;
-        if (((monthDisplayIndex === 4 || monthDisplayIndex === 6 || monthDisplayIndex === 9 || monthDisplayIndex === 11))) { --mon; }
-        else if (monthDisplayIndex === 2 && leap === true) {
+        if (((m === 4 || m === 6 || m === 9 || m === 11))) { --mon; }
+        else if (m === 2 && leap === true) {
             mon -= 2;
         }
-        else if (monthDisplayIndex === 2 && leap === false) {
+        else if (m === 2 && leap === false) {
             mon -= 3;
         }
         let i = 0, k = 0;
-        let render1 = (1 + mcode[monthDisplayIndex - 1] + ycode[yearToDisplay % 28]) % 7;
+        let render1 = (1 + mcode[m - 1] + ycode[y % 28]) % 7;
         render1 = (render1 >= 2) ? render1 - 2 : render1 + 5;
         for (i = 0; i < 35; ++i)
             Day[i] = (i >= render1 && i < mon + render1) ? ++k : null;
@@ -66,50 +59,50 @@ const Calendar = () => {
             while (k < mon)
                 Day[i++] = ++k;
         }
-        setDatesToDisplay(Day);
+        return Day;
     }
+    const [datesToDisplay, setDatesToDisplay] = useState(chdate(monthDisplayIndex, yearToDisplay));
     const [jumpToMonth, setJumpToMonth] = useState(-1);
     const editMonth = (newMonth) => {
-        const [monthToSet, yearToSet] = [parseInt(newMonth.substring(5, 7)), parseInt(newMonth.substring(0, 4))]
-        console.log(monthToSet + " " + yearToSet);
-        setYearToDisplay(yearToSet);
-        setMonthDisplayIndex(monthToSet);
-        Mon = Month[monthDisplayIndex - 1];
+        const [monthToSet, yearToSet] = [parseInt(newMonth.substring(5, 7)), parseInt(newMonth.substring(0, 4))];
+        setYearToDisplay(() => {
+            return yearToSet;
+        });
+        setMonthDisplayIndex(() => {
+            return monthToSet;
+        });
+        Mon = Month[monthToSet - 1];
         setMonthToDisplay(Mon);
-        chdate();
+        setDatesToDisplay(chdate(monthToSet, yearToSet));
         setJumpToMonth(-1);
     }
     const backMonth = () => {
-        console.clear();
         if (monthDisplayIndex > 1) {
             setMonthDisplayIndex(--monthDisplayIndex);
             Mon = Month[monthDisplayIndex - 1];
             setMonthToDisplay(Mon);
-            chdate();
         }
         else {
             setMonthDisplayIndex(12);
             Mon = Month[monthDisplayIndex - 1];
             setMonthToDisplay(Mon);
             setYearToDisplay(--yearToDisplay);
-            chdate();
         }
+        setDatesToDisplay(chdate(monthDisplayIndex, yearToDisplay));
     }
     const forwardMonth = () => {
-        console.clear();
         if (monthDisplayIndex < 12) {
             setMonthDisplayIndex(++monthDisplayIndex);
             Mon = Month[monthDisplayIndex - 1];
             setMonthToDisplay(Mon);
-            chdate();
         }
         else {
             setMonthDisplayIndex(1);
             Mon = Month[monthDisplayIndex - 1];
             setMonthToDisplay(Mon);
             setYearToDisplay(++yearToDisplay);
-            chdate();
         }
+        setDatesToDisplay(chdate(monthDisplayIndex, yearToDisplay));
     }
     const theme = useTheme();
     const transitionDuration = {
@@ -141,11 +134,29 @@ const Calendar = () => {
             </div>
             <div className="calendar-body" style={{ "backgroundColor": "var(--" + colors[monthDisplayIndex] + "-100)" }}>
                 <div className="day-row">
-                    {days.map(day => (<span className="day">{day}</span>))}
+                    {
+                        days.map(day => (
+                            <span className="day">{day}</span>
+                        ))
+                    }
                 </div>
-                {calRow.map(row => (<div className="cal-row">
-                    {calDate.map(date => (<span className={`cal-date _${(row * 7) + date}`}>{datesToDisplay[(row * 7) + date]}</span>))}
-                </div>))}
+                {
+                    calRow.map(row => (
+                        <div className="cal-row">
+                            {
+                                calDate.map(date => (
+                                    <span className={`cal-date _${(row * 7) + date}`}>
+                                        <span style={
+                                            { "backgroundColor": datesToDisplay[(row * 7) + date] === currentDate ? `var(--${colors[monthDisplayIndex]}-400)` : `transparent` }
+                                        }>
+                                            {datesToDisplay[(row * 7) + date]}
+                                        </span>
+                                    </span>
+                                ))
+                            }
+                        </div>
+                    ))
+                }
             </div>
             {
                 jumpToMonth > 0 && <JumpToMonth

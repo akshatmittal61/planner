@@ -61,7 +61,7 @@ const Help = ({ GoTo }) => {
                         <div className="help-body-accordian-paragraph">
                             Planner navigation
                         </div>
-                        <div className="help-body-accordian-paragraph" onClick={() => GoTo(7)}>
+                        <div className="help-body-accordian-paragraph" onClick={() => GoTo(6)}>
                             Contact Us
                         </div>
                     </AccordionDetails>

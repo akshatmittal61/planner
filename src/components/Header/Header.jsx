@@ -47,7 +47,7 @@ const Header = ({ sideBar, GoTo, onHelp }) => {
                 appBoxExpand && <div className="header-appbox">
                     {
                         AppLinks.map(((AppLink, index) => (
-                            <AppBoxLink icon={AppLink.icon} label={AppLink.label} GoToLink={() => { GoTo(index) }} />
+                            <AppBoxLink icon={AppLink.icon} label={AppLink.label} GoToLink={() => { setAppBoxExpand(false); GoTo(index) }} />
                         )))
                     }
                 </div>
