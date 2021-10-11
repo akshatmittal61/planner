@@ -11,10 +11,27 @@
         "color": "blue"
     },
     {
+        "title": "SVG illustrations",
+        "description": [
+            "Free SVGs illustrations for lot of purposes"
+        ],
+        "linkURL": "https://undraw.co",
+        "linkText": "Undraw SVGs",
+        "color": "purple"
+    },
+    {
+        "title": "Ian #brothersbondbourbon",
+        "description": [
+            "Ian Somerhalder's video with brotherbonbourbon.'",
+            "I know you're obsessed with me"
+        ],
+        "linkURL": "https://www.youtube.com/watch?v=w0l9gvzwCAE",
+        "linkText": "YTube I know you're obsessed with me",
+        "color": "green"
+    },
+    {
         "title": "Bugs",
         "description": [
-            "Calendar: Jump to date dialog box is accepting response in two saves",
-            "",
             "Events: Images in event popup are not showing in web deployed version"
         ],
         "linkURL": "",
@@ -137,6 +154,16 @@
         "linkURL": "https://www.netflix.com/in/title/70143860",
         "linkText": "The Vampire Diaries",
         "color": "red"
+    },
+    {
+        "title": "Tic Tac Toe by react",
+        "description": [
+            "I completed a game of Tic Tac Toe in React.",
+            "Click below to play the game."
+        ],
+        "linkURL": "https://akshatmittal61.github.io/tic-tac-toe",
+        "linkText": "Tic Tac Toe",
+        "color": "indigo"
     },
     {
         "title": "Damon",

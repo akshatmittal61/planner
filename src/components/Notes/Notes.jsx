@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import Note from './Note'
-import notes from './notes.json'
 import NotePopup from './NotePopup';
 import AddNote from './AddNote';
 import EditNote from './EditNote';
@@ -14,7 +13,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import Button from '../Button'
 import nullNotes from '../../images/nullNotes.svg'
 
-const Notes = () => {
+const Notes = ({ notes, submit }) => {
     const [allNotes, setAllNotes] = useState([...notes]);
     allNotes.map((note) => {
         if (note.color === "") note.color = "bgcolor";
@@ -32,39 +31,42 @@ const Notes = () => {
         setPopupNoteBox(a);
     }
     const deleteNote = (id) => {
-        setAllNotes(prev => {
-            return prev.filter((note, index) => {
-                return index !== id;
-            })
+        let newNotes = [...allNotes];
+        newNotes = newNotes.filter((note, index) => {
+            return index !== id;
         })
+        setAllNotes(newNotes);
         setSnackMessage("Note deleted successfully");
         setOpen(true);
         setPopupNoteBox(-1);
+        submit(newNotes);
     }
     const addNote = (newNote) => {
+        let newNotes = [...allNotes];
         const condition = newNote.title === "" && newNote.description[0] === "" && newNote.linkURL === "" && newNote.linkText === "";
-        setAllNotes(prev => {
-            return (!condition ? [...prev, newNote] : [...prev]);
-        })
+        newNotes = !condition ? [...newNotes, newNote] : [...newNotes]
+        setAllNotes(newNotes);
         !condition ? setSnackMessage("Note added successfully") : setSnackMessage("Can't add empty note");
         setOpen(true);
         setAddNoteBox(!condition ? -1 : 1);
+        submit(newNotes);
     }
     const editNote = (newNote) => {
-        setAllNotes(() => {
-            return allNotes.map((note, index) => {
-                if (index === editNoteBox || index === editNoteLinkBox || index === editNoteColorBox) {
-                    return newNote;
-                }
-                else return note;
-            })
+        let newNotes = [...allNotes];
+        newNotes = newNotes.map((note, index) => {
+            if (index === editNoteBox || index === editNoteLinkBox || index === editNoteColorBox) {
+                return newNote;
+            }
+            else return note;
         })
+        setAllNotes(newNotes);
         setSnackMessage("Changes saved");
         setOpen(true);
         setEditNoteBox(-1);
         setEditNoteLinkBox(-1);
         setEditNoteColorBox(-1);
         setPopupNoteBox(-1);
+        submit(newNotes);
     }
     const copyNote = (e) => {
         if (allNotes[e].linkText === "" || allNotes[e].linkURL === "") navigator.clipboard.writeText(allNotes[e].title + '\n\n' + allNotes[e].description + '\n' + allNotes[e].linkURL + allNotes[e].linkText)

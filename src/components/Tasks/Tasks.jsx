@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import Task from './Task';
 import TaskPopup from './TaskPopup';
 import AddTask from './AddTask';
-import tasks from './tasks.json'
 import { Tooltip, IconButton, Snackbar, Zoom, Fab, Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useTheme } from '@mui/material/styles';
@@ -12,7 +11,7 @@ import EditTask from './EditTask';
 import Button from '../Button'
 import nullTasks from '../../images/nullTasks.svg'
 
-const Tasks = () => {
+const Tasks = ({ tasks, submit }) => {
     const [allTasks, setAllTasks] = useState([...tasks])
     allTasks.sort((a, b) => {
         let _a = new Date(a.date);
@@ -29,39 +28,42 @@ const Tasks = () => {
         setPopupTaskBox(a);
     }
     const deleteTask = (id) => {
-        setAllTasks(prev => {
-            return prev.filter((task, index) => {
-                return index !== id;
-            })
+        let newTasks = [...allTasks];
+        newTasks = newTasks.filter((task, index) => {
+            return index !== id;
         })
+        setAllTasks(newTasks);
         setSnackMessage("Task deleted successfully");
         setOpen(true);
         setPopupTaskBox(-1);
+        submit(newTasks);
     }
     const addNewTask = () => {
         setAddTaskBox(1);
     }
     const addTask = (newTask) => {
+        let newTasks = [...allTasks];
         const condition = newTask.title === "" && newTask.description === "";
-        setAllTasks((prev) => {
-            return (!condition ? [...prev, newTask] : [...prev]);
-        })
+        newTasks = !condition ? [...newTasks, newTask] : [...newTasks]
+        setAllTasks(newTasks);
         setSnackMessage(condition ? "Can't add an empty task" : "Task added successfully");
         setOpen(true);
         setAddTaskBox(condition ? 1 : -1);
+        submit(newTasks);
     }
     const editTask = (newTask) => {
-        setAllTasks(() => {
-            return allTasks.map((task, index) => {
-                if (index === editTaskBox) {
-                    return newTask;
-                }
-                else return task;
-            })
+        let newTasks = [...allTasks];
+        newTasks = newTasks.map((task, index) => {
+            if (index === editTaskBox) {
+                return newTask;
+            }
+            else return task;
         })
+        setAllTasks(newTasks);
         setSnackMessage("Changes saved");
         setOpen(true);
         setEditTaskBox(-1);
+        submit(newTasks);
     }
     const handleDoneChange = (id) => {
         setAllTasks((prev) => {

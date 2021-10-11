@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import events from "./events.json";
 import EventPopup from "./EventPopup";
 import AddEvent from "./AddEvent";
 import EditEvent from "./EditEvent";
@@ -11,7 +10,7 @@ import Button from '../Button'
 import CloseIcon from '@mui/icons-material/Close';
 import nullEvents from '../../images/nullEvents.svg'
 
-const Events = () => {
+const Events = ({ events, submit }) => {
     const [allEvents, setAllEvents] = useState([...events]);
     allEvents.sort((a, b) => {
         let _a = new Date(a.date);
@@ -30,40 +29,42 @@ const Events = () => {
         setPopupEventBox(a);
     }
     const deleteEvent = (id) => {
-        setAllEvents(prev => {
-            return prev.filter((event, index) => {
-                return index !== id;
-            })
+        let newEvents = [...allEvents];
+        newEvents = newEvents.filter((event, index) => {
+            return index !== id;
         })
+        setAllEvents(newEvents);
         setSnackMessage("Event deleted successfully");
         setOpen(true);
         setPopupEventBox(-1);
+        submit(newEvents);
     }
     const addNewEvent = () => {
         setAddEventBox(1);
     }
     const addEvent = (newEvent) => {
+        let newEvents = [...allEvents];
         const condition = newEvent.title === "" && newEvent.type === "" && newEvent.description === "";
-        setAllEvents(prev => {
-            return (!condition ? [...prev, newEvent] : [...prev]);
-        })
+        newEvents = !condition ? [...newEvents, newEvent] : [...newEvents];
+        setAllEvents(newEvents);
         setSnackMessage(condition ? "Can't add an empty event" : "Event added successfully");
         setOpen(true);
         setAddEventBox(condition ? 1 : -1);
+        submit(newEvents);
     }
     const editEvent = (newEvent) => {
-        setAllEvents(() => {
-            return allEvents.map((event, index) => {
-                if (index === popupEventBox) {
-                    return newEvent;
-                }
-                else return event;
-            })
+        let newEvents = [...allEvents];
+        newEvents = newEvents.map((event, index) => {
+            if (index === popupEventBox)
+                return newEvent;
+            else return event;
         })
+        setAllEvents(newEvents);
         setSnackMessage("Changes saved");
         setOpen(true);
         setEditEventBox(-1);
         setPopupEventBox(-1);
+        submit(newEvents);
     }
     const theme = useTheme();
     const transitionDuration = {
