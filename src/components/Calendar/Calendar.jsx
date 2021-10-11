@@ -135,17 +135,17 @@ const Calendar = () => {
             <div className="calendar-body" style={{ "backgroundColor": "var(--" + colors[monthDisplayIndex] + "-100)" }}>
                 <div className="day-row">
                     {
-                        days.map(day => (
-                            <span className="day">{day}</span>
+                        days.map((day, index) => (
+                            <span key={index} className="day">{day}</span>
                         ))
                     }
                 </div>
                 {
-                    calRow.map(row => (
-                        <div className="cal-row">
+                    calRow.map((row, index) => (
+                        <div key={index} className="cal-row">
                             {
-                                calDate.map(date => (
-                                    <span className={`cal-date _${(row * 7) + date}`}>
+                                calDate.map((date, index) => (
+                                    <span key={index} className={`cal-date _${(row * 7) + date}`}>
                                         <span style={
                                             { "backgroundColor": datesToDisplay[(row * 7) + date] === currentDate ? `var(--${colors[monthDisplayIndex]}-400)` : `transparent` }
                                         }>

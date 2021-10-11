@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Button from '../Button'
 import favicon from '../../images/favicon.svg';
 import ContactImage from '../../images/contact.svg'
@@ -8,6 +8,9 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CustomAccordian from './CustomAccordian';
+import HelpGuide from './HelpGuide';
+import ColorPalette from './ColorPalette';
+import PlannerNavigation from './PlannerNavigation';
 
 const Help = ({ GoTo }) => {
     const noOfAccordians = Array(5).fill(null);
@@ -16,10 +19,32 @@ const Help = ({ GoTo }) => {
     const paragraphs = [
         ["Getting started with Calendar", "Switch between months", "Jump to any date"],
         ["Getting started with Events", "Events navigation", "Add a new event", "Edit an event", "Event types", "Delete an event"],
-        ["Getting started with Notes", "Note colors", "Note links", "Copy a note", "Add a new note", "Edit a note", "Delete a note"],
-        ["Getting started with Tasks", "Tasks navigation", "Task date and time", "Add a new task", "Edit a task", "Delete a task"],
-        ["Planner's themes", "Color pallete"]
+        ["Getting started with Notes", "Create a note", "Edit a note", "Delete a note", "Note links", "Copy a note", "Note colors"],
+        ["Getting started with Tasks", "Tasks navigation", "Add a new task", "Edit a task", "Delete a task", "Task date and time"],
+        ["Planner's themes", "Color palette"]
     ]
+    const [helpGuide, setHelpGuide] = useState([-1, -1]);
+    const [colorPalette, setColorPalette] = useState(false);
+    const [plannerNav, setPlannerNav] = useState(false);
+    const openHelpGuide = (x, y) => {
+        if (x === 4 && y === 1) {
+            setHelpGuide([500, 500]);
+            setColorPalette(true);
+        }
+        else if (x === -2 && y === -2) {
+            setHelpGuide([500, 500]);
+            setPlannerNav(true);
+        }
+        else {
+            setHelpGuide([x, y]);
+            setPlannerNav(false);
+            setColorPalette(false);
+        }
+    }
+    const closePlannerNav = () => {
+        setHelpGuide([-1, -1]);
+        setPlannerNav(false);
+    }
     return (
         <div className="help">
             <div className="help-head">
@@ -33,49 +58,79 @@ const Help = ({ GoTo }) => {
                     </div>
                 </div>
             </div>
-            <div className="help-body">
-                <Accordion defaultExpanded={true} sx={AccordionStyle}>
-                    <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
-                        aria-controls="panel1a-content"
-                        id="panel1a-header"
-                    >
-                        <div className="help-body-accordian-title">
-                            Getting started
-                        </div>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                        <div className="help-body-accordian-p">
-                            Organize your Calendar, events, notes and tasks with Planner.
-                            <br />
-                            Planner is a webapp developed using React.js and material-ui.
-                            <br />
-                            Add an event to remind you on a birthday, anniversary or your traditional festival etc.
-                            <br />
-                            Quickly capture what's on your mind and write it down in Notes for seeing it anytime.
-                            <br />
-                            Share your thoughts easily with your family, friends and colleagues.
-                            <br />
-                            Capture and write in tasks to remind you later on.
-                        </div>
-                        <div className="help-body-accordian-paragraph">
-                            Planner navigation
-                        </div>
-                        <div className="help-body-accordian-paragraph" onClick={() => GoTo(6)}>
-                            Contact Us
-                        </div>
-                    </AccordionDetails>
-                </Accordion>
-                {
-                    noOfAccordians.map((acc, index) => (
-                        <CustomAccordian
-                            style={AccordionStyle}
-                            title={titles[index]}
-                            paras={paragraphs[index]}
-                        />
-                    ))
-                }
-            </div>
+            {
+                (helpGuide[0] === -1 && helpGuide[1] === -1) ? (
+                    <div className="help-body">
+                        <Accordion defaultExpanded={true} sx={AccordionStyle}>
+                            <AccordionSummary
+                                expandIcon={<ExpandMoreIcon />}
+                                aria-controls="panel1a-content"
+                                id="panel1a-header"
+                            >
+                                <div className="help-body-accordian-title">
+                                    Getting started
+                                </div>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <div className="help-body-accordian-p">
+                                    Organize your Calendar, events, notes and tasks with Planner.
+                                    <br />
+                                    Planner is a webapp developed using React.js and material-ui.
+                                    <br />
+                                    Add an event to remind you on a birthday, anniversary or your traditional festival etc.
+                                    <br />
+                                    Quickly capture what's on your mind and write it down in Notes for seeing it anytime.
+                                    <br />
+                                    Share your thoughts easily with your family, friends and colleagues.
+                                    <br />
+                                    Capture and write in tasks to remind you later on.
+                                </div>
+                                <div className="help-body-accordian-paragraph" onClick={() => openHelpGuide(-2, -2)}>
+                                    Planner navigation
+                                </div>
+                                <div className="help-body-accordian-paragraph" onClick={() => GoTo(6)}>
+                                    Contact Us
+                                </div>
+                            </AccordionDetails>
+                        </Accordion>
+                        {
+                            noOfAccordians.map((acc, index) => (
+                                <CustomAccordian
+                                    key={index}
+                                    style={AccordionStyle}
+                                    title={titles[index]}
+                                    paras={paragraphs[index]}
+                                    x={index}
+                                    submit={openHelpGuide}
+                                />
+                            ))
+                        }
+                    </div>
+                ) : (
+                    <div className="help-body">
+                        {
+                            colorPalette ? (
+                                <ColorPalette submit={openHelpGuide} />
+                            ) : (
+                                plannerNav ? (
+                                    <PlannerNavigation
+                                        closeNav={closePlannerNav}
+                                        submit={openHelpGuide}
+                                        GoToLink={() => { GoTo(-1) }}
+                                    />
+                                ) : (
+                                    <HelpGuide
+                                        X={helpGuide[0]}
+                                        Y={helpGuide[1]}
+                                        submit={openHelpGuide}
+                                        GoToLink={() => { GoTo(helpGuide[0]) }}
+                                    />
+                                )
+                            )
+                        }
+                    </div>
+                )
+            }
             <footer className="help-footer">
                 <div className="help-footer-left">
                     <div className="help-footer-left-image">

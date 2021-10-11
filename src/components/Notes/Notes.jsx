@@ -109,6 +109,7 @@ const Notes = () => {
                         <Masonry>
                             {
                                 allNotes.map((note, index) => <Note
+                                    key={index}
                                     title={note.title}
                                     description={note.description}
                                     linkURL={note.linkURL}

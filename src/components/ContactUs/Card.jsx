@@ -9,7 +9,6 @@ import MailIcon from '@mui/icons-material/Mail';
 const Card = ({ name, image, skills, summary, about, socialLinks }) => {
     const icons = [<TwitterIcon />, <LinkedInIcon />, <GitHubIcon />, <MailIcon />];
     const socials = ['Twitter', 'LinkedIn', 'GitHub', 'E-Mail'];
-    console.log(icons);
     return (
         <div className="card">
             <div className="card-box">
@@ -28,8 +27,8 @@ const Card = ({ name, image, skills, summary, about, socialLinks }) => {
                 <Divider />
                 <div className="card-skills">
                     {
-                        skills.map(skill => (
-                            <Button className="card-skills__skill" text={skill} color="blue" variant="small" />
+                        skills.map((skill, index) => (
+                            <Button key={index} className="card-skills__skill" text={skill} color="blue" variant="small" />
                         ))
                     }
                 </div>
@@ -38,7 +37,7 @@ const Card = ({ name, image, skills, summary, about, socialLinks }) => {
                     <div className="card-social-row">
                         {
                             socialLinks.map((link, index) => (
-                                <div className="card-social-links">
+                                <div key={index} className="card-social-links">
                                     <a href={index === 3 ? "mailto:" + link : link} className="card-social-link">
                                         <Tooltip title={socials[index]}>
                                             {

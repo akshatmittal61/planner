@@ -23,6 +23,9 @@ const App = () => {
       <SideBar aside={sideBarExpand} GoTo={handleRender} />
       <main className={`main main-aside-${sideBarExpand ? "expand" : "hide"}`}>
         {
+          render === 0 && (<div> I will be first page</div>)
+        }
+        {
           render === 1 && <Calendar />
         }
         {

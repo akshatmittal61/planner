@@ -12,10 +12,12 @@ const Header = ({ sideBar, GoTo, onHelp }) => {
     return (
         <header className="header">
             <div className="header-left">
-                <div className="header-left__burger" onClick={sideBar}>
-                    <MenuIcon className="header-left__burger-icon" />
-                </div>
-                <div className="header-left__title">
+                <Tooltip title="Toggle Side Bar">
+                    <div className="header-left__burger" onClick={sideBar}>
+                        <MenuIcon className="header-left__burger-icon" />
+                    </div>
+                </Tooltip>
+                <div className="header-left__title" onClick={() => { GoTo(-1) }}>
                     <span className="header-left__title__text">Planner</span>
                 </div>
             </div>
@@ -47,7 +49,15 @@ const Header = ({ sideBar, GoTo, onHelp }) => {
                 appBoxExpand && <div className="header-appbox">
                     {
                         AppLinks.map(((AppLink, index) => (
-                            <AppBoxLink icon={AppLink.icon} label={AppLink.label} GoToLink={() => { setAppBoxExpand(false); GoTo(index) }} />
+                            <AppBoxLink
+                                key={index}
+                                icon={AppLink.icon}
+                                label={AppLink.label}
+                                GoToLink={() => {
+                                    setAppBoxExpand(false);
+                                    GoTo(index);
+                                }}
+                            />
                         )))
                     }
                 </div>

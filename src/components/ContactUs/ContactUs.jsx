@@ -9,7 +9,7 @@ const ContactUs = () => {
                 <div className="row">
                     {
                         people.map((person, index) => (
-                            index<2 && <div className="contact-card-container col-lg-50 col-md-100 col-sm-100">
+                            index < 2 && <div key={index} className="contact-card-container col-lg-50 col-md-100 col-sm-100">
                                 <Card
                                     name={person.name}
                                     image={person.image}

@@ -11,15 +11,16 @@
   --bgcolor-100: #e1e1e1;
   --bgcolor-700: #c3c3c3;
   --tcolor: #121212;
-  --tcolor-100: #1d1d1d;
-  --tcolor-400: #333333;
-  --tcolor-700: #272727;
+  --tcolor-100: #333333;
+  --tcolor-400: #272727;
+  --tcolor-700: #1d1d1d;
   --scroll-100: #e1e1e1;
   --scroll-400: #4a4a4a;
   --scroll-700: #272727;
   --back-shadow: rgba(0,0,0,0.2);
   --back-shadow-light: rgba(0,0,0,0.1);
   --transition-time: 200ms;
+  --red: #f44336;
   --red-100: #ffcdd2;
   --red-400: #ef5350;
   --red-700: #d32f2f;
@@ -94,17 +95,17 @@
   --bgcolor-400: #d2d2d2;
   --bgcolor-700: #c3c3c3;
   --tcolor: #121212;
-  --tcolor-100: #1d1d1d;
-  --tcolor-400: #333333;
-  --tcolor-700: #272727;
+  --tcolor-100: #333333;
+  --tcolor-400: #272727;
+  --tcolor-700: #1d1d1d;
   --back-shadow: rgba(0,0,0,0.2);
   --back-shadow-light: rgba(0,0,0,0.1); }
 
 .dark {
   --bgcolor: #121212;
-  --bgcolor-100: #1d1d1d;
-  --bgcolor-400: #333333;
-  --bgcolor-700: #272727;
+  --bgcolor-100: #333333;
+  --bgcolor-400: #272727;
+  --bgcolor-700: #1d1d1d;
   --tcolor: #f0f0f0;
   --tcolor-100: #e1e1e1;
   --tcolor-400: #d2d2d2;
@@ -2021,6 +2022,141 @@
           align-items: center;
           flex-flow: row; } }
 
+.help-guide {
+  width: 85%;
+  padding: 1rem; }
+  .help-guide-box {
+    width: 100%;
+    height: 100%;
+    border: 2.5px solid var(--back-shadow);
+    border-radius: 10px;
+    overflow: hidden; }
+  .help-guide-topbar {
+    width: 100%;
+    height: 3rem;
+    overflow: hidden;
+    background-color: var(--bgcolor);
+    display: flex;
+    justify-content: flex-start;
+    justify-content: space-between;
+    align-items: center; }
+    body.dark .help-guide-topbar svg {
+      filter: invert(0); }
+    .help-guide-topbar-back, .help-guide-topbar-open {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      margin: 0 0.5rem;
+      padding: 0.4rem;
+      border-radius: 500px;
+      transition: all var(--transition-time) ease-in-out; }
+      .help-guide-topbar-back:hover, .help-guide-topbar-open:hover {
+        background-color: var(--back-shadow-light); }
+      .help-guide-topbar-back__button, .help-guide-topbar-open__button {
+        display: flex;
+        justify-content: center;
+        align-items: center; }
+  .help-guide-content {
+    width: 100%;
+    padding: 1rem 2rem; }
+    @media (max-width: 672px) {
+      .help-guide-content {
+        padding: 0 1.5rem; } }
+    .help-guide-content-header {
+      width: 100%;
+      margin: 2rem 0;
+      display: flex;
+      justify-content: center;
+      align-items: space-evenly;
+      flex-flow: column; }
+      @media (max-width: 672px) {
+        .help-guide-content-header {
+          margin: 1rem 0; } }
+      .help-guide-content-header__title {
+        font-size: 2.25rem;
+        line-height: 2rem;
+        margin: 0.5rem 0; }
+        @media (max-width: 672px) {
+          .help-guide-content-header__title {
+            font-size: 1.75rem;
+            padding: 0; } }
+      .help-guide-content-header__subtitle {
+        font-size: 0.875rem;
+        margin: 0.5rem 0; }
+    .help-guide-content-body__title, .help-guide-content-footer__title {
+      font-size: 1.5rem;
+      margin: 2rem 0.5rem; }
+    .help-guide-content-body__list, .help-guide-content-footer__list {
+      margin: .25rem 0 .75rem; }
+    .help-guide-content-body__point, .help-guide-content-footer__point {
+      margin: .25rem 0 .25rem 1.25rem; }
+    .help-guide-content-body__image, .help-guide-content-footer__image {
+      height: 20rem;
+      width: 100%;
+      margin: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+      .help-guide-content-body__image__img, .help-guide-content-footer__image__img {
+        object-fit: cover;
+        max-width: 100%;
+        max-height: 100%;
+        padding: 1rem;
+        border: 5px solid var(--tcolor-100);
+        border-radius: 10px; }
+    .help-guide-content-body__color {
+      height: 15rem;
+      width: 15rem;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-flow: column; }
+      @media (max-width: 672px) {
+        .help-guide-content-body__color {
+          width: 12rem;
+          height: 10rem;
+          padding: 0.25rem;
+          font-size: 0.75rem; } }
+      .help-guide-content-body__color-blocks {
+        margin: 2rem 0;
+        width: 20rem;
+        min-height: 2rem; }
+        .help-guide-content-body__color-blocks__block {
+          width: 4rem;
+          height: 4rem;
+          margin: 0.1rem;
+          border: 5px solid var(--back-shadow);
+          cursor: pointer; }
+          @media (max-width: 672px) {
+            .help-guide-content-body__color-blocks__block {
+              width: 2.4rem;
+              height: 2.4rem; } }
+        @media (max-width: 672px) {
+          .help-guide-content-body__color-blocks {
+            width: 12rem; } }
+      .help-guide-content-body__color__main, .help-guide-content-body__color__weight {
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 0 1rem;
+        overflow: hidden; }
+      .help-guide-content-body__color__main {
+        height: 25%; }
+      .help-guide-content-body__color__weights {
+        width: 100%;
+        height: 75%;
+        display: flex;
+        flex-flow: column; }
+      .help-guide-content-body__color__weight {
+        height: 33%; }
+    .help-guide-content-footer__point {
+      cursor: pointer; }
+      .help-guide-content-footer__point:hover {
+        text-decoration: underline; }
+
 .contact {
   width: 100%;
   height: 100%; }
@@ -2104,9 +2240,10 @@
       position: absolute;
       z-index: -1;
       clip-path: polygon(0 0, 100% 0, 100% 40%, 0 80%);
-      background-color: #e1bee7; }
+      background-color: #e1bee7;
+      background: linear-gradient(to right, #bbdefb, #29b6f6); }
       body.dark .card-head::before {
-        background-color: #7e57c2; }
+        background: linear-gradient(to right, #512da8, #5c6bc0); }
       @media (max-width: 672px) {
         .card-head::before {
           clip-path: polygon(0 0, 100% 0, 100% 30%, 0 30%); } }

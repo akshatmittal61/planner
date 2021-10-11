@@ -122,6 +122,7 @@ const Events = () => {
                                     if (index >= start && index < start + k)
                                         return (
                                             <Event
+                                                key={index}
                                                 Title={event.title}
                                                 Date={event.date}
                                                 Type={event.type}

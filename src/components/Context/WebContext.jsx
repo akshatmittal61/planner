@@ -5,7 +5,8 @@ export const useWebContext = () => {
 }
 
 export const WebProvider = ({ children }) => {
-    const [theme, setTheme] = useState("light");
+    const time = parseInt(Date().substring(16, 18));
+    const [theme, setTheme] = useState((time > 7 && time < 20) ? "light" : "dark");
     const value = {
         theme, setTheme
     }

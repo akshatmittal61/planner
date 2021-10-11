@@ -120,6 +120,7 @@ const Tasks = () => {
                                 {
                                     allTasks.map((task, index) =>
                                         !task.done && <Task
+                                            key={index}
                                             title={task.title}
                                             description={task.description}
                                             date={task.date}
@@ -150,6 +151,7 @@ const Tasks = () => {
                                 {
                                     allTasks.map((task, index) =>
                                         task.done && <Task
+                                            key={index}
                                             title={task.title}
                                             description={task.description}
                                             date={task.date}

@@ -11,7 +11,7 @@ const SideBar = ({ aside, GoTo }) => {
                     <ul className="side-bar-nav-list">
                         {
                             AppLinks.map(((AppLink, index) => (
-                                <SideLink icon={AppLink.icon} label={AppLink.label} GoToLink={() => { GoTo(index) }} />
+                                <SideLink key={index} icon={AppLink.icon} label={AppLink.label} GoToLink={() => { GoTo(index) }} />
                             )))
                         }
                     </ul>

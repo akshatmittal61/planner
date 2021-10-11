@@ -4,7 +4,10 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
-const CustomAccordian = ({ style, title, paras }) => {
+const CustomAccordian = ({ style, title, paras, x, submit }) => {
+    const submitHelp = (y) => {
+        submit(x, y);
+    }
     return (
         <Accordion defaultExpanded={false} sx={style}>
             <AccordionSummary
@@ -18,8 +21,8 @@ const CustomAccordian = ({ style, title, paras }) => {
             </AccordionSummary>
             <AccordionDetails>
                 {
-                    paras.map((para) => (
-                        <div className="help-body-accordian-paragraph">
+                    paras.map((para, index) => (
+                        <div key={index} className="help-body-accordian-paragraph" onClick={() => submitHelp(index)}>
                             {para}
                         </div>
                     ))
