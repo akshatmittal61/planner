@@ -4,7 +4,7 @@ import { FormGroup, TextField, Button } from '@mui/material';
 import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
 
-const FeedBack = ({ close }) => {
+const FeedBack = ({ close}) => {
     const [snackMessage, setSnackMessage] = useState("Your feedback has been submitted");
     const inputStyle = { color: "var(--tcolor)" };
     const titleStyle = { ...inputStyle, fontSize: "1.25rem" };
@@ -24,7 +24,6 @@ const FeedBack = ({ close }) => {
     }
     const submitFeedback = (e) => {
         e.preventDefault();
-        console.log(feedback);
         const condition = feedback.name === "" || feedback.email === "" || feedback.content === "";
         !condition ? setSnackMessage("Your feedback has been submitted") : setSnackMessage("Please fill in the fields correctly");
         setOpen(true);
@@ -35,6 +34,7 @@ const FeedBack = ({ close }) => {
                 content: ""
             }
         })
+        setTimeout(close, 1000);
     }
     const [open, setOpen] = React.useState(false);
     const handleClose = (event, reason) => {

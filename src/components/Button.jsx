@@ -4,12 +4,8 @@ import { useWebContext } from './Context/WebContext'
 const Button = ({ className, imgSrc, imgAlt, text, onClick, color, variant }) => {
     const { theme } = useWebContext();
     const style = theme === "light" ? "outline" : "fill";
-    const btnStyle = {
-        fontSize: variant === "small" ? "0.75rem" : "0.875rem",
-        padding: variant === "small" ? "0.6rem 0.75rem" : ".625rem 1rem .625rem 0.75rem"
-    };
     return (
-        <button className={`btn btn-${style} btn-${style}-${color} ${className}`} onClick={onClick} style={btnStyle}>
+        <button className={`btn btn-${style} btn-${style}-${color} ${className} ${variant === "small" ? "btn-small" : ""}`} onClick={onClick}>
             {variant !== "small" && <img className="btn__img" src={imgSrc} alt={imgAlt} />}
             {text}
         </button>

@@ -6,6 +6,7 @@ import TasksImage from '../../images/favicon.svg'
 const Note = ({ title, description, linkURL, linkText, color, Pop, onColor, onLink, onCopy, onEdit, onDelete }) => {
     const { theme } = useWebContext();
     const weight = theme === "light" ? "100" : "700";
+    linkURL === "" ? linkURL = "#" : console.log('');
     return (
         <div className="note" style={{ "backgroundColor": "var(--" + color + "-" + weight + ")" }}>
             <div className="note-head" onClick={Pop}>
@@ -21,7 +22,16 @@ const Note = ({ title, description, linkURL, linkText, color, Pop, onColor, onLi
             <div className="note-body">
                 <div className="note-description" onClick={Pop}>
                     <div className="note-description__content">
-                        {description.map(line => { return <>{line} <br /> </> })}
+                        {
+                            description.map(line => {
+                                return (
+                                    <>
+                                        {line}
+                                        <br />
+                                    </>
+                                )
+                            })
+                        }
                     </div>
                     <div className="note-link">
                         <a href={linkURL} target={(linkURL === "" || linkURL === "#") ? "_self" : "_blank"} rel="noreferrer">{linkText}</a>

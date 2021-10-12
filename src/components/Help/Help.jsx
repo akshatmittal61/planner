@@ -49,7 +49,7 @@ const Help = ({ GoTo }) => {
         <div className="help">
             <div className="help-head">
                 <div className="help-head-image">
-                    <img className="help-head-image__img" src={favicon} alt="Planner" />
+                    <img className="help-head-image__img" src={favicon} alt="Planner" onClick={() => { GoTo(-1) }} />
                 </div>
                 <div className="help-head-heading">
                     <div className="help-head-heading__title">Planner</div>
@@ -144,7 +144,7 @@ const Help = ({ GoTo }) => {
                 <div className="help-footer-right">
                     <Button
                         text="Contact Us"
-                        className="side-bar-social-row-button"
+                        className="help-footer-button"
                         imgSrc={ContactImage}
                         alt="Contact Us"
                         onClick={() => GoTo(6)}
@@ -152,7 +152,7 @@ const Help = ({ GoTo }) => {
                     />
                     <Button
                         text="Send feedback"
-                        className="side-bar-social-row-button"
+                        className="help-footer-button"
                         imgSrc={FeedbackImage}
                         alt="Feedback"
                         onClick={() => GoTo(7)}

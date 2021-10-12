@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Header from './Header/Header'
 import SideBar from './SideBar/SideBar'
+import Home from './Home/Home'
 import Calendar from './Calendar/Calendar'
 import Events from './Events/Events'
 import events from "./Events/events.json";
@@ -17,20 +18,26 @@ const App = () => {
   const [render, setRender] = useState(1);
   const handleRender = (link) => {
     setsideBarExpand((window.innerWidth > 880 ? true : false));
-    console.log(link);
     setRender(link + 1);
   }
   const [allEvents, setAllEvents] = useState([...events]);
   const [allNotes, setAllNotes] = useState([...notes]);
   const [allTasks, setAllTasks] = useState([...tasks]);
-  const handleEvents = (a) => {
-    setAllEvents(a);
-  }
-  const handleNotes = (a) => {
-    setAllNotes(a);
-  }
-  const handleTasks = (a) => {
-    setAllTasks(a);
+  const handleChange = (a) => {
+    switch (render) {
+      case 2:
+        setAllEvents(a);;
+        break;
+      case 3:
+        setAllNotes(a);
+        break;
+      case 4:
+        setAllTasks(a);
+        break;
+      default:
+        console.log(a);
+        break;
+    }
   }
   return (
     <>
@@ -38,19 +45,19 @@ const App = () => {
       <SideBar aside={sideBarExpand} GoTo={handleRender} />
       <main className={`main main-aside-${sideBarExpand ? "expand" : "hide"}`}>
         {
-          render === 0 && (<div> I will be first page</div>)
+          render === 0 && <Home GoTo={handleRender} />
         }
         {
           render === 1 && <Calendar />
         }
         {
-          render === 2 && <Events events={allEvents} submit={handleEvents} />
+          render === 2 && <Events events={allEvents} submit={handleChange} />
         }
         {
-          render === 3 && <Notes notes={allNotes} submit={handleNotes} />
+          render === 3 && <Notes notes={allNotes} submit={handleChange} />
         }
         {
-          render === 4 && <Tasks tasks={allTasks} submit={handleTasks} />
+          render === 4 && <Tasks tasks={allTasks} submit={handleChange} />
         }
         {
           render === 5 && <Help GoTo={handleRender} />
@@ -59,7 +66,7 @@ const App = () => {
           render === 7 && <ContactUs />
         }
         {
-          render === 8 && <FeedBack close={() => setRender(1)} />
+          render === 8 && <FeedBack close={() => setRender(0)} />
         }
       </main>
     </>

@@ -176,6 +176,17 @@
         "color": "cyan"
     },
     {
+        "title": "Modern Portfolio",
+        "description": [
+            "I finished a simple HTML + CSS (SASS) project: Modern Portfolio.",
+            "It was a simple project serues at Brad Traversery on youtube.",
+            "Might delete later"
+        ],
+        "linkURL": "https://akshatmittal61.github.io/modern_portfolio",
+        "linkText": "",
+        "color": "brown"
+    },
+    {
         "title": "Ross & Rachel",
         "description": [
             "Rachel: Do you think it's easy for me to see you with somebody else?",
