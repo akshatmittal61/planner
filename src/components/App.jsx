@@ -15,7 +15,7 @@ import FeedBack from './FeedBack';
 
 const App = () => {
   const [sideBarExpand, setsideBarExpand] = useState((window.innerWidth > 880 ? true : false));
-  const [render, setRender] = useState(1);
+  const [render, setRender] = useState(0);
   const handleRender = (link) => {
     setsideBarExpand((window.innerWidth > 880 ? true : false));
     setRender(link + 1);

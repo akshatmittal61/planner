@@ -16,7 +16,7 @@
             "Free SVGs illustrations for lot of purposes"
         ],
         "linkURL": "https://undraw.co",
-        "linkText": "Undraw SVGs",
+        "linkText": "",
         "color": "purple"
     },
     {
@@ -32,7 +32,9 @@
     {
         "title": "Bugs",
         "description": [
-            "Events: Images in event popup are not showing in web deployed version"
+            "Notes: You can't multiple lines in a note yet",
+            "For multiple lines in note.description, array of strings has been used",
+            "But through direct 'Add a note' dialog box, you can't add multiple lines yet"
         ],
         "linkURL": "",
         "linkText": "",
@@ -179,7 +181,7 @@
         "title": "Modern Portfolio",
         "description": [
             "I finished a simple HTML + CSS (SASS) project: Modern Portfolio.",
-            "It was a simple project serues at Brad Traversery on youtube.",
+            "It was a simple project series at Brad Traversery on youtube.",
             "Might delete later"
         ],
         "linkURL": "https://akshatmittal61.github.io/modern_portfolio",
@@ -190,7 +192,9 @@
         "title": "Ross & Rachel",
         "description": [
             "Rachel: Do you think it's easy for me to see you with somebody else?",
+            "",
             "Ross: Hey you were the one who ended it, remember ?",
+            "",
             "Rachel: Yes because I was mad at you. Not because I stopped loving you."
         ],
         "linkURL": "https://www.netflix.com/in/title/70153404",
@@ -207,7 +211,7 @@
         "color": "orange"
     },
     {
-        "title": "C++ program CSC302_3_20107",
+        "title": "Random lorem ipsum for long note test",
         "description": [
             "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
             " Deserunt fugiat neque non esse minus quis ab recusandae, ratione culpa nemo veniam aperiam enim alias! Eligendi laboriosam nemo labore atque deserunt! Voluptas ipsam molestias autem modi obcaecati vel quaerat possimus ipsa ipsum eligendi! Numquam similique, dolorum hic, provident dolorem sit cum veniam pariatur iusto aspernatur sunt perferendis nisi, totam minus aperiam? Rem natus, explicabo aut nesciunt enim adipisci debitis unde.",

@@ -40,19 +40,5 @@
         "date": "2021-11-25",
         "time": "23:00:00",
         "done": false
-    },
-    {
-        "title": "Talk with IPS",
-        "description": "Eunoia club has a meeting orgainsed with IPS",
-        "date": "2021-10-01",
-        "time": "17:00:00",
-        "done": false
-    },
-    {
-        "title": "Status for talk with IPS",
-        "description": "Eunoia club has a meeting orgainsed with IPS. Put status for that",
-        "date": "2021-10-01",
-        "time": "12:00:00",
-        "done": true
     }
 ]

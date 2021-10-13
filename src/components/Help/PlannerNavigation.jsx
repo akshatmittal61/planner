@@ -100,8 +100,10 @@ const PlannerNavigation = ({ closeNav, GoToLink, submit }) => {
                                 Click on the Sun/Moon button to switch between light and dark themes.
                             </div>
                         </div>
-                        <div className="help-guide-content-body__image">
+                        <div className="help-guide-content-body__image" style={{height: "15rem"}}>
                             <img className="help-guide-content-body__image__img" src={i2a} alt="Light Theme" />
+                        </div>
+                        <div className="help-guide-content-body__image" style={{height: "15rem"}}>
                             <img className="help-guide-content-body__image__img" src={i2b} alt="Dark Theme" />
                         </div>
 
