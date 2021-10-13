@@ -84,7 +84,7 @@ const Tasks = ({ tasks, submit }) => {
         bottom: 16,
         right: 16,
     };
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
             return;

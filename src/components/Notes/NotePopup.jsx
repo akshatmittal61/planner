@@ -3,8 +3,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { useWebContext } from '../Context/WebContext';
 import { Tooltip } from '@mui/material';
 
-const NotePopup = ({ allNotes, show, close, onColor, onLink, onCopy, onEdit, onDelete }) => {
-    const note = allNotes[show];
+const NotePopup = ({ note, close, onColor, onLink, onCopy, onEdit, onDelete }) => {
     const { theme } = useWebContext();
     const weight = theme === "light" ? "100" : "700";
     const popupStyle = { "backgroundColor": "var(--" + note.color + "-" + weight + ")" };

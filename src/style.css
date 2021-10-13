@@ -681,7 +681,6 @@
       width: 40%;
       min-height: 50vh;
       max-height: 80vh;
-      overflow: hidden;
       background-image: url(images/favicon.svg);
       background-size: cover;
       background-blend-mode: darken;
@@ -689,16 +688,6 @@
       border-radius: 10px 0 0 10px; }
       body.dark .event-popup-box__image {
         background-color: rgba(0, 0, 0, 0.25); }
-      .event-popup-box__image__birthday {
-        background-image: url(./images/birthday.jpg); }
-      .event-popup-box__image__anniversary {
-        background-image: url(./images/marriage.jpg); }
-      .event-popup-box__image__meeting {
-        background-image: url(./images/meeting.webp); }
-      .event-popup-box__image__festival {
-        background-image: url(./images/festival.jpg); }
-      .event-popup-box__image__ceremony {
-        background-image: url(./images/ceremony.jpg); }
       @media (max-width: 880px) {
         .event-popup-box__image {
           min-height: 40vh;

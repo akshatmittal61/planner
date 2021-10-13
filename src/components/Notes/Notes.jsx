@@ -84,7 +84,7 @@ const Notes = ({ notes, submit }) => {
         bottom: 16,
         right: 16,
     };
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
             return;
@@ -143,8 +143,7 @@ const Notes = ({ notes, submit }) => {
             )}
             {
                 popupNoteBox >= 0 && <NotePopup
-                    allNotes={allNotes}
-                    show={popupNoteBox}
+                    note={allNotes[popupNoteBox]}
                     close={() => { setPopupNoteBox(-1) }}
                     onColor={() => { setEditNoteColorBox(popupNoteBox) }}
                     onLink={() => { setEditNoteLinkBox(popupNoteBox) }}

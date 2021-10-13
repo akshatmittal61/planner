@@ -76,7 +76,7 @@ const Events = ({ events, submit }) => {
         bottom: 16,
         right: 16,
     };
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {
             return;
@@ -151,8 +151,7 @@ const Events = ({ events, submit }) => {
             }
             {
                 popupEventBox >= 0 && <EventPopup
-                    allEvents={allEvents}
-                    show={popupEventBox}
+                    event={allEvents[popupEventBox]}
                     close={() => { setPopupEventBox(-1) }}
                     onDelete={() => { deleteEvent(popupEventBox) }}
                     onEdit={() => { setEditEventBox(popupEventBox) }}
