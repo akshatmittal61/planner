@@ -2388,7 +2388,6 @@
         width: 100%; }
     .home-box-image {
       height: 75%;
-      background: url(./images/people.svg);
       background-size: contain;
       background-repeat: no-repeat;
       background-position-y: bottom; }

@@ -53,7 +53,7 @@ const NoteColor = ({ noteToEdit, close, submit }) => {
                         <div className="note-edit-color-box-form-row row">
                             {
                                 colors.map((color, index) =>
-                                    <div className="note-edit-color-box-form-color col-lg-20 col-md-33 col-sm-33">
+                                    <div key={index} className="note-edit-color-box-form-color col-lg-20 col-md-33 col-sm-33">
                                         <Tooltip title={color}>
                                             <div className="note-edit-color-box-form-color__content" onClick={() => { handleChange(index) }}>
                                                 <span className="note-edit-color-box-form-color__circle material-icons" style={{ backgroundColor: "var(--" + color + ")" }}>{color === note.color ? "done" : null}</span>

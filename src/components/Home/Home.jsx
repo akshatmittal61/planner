@@ -7,6 +7,7 @@ import NotesImg from '../../images/notes.svg'
 import TasksImg from '../../images/tasks.svg'
 import ContactImage from '../../images/contact.svg'
 import FeedbackImage from '../../images/feedback.svg'
+import People from '../../images/people.svg'
 
 const Home = ({ GoTo }) => {
     const items = [
@@ -36,7 +37,7 @@ const Home = ({ GoTo }) => {
             <div className="home-frame">
                 <div className="home-box">
                     <div className="home-box-head">
-                        <div className="home-box-image">
+                        <div className="home-box-image" style={{ backgroundImage: `url(${People})` }}>
                             <img className="home-box-image__img" src={favicon} alt="favicon" />
                         </div>
                         <div className="home-box-title">

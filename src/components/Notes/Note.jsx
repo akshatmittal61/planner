@@ -6,13 +6,14 @@ import TasksImage from '../../images/favicon.svg'
 const Note = ({ title, description, linkURL, linkText, color, Pop, onColor, onLink, onCopy, onEdit, onDelete }) => {
     const { theme } = useWebContext();
     const weight = theme === "light" ? "100" : "700";
-    linkURL === "" ? linkURL = "#" : console.log('');
+    if (linkURL === "") linkURL = '#';
+    else if (linkURL.slice(0, 4) !== "http") linkURL = "https://" + linkURL;
     return (
         <div className="note" style={{ "backgroundColor": "var(--" + color + "-" + weight + ")" }}>
             <div className="note-head" onClick={Pop}>
                 <div className="note-head__title">{title}</div>
                 <div className="note-head__image">
-                    <Tooltip title={(linkURL === "" || linkURL === "#") ? "No external link" : "Visit page"}>
+                    <Tooltip title={(linkURL === "" || linkURL === "#") ? "No external link" : linkURL}>
                         <a href={linkURL} target={(linkURL === "" || linkURL === "#") ? "_self" : "_blank"} rel="noreferrer">
                             <img src={(linkURL !== "" && linkURL !== "#") ? "https://s2.googleusercontent.com/s2/favicons?domain_url=" + linkURL : TasksImage} className="note-head__img" alt="note link favicon" />
                         </a>
