@@ -1,13 +1,12 @@
-import React from 'react'
-import Button from '../Button'
-import favicon from '../../images/favicon.svg'
-import CalendarImg from '../../images/calendar.svg'
-import EventsImg from '../../images/events.svg'
-import NotesImg from '../../images/notes.svg'
-import TasksImg from '../../images/tasks.svg'
-import ContactImage from '../../images/contact.svg'
-import FeedbackImage from '../../images/feedback.svg'
-import People from '../../images/people.svg'
+import React from 'react';
+import Button from '../Button';
+import favicon from '../../images/favicon.svg';
+import CalendarImg from '../../images/calendar.svg';
+import EventsImg from '../../images/events.svg';
+import NotesImg from '../../images/notes.svg';
+import TasksImg from '../../images/tasks.svg';
+import People from '../../images/people.svg';
+import Footer from '../Footer';
 
 const Home = ({ GoTo }) => {
     const items = [
@@ -66,35 +65,7 @@ const Home = ({ GoTo }) => {
                     </div>
                 </div>
             </div>
-            <footer className="home-footer">
-                <div className="home-footer-left">
-                    <div className="home-footer-left-image">
-                        <img className="home-footer-left-image__img" src={favicon} alt="planner" />
-                    </div>
-                </div>
-                <div className="home-footer-center">
-                    <p className="home-footer-center__p">&copy; 2021 Planner</p>
-                    <p className="home-footer-center__p">Made by: Akshat Mittal and Sneha Sharma</p>
-                </div>
-                <div className="home-footer-right">
-                    <Button
-                        text="Contact Us"
-                        className="side-bar-social-row-button"
-                        imgSrc={ContactImage}
-                        alt="Contact Us"
-                        onClick={() => GoTo(6)}
-                        color="blue"
-                    />
-                    <Button
-                        text="Send feedback"
-                        className="side-bar-social-row-button"
-                        imgSrc={FeedbackImage}
-                        alt="Feedback"
-                        onClick={() => GoTo(7)}
-                        color="green"
-                    />
-                </div>
-            </footer>
+            <Footer GoToLink={GoTo} />
         </div>
     )
 }

@@ -1,8 +1,5 @@
 import React, { useState } from 'react'
-import Button from '../Button'
 import favicon from '../../images/favicon.svg';
-import ContactImage from '../../images/contact.svg'
-import FeedbackImage from '../../images/feedback.svg'
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -11,6 +8,7 @@ import CustomAccordian from './CustomAccordian';
 import HelpGuide from './HelpGuide';
 import ColorPalette from './ColorPalette';
 import PlannerNavigation from './PlannerNavigation';
+import Footer from '../Footer';
 
 const Help = ({ GoTo }) => {
     const noOfAccordians = Array(5).fill(null);
@@ -131,35 +129,7 @@ const Help = ({ GoTo }) => {
                     </div>
                 )
             }
-            <footer className="help-footer">
-                <div className="help-footer-left">
-                    <div className="help-footer-left-image">
-                        <img className="help-footer-left-image__img" src={favicon} alt="planner" />
-                    </div>
-                </div>
-                <div className="help-footer-center">
-                    <p className="help-footer-center__p">&copy; 2021 Planner</p>
-                    <p className="help-footer-center__p">Made by: Akshat Mittal and Sneha Sharma</p>
-                </div>
-                <div className="help-footer-right">
-                    <Button
-                        text="Contact Us"
-                        className="help-footer-button"
-                        imgSrc={ContactImage}
-                        alt="Contact Us"
-                        onClick={() => GoTo(6)}
-                        color="blue"
-                    />
-                    <Button
-                        text="Send feedback"
-                        className="help-footer-button"
-                        imgSrc={FeedbackImage}
-                        alt="Feedback"
-                        onClick={() => GoTo(7)}
-                        color="green"
-                    />
-                </div>
-            </footer>
+            <Footer GoToLink={GoTo} />
         </div>
     )
 }
