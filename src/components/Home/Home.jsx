@@ -7,8 +7,10 @@ import NotesImg from '../../images/notes.svg';
 import TasksImg from '../../images/tasks.svg';
 import People from '../../images/people.svg';
 import Footer from '../Footer';
+import useDocumentTitle from '../Title';
 
 const Home = ({ GoTo }) => {
+    useDocumentTitle('Planner');
     const items = [
         {
             title: "Calendar",

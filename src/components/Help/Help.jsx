@@ -9,8 +9,10 @@ import HelpGuide from './HelpGuide';
 import ColorPalette from './ColorPalette';
 import PlannerNavigation from './PlannerNavigation';
 import Footer from '../Footer';
+import useDocumentTitle from '../Title';
 
 const Help = ({ GoTo }) => {
+    useDocumentTitle('Help');
     const noOfAccordians = Array(5).fill(null);
     const AccordionStyle = { backgroundColor: 'var(--bgcolor-100)', color: 'inherit', width: "85%" };
     const titles = ["Calendar", "Events", "Notes", "Tasks", "Themes"];

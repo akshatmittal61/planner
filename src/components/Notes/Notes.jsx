@@ -12,8 +12,10 @@ import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import CloseIcon from '@mui/icons-material/Close';
 import Button from '../Button'
 import nullNotes from '../../images/nullNotes.svg'
+import useDocumentTitle from '../Title';
 
 const Notes = ({ notes, submit }) => {
+    useDocumentTitle('Notes');
     const [allNotes, setAllNotes] = useState([...notes]);
     allNotes.map((note) => {
         if (note.color === "") note.color = "bgcolor";

@@ -12,8 +12,10 @@ import tasks from './Tasks/tasks.json'
 import Help from './Help/Help'
 import ContactUs from './ContactUs/ContactUs'
 import FeedBack from './FeedBack';
+import useDocumentTitle from './Title'
 
 const App = () => {
+  useDocumentTitle('Planner');
   const [sideBarExpand, setsideBarExpand] = useState((window.innerWidth > 880 ? true : false));
   const [render, setRender] = useState(0);
   const handleRender = (link) => {
@@ -25,8 +27,11 @@ const App = () => {
   const [allTasks, setAllTasks] = useState([...tasks]);
   const handleChange = (a) => {
     switch (render) {
+      case 1:
+        setAllEvents(a);
+        break;
       case 2:
-        setAllEvents(a);;
+        setAllEvents(a);
         break;
       case 3:
         setAllNotes(a);
@@ -48,7 +53,7 @@ const App = () => {
           render === 0 && <Home GoTo={handleRender} />
         }
         {
-          render === 1 && <Calendar />
+          render === 1 && <Calendar events={allEvents} submit={handleChange} />
         }
         {
           render === 2 && <Events events={allEvents} submit={handleChange} />

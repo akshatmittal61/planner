@@ -9,8 +9,10 @@ import AddIcon from '@mui/icons-material/Add';
 import Button from '../Button'
 import CloseIcon from '@mui/icons-material/Close';
 import nullEvents from '../../images/nullEvents.svg'
+import useDocumentTitle from "../Title";
 
 const Events = ({ events, submit }) => {
+    useDocumentTitle('Events');
     const [allEvents, setAllEvents] = useState([...events]);
     allEvents.sort((a, b) => {
         let _a = new Date(a.date);

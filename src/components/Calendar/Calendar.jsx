@@ -1,11 +1,16 @@
 import React, { useState } from 'react'
 import JumpToMonth from './JumpToMonth';
+import EventPopup from '../Events/EventPopup';
+import EditEvent from '../Events/EditEvent';
 import { useTheme } from '@mui/material/styles';
-import { Tooltip, Zoom, Fab } from '@mui/material';
+import { Tooltip, Zoom, Fab, Snackbar, IconButton } from '@mui/material';
 import EventNoteIcon from '@mui/icons-material/EventNote';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-const Calendar = () => {
+import CloseIcon from '@mui/icons-material/Close';
+import useDocumentTitle from '../Title';
+const Calendar = ({ events, submit }) => {
+    useDocumentTitle('Calendar');
     const colors = ["bgcolor", "red", "pink", "purple", "dark-purple", "indigo", "blue", "light-blue", "cyan", "green", "light-green", "orange", "brown", "grey", "blue-grey"];
     const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
     const calDate = [0, 1, 2, 3, 4, 5, 6];
@@ -104,6 +109,38 @@ const Calendar = () => {
         }
         setDatesToDisplay(chdate(monthDisplayIndex, yearToDisplay));
     }
+    const [allEvents, setAllEvents] = useState([...events]);
+    const [popupEventBox, setPopupEventBox] = useState(-1);
+    const [editEventBox, setEditEventBox] = useState(-1);
+    const [snackMessage, setSnackMessage] = useState("Action successful");
+    const popupEvent = (a) => {
+        setPopupEventBox(a);
+    }
+    const deleteEvent = (id) => {
+        let newEvents = [...allEvents];
+        newEvents = newEvents.filter((event, index) => {
+            return index !== id;
+        })
+        setAllEvents(newEvents);
+        setSnackMessage("Event deleted successfully");
+        setOpen(true);
+        setPopupEventBox(-1);
+        submit(newEvents);
+    }
+    const editEvent = (newEvent) => {
+        let newEvents = [...allEvents];
+        newEvents = newEvents.map((event, index) => {
+            if (index === popupEventBox)
+                return newEvent;
+            else return event;
+        })
+        setAllEvents(newEvents);
+        setSnackMessage("Changes saved");
+        setOpen(true);
+        setEditEventBox(-1);
+        setPopupEventBox(-1);
+        submit(newEvents);
+    }
     const theme = useTheme();
     const transitionDuration = {
         enter: theme.transitions.duration.enteringScreen,
@@ -114,6 +151,25 @@ const Calendar = () => {
         bottom: 16,
         right: 16,
     };
+    const [open, setOpen] = useState(false);
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+        setOpen(false);
+    };
+    const action = (
+        <React.Fragment>
+            <IconButton
+                size="small"
+                aria-label="close"
+                color="inherit"
+                onClick={handleClose}
+            >
+                <CloseIcon fontSize="small" />
+            </IconButton>
+        </React.Fragment>
+    );
     return (
         <section className="calendar">
             <div className="calendar-head" style={{ "backgroundColor": "var(--" + colors[monthDisplayIndex] + "-400)" }}>
@@ -145,7 +201,7 @@ const Calendar = () => {
                         <div key={index} className="cal-row">
                             {
                                 calDate.map((date, index) => (
-                                    <span key={index} className={`cal-date _${(row * 7) + date}`}>
+                                    <span key={index} className={`cal-date _${(row * 7) + date}`} onClick={() => { console.log(`${yearToDisplay}-${monthDisplayIndex < 9 ? "0" + monthDisplayIndex : monthDisplayIndex}-${datesToDisplay[(row * 7) + date] < 10 ? "0" + datesToDisplay[(row * 7) + date] : datesToDisplay[(row * 7) + date]}`) }}>
                                         <span style={
                                             { "backgroundColor": datesToDisplay[(row * 7) + date] === currentDate ? `var(--${colors[monthDisplayIndex]}-400)` : `transparent` }
                                         }>
@@ -182,6 +238,30 @@ const Calendar = () => {
                     </Tooltip>
                 </Zoom>
             </div>
+            {
+                popupEventBox >= 0 && <EventPopup
+                    event={allEvents[popupEventBox]}
+                    close={() => { setPopupEventBox(-1) }}
+                    onDelete={() => { deleteEvent(popupEventBox) }}
+                    onEdit={() => { setEditEventBox(popupEventBox) }}
+                />
+            }
+            {
+                editEventBox >= 0 && <EditEvent
+                    eventToEdit={allEvents[popupEventBox]}
+                    close={() => { setEditEventBox(-1) }}
+                    submit={editEvent}
+                />
+            }
+            {
+                <Snackbar
+                    open={open}
+                    autoHideDuration={3000}
+                    onClose={handleClose}
+                    message={snackMessage}
+                    action={action}
+                />
+            }
         </section>
     )
 }

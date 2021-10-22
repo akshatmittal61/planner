@@ -2,8 +2,10 @@ import React from 'react'
 import CloseIcon from '@mui/icons-material/Close';
 import { useWebContext } from '../Context/WebContext';
 import { Tooltip } from '@mui/material';
+import useDocumentTitle from '../Title';
 
 const NotePopup = ({ note, close, onColor, onLink, onCopy, onEdit, onDelete }) => {
+    useDocumentTitle(note.title);
     const { theme } = useWebContext();
     const weight = theme === "light" ? "100" : "700";
     const popupStyle = { "backgroundColor": "var(--" + note.color + "-" + weight + ")" };

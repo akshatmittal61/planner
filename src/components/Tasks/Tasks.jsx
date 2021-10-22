@@ -10,8 +10,10 @@ import CloseIcon from '@mui/icons-material/Close';
 import EditTask from './EditTask';
 import Button from '../Button'
 import nullTasks from '../../images/nullTasks.svg'
+import useDocumentTitle from '../Title';
 
 const Tasks = ({ tasks, submit }) => {
+    useDocumentTitle('Tasks');
     const [allTasks, setAllTasks] = useState([...tasks])
     allTasks.sort((a, b) => {
         let _a = new Date(a.date);

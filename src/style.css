@@ -2235,7 +2235,7 @@
     height: 75vh;
     background-color: transparent;
     color: var(--tcolor);
-    border: 2px solid #121212;
+    border: 2px solid var(--back-shadow);
     border-radius: 10px;
     display: flex;
     justify-content: flex-start;

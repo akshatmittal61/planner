@@ -3,8 +3,10 @@ import CloseIcon from '@mui/icons-material/Close';
 import { FormGroup, TextField, Button } from '@mui/material';
 import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
+import useDocumentTitle from './Title';
 
-const FeedBack = ({ close}) => {
+const FeedBack = ({ close }) => {
+    useDocumentTitle('Feedback');
     const [snackMessage, setSnackMessage] = useState("Your feedback has been submitted");
     const inputStyle = { color: "var(--tcolor)" };
     const titleStyle = { ...inputStyle, fontSize: "1.25rem" };

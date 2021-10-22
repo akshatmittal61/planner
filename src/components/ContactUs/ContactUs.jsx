@@ -1,8 +1,10 @@
 import React from 'react'
+import useDocumentTitle from '../Title';
 import Card from './Card';
 import people from './people.json';
 
 const ContactUs = () => {
+    useDocumentTitle('Contact Us');
     return (
         <div className="contact">
             <div className="contact-container">

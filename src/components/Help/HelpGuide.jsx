@@ -26,9 +26,11 @@ import i33 from '../../images/help/3/3.png';
 import i34 from '../../images/help/3/4.png';
 import i35 from '../../images/help/3/5.png';
 import i40 from '../../images/help/4/0.png';
+import useDocumentTitle from '../Title';
 
 const HelpGuide = ({ X, Y, submit, GoToLink }) => {
     const GuideObject = Guide[X][Y];
+    useDocumentTitle(GuideObject.headerTitle);
     const images = [
         [i00, i01, i02],
         [i10, i11, i12, i13, i14, i15],

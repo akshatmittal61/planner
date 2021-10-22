@@ -6,8 +6,10 @@ import i2 from '../../images/marriage.jpg';
 import i3 from '../../images/meeting.webp';
 import i4 from '../../images/festival.jpg';
 import i5 from '../../images/ceremony.jpg';
+import useDocumentTitle from '../Title';
 
 const EventPopup = ({ event, close, onDelete, onEdit }) => {
+    useDocumentTitle(event.title);
     const showImage = (e) => {
         switch (e) {
             case "birthday":
