@@ -1,6 +1,5 @@
 import React from 'react'
 import Button from '../Button'
-import favicon from '../../images/favicon.svg'
 import { Divider, Tooltip } from '@mui/material'
 import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
@@ -15,7 +14,7 @@ const Card = ({ name, image, skills, summary, about, socialLinks }) => {
             <div className="card-box">
                 <div className="card-head">
                     <div className="card-head-image">
-                        <img className="card-head-image__img" src={image} alt={name} onError={`this.onerror=null;this.src="${favicon}";`} />
+                        <img className="card-head-image__img" src={image} alt={name} />
                     </div>
                     <div className="card-head-content">
                         <div className="card-head-content__name">{name}</div>

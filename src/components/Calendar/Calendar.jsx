@@ -37,6 +37,15 @@ const Calendar = ({ events, submit }) => {
     let [monthToDisplay, setMonthToDisplay] = useState(currentMonth);
     let [yearToDisplay, setYearToDisplay] = useState(currentYear);
     let Mon = monthToDisplay;
+    function cd(d, m, y) {
+        return `${y}-${m < 9 ? "0" + m : m}-${d < 10 ? "0" + d : d}`;
+    }
+    function check(d, m, y) {
+        for (let i = 0; i < events.length; ++i) {
+            if (events[i].date === cd(d, m, y)) return i;
+        }
+        return -1;
+    }
     function chdate(m, y) {
         mon = 31;
         Day = null34;
@@ -70,12 +79,8 @@ const Calendar = ({ events, submit }) => {
     const [jumpToMonth, setJumpToMonth] = useState(-1);
     const editMonth = (newMonth) => {
         const [monthToSet, yearToSet] = [parseInt(newMonth.substring(5, 7)), parseInt(newMonth.substring(0, 4))];
-        setYearToDisplay(() => {
-            return yearToSet;
-        });
-        setMonthDisplayIndex(() => {
-            return monthToSet;
-        });
+        setYearToDisplay(yearToSet);
+        setMonthDisplayIndex(monthToSet);
         Mon = Month[monthToSet - 1];
         setMonthToDisplay(Mon);
         setDatesToDisplay(chdate(monthToSet, yearToSet));
@@ -86,28 +91,30 @@ const Calendar = ({ events, submit }) => {
             setMonthDisplayIndex(--monthDisplayIndex);
             Mon = Month[monthDisplayIndex - 1];
             setMonthToDisplay(Mon);
+            setDatesToDisplay(chdate(monthDisplayIndex, yearToDisplay));
         }
         else {
             setMonthDisplayIndex(12);
-            Mon = Month[monthDisplayIndex - 1];
+            Mon = Month[11];
             setMonthToDisplay(Mon);
             setYearToDisplay(--yearToDisplay);
+            setDatesToDisplay(chdate(12, yearToDisplay));
         }
-        setDatesToDisplay(chdate(monthDisplayIndex, yearToDisplay));
     }
     const forwardMonth = () => {
         if (monthDisplayIndex < 12) {
             setMonthDisplayIndex(++monthDisplayIndex);
             Mon = Month[monthDisplayIndex - 1];
             setMonthToDisplay(Mon);
+            setDatesToDisplay(chdate(monthDisplayIndex, yearToDisplay));
         }
         else {
             setMonthDisplayIndex(1);
-            Mon = Month[monthDisplayIndex - 1];
+            Mon = Month[0];
             setMonthToDisplay(Mon);
             setYearToDisplay(++yearToDisplay);
+            setDatesToDisplay(chdate(1, yearToDisplay));
         }
-        setDatesToDisplay(chdate(monthDisplayIndex, yearToDisplay));
     }
     const [allEvents, setAllEvents] = useState([...events]);
     const [popupEventBox, setPopupEventBox] = useState(-1);
@@ -173,7 +180,7 @@ const Calendar = ({ events, submit }) => {
     return (
         <section className="calendar">
             <div className="calendar-head" style={{ "backgroundColor": "var(--" + colors[monthDisplayIndex] + "-400)" }}>
-                <div className="calendar-head-detail" onClick={() => { console.log(yearToDisplay + " " + monthDisplayIndex + " " + Mon + " " + monthToDisplay + " " + jumpToMonth); }}>
+                <div className="calendar-head-detail">
                     <h1 className="year">
                         <span className="month">{monthToDisplay}</span>
                         <span id="year">{yearToDisplay}</span>
@@ -201,12 +208,25 @@ const Calendar = ({ events, submit }) => {
                         <div key={index} className="cal-row">
                             {
                                 calDate.map((date, index) => (
-                                    <span key={index} className={`cal-date _${(row * 7) + date}`} onClick={() => { console.log(`${yearToDisplay}-${monthDisplayIndex < 9 ? "0" + monthDisplayIndex : monthDisplayIndex}-${datesToDisplay[(row * 7) + date] < 10 ? "0" + datesToDisplay[(row * 7) + date] : datesToDisplay[(row * 7) + date]}`) }}>
-                                        <span style={
-                                            { "backgroundColor": datesToDisplay[(row * 7) + date] === currentDate ? `var(--${colors[monthDisplayIndex]}-400)` : `transparent` }
-                                        }>
-                                            {datesToDisplay[(row * 7) + date]}
-                                        </span>
+                                    <span key={index} className={`cal-date _${(row * 7) + date}`}>
+                                        {
+                                            check(datesToDisplay[(row * 7) + date], monthDisplayIndex, yearToDisplay) > -1 ? (
+                                                <Tooltip title={events[check(datesToDisplay[(row * 7) + date], monthDisplayIndex, yearToDisplay)].title}>
+                                                    <span
+                                                        onClick={() => { popupEvent(check(datesToDisplay[(row * 7) + date], monthDisplayIndex, yearToDisplay)) }}
+                                                        style={{ "backgroundColor": "var(--blue-400)" }}
+                                                    >
+                                                        {datesToDisplay[(row * 7) + date]}
+                                                    </span>
+                                                </Tooltip>
+                                            ) : (
+                                                <span style={
+                                                    { "backgroundColor": datesToDisplay[(row * 7) + date] === currentDate ? `var(--${colors[monthDisplayIndex]}-400)` : `transparent` }
+                                                }>
+                                                    {datesToDisplay[(row * 7) + date]}
+                                                </span>
+                                            )
+                                        }
                                     </span>
                                 ))
                             }

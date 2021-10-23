@@ -19,8 +19,15 @@ const Notes = ({ notes, submit }) => {
     const [allNotes, setAllNotes] = useState([...notes]);
     allNotes.map((note) => {
         if (note.color === "") note.color = "bgcolor";
-        if (note.linkURL === "" && note.linkText !== "") note.linkURL = "#";
-        else if (note.linkURL !== "" && note.linkText === "") note.linkText = "Click Here";
+        if (note.linkURL === "" || note.linkURL === "#") {
+            note.linkURL = "#";
+        }
+        else {
+            if (note.linkText === "") note.linkText = "Click Here";
+            if (note.linkURL.slice(0, 4) !== "http") {
+                note.linkURL = "https://" + note.linkURL;
+            }
+        }
         return note;
     })
     const [popupNoteBox, setPopupNoteBox] = useState(-1);

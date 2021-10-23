@@ -7,7 +7,6 @@ import { Input } from '@mui/material';
 const JumpToMonth = ({ currentMonth, close, submit }) => {
     const inputStyle = { color: "var(--tcolor)" };
     const [month, setMonth] = useState(currentMonth);
-    console.log(month);
     const handleChange = (e) => {
         setMonth(e.target.value);
     }

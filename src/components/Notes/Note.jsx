@@ -6,8 +6,6 @@ import TasksImage from '../../images/favicon.svg'
 const Note = ({ title, description, linkURL, linkText, color, Pop, onColor, onLink, onCopy, onEdit, onDelete }) => {
     const { theme } = useWebContext();
     const weight = theme === "light" ? "100" : "700";
-    if (linkURL === "") linkURL = '#';
-    else if (linkURL.slice(0, 4) !== "http") linkURL = "https://" + linkURL;
     return (
         <div className="note" style={{ "backgroundColor": "var(--" + color + "-" + weight + ")" }}>
             <div className="note-head" onClick={Pop}>
