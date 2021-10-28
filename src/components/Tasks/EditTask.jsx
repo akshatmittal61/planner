@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import EventNoteIcon from '@mui/icons-material/EventNote';
 import NotesIcon from '@mui/icons-material/Notes';
@@ -7,6 +9,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Input } from '@mui/material';
 
 const EditTask = ({ taskToEdit, close, submit }) => {
+    AOS.init();
     const inputStyle = { color: "var(--tcolor)" };
     const [task, setTask] = useState({
         title: taskToEdit.title,
@@ -39,11 +42,11 @@ const EditTask = ({ taskToEdit, close, submit }) => {
     }
     return (
         <div className="task-edit">
-            <div className="task-edit-box">
+            <div className="task-edit-box" data-aos="zoom-in">
                 <div className="task-edit-box-topbar">
-                    <div className="task-edit-box-topbar__close" onClick={close}>
+                    <button className="btn task-edit-box-topbar__close" onClick={close}>
                         <CloseIcon />
-                    </div>
+                    </button>
                 </div>
                 <form className="task-edit-box-form" onSubmit={submitTask}>
                     <div className="task-edit-box-form__content">

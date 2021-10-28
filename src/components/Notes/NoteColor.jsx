@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import CloseIcon from '@mui/icons-material/Close'
 import { Button, Tooltip } from '@mui/material'
 import { useWebContext } from '../Context/WebContext'
 
 const NoteColor = ({ noteToEdit, close, submit }) => {
+    AOS.init();
     const { theme } = useWebContext();
     const colors = ["bgcolor", "red", "pink", "purple", "dark-purple", "indigo", "blue", "light-blue", "cyan", "green", "light-green", "orange", "brown", "grey", "blue-grey"];
     const [note, setNote] = useState({
@@ -42,11 +45,11 @@ const NoteColor = ({ noteToEdit, close, submit }) => {
     }
     return (
         <div className="note-edit-color">
-            <div className="note-edit-color-box" style={note.color !== "" ? popupStyle : popupStyleDefault}>
+            <div className="note-edit-color-box" style={note.color !== "" ? popupStyle : popupStyleDefault} data-aos="zoom-in">
                 <div className="note-edit-color-box-topbar" style={note.color !== "" ? popupStyle400 : popupStyleDefault400}>
-                    <div className="note-edit-color-box-topbar__close" onClick={close}>
+                    <button className="btn note-edit-color-box-topbar__close" onClick={close}>
                         <CloseIcon />
-                    </div>
+                    </button>
                 </div>
                 <form className="note-edit-color-box-form" onSubmit={submitNote}>
                     <div className="note-edit-color-box-form__content">
@@ -55,9 +58,9 @@ const NoteColor = ({ noteToEdit, close, submit }) => {
                                 colors.map((color, index) =>
                                     <div key={index} className="note-edit-color-box-form-color col-lg-20 col-md-33 col-sm-33">
                                         <Tooltip title={color}>
-                                            <div className="note-edit-color-box-form-color__content" onClick={() => { handleChange(index) }}>
+                                            <button className="btn note-edit-color-box-form-color__content" onClick={() => { handleChange(index) }}>
                                                 <span className="note-edit-color-box-form-color__circle material-icons" style={{ backgroundColor: "var(--" + color + ")" }}>{color === note.color ? "done" : null}</span>
-                                            </div>
+                                            </button>
                                         </Tooltip>
                                     </div>)
                             }

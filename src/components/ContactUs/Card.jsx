@@ -1,5 +1,7 @@
 import React from 'react'
 import Button from '../Button'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import { Divider, Tooltip } from '@mui/material'
 import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
@@ -7,10 +9,11 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import MailIcon from '@mui/icons-material/Mail';
 
 const Card = ({ name, image, skills, summary, about, socialLinks }) => {
+    AOS.init();
     const icons = [<TwitterIcon />, <LinkedInIcon />, <GitHubIcon />, <MailIcon />];
     const socials = ['Twitter', 'LinkedIn', 'GitHub', 'E-Mail'];
     return (
-        <div className="card">
+        <div className="card" data-aos="flip-left">
             <div className="card-box">
                 <div className="card-head">
                     <div className="card-head-image">

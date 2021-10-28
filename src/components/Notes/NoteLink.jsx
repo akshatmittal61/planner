@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import CloseIcon from '@mui/icons-material/Close'
 import { FormGroup, TextField, Button } from '@mui/material'
 import { useWebContext } from '../Context/WebContext'
 
 const NoteLink = ({ noteToEdit, close, submit }) => {
+    AOS.init();
     const { theme } = useWebContext();
     const inputStyle = { color: "var(--tcolor)" };
     const [note, setNote] = useState({
@@ -43,11 +46,11 @@ const NoteLink = ({ noteToEdit, close, submit }) => {
     }
     return (
         <div className="note-edit-link">
-            <div className="note-edit-link-box" style={note.color !== "" ? popupStyle : popupStyleDefault}>
+            <div className="note-edit-link-box" style={note.color !== "" ? popupStyle : popupStyleDefault} data-aos="zoom-in">
                 <div className="note-edit-link-box-topbar" style={note.color !== "" ? popupStyle400 : popupStyleDefault400}>
-                    <div className="note-edit-link-box-topbar__close" onClick={close}>
+                    <button className="btn note-edit-link-box-topbar__close" onClick={close}>
                         <CloseIcon />
-                    </div>
+                    </button>
                 </div>
                 <form className="note-edit-link-box-form" onSubmit={submitNote}>
                     <div className="note-edit-link-box-form__content">

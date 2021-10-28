@@ -7,6 +7,8 @@ import NoteLink from './NoteLink';
 import NoteColor from './NoteColor';
 import { useTheme } from '@mui/material/styles';
 import { Tooltip, Zoom, Fab, Snackbar, IconButton } from '@mui/material';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import CreateIcon from '@mui/icons-material/Create';
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import CloseIcon from '@mui/icons-material/Close';
@@ -15,6 +17,7 @@ import nullNotes from '../../images/nullNotes.svg'
 import useDocumentTitle from '../Title';
 
 const Notes = ({ notes, submit }) => {
+    AOS.init();
     useDocumentTitle('Notes');
     const [allNotes, setAllNotes] = useState([...notes]);
     allNotes.map((note) => {
@@ -139,7 +142,7 @@ const Notes = ({ notes, submit }) => {
                 </div>
             ) : (
                 <div className="notes-null">
-                    <div className="notes-null-image">
+                    <div className="notes-null-image" data-aos="zoom-in">
                         <img className="notes-null-image__img" src={nullNotes} alt="No notes" />
                     </div>
                     <div className="notes-null-content">

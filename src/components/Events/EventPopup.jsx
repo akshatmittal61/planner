@@ -1,5 +1,7 @@
 import React from 'react'
 import { Tooltip } from '@mui/material';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import favicon from '../../images/favicon.svg';
 import i1 from '../../images/birthday.jpg';
 import i2 from '../../images/marriage.jpg';
@@ -9,6 +11,7 @@ import i5 from '../../images/ceremony.jpg';
 import useDocumentTitle from '../Title';
 
 const EventPopup = ({ event, close, onDelete, onEdit }) => {
+    AOS.init();
     useDocumentTitle(event.title);
     const showImage = (e) => {
         switch (e) {
@@ -28,23 +31,23 @@ const EventPopup = ({ event, close, onDelete, onEdit }) => {
     }
     return (
         <div className="event-popup">
-            <div className="event-popup-box">
+            <div className="event-popup-box" data-aos="zoom-in">
                 <div className="event-popup-box__image" style={{ backgroundImage: `url(${showImage(event.type)})` }} />
                 <div className="event-popup-box-content">
                     <div className="event-popup-box-buttons">
                         <Tooltip title="Edit event">
-                            <div className="event-popup-box-edit" onClick={onEdit}>
+                            <button className="btn event-popup-box-edit" onClick={onEdit}>
                                 <span className="material-icons event-popup-box-edit__icon">edit</span>
-                            </div>
+                            </button>
                         </Tooltip>
                         <Tooltip title="Delete event">
-                            <div className="event-popup-box-delete" onClick={onDelete}>
+                            <button className="btn event-popup-box-delete" onClick={onDelete}>
                                 <span className="material-icons event-popup-box-delete__icon">delete</span>
-                            </div>
+                            </button>
                         </Tooltip>
-                        <div className="event-popup-box-close" onClick={close}>
+                        <button className="btn event-popup-box-close" onClick={close}>
                             <span className="material-icons event-popup-box-close__icon">close</span>
-                        </div>
+                        </button>
                     </div>
                     <div className="event-popup-box-details">
                         <div className="event-popup-box-details__title">{event.title}</div>

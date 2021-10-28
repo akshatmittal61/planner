@@ -3,6 +3,8 @@ import Task from './Task';
 import TaskPopup from './TaskPopup';
 import AddTask from './AddTask';
 import { Tooltip, IconButton, Snackbar, Zoom, Fab, Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useTheme } from '@mui/material/styles';
 import AddIcon from '@mui/icons-material/Add';
@@ -13,6 +15,7 @@ import nullTasks from '../../images/nullTasks.svg'
 import useDocumentTitle from '../Title';
 
 const Tasks = ({ tasks, submit }) => {
+    AOS.init();
     useDocumentTitle('Tasks');
     const [allTasks, setAllTasks] = useState([...tasks])
     allTasks.sort((a, b) => {
@@ -106,7 +109,7 @@ const Tasks = ({ tasks, submit }) => {
         </React.Fragment>
     );
     return (
-        <section className="tasks">
+        <section className="tasks" data-aos="fade-up">
             {allTasks.length !== 0 ? (
                 <>
                     <Accordion defaultExpanded={true} sx={AccordionStyle}>
@@ -173,7 +176,7 @@ const Tasks = ({ tasks, submit }) => {
                 </>
             ) : (
                 <div className="tasks-null">
-                    <div className="tasks-null-image">
+                    <div className="tasks-null-image" data-aos="zoom-in">
                         <img className="tasks-null-image__img" src={nullTasks} alt="No events" />
                     </div>
                     <div className="tasks-null-content">

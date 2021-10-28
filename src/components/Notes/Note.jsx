@@ -1,13 +1,16 @@
 import React from 'react'
 import { useWebContext } from '../Context/WebContext'
 import { Tooltip } from '@mui/material';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import TasksImage from '../../images/favicon.svg'
 
 const Note = ({ title, description, linkURL, linkText, color, Pop, onColor, onLink, onCopy, onEdit, onDelete }) => {
     const { theme } = useWebContext();
     const weight = theme === "light" ? "100" : "700";
+    AOS.init();
     return (
-        <div className="note" style={{ "backgroundColor": "var(--" + color + "-" + weight + ")" }}>
+        <div className="note" style={{ "backgroundColor": "var(--" + color + "-" + weight + ")" }} data-aos="fade-up">
             <div className="note-head" onClick={Pop}>
                 <div className="note-head__title">{title}</div>
                 <div className="note-head__image">
@@ -39,27 +42,27 @@ const Note = ({ title, description, linkURL, linkText, color, Pop, onColor, onLi
                 <div className="note-controls">
                     <div className="note-control color">
                         <Tooltip title="Change Color">
-                            <span className="material-icons" onClick={onColor}>palette</span>
+                            <button className="btn material-icons" onClick={onColor}>palette</button>
                         </Tooltip>
                     </div>
                     <div className="note-control link">
                         <Tooltip title="Edit Link">
-                            <span className="material-icons" onClick={onLink}>link</span>
+                            <button className="btn material-icons" onClick={onLink}>link</button>
                         </Tooltip>
                     </div>
                     <div className="note-control copy">
                         <Tooltip title="Copy Note">
-                            <span className="material-icons" onClick={onCopy}>content_copy</span>
+                            <button className="btn material-icons" onClick={onCopy}>content_copy</button>
                         </Tooltip>
                     </div>
                     <div className="note-control edit">
                         <Tooltip title="Edit Note">
-                            <span className="material-icons" onClick={onEdit}>edit</span>
+                            <button className="btn material-icons" onClick={onEdit}>edit</button>
                         </Tooltip>
                     </div>
                     <div className="note-control delete">
                         <Tooltip title="Delete Note">
-                            <span className="material-icons" onClick={onDelete}>delete</span>
+                            <button className="btn material-icons" onClick={onDelete}>delete</button>
                         </Tooltip>
                     </div>
                 </div>

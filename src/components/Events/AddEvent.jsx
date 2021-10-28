@@ -3,10 +3,13 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import EventNoteIcon from '@mui/icons-material/EventNote';
 import NotesIcon from '@mui/icons-material/Notes';
 import Button from '@mui/material/Button';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import CloseIcon from '@mui/icons-material/Close';
 import { Input } from '@mui/material';
 
 const AddEvent = ({ close, submit }) => {
+    AOS.init();
     const inputStyle = { color: "var(--tcolor)" };
     const currentDate = `${new Date().getFullYear()}-${new Date().getMonth() < 9 ? "0" + (new Date().getMonth() + 1) : new Date().getMonth() + 1}-${new Date().getDate() < 10 ? "0" + new Date().getDate() : new Date().getDate()}`;
     const [event, setEvent] = useState({
@@ -38,11 +41,11 @@ const AddEvent = ({ close, submit }) => {
     }
     return (
         <div className="event-add">
-            <div className="event-add-box">
+            <div className="event-add-box" data-aos="zoom-in">
                 <div className="event-add-box-topbar">
-                    <div className="event-add-box-topbar__close" onClick={close}>
+                    <button className="btn event-add-box-topbar__close" onClick={close}>
                         <CloseIcon />
-                    </div>
+                    </button>
                 </div>
                 <form className="event-add-box-form" onSubmit={submitEvent}>
                     <div className="event-add-box-form__content">

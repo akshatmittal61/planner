@@ -2,11 +2,14 @@ import React, { useState } from 'react'
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import EventNoteIcon from '@mui/icons-material/EventNote';
 import NotesIcon from '@mui/icons-material/Notes';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
 import { Input } from '@mui/material';
 
 const EditEvent = ({ eventToEdit, close, submit }) => {
+    AOS.init();
     const inputStyle = { color: "var(--tcolor)" };
     const [event, setEvent] = useState({
         title: eventToEdit.title,
@@ -37,11 +40,11 @@ const EditEvent = ({ eventToEdit, close, submit }) => {
     }
     return (
         <div className="event-edit">
-            <div className="event-edit-box">
+            <div className="event-edit-box" data-aos="zoom-in">
                 <div className="event-edit-box-topbar">
-                    <div className="event-edit-box-topbar__close" onClick={close}>
+                    <button className="btn event-edit-box-topbar__close" onClick={close}>
                         <CloseIcon />
-                    </div>
+                    </button>
                 </div>
                 <form className="event-edit-box-form" onSubmit={submitEvent}>
                     <div className="event-edit-box-form__content">

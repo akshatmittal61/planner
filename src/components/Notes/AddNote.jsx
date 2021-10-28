@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import CloseIcon from '@mui/icons-material/Close';
 import { FormGroup, TextField, Button } from '@mui/material';
 
 const AddNote = ({ close, submit }) => {
+    AOS.init();
     const inputStyle = { color: "var(--tcolor)" };
     const titleStyle = { ...inputStyle, fontSize: "1.25rem" }
     const [note, setNote] = useState({
@@ -43,11 +46,11 @@ const AddNote = ({ close, submit }) => {
     }
     return (
         <div className="note-add">
-            <div className="note-add-box">
+            <div className="note-add-box" data-aos="zoom-in">
                 <div className="note-add-box-topbar">
-                    <div className="note-add-box-topbar__close" onClick={close}>
+                    <button className="btn note-add-box-topbar__close" onClick={close}>
                         <CloseIcon />
-                    </div>
+                    </button>
                 </div>
                 <form className="note-add-box-form" onSubmit={submitNote}>
                     <div className="note-add-box-form__content">

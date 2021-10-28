@@ -1,5 +1,7 @@
 import React from 'react'
 import Guide from './Guide.json';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { Divider } from '@mui/material';
@@ -29,6 +31,7 @@ import i40 from '../../images/help/4/0.png';
 import useDocumentTitle from '../Title';
 
 const HelpGuide = ({ X, Y, submit, GoToLink }) => {
+    AOS.init();
     const GuideObject = Guide[X][Y];
     useDocumentTitle(GuideObject.headerTitle);
     const images = [
@@ -42,7 +45,7 @@ const HelpGuide = ({ X, Y, submit, GoToLink }) => {
         submit(x, y);
     }
     return (
-        <div className="help-guide">
+        <div className="help-guide" data-aos="zoom-out">
             <div className="help-guide-box">
                 <div className="help-guide-topbar">
                     <div className="help-guide-topbar-back" onClick={() => submitHelp(-1, -1)}>

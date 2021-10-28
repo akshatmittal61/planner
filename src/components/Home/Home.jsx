@@ -1,5 +1,7 @@
 import React from 'react';
 import Button from '../Button';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import favicon from '../../images/favicon.svg';
 import CalendarImg from '../../images/calendar.svg';
 import EventsImg from '../../images/events.svg';
@@ -11,6 +13,7 @@ import useDocumentTitle from '../Title';
 
 const Home = ({ GoTo }) => {
     useDocumentTitle('Planner');
+    AOS.init();
     const items = [
         {
             title: "Calendar",
@@ -37,7 +40,7 @@ const Home = ({ GoTo }) => {
         <div className="home">
             <div className="home-frame">
                 <div className="home-box">
-                    <div className="home-box-head">
+                    <div className="home-box-head" data-aos="zoom-out">
                         <div className="home-box-image" style={{ backgroundImage: `url(${People})` }}>
                             <img className="home-box-image__img" src={favicon} alt="favicon" />
                         </div>
@@ -50,7 +53,7 @@ const Home = ({ GoTo }) => {
                     <div className="home-body">
                         {
                             items.map((item, index) => (
-                                <div className="home-item" key={index}>
+                                <div className="home-item" key={index} data-aos="fade-up">
                                     <div className="home-item-image">
                                         <img className="home-item-image__img" src={item.img} alt="item" />
                                     </div>

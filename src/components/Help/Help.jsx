@@ -9,9 +9,12 @@ import HelpGuide from './HelpGuide';
 import ColorPalette from './ColorPalette';
 import PlannerNavigation from './PlannerNavigation';
 import Footer from '../Footer';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import useDocumentTitle from '../Title';
 
 const Help = ({ GoTo }) => {
+    AOS.init();
     useDocumentTitle('Help');
     const noOfAccordians = Array(5).fill(null);
     const AccordionStyle = { backgroundColor: 'var(--bgcolor-100)', color: 'inherit', width: "85%" };
@@ -60,7 +63,7 @@ const Help = ({ GoTo }) => {
             </div>
             {
                 (helpGuide[0] === -1 && helpGuide[1] === -1) ? (
-                    <div className="help-body">
+                    <div className="help-body" data-aos="fade-up">
                         <Accordion defaultExpanded={true} sx={AccordionStyle}>
                             <AccordionSummary
                                 expandIcon={<ExpandMoreIcon />}

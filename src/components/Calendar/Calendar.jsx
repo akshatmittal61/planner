@@ -4,12 +4,15 @@ import EventPopup from '../Events/EventPopup';
 import EditEvent from '../Events/EditEvent';
 import { useTheme } from '@mui/material/styles';
 import { Tooltip, Zoom, Fab, Snackbar, IconButton } from '@mui/material';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import EventNoteIcon from '@mui/icons-material/EventNote';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import CloseIcon from '@mui/icons-material/Close';
 import useDocumentTitle from '../Title';
 const Calendar = ({ events, submit }) => {
+    AOS.init();
     useDocumentTitle('Calendar');
     const colors = ["bgcolor", "red", "pink", "purple", "dark-purple", "indigo", "blue", "light-blue", "cyan", "green", "light-green", "orange", "brown", "grey", "blue-grey"];
     const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
@@ -187,12 +190,12 @@ const Calendar = ({ events, submit }) => {
                     </h1>
                 </div>
                 <div className="calendar-head-arrows">
-                    <span className="material-icons back calendar-head-arrow back" onClick={backMonth}>
+                    <button className="btn material-icons back calendar-head-arrow back" onClick={backMonth}>
                         <ArrowBackIosNewIcon />
-                    </span>
-                    <span className="material-icons forward calendar-head-arrow forward" onClick={forwardMonth}>
+                    </button>
+                    <button className="btn material-icons forward calendar-head-arrow forward" onClick={forwardMonth}>
                         <ArrowForwardIosIcon />
-                    </span>
+                    </button>
                 </div>
             </div>
             <div className="calendar-body" style={{ "backgroundColor": "var(--" + colors[monthDisplayIndex] + "-100)" }}>
@@ -214,7 +217,7 @@ const Calendar = ({ events, submit }) => {
                                                 <Tooltip title={events[check(datesToDisplay[(row * 7) + date], monthDisplayIndex, yearToDisplay)].title}>
                                                     <span
                                                         onClick={() => { popupEvent(check(datesToDisplay[(row * 7) + date], monthDisplayIndex, yearToDisplay)) }}
-                                                        style={{ "backgroundColor": "var(--blue-400)" }}
+                                                        style={{ "backgroundColor": "var(--grey-700)", color: "#f0f0f0" }}
                                                     >
                                                         {datesToDisplay[(row * 7) + date]}
                                                     </span>

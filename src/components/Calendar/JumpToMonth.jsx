@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
 import { Input } from '@mui/material';
 
 const JumpToMonth = ({ currentMonth, close, submit }) => {
+    AOS.init();
     const inputStyle = { color: "var(--tcolor)" };
     const [month, setMonth] = useState(currentMonth);
     const handleChange = (e) => {
@@ -19,7 +22,7 @@ const JumpToMonth = ({ currentMonth, close, submit }) => {
     }
     return (
         <div className="calendar-edit">
-            <div className="calendar-edit-box">
+            <div className="calendar-edit-box" data-aos="zoom-in">
                 <div className="calendar-edit-box-topbar">
                     <div className="calendar-edit-box-topbar__close" onClick={close}>
                         <CloseIcon />

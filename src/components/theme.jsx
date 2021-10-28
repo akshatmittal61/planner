@@ -11,11 +11,11 @@ function Theme() {
     body.setAttribute("class", theme);
     return (
         <Tooltip title={`Switch to ${theme === "light" ? "dark" : "light"} mode`}>
-            <div className="theme" onClick={changeTheme}>
+            <button className="btn theme" onClick={changeTheme}>
                 <span className="theme-icon material-icons" id={theme}>
                     {`${theme}_mode`}
                 </span>
-            </div>
+            </button>
         </Tooltip>
     )
 }

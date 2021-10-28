@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import EventNoteIcon from '@mui/icons-material/EventNote';
 import NotesIcon from '@mui/icons-material/Notes';
@@ -7,6 +9,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Input } from '@mui/material';
 
 const AddTask = ({ close, submit }) => {
+    AOS.init();
     const inputStyle = { color: "var(--tcolor)" };
     const currentDate = `${new Date().getFullYear()}-${new Date().getMonth() < 9 ? "0" + (new Date().getMonth() + 1) : new Date().getMonth() + 1}-${new Date().getDate() < 10 ? "0" + new Date().getDate() : new Date().getDate()}`;
     const currentTime = `${Date().substring(16, 24)}`;
@@ -41,11 +44,11 @@ const AddTask = ({ close, submit }) => {
     }
     return (
         <div className="task-add">
-            <div className="task-add-box">
+            <div className="task-add-box" data-aos="zoom-in">
                 <div className="task-add-box-topbar">
-                    <div className="task-add-box-topbar__close" onClick={close}>
+                    <button className="btn task-add-box-topbar__close" onClick={close}>
                         <CloseIcon />
-                    </div>
+                    </button>
                 </div>
                 <form className="task-add-box-form" onSubmit={submitTask}>
                     <div className="task-add-box-form__content">

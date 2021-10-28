@@ -8,7 +8,7 @@ const Footer = ({ GoToLink }) => {
     return (
         <footer className="footer">
             <div className="footer-left">
-                <div className="footer-left-image">
+                <div className="footer-left-image" onClick={() => { GoToLink(-1) }}>
                     <img className="footer-left-image__img" src={favicon} alt="planner" />
                 </div>
             </div>
@@ -26,7 +26,7 @@ const Footer = ({ GoToLink }) => {
                     color="blue"
                 />
                 <Button
-                    text="Send feedback"
+                    text="Send Us a Feedback"
                     className="footer-button"
                     imgSrc={FeedbackImage}
                     alt="Feedback"

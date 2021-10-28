@@ -7,11 +7,14 @@ import { useTheme } from '@mui/material/styles';
 import { Tooltip, Zoom, Fab, Snackbar, IconButton } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import Button from '../Button'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import CloseIcon from '@mui/icons-material/Close';
 import nullEvents from '../../images/nullEvents.svg'
 import useDocumentTitle from "../Title";
 
 const Events = ({ events, submit }) => {
+    AOS.init();
     useDocumentTitle('Events');
     const [allEvents, setAllEvents] = useState([...events]);
     allEvents.sort((a, b) => {
@@ -101,24 +104,24 @@ const Events = ({ events, submit }) => {
         <section className="events">
             {
                 allEvents.length !== 0 ? (<>
-                    <div className="events-head">
+                    <div className="events-head" data-aos="fade-up">
                         <div className="events-head-title">Events</div>
                         <div className="events-head-arrows">
-                            <span className="material-icons events-head-arrow up" onClick={() => {
+                            <button className="btn material-icons events-head-arrow up" onClick={() => {
                                 if (start <= 0) return;
                                 setStart(start - l);
                             }}>
                                 keyboard_arrow_up
-                            </span>
-                            <span className="material-icons events-head-arrow down" onClick={() => {
+                            </button>
+                            <button className="btn material-icons events-head-arrow down" onClick={() => {
                                 if (start + l >= allEvents.length) return;
                                 setStart(start + l);
                             }}>
                                 keyboard_arrow_down
-                            </span>
+                            </button>
                         </div>
                     </div>
-                    <div className="events-body">
+                    <div className="events-body" data-aos="fade-up">
                         <div className="row events-body-row">
                             {
                                 allEvents.map((event, index) => {
@@ -139,7 +142,7 @@ const Events = ({ events, submit }) => {
                     </div>
                 </>) : (
                     <div className="events-null">
-                        <div className="events-null-image">
+                        <div className="events-null-image" data-aos="zoom-in">
                             <img className="events-null-image__img" src={nullEvents} alt="No events" />
                         </div>
                         <div className="events-null-content">

@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import MenuIcon from '@mui/icons-material/Menu';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import AppsIcon from '@mui/icons-material/Apps';
@@ -8,14 +10,15 @@ import AppLinks from '../AppLinks.js';
 import { Tooltip } from '@mui/material';
 
 const Header = ({ sideBar, GoTo, onHelp }) => {
+    AOS.init();
     const [appBoxExpand, setAppBoxExpand] = useState(false);
     return (
-        <header className="header">
+        <header className="header" data-aos="fade-down">
             <div className="header-left">
                 <Tooltip title="Toggle Side Bar">
-                    <div className="header-left__burger" onClick={sideBar}>
+                    <button className="header-left__burger" onClick={sideBar}>
                         <MenuIcon className="header-left__burger-icon" />
-                    </div>
+                    </button>
                 </Tooltip>
                 <div className="header-left__title" onClick={() => { GoTo(-1) }}>
                     <span className="header-left__title__text">Planner</span>
@@ -27,26 +30,26 @@ const Header = ({ sideBar, GoTo, onHelp }) => {
                         <Theme />
                     </div>
                     <Tooltip title="Help & Feedback">
-                        <div className="header-right-link header-right-link-help" onClick={onHelp}>
+                        <button className="btn header-right-link header-right-link-help" onClick={onHelp}>
                             <div className="header-right-link__icon" title="Help & Feedback">
                                 <HelpOutlineIcon />
                             </div>
                             <div className="header-right-link__text">
                                 <span>Help</span>
                             </div>
-                        </div>
+                        </button>
                     </Tooltip>
                     <Tooltip title="Apps">
-                        <div className="header-right-link apps" onClick={() => { setAppBoxExpand(!appBoxExpand) }}>
+                        <button className="btn btn-small header-right-link apps" onClick={() => { setAppBoxExpand(!appBoxExpand) }}>
                             <div className="header-right-link__icon">
                                 <AppsIcon />
                             </div>
-                        </div>
+                        </button>
                     </Tooltip>
                 </div>
             </div>
             {
-                appBoxExpand && <div className="header-appbox">
+                appBoxExpand && <div className="header-appbox" data-aos="zoom-in-left">
                     {
                         AppLinks.map(((AppLink, index) => (
                             <AppBoxLink
