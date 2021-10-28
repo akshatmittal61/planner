@@ -1,19 +1,19 @@
 import React, { useState } from 'react'
-import Header from './Header/Header'
-import SideBar from './SideBar/SideBar'
-import Home from './Home/Home'
-import Calendar from './Calendar/Calendar'
-import Events from './Events/Events.jsx'
-import events from "./Events/events.json";
-import Notes from './Notes/Notes.jsx'
-import notes from './Notes/notes.json'
-import Tasks from './Tasks/Tasks.jsx'
-import tasks from './Tasks/tasks.json'
-import Help from './Help/Help'
-import ContactUs from './ContactUs/ContactUs'
-import FeedBack from './FeedBack';
-import useDocumentTitle from './Title'
-import ScrollToTop from './ScrollToTop'
+import Header from './components/Header/Header'
+import SideBar from './components/SideBar/SideBar'
+import Home from './pages/Home/Home'
+import Calendar from './pages/Calendar/Calendar'
+import Events from './pages/Events/Events.jsx'
+import events from "./pages/Events/events.json";
+import Notes from './pages/Notes/Notes.jsx'
+import notes from './pages/Notes/notes.json'
+import Tasks from './pages/Tasks/Tasks.jsx'
+import tasks from './pages/Tasks/tasks.json'
+import Help from './pages/Help/Help'
+import ContactUs from './pages/ContactUs/ContactUs'
+import FeedBack from './pages/FeedBack';
+import useDocumentTitle from './components/Title'
+import ScrollToTop from './components/ScrollToTop'
 import { Tooltip } from '@mui/material'
 
 const App = () => {

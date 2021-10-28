@@ -3,7 +3,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import CloseIcon from '@mui/icons-material/Close'
 import { Button, Tooltip } from '@mui/material'
-import { useWebContext } from '../Context/WebContext'
+import { useWebContext } from '../../components/Context/WebContext'
 
 const NoteColor = ({ noteToEdit, close, submit }) => {
     AOS.init();

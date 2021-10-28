@@ -3,7 +3,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { FormGroup, TextField, Button } from '@mui/material';
 import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
-import useDocumentTitle from './Title';
+import useDocumentTitle from '../components/Title';
 
 const FeedBack = ({ close }) => {
     useDocumentTitle('Feedback');

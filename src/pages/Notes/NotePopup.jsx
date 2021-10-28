@@ -2,9 +2,9 @@ import React from 'react'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import CloseIcon from '@mui/icons-material/Close';
-import { useWebContext } from '../Context/WebContext';
+import { useWebContext } from '../../components/Context/WebContext';
 import { Tooltip } from '@mui/material';
-import useDocumentTitle from '../Title';
+import useDocumentTitle from '../../components/Title';
 
 const NotePopup = ({ note, close, onColor, onLink, onCopy, onEdit, onDelete }) => {
     AOS.init();

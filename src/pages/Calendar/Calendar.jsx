@@ -10,7 +10,7 @@ import EventNoteIcon from '@mui/icons-material/EventNote';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import CloseIcon from '@mui/icons-material/Close';
-import useDocumentTitle from '../Title';
+import useDocumentTitle from '../../components/Title';
 const Calendar = ({ events, submit }) => {
     AOS.init();
     useDocumentTitle('Calendar');

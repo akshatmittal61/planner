@@ -8,10 +8,10 @@ import CustomAccordian from './CustomAccordian';
 import HelpGuide from './HelpGuide';
 import ColorPalette from './ColorPalette';
 import PlannerNavigation from './PlannerNavigation';
-import Footer from '../Footer';
+import Footer from '../../components/Footer';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import useDocumentTitle from '../Title';
+import useDocumentTitle from '../../components/Title';
 
 const Help = ({ GoTo }) => {
     AOS.init();

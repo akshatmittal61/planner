@@ -6,12 +6,12 @@ import Event from "./Event";
 import { useTheme } from '@mui/material/styles';
 import { Tooltip, Zoom, Fab, Snackbar, IconButton } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-import Button from '../Button'
+import Button from '../../components/Button'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import CloseIcon from '@mui/icons-material/Close';
 import nullEvents from '../../images/nullEvents.svg'
-import useDocumentTitle from "../Title";
+import useDocumentTitle from "../../components/Title";
 
 const Events = ({ events, submit }) => {
     AOS.init();

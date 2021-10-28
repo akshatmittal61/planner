@@ -28,7 +28,7 @@ import i33 from '../../images/help/3/3.png';
 import i34 from '../../images/help/3/4.png';
 import i35 from '../../images/help/3/5.png';
 import i40 from '../../images/help/4/0.png';
-import useDocumentTitle from '../Title';
+import useDocumentTitle from '../../components/Title';
 
 const HelpGuide = ({ X, Y, submit, GoToLink }) => {
     AOS.init();

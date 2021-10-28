@@ -10,9 +10,9 @@ import { useTheme } from '@mui/material/styles';
 import AddIcon from '@mui/icons-material/Add';
 import CloseIcon from '@mui/icons-material/Close';
 import EditTask from './EditTask';
-import Button from '../Button'
+import Button from '../../components/Button'
 import nullTasks from '../../images/nullTasks.svg'
-import useDocumentTitle from '../Title';
+import useDocumentTitle from '../../components/Title';
 
 const Tasks = ({ tasks, submit }) => {
     AOS.init();

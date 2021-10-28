@@ -3,7 +3,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import CloseIcon from '@mui/icons-material/Close'
 import { FormGroup, TextField, Button } from '@mui/material'
-import { useWebContext } from '../Context/WebContext'
+import { useWebContext } from '../../components/Context/WebContext'
 
 const NoteLink = ({ noteToEdit, close, submit }) => {
     AOS.init();

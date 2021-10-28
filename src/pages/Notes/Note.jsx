@@ -1,5 +1,5 @@
 import React from 'react'
-import { useWebContext } from '../Context/WebContext'
+import { useWebContext } from '../../components/Context/WebContext'
 import { Tooltip } from '@mui/material';
 import AOS from 'aos';
 import 'aos/dist/aos.css';

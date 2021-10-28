@@ -1,5 +1,5 @@
 import React from 'react'
-import useDocumentTitle from '../Title';
+import useDocumentTitle from '../../components/Title';
 import Card from './Card';
 import people from './people.json';
 

@@ -8,7 +8,7 @@ import i2 from '../../images/marriage.jpg';
 import i3 from '../../images/meeting.webp';
 import i4 from '../../images/festival.jpg';
 import i5 from '../../images/ceremony.jpg';
-import useDocumentTitle from '../Title';
+import useDocumentTitle from '../../components/Title';
 
 const EventPopup = ({ event, close, onDelete, onEdit }) => {
     AOS.init();

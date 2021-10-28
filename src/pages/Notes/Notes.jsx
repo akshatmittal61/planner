@@ -12,9 +12,9 @@ import 'aos/dist/aos.css';
 import CreateIcon from '@mui/icons-material/Create';
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import CloseIcon from '@mui/icons-material/Close';
-import Button from '../Button'
+import Button from '../../components/Button'
 import nullNotes from '../../images/nullNotes.svg'
-import useDocumentTitle from '../Title';
+import useDocumentTitle from '../../components/Title';
 
 const Notes = ({ notes, submit }) => {
     AOS.init();

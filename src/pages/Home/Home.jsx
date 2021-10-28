@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../Button';
+import Button from '../../components/Button';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import favicon from '../../images/favicon.svg';
@@ -8,8 +8,8 @@ import EventsImg from '../../images/events.svg';
 import NotesImg from '../../images/notes.svg';
 import TasksImg from '../../images/tasks.svg';
 import People from '../../images/people.svg';
-import Footer from '../Footer';
-import useDocumentTitle from '../Title';
+import Footer from '../../components/Footer';
+import useDocumentTitle from '../../components/Title';
 
 const Home = ({ GoTo }) => {
     useDocumentTitle('Planner');

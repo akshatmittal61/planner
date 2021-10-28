@@ -1,5 +1,5 @@
 import React from 'react'
-import Button from '../Button'
+import Button from '../../components/Button'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { Divider, Tooltip } from '@mui/material'
