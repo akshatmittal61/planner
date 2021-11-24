@@ -43,7 +43,7 @@ const AddEvent = ({ close, submit }) => {
         <div className="event-add">
             <div className="event-add-box" data-aos="zoom-in">
                 <div className="event-add-box-topbar">
-                    <button className="btn event-add-box-topbar__close" onClick={close}>
+                    <button className="btn btn-sm icon-btn icon-btn-sm event-add-box-topbar__close" onClick={close}>
                         <CloseIcon />
                     </button>
                 </div>

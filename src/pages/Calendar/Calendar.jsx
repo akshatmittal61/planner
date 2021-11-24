@@ -9,6 +9,7 @@ import 'aos/dist/aos.css';
 import EventNoteIcon from '@mui/icons-material/EventNote';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import Button from '../../components/Button';
 import CloseIcon from '@mui/icons-material/Close';
 import useDocumentTitle from '../../components/Title';
 const Calendar = ({ events, submit }) => {
@@ -190,12 +191,26 @@ const Calendar = ({ events, submit }) => {
                     </h1>
                 </div>
                 <div className="calendar-head-arrows">
-                    <button className="btn material-icons back calendar-head-arrow back" onClick={backMonth}>
-                        <ArrowBackIosNewIcon />
-                    </button>
-                    <button className="btn material-icons forward calendar-head-arrow forward" onClick={forwardMonth}>
-                        <ArrowForwardIosIcon />
-                    </button>
+                    <Button
+                        className="calendar-head-arrow icon-btn"
+                        onClick={backMonth}
+                        text={
+                            (
+                                <ArrowBackIosNewIcon />
+                            )
+                        }
+                        size="small"
+                    />
+                    <Button
+                        className="calendar-head-arrow icon-btn"
+                        onClick={forwardMonth}
+                        text={
+                            (
+                                <ArrowForwardIosIcon />
+                            )
+                        }
+                        size="small"
+                    />
                 </div>
             </div>
             <div className="calendar-body" style={{ "backgroundColor": "var(--" + colors[monthDisplayIndex] + "-100)" }}>

@@ -44,7 +44,7 @@ const EditTask = ({ taskToEdit, close, submit }) => {
         <div className="task-edit">
             <div className="task-edit-box" data-aos="zoom-in">
                 <div className="task-edit-box-topbar">
-                    <button className="btn task-edit-box-topbar__close" onClick={close}>
+                    <button className="btn btn-sm icon-btn icon-btn-sm task-edit-box-topbar__close" onClick={close}>
                         <CloseIcon />
                     </button>
                 </div>

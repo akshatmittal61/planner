@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Guide from './Guide.json';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -34,6 +34,9 @@ const HelpGuide = ({ X, Y, submit, GoToLink }) => {
     AOS.init();
     const GuideObject = Guide[X][Y];
     useDocumentTitle(GuideObject.headerTitle);
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    });
     const images = [
         [i00, i01, i02],
         [i10, i11, i12, i13, i14, i15],

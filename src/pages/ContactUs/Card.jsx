@@ -31,7 +31,13 @@ const Card = ({ name, image, skills, summary, about, socialLinks }) => {
                 <div className="card-skills">
                     {
                         skills.map((skill, index) => (
-                            <Button key={index} className="card-skills__skill" text={skill} color="blue" variant="small" />
+                            <Button
+                                key={index}
+                                className="card-skills__skill icon-btn-sm"
+                                text={skill}
+                                color="blue"
+                                size="small"
+                            />
                         ))
                     }
                 </div>
@@ -41,7 +47,7 @@ const Card = ({ name, image, skills, summary, about, socialLinks }) => {
                         {
                             socialLinks.map((link, index) => (
                                 <div key={index} className="card-social-links">
-                                    <a href={index === 3 ? "mailto:" + link : link} className="card-social-link">
+                                    <a href={index === 3 ? "mailto:" + link : link} className="card-social-link icon-btn">
                                         <Tooltip title={socials[index]}>
                                             {
                                                 icons[index]

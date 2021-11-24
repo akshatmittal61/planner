@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Button from '../../components/Button';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -10,9 +10,13 @@ import TasksImg from '../../images/tasks.svg';
 import People from '../../images/people.svg';
 import Footer from '../../components/Footer';
 import useDocumentTitle from '../../components/Title';
+import ScrollToTop from '../../components/ScrollToTop'
 
 const Home = ({ GoTo }) => {
     useDocumentTitle('Planner');
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     AOS.init();
     const items = [
         {
@@ -71,6 +75,7 @@ const Home = ({ GoTo }) => {
                 </div>
             </div>
             <Footer GoToLink={GoTo} />
+            <ScrollToTop />
         </div>
     )
 }

@@ -12,7 +12,7 @@ const AddTask = ({ close, submit }) => {
     AOS.init();
     const inputStyle = { color: "var(--tcolor)" };
     const currentDate = `${new Date().getFullYear()}-${new Date().getMonth() < 9 ? "0" + (new Date().getMonth() + 1) : new Date().getMonth() + 1}-${new Date().getDate() < 10 ? "0" + new Date().getDate() : new Date().getDate()}`;
-    const currentTime = `${Date().substring(16, 24)}`;
+    const currentTime = `${Date().substring(16, 21)}`;
     const [task, setTask] = useState({
         title: "",
         description: "",
@@ -46,7 +46,7 @@ const AddTask = ({ close, submit }) => {
         <div className="task-add">
             <div className="task-add-box" data-aos="zoom-in">
                 <div className="task-add-box-topbar">
-                    <button className="btn task-add-box-topbar__close" onClick={close}>
+                    <button className="btn btn-sm icon-btn icon-btn-sm task-add-box-topbar__close" onClick={close}>
                         <CloseIcon />
                     </button>
                 </div>

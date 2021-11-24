@@ -1,74 +1,91 @@
 # Planner
 
-This project is to be used as a planner for all purposes. You get a calendar, an event manager, a notes manager and a tesks manager, built in one.
+<p align="center">
+<img src="./public/images/favicon.png" alt="Planner" width="250" height="250" />
+</p>
+<p align="center">
+Get more done with Planner. 
+<br />
+Manage, capture and edit your daily events, notes and tasks.
+</p>
+<p style="margin: 3rem 0 4rem 0;">
+<img src="./src/images/PlannerNav/0.png" alt="Planner Home Screen" />
+</p>
 
-# Getting Started with Create React App
+# Introduction
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Planner is a full stack web application built in MERN stack to keep a track of your activity every month, every day, every hour.
 
-## Available Scripts
+-   **Runtime used in backend** - [Node.js](https://nodejs.org/)
+-   **Frontend framework** - [React JS](https://reactjs.org/)
+-   **Backend framework** - [Express](https://expressjs.com/)
+-   **Database** - [MongoDB](https://www.mongodb.com/)
 
-In the project directory, you can run:
+# Navigation
 
-### `npm start`
+-   **Home Page** - Planner Home page contains links to different pages of the web app.
 
-Runs the app in the development mode.\
+-   **Calendar** - Planner contains a calendar to view the days of any month of any year, withour any year limit. Unlike other calendars, it works on an algorithm.
+
+-   **Events** - In the planner events, you can create, edit and delete an event. For e.g) vreate an event for your best friend's borthday to keep yourself reminded on the big day.
+
+-   **Notes** - Use planner notes to record every thought that you want to track. Whether it is an article you saw on internet or a blog you want to save for later or a short poem that you just wrote.
+
+-   **Help** - To get help on Planner, click on the Help button in the header to visit the help section of the planner.
+
+-   **Feedback** - To leave a feedback to the developers, click on the feedback button in the footer of the app. Please be polite in any kind of feedback. Any appreciation of work or a bug report or any other kind of feedback is welcome.
+
+# Themes
+
+Planner's color palette has been synchronized and carefully chosen to provide the best user experince.
+
+The app will switch to dark mode automatically after 8:00 PM and will switch back to light mode at 8:00 AM.
+
+Though the user can still switch between different modes as per their convenience.
+
+To switch between different modes, click on theme icon in the header.
+
+-   **Light Mode**
+
+<img src="./src/images/PlannerNav/2b.png" alt="Dark Mode" style="margin: 2rem 5rem" />
+
+-   **Dark Mode**
+
+<img src="./src/images/PlannerNav/2a.png" alt="Light Mode" style="margin: 2rem 5rem" />
+
+# Development
+
+To clone copy the following command in your terminal and start development.
+
+```sh
+git clone https://github.com/akshatmittal61/Planner.git
+```
+
+cd into the directory
+
+```sh
+cd Planner
+```
+
+Run the project in development mode
+
+```sh
+npm start
+```
+
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+# Author
 
-### `npm test`
+[Akshat Mittal](https://akshatmittal61.github.io/portfolio)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Contributors
 
-### `npm run build`
+-   [Akshat Khosya](https://github.com/akshat-khosya)
+-   [Sneha Sharma](https://github.com/snehasharma1111)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## References and Libraries Used
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+-   [Google Keep](https://keep.google.com)
+-   [MUI](https://mui.com/)
+-   [AOS](https://github.com/michalsnik/aos)

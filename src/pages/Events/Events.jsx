@@ -107,13 +107,13 @@ const Events = ({ events, submit }) => {
                     <div className="events-head" data-aos="fade-up">
                         <div className="events-head-title">Events</div>
                         <div className="events-head-arrows">
-                            <button className="btn material-icons events-head-arrow up" onClick={() => {
+                            <button className="btn btn-lg icon-btn icon-btn-lg material-icons events-head-arrow up" onClick={() => {
                                 if (start <= 0) return;
                                 setStart(start - l);
                             }}>
                                 keyboard_arrow_up
                             </button>
-                            <button className="btn material-icons events-head-arrow down" onClick={() => {
+                            <button className="btn btn-lg icon-btn icon-btn-lg material-icons events-head-arrow down" onClick={() => {
                                 if (start + l >= allEvents.length) return;
                                 setStart(start + l);
                             }}>

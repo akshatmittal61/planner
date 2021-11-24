@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Note from './Note'
 import NotePopup from './NotePopup';
 import AddNote from './AddNote';
@@ -19,6 +19,9 @@ import useDocumentTitle from '../../components/Title';
 const Notes = ({ notes, submit }) => {
     AOS.init();
     useDocumentTitle('Notes');
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     const [allNotes, setAllNotes] = useState([...notes]);
     allNotes.map((note) => {
         if (note.color === "") note.color = "bgcolor";
@@ -116,7 +119,7 @@ const Notes = ({ notes, submit }) => {
         </React.Fragment>
     );
     return (
-        <section className="notes">
+        <section className="notes" data-aos="fade-up">
             {allNotes.length !== 0 ? (
                 <div className="notes-container">
                     <ResponsiveMasonry columnsCount={3}>

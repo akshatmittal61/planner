@@ -42,7 +42,7 @@ const EditEvent = ({ eventToEdit, close, submit }) => {
         <div className="event-edit">
             <div className="event-edit-box" data-aos="zoom-in">
                 <div className="event-edit-box-topbar">
-                    <button className="btn event-edit-box-topbar__close" onClick={close}>
+                    <button className="btn btn-sm icon-btn icon-btn-sm event-edit-box-topbar__close" onClick={close}>
                         <CloseIcon />
                     </button>
                 </div>

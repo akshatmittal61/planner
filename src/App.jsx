@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Header from './components/Header/Header'
 import SideBar from './components/SideBar/SideBar'
 import Home from './pages/Home/Home'
@@ -13,25 +13,17 @@ import Help from './pages/Help/Help'
 import ContactUs from './pages/ContactUs/ContactUs'
 import FeedBack from './pages/FeedBack';
 import useDocumentTitle from './components/Title'
-import ScrollToTop from './components/ScrollToTop'
-import { Tooltip } from '@mui/material'
 
 const App = () => {
 	useDocumentTitle('Planner');
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
 	const [sideBarExpand, setsideBarExpand] = useState((window.innerWidth > 880 ? true : false));
 	const [render, setRender] = useState(0);
 	const handleRender = (link) => {
 		setsideBarExpand((window.innerWidth > 880 ? true : false));
 		setRender(link + 1);
-	}
-	const [showScrollButton, setshowScrollButton] = useState(false);
-	window.onscroll = () => {
-		if (document.documentElement.scrollTop > 200) setshowScrollButton(true);
-		else setshowScrollButton(false);
-	}
-	function topFunction() {
-		document.body.scrollTop = 0;
-		document.documentElement.scrollTop = 0;
 	}
 	const [allEvents, setAllEvents] = useState([...events]);
 	const [allNotes, setAllNotes] = useState([...notes]);
@@ -83,13 +75,6 @@ const App = () => {
 				}
 				{
 					render === 8 && <FeedBack close={() => setRender(0)} />
-				}
-				{
-					showScrollButton && (
-						<Tooltip title="Scroll To Top">
-							<ScrollToTop onClick={topFunction} />
-						</Tooltip>
-					)
 				}
 			</main>
 		</>

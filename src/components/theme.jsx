@@ -1,8 +1,7 @@
-import { Tooltip } from "@mui/material";
 import React from "react";
+import { Tooltip } from "@mui/material";
 import { useWebContext } from "./Context/WebContext";
 function Theme() {
-    //const [theme, setTheme] = useState("light");
     const { theme, setTheme } = useWebContext();
     const body = document.querySelector("body");
     function changeTheme() {
@@ -11,8 +10,8 @@ function Theme() {
     body.setAttribute("class", theme);
     return (
         <Tooltip title={`Switch to ${theme === "light" ? "dark" : "light"} mode`}>
-            <button className="btn theme" onClick={changeTheme}>
-                <span className="theme-icon material-icons" id={theme}>
+            <button className="btn icon-btn icon-btn-sm" onClick={changeTheme}>
+                <span className="material-icons" id={theme}>
                     {`${theme}_mode`}
                 </span>
             </button>

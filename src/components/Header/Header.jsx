@@ -7,6 +7,7 @@ import AppsIcon from '@mui/icons-material/Apps';
 import Theme from '../theme';
 import AppBoxLink from './AppBoxLink';
 import AppLinks from '../AppLinks.js';
+import Button from '../../components/Button';
 import { Tooltip } from '@mui/material';
 
 const Header = ({ sideBar, GoTo, onHelp }) => {
@@ -26,11 +27,9 @@ const Header = ({ sideBar, GoTo, onHelp }) => {
             </div>
             <div className="header-right">
                 <div className="header-right-links">
-                    <div className="header-right-link theme">
-                        <Theme />
-                    </div>
+                    <Theme />
                     <Tooltip title="Help & Feedback">
-                        <button className="btn header-right-link header-right-link-help" onClick={onHelp}>
+                        <button className="btn icon-btn header-right-link header-right-link-help" onClick={onHelp}>
                             <div className="header-right-link__icon" title="Help & Feedback">
                                 <HelpOutlineIcon />
                             </div>
@@ -40,7 +39,7 @@ const Header = ({ sideBar, GoTo, onHelp }) => {
                         </button>
                     </Tooltip>
                     <Tooltip title="Apps">
-                        <button className="btn btn-small header-right-link apps" onClick={() => { setAppBoxExpand(!appBoxExpand) }}>
+                        <button className="btn icon-btn btn-small header-right-link apps" onClick={() => { setAppBoxExpand(!appBoxExpand) }}>
                             <div className="header-right-link__icon">
                                 <AppsIcon />
                             </div>

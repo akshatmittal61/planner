@@ -8,9 +8,36 @@ import TasksImage from '../../images/favicon.svg'
 const Note = ({ title, description, linkURL, linkText, color, Pop, onColor, onLink, onCopy, onEdit, onDelete }) => {
     const { theme } = useWebContext();
     const weight = theme === "light" ? "100" : "700";
+    const controls = [
+        {
+            tip: "Change color",
+            action: onColor,
+            icon: "palette"
+        },
+        {
+            tip: "Edit Link",
+            action: onLink,
+            icon: "link"
+        },
+        {
+            tip: "Copy Note",
+            action: onCopy,
+            icon: "content_copy"
+        },
+        {
+            tip: "Edit Note",
+            action: onEdit,
+            icon: "edit"
+        },
+        {
+            tip: "Delete Note",
+            action: onDelete,
+            icon: "delete"
+        },
+    ];
     AOS.init();
     return (
-        <div className="note" style={{ "backgroundColor": "var(--" + color + "-" + weight + ")" }} data-aos="fade-up">
+        <div className="note" style={{ "backgroundColor": "var(--" + color + "-" + weight + ")" }}>
             <div className="note-head" onClick={Pop}>
                 <div className="note-head__title">{title}</div>
                 <div className="note-head__image">
@@ -27,10 +54,7 @@ const Note = ({ title, description, linkURL, linkText, color, Pop, onColor, onLi
                         {
                             description.map(line => {
                                 return (
-                                    <>
-                                        {line}
-                                        <br />
-                                    </>
+                                    <span> {line} <br /> </span>
                                 )
                             })
                         }
@@ -40,31 +64,15 @@ const Note = ({ title, description, linkURL, linkText, color, Pop, onColor, onLi
                     </div>
                 </div>
                 <div className="note-controls">
-                    <div className="note-control color">
-                        <Tooltip title="Change Color">
-                            <button className="btn material-icons" onClick={onColor}>palette</button>
-                        </Tooltip>
-                    </div>
-                    <div className="note-control link">
-                        <Tooltip title="Edit Link">
-                            <button className="btn material-icons" onClick={onLink}>link</button>
-                        </Tooltip>
-                    </div>
-                    <div className="note-control copy">
-                        <Tooltip title="Copy Note">
-                            <button className="btn material-icons" onClick={onCopy}>content_copy</button>
-                        </Tooltip>
-                    </div>
-                    <div className="note-control edit">
-                        <Tooltip title="Edit Note">
-                            <button className="btn material-icons" onClick={onEdit}>edit</button>
-                        </Tooltip>
-                    </div>
-                    <div className="note-control delete">
-                        <Tooltip title="Delete Note">
-                            <button className="btn material-icons" onClick={onDelete}>delete</button>
-                        </Tooltip>
-                    </div>
+                    {
+                        controls.map((control, index) => (
+                            <div className="note-control" key={index}>
+                                <Tooltip title={control.tip}>
+                                    <button className="btn material-icons icon-btn icon-btn-sm" onClick={control.action}>{control.icon}</button>
+                                </Tooltip>
+                            </div>
+                        ))
+                    }
                 </div>
             </div>
         </div>

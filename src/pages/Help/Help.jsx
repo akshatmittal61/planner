@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import favicon from '../../images/favicon.svg';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -16,6 +16,9 @@ import useDocumentTitle from '../../components/Title';
 const Help = ({ GoTo }) => {
     AOS.init();
     useDocumentTitle('Help');
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     const noOfAccordians = Array(5).fill(null);
     const AccordionStyle = { backgroundColor: 'var(--bgcolor-100)', color: 'inherit', width: "85%" };
     const titles = ["Calendar", "Events", "Notes", "Tasks", "Themes"];

@@ -25,7 +25,7 @@ const SideBar = ({ aside, GoTo }) => {
                             text="Contact Us"
                             className="side-bar-social-row-button"
                             imgSrc={ContactImage}
-                            alt="Contact Us"
+                            imgAlt="Contact Us"
                             onClick={() => GoTo(6)}
                             color="blue"
                         />

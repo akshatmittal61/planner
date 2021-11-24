@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Task from './Task';
 import TaskPopup from './TaskPopup';
 import AddTask from './AddTask';
@@ -17,6 +17,9 @@ import useDocumentTitle from '../../components/Title';
 const Tasks = ({ tasks, submit }) => {
     AOS.init();
     useDocumentTitle('Tasks');
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     const [allTasks, setAllTasks] = useState([...tasks])
     allTasks.sort((a, b) => {
         let _a = new Date(a.date);

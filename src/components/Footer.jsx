@@ -21,7 +21,7 @@ const Footer = ({ GoToLink }) => {
                     text="Contact Us"
                     className="footer-button"
                     imgSrc={ContactImage}
-                    alt="Contact Us"
+                    imgAlt="Contact Us"
                     onClick={() => GoToLink(6)}
                     color="blue"
                 />
@@ -29,7 +29,7 @@ const Footer = ({ GoToLink }) => {
                     text="Send Us a Feedback"
                     className="footer-button"
                     imgSrc={FeedbackImage}
-                    alt="Feedback"
+                    imgAlt="Feedback"
                     onClick={() => GoToLink(7)}
                     color="green"
                 />

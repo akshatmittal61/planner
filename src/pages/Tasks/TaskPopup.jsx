@@ -11,7 +11,7 @@ const TaskPopup = ({ task, close }) => {
         <div className="task-popup">
             <div className="task-popup-box" data-aos="zoom-in">
                 <div className="task-popup-box-topbar">
-                    <button className="btn task-popup-box-topbar__close" onClick={close}>
+                    <button className="btn btn-sm icon-btn icon-btn-sm task-popup-box-topbar__close" onClick={close}>
                         <CloseIcon />
                     </button>
                 </div>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { Divider } from '@mui/material';
@@ -12,8 +12,13 @@ import i5a from '../../images/PlannerNav/5a.png'
 import i5b from '../../images/PlannerNav/5b.png'
 import i6a from '../../images/PlannerNav/6a.png'
 import i6b from '../../images/PlannerNav/6b.png'
+import useDocumentTitle from '../../components/Title';
 
 const PlannerNavigation = ({ closeNav, GoToLink, submit }) => {
+    useDocumentTitle("Planner Navigation");
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    });
     const submitHelp = (x, y) => {
         submit(x, y);
     }
@@ -100,17 +105,14 @@ const PlannerNavigation = ({ closeNav, GoToLink, submit }) => {
                                 Click on the Sun/Moon button to switch between light and dark themes.
                             </div>
                         </div>
-                        <div className="help-guide-content-body__image" style={{height: "15rem"}}>
+                        <div className="help-guide-content-body__image" style={{ height: "15rem" }}>
                             <img className="help-guide-content-body__image__img" src={i2a} alt="Light Theme" />
                         </div>
-                        <div className="help-guide-content-body__image" style={{height: "15rem"}}>
+                        <div className="help-guide-content-body__image" style={{ height: "15rem" }}>
                             <img className="help-guide-content-body__image__img" src={i2b} alt="Dark Theme" />
                         </div>
 
                         <div className="help-guide-content-body__points">
-                            <div className="help-guide-content-body__point">
-                                To visit Help & Feedback page, click on the respective button.
-                            </div>
                             <div className="help-guide-content-body__point">
                                 To expand any help section, click on the arrow in the right corner of the respective Help section.
                             </div>

@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import CloseIcon from '@mui/icons-material/Close';
 import { FormGroup, TextField, Button } from '@mui/material';
 import { useWebContext } from '../../components/Context/WebContext';
 
@@ -18,10 +17,11 @@ const EditNote = ({ noteToEdit, close, submit }) => {
         color: noteToEdit.color
     });
     const weight = theme === "light" ? "100" : "700";
+    const col = (note.color !== "" && note.color !== "bgcolor") ? "dark" : (theme === "light" ? "light" : "dark");
     const cancelColor = theme === "light" ? "" : "var(--tcolor)";
     const popupStyle = { "backgroundColor": "var(--" + note.color + "-" + weight + ")" };
     const popupStyleDefault = { "backgroundColor": "var(--bgcolor-" + weight + ")" };
-    const popupStyle400 = { "backgroundColor": "var(--" + note.color + "-400)" };
+    const popupStyle400 = { "backgroundColor": "var(--" + note.color + "-400)", "color": "#f0f0f0" };
     const popupStyleDefault400 = { "backgroundColor": "var(--bgcolor-400)", "color": "var(--tcolor)" };
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -56,8 +56,8 @@ const EditNote = ({ noteToEdit, close, submit }) => {
         <div className="note-edit">
             <div className="note-edit-box" style={note.color !== "" ? popupStyle : popupStyleDefault} data-aos="zoom-in">
                 <div className="note-edit-box-topbar" style={note.color !== "" ? popupStyle400 : popupStyleDefault400}>
-                    <button className="btn note-edit-box-topbar__close" onClick={close}>
-                        <CloseIcon />
+                    <button className={`btn btn-sm icon-btn icon-btn-sm note-edit-box-topbar__close btn-${col}`} onClick={close}>
+                        <span className="material-icons">close</span>
                     </button>
                 </div>
                 <form className="note-edit-box-form" onSubmit={submitNote}>
