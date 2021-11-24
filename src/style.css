@@ -1642,7 +1642,6 @@ button {
   .note-link a {
     font-size: 0.9rem; }
     .note-link a:hover, .note-link a:active, .note-link a:focus {
-      color: #4285f4;
       text-decoration: underline; }
   .note-controls {
     width: 100%;
@@ -1791,7 +1790,6 @@ button {
   .note-popup-box-link {
     color: var(--tcolor); }
     .note-popup-box-link:hover, .note-popup-box-link:active, .note-popup-box-link:focus {
-      color: #4285f4;
       text-decoration: underline; }
   .note-popup-box-bottombar {
     width: 100%;

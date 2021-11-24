@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react'
+import axios from 'axios';
 import Header from './components/Header/Header'
 import SideBar from './components/SideBar/SideBar'
 import Home from './pages/Home/Home'
 import Calendar from './pages/Calendar/Calendar'
 import Events from './pages/Events/Events.jsx'
-import events from "./pages/Events/events.json";
 import Notes from './pages/Notes/Notes.jsx'
-import notes from './pages/Notes/notes.json'
 import Tasks from './pages/Tasks/Tasks.jsx'
-import tasks from './pages/Tasks/tasks.json'
 import Help from './pages/Help/Help'
 import ContactUs from './pages/ContactUs/ContactUs'
 import FeedBack from './pages/FeedBack';
@@ -19,6 +17,7 @@ const App = () => {
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, []);
+	let events=[],notes=[],tasks=[];
 	const [sideBarExpand, setsideBarExpand] = useState((window.innerWidth > 880 ? true : false));
 	const [render, setRender] = useState(0);
 	const handleRender = (link) => {
@@ -28,6 +27,9 @@ const App = () => {
 	const [allEvents, setAllEvents] = useState([...events]);
 	const [allNotes, setAllNotes] = useState([...notes]);
 	const [allTasks, setAllTasks] = useState([...tasks]);
+	const axiosInstance = axios.create({
+		baseURL: 'http://localhost:5000'
+	})
 	const handleChange = (a) => {
 		switch (render) {
 			case 1:
@@ -62,7 +64,7 @@ const App = () => {
 					render === 2 && <Events events={allEvents} submit={handleChange} />
 				}
 				{
-					render === 3 && <Notes notes={allNotes} submit={handleChange} />
+					render === 3 && <Notes submit={handleChange} axiosInstance={axiosInstance} />
 				}
 				{
 					render === 4 && <Tasks tasks={allTasks} submit={handleChange} />

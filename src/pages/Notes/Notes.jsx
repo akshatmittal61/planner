@@ -16,13 +16,14 @@ import Button from '../../components/Button'
 import nullNotes from '../../images/nullNotes.svg'
 import useDocumentTitle from '../../components/Title';
 
-const Notes = ({ notes, submit }) => {
+const Notes = ({ axiosInstance }) => {
     AOS.init();
     useDocumentTitle('Notes');
     useEffect(() => {
         window.scrollTo(0, 0);
+        getNotes();
     }, []);
-    const [allNotes, setAllNotes] = useState([...notes]);
+    const [allNotes, setAllNotes] = useState([]);
     allNotes.map((note) => {
         if (note.color === "") note.color = "bgcolor";
         if (note.linkURL === "" || note.linkURL === "#") {
@@ -36,52 +37,72 @@ const Notes = ({ notes, submit }) => {
         }
         return note;
     })
+    const max = (a, b) => {
+        return (a > b) ? a : b;
+    }
     const [popupNoteBox, setPopupNoteBox] = useState(-1);
     const [addNoteBox, setAddNoteBox] = useState(-1);
     const [editNoteBox, setEditNoteBox] = useState(-1);
     const [editNoteLinkBox, setEditNoteLinkBox] = useState(-1);
     const [editNoteColorBox, setEditNoteColorBox] = useState(-1);
     const [snackMessage, setSnackMessage] = useState("Action successful");
+    const getNotes = () => {
+        axiosInstance.get('/notes')
+            .then((res) => {
+                setAllNotes([...res.data]);
+            })
+            .catch(err => console.log(err))
+    }
     const popupNote = (a) => {
         setPopupNoteBox(a);
     }
     const deleteNote = (id) => {
-        let newNotes = [...allNotes];
-        newNotes = newNotes.filter((note, index) => {
-            return index !== id;
-        })
-        setAllNotes(newNotes);
+        axiosInstance.delete(`/notes/${id}`)
+            .then(res => console.log(res.data))
+            .catch(err => console.log(err))
+        getNotes();
         setSnackMessage("Note deleted successfully");
         setOpen(true);
         setPopupNoteBox(-1);
-        submit(newNotes);
     }
-    const addNote = (newNote) => {
-        let newNotes = [...allNotes];
+    const addNote = (a) => {
+        let newNote = {
+            id: allNotes.length,
+            ...a
+        }
         const condition = newNote.title === "" && newNote.description[0] === "" && newNote.linkURL === "" && newNote.linkText === "";
-        newNotes = !condition ? [...newNotes, newNote] : [...newNotes]
-        setAllNotes(newNotes);
-        !condition ? setSnackMessage("Note added successfully") : setSnackMessage("Can't add empty note");
+        if (!condition) {
+            axiosInstance.post('/notes', newNote)
+                .then(res => console.log(res.data))
+                .catch(err => console.log(err));
+            setSnackMessage("Note added successfully");
+            getNotes();
+        }
+        else setSnackMessage("Can't add empty note");
         setOpen(true);
         setAddNoteBox(!condition ? -1 : 1);
-        submit(newNotes);
     }
-    const editNote = (newNote) => {
-        let newNotes = [...allNotes];
-        newNotes = newNotes.map((note, index) => {
-            if (index === editNoteBox || index === editNoteLinkBox || index === editNoteColorBox) {
-                return newNote;
-            }
-            else return note;
-        })
-        setAllNotes(newNotes);
+    const editNote = (a) => {
+        let newNote = { ...a };
+        if (editNoteBox > -1 || editNoteLinkBox > -1 || editNoteColorBox > -1) {
+            let index = max(editNoteBox, max(editNoteColorBox, editNoteLinkBox));
+            axiosInstance.patch(`/notes/${index}`, {
+                title: newNote.title,
+                description: newNote.description,
+                linkURL: newNote.linkURL,
+                linkText: newNote.linkText,
+                color: newNote.color
+            })
+                .then(res => console.log(res.data))
+                .catch(err => console.log(err))
+        }
+        getNotes();
         setSnackMessage("Changes saved");
         setOpen(true);
         setEditNoteBox(-1);
         setEditNoteLinkBox(-1);
         setEditNoteColorBox(-1);
         setPopupNoteBox(-1);
-        submit(newNotes);
     }
     const copyNote = (e) => {
         if (allNotes[e].linkText === "" || allNotes[e].linkURL === "") navigator.clipboard.writeText(allNotes[e].title + '\n\n' + allNotes[e].description + '\n' + allNotes[e].linkURL + allNotes[e].linkText)
