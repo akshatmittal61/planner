@@ -7,7 +7,6 @@ import AppsIcon from '@mui/icons-material/Apps';
 import Theme from '../theme';
 import AppBoxLink from './AppBoxLink';
 import AppLinks from '../AppLinks.js';
-import Button from '../../components/Button';
 import { Tooltip } from '@mui/material';
 
 const Header = ({ sideBar, GoTo, onHelp }) => {

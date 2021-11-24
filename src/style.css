@@ -902,7 +902,8 @@ button {
       align-items: center;
       flex-flow: column;
       border-radius: 10px;
-      transition: all var(--transition-time) ease-in-out; }
+      transition: all var(--transition-time) ease-in-out;
+      overflow: hidden; }
       .header-appbox-link__icon {
         padding: 0.5rem; }
       .header-appbox-link:hover {
@@ -2372,7 +2373,7 @@ button {
         max-width: 100%;
         max-height: 100%;
         padding: 1rem;
-        border: 5px solid var(--tcolor-100);
+        border: 3px solid var(--back-shadow);
         border-radius: 10px;
         display: flex;
         justify-content: center;
