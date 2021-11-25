@@ -77,7 +77,6 @@ const NoteColor = ({ noteToEdit, close, submit }) => {
                                 className="note-edit-color-box__button-cancel"
                                 onClick={close}
                             />
-                            {/* <Button variant="text" className="note-edit-color-box__button-cancel" onClick={close} style={{ color: cancelColor }}>Cancel</Button> */}
                         </div>
                         <div className="note-edit-color-box__button">
                             <Button
@@ -88,7 +87,6 @@ const NoteColor = ({ noteToEdit, close, submit }) => {
                                 type="submit"
                                 className="note-edit-color-box__button-save"
                             />
-                            {/* <Button variant="contained" className="note-edit-color-box__button-save" type="submit">Save</Button> */}
                         </div>
                     </div>
                 </form>

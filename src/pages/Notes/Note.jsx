@@ -52,9 +52,9 @@ const Note = ({ title, description, linkURL, linkText, color, Pop, onColor, onLi
                 <div className="note-description" onClick={Pop}>
                     <div className="note-description__content">
                         {
-                            description.map(line => {
+                            description.map((line, index) => {
                                 return (
-                                    <span> {line} <br /> </span>
+                                    <span key={index}> {line} <br /> </span>
                                 )
                             })
                         }

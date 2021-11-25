@@ -62,8 +62,8 @@ const NotePopup = ({ note, close, onColor, onLink, onCopy, onEdit, onDelete }) =
                 <div className="note-popup-box-body">
                     <div className="note-popup-box-description">
                         {
-                            note.description.map(line => (
-                                <span>{line} <br /> </span>
+                            note.description.map((line, index) => (
+                                <span key={index}>{line} <br /> </span>
                             ))
                         }
                     </div>

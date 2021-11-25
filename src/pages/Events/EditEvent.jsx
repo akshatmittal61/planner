@@ -11,12 +11,7 @@ import { Input } from '@mui/material';
 const EditEvent = ({ eventToEdit, close, submit }) => {
     AOS.init();
     const inputStyle = { color: "var(--tcolor)" };
-    const [event, setEvent] = useState({
-        title: eventToEdit.title,
-        date: eventToEdit.date,
-        type: eventToEdit.type,
-        description: eventToEdit.description
-    });
+    const [event, setEvent] = useState({ ...eventToEdit });
     const handleChange = (e) => {
         const { name, value } = e.target;
         setEvent(prev => {

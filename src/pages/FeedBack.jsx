@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import Button from '../components/Button';
 import CloseIcon from '@mui/icons-material/Close';
-import { FormGroup, TextField, Button } from '@mui/material';
+import { FormGroup, TextField } from '@mui/material';
 import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
 import useDocumentTitle from '../components/Title';
@@ -114,7 +115,14 @@ const FeedBack = ({ close }) => {
                         </div>
                         <div className="feedback-form__buttons">
                             <div className="feedback-form__button">
-                                <Button variant="contained" className="feedback-form-button-submit" type="submit">Submit</Button>
+                                <Button
+                                    text="Submit"
+                                    variant="fill"
+                                    color="blue"
+                                    size="small"
+                                    type="submit"
+                                    className="feedback-form-button-submit"
+                                />
                             </div>
                         </div>
                     </form>

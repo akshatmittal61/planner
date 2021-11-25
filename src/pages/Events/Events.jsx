@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import EventPopup from "./EventPopup";
 import AddEvent from "./AddEvent";
 import EditEvent from "./EditEvent";
@@ -14,11 +14,15 @@ import nullEvents from '../../images/nullEvents.svg'
 import useDocumentTitle from "../../components/Title";
 import { useWebContext } from '../../components/Context/WebContext';
 
-const Events = ({ events, submit }) => {
+const Events = ({ axiosInstance }) => {
     AOS.init();
     useDocumentTitle('Events');
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        getEvents();
+    }, []);
     const { theme } = useWebContext();
-    const [allEvents, setAllEvents] = useState([...events]);
+    const [allEvents, setAllEvents] = useState([]);
     allEvents.sort((a, b) => {
         let _a = new Date(a.date);
         let _b = new Date(b.date);
@@ -32,46 +36,55 @@ const Events = ({ events, submit }) => {
     const [addEventBox, setAddEventBox] = useState(-1);
     const [editEventBox, setEditEventBox] = useState(-1);
     const [snackMessage, setSnackMessage] = useState("Action successful");
+    const getEvents = () => {
+        axiosInstance.get('/events')
+            .then((res) => {
+                setAllEvents([...res.data]);
+            })
+            .catch(err => console.log(err))
+    }
     const popupEvent = (a) => {
         setPopupEventBox(a);
     }
     const deleteEvent = (id) => {
-        let newEvents = [...allEvents];
-        newEvents = newEvents.filter((event, index) => {
-            return index !== id;
-        })
-        setAllEvents(newEvents);
+        axiosInstance.delete(`/events/${id}`)
+            .then(res => console.log(res.data))
+            .catch(err => console.log(err))
+        getEvents();
         setSnackMessage("Event deleted successfully");
         setOpen(true);
         setPopupEventBox(-1);
-        submit(newEvents);
     }
     const addNewEvent = () => {
         setAddEventBox(1);
     }
-    const addEvent = (newEvent) => {
-        let newEvents = [...allEvents];
-        const condition = newEvent.title === "" && newEvent.type === "" && newEvent.description === "";
-        newEvents = !condition ? [...newEvents, newEvent] : [...newEvents];
-        setAllEvents(newEvents);
-        setSnackMessage(condition ? "Can't add an empty event" : "Event added successfully");
+    const addEvent = (a) => {
+        let newEvent = {
+            id: allEvents.length,
+            ...a
+        }
+        const condition = newEvent.title === "" && newEvent.type === "" && newEvent.date === "";
+        if (!condition) {
+            axiosInstance.post('/events', newEvent)
+                .then(res => console.log(res.data))
+                .catch(err => console.log(err));
+            setSnackMessage("Event added successfully");
+            getEvents();
+        }
+        else setSnackMessage("Can't add an empty event");
         setOpen(true);
-        setAddEventBox(condition ? 1 : -1);
-        submit(newEvents);
+        setAddEventBox(!condition ? -1 : 1);
     }
-    const editEvent = (newEvent) => {
-        let newEvents = [...allEvents];
-        newEvents = newEvents.map((event, index) => {
-            if (index === popupEventBox)
-                return newEvent;
-            else return event;
-        })
-        setAllEvents(newEvents);
+    const editEvent = (a) => {
+        let newEvent = { ...a };
+        axiosInstance.patch(`/events/${newEvent.id}`, { ...newEvent })
+            .then(res => console.log(res.data))
+            .catch(err => console.log(err));
+        getEvents();
         setSnackMessage("Changes saved");
         setOpen(true);
         setEditEventBox(-1);
         setPopupEventBox(-1);
-        submit(newEvents);
     }
     const Theme = useTheme();
     const transitionDuration = {
@@ -166,7 +179,7 @@ const Events = ({ events, submit }) => {
                 popupEventBox >= 0 && <EventPopup
                     event={allEvents[popupEventBox]}
                     close={() => { setPopupEventBox(-1) }}
-                    onDelete={() => { deleteEvent(popupEventBox) }}
+                    onDelete={() => { deleteEvent(allEvents[popupEventBox].id) }}
                     onEdit={() => { setEditEventBox(popupEventBox) }}
                 />
             }

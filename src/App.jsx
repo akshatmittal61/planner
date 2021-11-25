@@ -61,10 +61,10 @@ const App = () => {
 					render === 1 && <Calendar events={allEvents} submit={handleChange} />
 				}
 				{
-					render === 2 && <Events events={allEvents} submit={handleChange} />
+					render === 2 && <Events axiosInstance={axiosInstance} />
 				}
 				{
-					render === 3 && <Notes submit={handleChange} axiosInstance={axiosInstance} />
+					render === 3 && <Notes axiosInstance={axiosInstance} />
 				}
 				{
 					render === 4 && <Tasks tasks={allTasks} submit={handleChange} />

@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import Button from '../../components/Button';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
 import { Input } from '@mui/material';
 
@@ -48,10 +48,24 @@ const JumpToMonth = ({ currentMonth, close, submit }) => {
                     </div>
                     <div className="calendar-edit-box-form__buttons">
                         <div className="calendar-edit-box__button">
-                            <Button variant="text" className="calendar-edit-box__button-cancel" onClick={close}>Cancel</Button>
+                            <Button
+                                text="Cancel"
+                                variant="outline"
+                                color="blue"
+                                size="small"
+                                className="calendar-edit-box__button-cancel"
+                                onClick={close}
+                            />
                         </div>
                         <div className="calendar-edit-box__button">
-                            <Button variant="contained" className="calendar-edit-box__button-cancel" type="submit">Save</Button>
+                            <Button
+                                text="Save"
+                                variant="fill"
+                                color="blue"
+                                size="small"
+                                type="submit"
+                                className="calendar-edit-box__button-cancel"
+                            />
                         </div>
                     </div>
                 </form>
