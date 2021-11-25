@@ -1,9 +1,6 @@
 import React from 'react'
-import { useWebContext } from './Context/WebContext'
 
 const Button = ({ className, text, variant, size, color, onClick, type, imgSrc, imgAlt }) => {
-    const { theme } = useWebContext();
-    variant = theme === "light" ? "outline" : "fill";
     let classes = "btn";
     if (variant === "fill" || variant === "outline") {
         classes += ` btn-${variant}`;
@@ -23,7 +20,7 @@ const Button = ({ className, text, variant, size, color, onClick, type, imgSrc, 
         classes += " btn-lg";
     }
     return (
-        <button className={classes + ` ${className}`} onClick={onClick} type={type}>
+        <button className={`${classes} ${className}`} onClick={onClick} type={type}>
             {size !== "small" && <img className="btn__img" src={imgSrc} alt={imgAlt} />}
             {text}
         </button>

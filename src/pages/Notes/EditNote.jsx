@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
+import Button from '../../components/Button';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { FormGroup, TextField, Button } from '@mui/material';
+import { FormGroup, TextField } from '@mui/material';
 import { useWebContext } from '../../components/Context/WebContext';
 
 const EditNote = ({ noteToEdit, close, submit }) => {
@@ -18,7 +19,6 @@ const EditNote = ({ noteToEdit, close, submit }) => {
     });
     const weight = theme === "light" ? "100" : "700";
     const col = (note.color !== "" && note.color !== "bgcolor") ? "dark" : (theme === "light" ? "light" : "dark");
-    const cancelColor = theme === "light" ? "" : "var(--tcolor)";
     const popupStyle = { "backgroundColor": "var(--" + note.color + "-" + weight + ")" };
     const popupStyleDefault = { "backgroundColor": "var(--bgcolor-" + weight + ")" };
     const popupStyle400 = { "backgroundColor": "var(--" + note.color + "-400)", "color": "#f0f0f0" };
@@ -96,10 +96,24 @@ const EditNote = ({ noteToEdit, close, submit }) => {
                     </div>
                     <div className="note-edit-box__buttons">
                         <div className="note-edit-box__button">
-                            <Button variant="text" className="note-edit-box__button-cancel" onClick={close} style={{ color: cancelColor }}>Cancel</Button>
+                            <Button
+                                text="Cancel"
+                                variant="outline"
+                                color="blue"
+                                size="small"
+                                className="note-edit-box__button-cancel"
+                                onClick={close}
+                            />
                         </div>
                         <div className="note-edit-box__button">
-                            <Button variant="contained" className="note-edit-box__button-save" type="submit">Save</Button>
+                            <Button
+                                text="Save"
+                                variant="fill"
+                                color="blue"
+                                size="small"
+                                type="submit"
+                                className="note-edit-box__button-save"
+                            />
                         </div>
                     </div>
                 </form>

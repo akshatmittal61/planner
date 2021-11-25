@@ -15,6 +15,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import Button from '../../components/Button'
 import nullNotes from '../../images/nullNotes.svg'
 import useDocumentTitle from '../../components/Title';
+import { useWebContext } from '../../components/Context/WebContext';
 
 const Notes = ({ axiosInstance }) => {
     AOS.init();
@@ -23,6 +24,7 @@ const Notes = ({ axiosInstance }) => {
         window.scrollTo(0, 0);
         getNotes();
     }, []);
+    const { theme } = useWebContext();
     const [allNotes, setAllNotes] = useState([]);
     allNotes.map((note) => {
         if (note.color === "") note.color = "bgcolor";
@@ -110,10 +112,10 @@ const Notes = ({ axiosInstance }) => {
         setSnackMessage("Note copied successfully");
         setOpen(true);
     }
-    const theme = useTheme();
+    const Theme = useTheme();
     const transitionDuration = {
-        enter: theme.transitions.duration.enteringScreen,
-        exit: theme.transitions.duration.leavingScreen,
+        enter: Theme.transitions.duration.enteringScreen,
+        exit: Theme.transitions.duration.leavingScreen,
     };
     const fabStyle = {
         position: 'absolute',
@@ -172,7 +174,13 @@ const Notes = ({ axiosInstance }) => {
                     <div className="notes-null-content">
                         <div className="notes-null-content__text">No notes yet</div>
                         <div className="notes-null-content__button">
-                            <Button imgSrc={nullNotes} text="Add a note" onClick={() => { setAddNoteBox(1) }} color="blue" />
+                            <Button
+                                variant={theme === "light" ? "outline" : "fill"}
+                                imgSrc={nullNotes}
+                                text="Add a note"
+                                onClick={() => { setAddNoteBox(1) }}
+                                color="green"
+                            />
                         </div>
                     </div>
                 </div>

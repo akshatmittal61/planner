@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import Button from '../../components/Button';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import CloseIcon from '@mui/icons-material/Close';
-import { FormGroup, TextField, Button } from '@mui/material';
+import { FormGroup, TextField } from '@mui/material';
 
 const AddNote = ({ close, submit }) => {
     AOS.init();
@@ -116,10 +117,24 @@ const AddNote = ({ close, submit }) => {
                     </div>
                     <div className="note-add-box__buttons">
                         <div className="note-add-box__button">
-                            <Button variant="text" className="note-add-box__button-cancel" onClick={close}>Cancel</Button>
+                            <Button
+                                text="Cancel"
+                                variant="outline"
+                                color="blue"
+                                size="small"
+                                className="note-add-box__button-cancel"
+                                onClick={close}
+                            />
                         </div>
                         <div className="note-add-box__button">
-                            <Button variant="contained" className="note-add-box__button-save" type="submit">Save</Button>
+                            <Button
+                                text="Save"
+                                variant="fill"
+                                color="blue"
+                                size="small"
+                                type="submit"
+                                className="note-add-box__button-save"
+                            />
                         </div>
                     </div>
                 </form>

@@ -232,7 +232,7 @@ const Calendar = ({ events, submit }) => {
                                                 <Tooltip title={events[check(datesToDisplay[(row * 7) + date], monthDisplayIndex, yearToDisplay)].title}>
                                                     <span
                                                         onClick={() => { popupEvent(check(datesToDisplay[(row * 7) + date], monthDisplayIndex, yearToDisplay)) }}
-                                                        style={{ "backgroundColor": "var(--grey-700)", color: "#f0f0f0" }}
+                                                        style={{ "backgroundColor": `var(--${colors[monthDisplayIndex]}-400)`, color: "#121212" }}
                                                     >
                                                         {datesToDisplay[(row * 7) + date]}
                                                     </span>

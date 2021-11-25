@@ -1,5 +1,6 @@
 import React from 'react'
-import Button from '../../components/Button'
+import Button from '../../components/Button';
+import { useWebContext } from '../../components/Context/WebContext';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { Divider, Tooltip } from '@mui/material'
@@ -10,6 +11,7 @@ import MailIcon from '@mui/icons-material/Mail';
 
 const Card = ({ name, image, skills, summary, about, socialLinks }) => {
     AOS.init();
+    const { theme } = useWebContext();
     const icons = [<TwitterIcon />, <LinkedInIcon />, <GitHubIcon />, <MailIcon />];
     const socials = ['Twitter', 'LinkedIn', 'GitHub', 'E-Mail'];
     return (
@@ -35,6 +37,7 @@ const Card = ({ name, image, skills, summary, about, socialLinks }) => {
                                 key={index}
                                 className="card-skills__skill icon-btn-sm"
                                 text={skill}
+                                variant={theme === "light" ? "outline" : "fill"}
                                 color="blue"
                                 size="small"
                             />

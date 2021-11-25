@@ -13,6 +13,7 @@ import EditTask from './EditTask';
 import Button from '../../components/Button'
 import nullTasks from '../../images/nullTasks.svg'
 import useDocumentTitle from '../../components/Title';
+import { useWebContext } from '../../components/Context/WebContext';
 
 const Tasks = ({ tasks, submit }) => {
     AOS.init();
@@ -20,6 +21,7 @@ const Tasks = ({ tasks, submit }) => {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
+    const { theme } = useWebContext();
     const [allTasks, setAllTasks] = useState([...tasks])
     allTasks.sort((a, b) => {
         let _a = new Date(a.date);
@@ -82,10 +84,10 @@ const Tasks = ({ tasks, submit }) => {
         setOpen(true);
     }
     const AccordionStyle = { backgroundColor: 'transparent', color: 'inherit' };
-    const theme = useTheme();
+    const Theme = useTheme();
     const transitionDuration = {
-        enter: theme.transitions.duration.enteringScreen,
-        exit: theme.transitions.duration.leavingScreen,
+        enter: Theme.transitions.duration.enteringScreen,
+        exit: Theme.transitions.duration.leavingScreen,
     };
     const fabStyle = {
         position: 'absolute',
@@ -185,7 +187,13 @@ const Tasks = ({ tasks, submit }) => {
                     <div className="tasks-null-content">
                         <div className="tasks-null-content__text">No tasks yet</div>
                         <div className="tasks-null-content__button">
-                            <Button imgSrc={nullTasks} text="Add a task" onClick={() => { setAddTaskBox(1) }} color="blue" />
+                            <Button
+                                variant={theme === "light" ? "outline" : "fill"}
+                                imgSrc={nullTasks}
+                                text="Add a task"
+                                onClick={() => { setAddTaskBox(1) }}
+                                color="green"
+                            />
                         </div>
                     </div>
                 </div>

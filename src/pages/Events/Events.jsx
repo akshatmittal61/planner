@@ -12,10 +12,12 @@ import 'aos/dist/aos.css';
 import CloseIcon from '@mui/icons-material/Close';
 import nullEvents from '../../images/nullEvents.svg'
 import useDocumentTitle from "../../components/Title";
+import { useWebContext } from '../../components/Context/WebContext';
 
 const Events = ({ events, submit }) => {
     AOS.init();
     useDocumentTitle('Events');
+    const { theme } = useWebContext();
     const [allEvents, setAllEvents] = useState([...events]);
     allEvents.sort((a, b) => {
         let _a = new Date(a.date);
@@ -71,10 +73,10 @@ const Events = ({ events, submit }) => {
         setPopupEventBox(-1);
         submit(newEvents);
     }
-    const theme = useTheme();
+    const Theme = useTheme();
     const transitionDuration = {
-        enter: theme.transitions.duration.enteringScreen,
-        exit: theme.transitions.duration.leavingScreen,
+        enter: Theme.transitions.duration.enteringScreen,
+        exit: Theme.transitions.duration.leavingScreen,
     };
     const fabStyle = {
         position: 'absolute',
@@ -148,7 +150,13 @@ const Events = ({ events, submit }) => {
                         <div className="events-null-content">
                             <div className="events-null-content__text">No events yet</div>
                             <div className="events-null-content__button">
-                                <Button imgSrc={nullEvents} text="Add an event" onClick={() => { setAddEventBox(1) }} color="blue" />
+                                <Button
+                                    variant={theme === "light" ? "outline" : "fill"}
+                                    imgSrc={nullEvents}
+                                    text="Add an event"
+                                    onClick={() => { setAddEventBox(1) }}
+                                    color="green"
+                                />
                             </div>
                         </div>
                     </div>

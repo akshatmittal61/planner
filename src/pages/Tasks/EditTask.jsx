@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import Button from '../../components/Button';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import EventNoteIcon from '@mui/icons-material/EventNote';
 import NotesIcon from '@mui/icons-material/Notes';
-import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
 import { Input } from '@mui/material';
 
@@ -75,10 +75,24 @@ const EditTask = ({ taskToEdit, close, submit }) => {
                     </div>
                     <div className="task-edit-box__buttons">
                         <div className="task-edit-box__button">
-                            <Button variant="text" className="task-edit-box__button-cancel" onClick={close}>Cancel</Button>
+                            <Button
+                                text="Cancel"
+                                variant="outline"
+                                color="blue"
+                                size="small"
+                                className="task-edit-box__button-cancel"
+                                onClick={close}
+                            />
                         </div>
                         <div className="task-edit-box__button">
-                            <Button variant="contained" className="task-edit-box__button-save" type="submit">Save</Button>
+                            <Button
+                                text="Save"
+                                variant="fill"
+                                color="blue"
+                                size="small"
+                                type="submit"
+                                className="task-edit-box__button-save"
+                            />
                         </div>
                     </div>
                 </form>

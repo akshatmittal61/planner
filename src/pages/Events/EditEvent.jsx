@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import Button from '../../components/Button';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import EventNoteIcon from '@mui/icons-material/EventNote';
 import NotesIcon from '@mui/icons-material/Notes';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
 import { Input } from '@mui/material';
 
@@ -80,10 +80,24 @@ const EditEvent = ({ eventToEdit, close, submit }) => {
                     </div>
                     <div className="event-edit-box__buttons">
                         <div className="event-edit-box__button">
-                            <Button variant="text" className="event-edit-box__button-cancel" onClick={close}>Cancel</Button>
+                            <Button
+                                text="Cancel"
+                                variant="outline"
+                                color="blue"
+                                size="small"
+                                className="event-edit-box__button-cancel"
+                                onClick={close}
+                            />
                         </div>
                         <div className="event-edit-box__button">
-                            <Button variant="contained" className="event-edit-box__button-save" type="submit">Save</Button>
+                            <Button
+                                text="Save"
+                                variant="fill"
+                                color="blue"
+                                size="small"
+                                type="submit"
+                                className="event-edit-box__button-save"
+                            />
                         </div>
                     </div>
                 </form>

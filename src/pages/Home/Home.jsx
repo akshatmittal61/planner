@@ -10,7 +10,8 @@ import TasksImg from '../../images/tasks.svg';
 import People from '../../images/people.svg';
 import Footer from '../../components/Footer';
 import useDocumentTitle from '../../components/Title';
-import ScrollToTop from '../../components/ScrollToTop'
+import ScrollToTop from '../../components/ScrollToTop';
+import { useWebContext } from '../../components/Context/WebContext';
 
 const Home = ({ GoTo }) => {
     useDocumentTitle('Planner');
@@ -18,6 +19,7 @@ const Home = ({ GoTo }) => {
         window.scrollTo(0, 0);
     }, []);
     AOS.init();
+    const { theme } = useWebContext();
     const items = [
         {
             title: "Calendar",
@@ -65,7 +67,14 @@ const Home = ({ GoTo }) => {
                                         <div className="home-item-content-title">{item.title}</div>
                                         <div className="home-item-content-description">{item.description}</div>
                                         <div className="home-item-content-button">
-                                            <Button text={item.title} imgSrc={item.img} imgAlt={item.title} color="green" onClick={() => { GoTo(index) }} />
+                                            <Button
+                                                text={item.title}
+                                                variant={theme === "light" ? "outline" : "fill"}
+                                                imgSrc={item.img}
+                                                imgAlt={item.title}
+                                                color="green"
+                                                onClick={() => { GoTo(index) }}
+                                            />
                                         </div>
                                     </div>
                                 </div>

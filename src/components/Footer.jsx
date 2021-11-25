@@ -1,10 +1,12 @@
 import React from 'react'
 import Button from './Button'
+import { useWebContext } from './Context/WebContext'
 import favicon from '../images/favicon.svg';
 import ContactImage from '../images/contact.svg'
 import FeedbackImage from '../images/feedback.svg'
 
 const Footer = ({ GoToLink }) => {
+    const { theme } = useWebContext();
     return (
         <footer className="footer">
             <div className="footer-left">
@@ -19,6 +21,7 @@ const Footer = ({ GoToLink }) => {
             <div className="footer-right">
                 <Button
                     text="Contact Us"
+                    variant={theme === "light" ? "outline" : "fill"}
                     className="footer-button"
                     imgSrc={ContactImage}
                     imgAlt="Contact Us"
@@ -27,6 +30,7 @@ const Footer = ({ GoToLink }) => {
                 />
                 <Button
                     text="Send Us a Feedback"
+                    variant={theme === "light" ? "outline" : "fill"}
                     className="footer-button"
                     imgSrc={FeedbackImage}
                     imgAlt="Feedback"
