@@ -63,7 +63,7 @@ const Events = ({ axiosInstance }) => {
             id: allEvents.length,
             ...a
         }
-        const condition = newEvent.title === "" && newEvent.type === "" && newEvent.date === "";
+        const condition = newEvent.title === "" && newEvent.type === "";
         if (!condition) {
             axiosInstance.post('/events', newEvent)
                 .then(res => console.log(res.data))

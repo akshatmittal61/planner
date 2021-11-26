@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import JumpToMonth from './JumpToMonth';
 import EventPopup from '../Events/EventPopup';
 import EditEvent from '../Events/EditEvent';
@@ -12,9 +12,24 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Button from '../../components/Button';
 import CloseIcon from '@mui/icons-material/Close';
 import useDocumentTitle from '../../components/Title';
-const Calendar = ({ events, submit }) => {
+const Calendar = ({ axiosInstance }) => {
     AOS.init();
     useDocumentTitle('Calendar');
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        getEvents();
+    }, []);
+    const [allEvents, setAllEvents] = useState([]);
+    const [popupEventBox, setPopupEventBox] = useState(-1);
+    const [editEventBox, setEditEventBox] = useState(-1);
+    const [snackMessage, setSnackMessage] = useState("Action successful");
+    const getEvents = () => {
+        axiosInstance.get('/events')
+            .then((res) => {
+                setAllEvents([...res.data]);
+            })
+            .catch(err => console.log(err))
+    }
     const colors = ["bgcolor", "red", "pink", "purple", "dark-purple", "indigo", "blue", "light-blue", "cyan", "green", "light-green", "orange", "brown", "grey", "blue-grey"];
     const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
     const calDate = [0, 1, 2, 3, 4, 5, 6];
@@ -45,8 +60,8 @@ const Calendar = ({ events, submit }) => {
         return `${y}-${m < 9 ? "0" + m : m}-${d < 10 ? "0" + d : d}`;
     }
     function check(d, m, y) {
-        for (let i = 0; i < events.length; ++i) {
-            if (events[i].date === cd(d, m, y)) return i;
+        for (let i = 0; i < allEvents.length; ++i) {
+            if (allEvents[i].date === cd(d, m, y)) return i;
         }
         return -1;
     }
@@ -120,37 +135,28 @@ const Calendar = ({ events, submit }) => {
             setDatesToDisplay(chdate(1, yearToDisplay));
         }
     }
-    const [allEvents, setAllEvents] = useState([...events]);
-    const [popupEventBox, setPopupEventBox] = useState(-1);
-    const [editEventBox, setEditEventBox] = useState(-1);
-    const [snackMessage, setSnackMessage] = useState("Action successful");
     const popupEvent = (a) => {
         setPopupEventBox(a);
     }
     const deleteEvent = (id) => {
-        let newEvents = [...allEvents];
-        newEvents = newEvents.filter((event, index) => {
-            return index !== id;
-        })
-        setAllEvents(newEvents);
+        axiosInstance.delete(`/events/${id}`)
+            .then(res => console.log(res.data))
+            .catch(err => console.log(err))
+        getEvents();
         setSnackMessage("Event deleted successfully");
         setOpen(true);
         setPopupEventBox(-1);
-        submit(newEvents);
     }
-    const editEvent = (newEvent) => {
-        let newEvents = [...allEvents];
-        newEvents = newEvents.map((event, index) => {
-            if (index === popupEventBox)
-                return newEvent;
-            else return event;
-        })
-        setAllEvents(newEvents);
+    const editEvent = (a) => {
+        let newEvent = { ...a };
+        axiosInstance.patch(`/events/${newEvent.id}`, { ...newEvent })
+            .then(res => console.log(res.data))
+            .catch(err => console.log(err));
+        getEvents();
         setSnackMessage("Changes saved");
         setOpen(true);
         setEditEventBox(-1);
         setPopupEventBox(-1);
-        submit(newEvents);
     }
     const theme = useTheme();
     const transitionDuration = {
@@ -229,7 +235,7 @@ const Calendar = ({ events, submit }) => {
                                     <span key={index} className={`cal-date _${(row * 7) + date}`}>
                                         {
                                             check(datesToDisplay[(row * 7) + date], monthDisplayIndex, yearToDisplay) > -1 ? (
-                                                <Tooltip title={events[check(datesToDisplay[(row * 7) + date], monthDisplayIndex, yearToDisplay)].title}>
+                                                <Tooltip title={allEvents[check(datesToDisplay[(row * 7) + date], monthDisplayIndex, yearToDisplay)].title}>
                                                     <span
                                                         onClick={() => { popupEvent(check(datesToDisplay[(row * 7) + date], monthDisplayIndex, yearToDisplay)) }}
                                                         style={{ "backgroundColor": `var(--${colors[monthDisplayIndex]}-400)`, color: "#121212" }}
@@ -280,7 +286,7 @@ const Calendar = ({ events, submit }) => {
                 popupEventBox >= 0 && <EventPopup
                     event={allEvents[popupEventBox]}
                     close={() => { setPopupEventBox(-1) }}
-                    onDelete={() => { deleteEvent(popupEventBox) }}
+                    onDelete={() => { deleteEvent(allEvents[popupEventBox].id) }}
                     onEdit={() => { setEditEventBox(popupEventBox) }}
                 />
             }

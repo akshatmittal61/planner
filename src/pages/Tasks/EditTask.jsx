@@ -11,13 +11,7 @@ import { Input } from '@mui/material';
 const EditTask = ({ taskToEdit, close, submit }) => {
     AOS.init();
     const inputStyle = { color: "var(--tcolor)" };
-    const [task, setTask] = useState({
-        title: taskToEdit.title,
-        description: taskToEdit.description,
-        date: taskToEdit.date,
-        time: taskToEdit.time,
-        done: taskToEdit.done
-    });
+    const [task, setTask] = useState({ ...taskToEdit });
     const handleChange = (e) => {
         const { name, value } = e.target;
         setTask(prev => {

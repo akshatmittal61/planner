@@ -9,13 +9,7 @@ const NoteLink = ({ noteToEdit, close, submit }) => {
     AOS.init();
     const { theme } = useWebContext();
     const inputStyle = { color: "var(--tcolor)" };
-    const [note, setNote] = useState({
-        title: noteToEdit.title,
-        description: noteToEdit.description,
-        linkURL: noteToEdit.linkURL,
-        linkText: noteToEdit.linkText,
-        color: noteToEdit.color
-    });
+    const [note, setNote] = useState({ ...noteToEdit });
     const weight = theme === "light" ? "100" : "700";
     const col = (note.color !== "" && note.color !== "bgcolor") ? "dark" : (theme === "light" ? "light" : "dark");
     const popupStyle = { "backgroundColor": "var(--" + note.color + "-" + weight + ")" };

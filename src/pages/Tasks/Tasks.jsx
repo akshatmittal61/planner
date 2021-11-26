@@ -15,14 +15,15 @@ import nullTasks from '../../images/nullTasks.svg'
 import useDocumentTitle from '../../components/Title';
 import { useWebContext } from '../../components/Context/WebContext';
 
-const Tasks = ({ tasks, submit }) => {
+const Tasks = ({ axiosInstance }) => {
     AOS.init();
     useDocumentTitle('Tasks');
     useEffect(() => {
         window.scrollTo(0, 0);
+        getTasks();
     }, []);
     const { theme } = useWebContext();
-    const [allTasks, setAllTasks] = useState([...tasks])
+    const [allTasks, setAllTasks] = useState([])
     allTasks.sort((a, b) => {
         let _a = new Date(a.date);
         let _b = new Date(b.date);
@@ -34,53 +35,65 @@ const Tasks = ({ tasks, submit }) => {
     const [addTaskBox, setAddTaskBox] = useState(-1);
     const [editTaskBox, setEditTaskBox] = useState(-1);
     const [snackMessage, setSnackMessage] = useState("Action successful");
+    const getTasks = () => {
+        axiosInstance.get('/tasks')
+            .then((res) => {
+                setAllTasks([...res.data]);
+            })
+            .catch(err => console.log(err));
+    }
     const popupTask = (a) => {
         setPopupTaskBox(a);
     }
     const deleteTask = (id) => {
-        let newTasks = [...allTasks];
-        newTasks = newTasks.filter((task, index) => {
-            return index !== id;
-        })
-        setAllTasks(newTasks);
+        axiosInstance.delete(`/tasks/${id}`)
+            .then(res => console.log(res.data))
+            .catch(err => console.log(err));
+        getTasks();
         setSnackMessage("Task deleted successfully");
         setOpen(true);
         setPopupTaskBox(-1);
-        submit(newTasks);
     }
     const addNewTask = () => {
         setAddTaskBox(1);
     }
-    const addTask = (newTask) => {
-        let newTasks = [...allTasks];
-        const condition = newTask.title === "" && newTask.description === "";
-        newTasks = !condition ? [...newTasks, newTask] : [...newTasks]
-        setAllTasks(newTasks);
-        setSnackMessage(condition ? "Can't add an empty task" : "Task added successfully");
+    const addTask = (a) => {
+        let newTask = {
+            id: allTasks.length,
+            ...a
+        }
+        const condition = newTask.title === "" && newTask.time === "";
+        if (!condition) {
+            axiosInstance.post('/tasks', newTask)
+                .then(res => console.log(res.data))
+                .catch(err => console.log(err));
+            setSnackMessage("Task added successfully");
+            getTasks();
+        }
+        else setSnackMessage("Can't add an empty task");
         setOpen(true);
         setAddTaskBox(condition ? 1 : -1);
-        submit(newTasks);
     }
-    const editTask = (newTask) => {
-        let newTasks = [...allTasks];
-        newTasks = newTasks.map((task, index) => {
-            if (index === editTaskBox) {
-                return newTask;
-            }
-            else return task;
-        })
-        setAllTasks(newTasks);
+    const editTask = (a) => {
+        let newTask = { ...a };
+        axiosInstance.patch(`/tasks/${newTask.id}`, { ...newTask })
+            .then(res => console.log(res.data))
+            .catch(err => console.log(err));
+        getTasks();
         setSnackMessage("Changes saved");
         setOpen(true);
         setEditTaskBox(-1);
-        submit(newTasks);
     }
     const handleDoneChange = (id) => {
-        setAllTasks((prev) => {
-            setSnackMessage(prev[id].done ? "Marked as Not Done" : "Marked as Done");
-            prev[id].done = !prev[id].done;
-            return [...prev];
+        let newTask = allTasks[id];
+        axiosInstance.patch(`/tasks/${newTask.id}`, {
+            ...newTask,
+            done: !newTask.done
         })
+            .then(res => console.log(res.data))
+            .catch(err => console.log(err));
+        setSnackMessage(newTask.done ? "Marked as Not Done" : "Marked as Done");
+        getTasks();
         setOpen(true);
     }
     const AccordionStyle = { backgroundColor: 'transparent', color: 'inherit' };
@@ -140,7 +153,7 @@ const Tasks = ({ tasks, submit }) => {
                                             done={task.done}
                                             Pop={() => { popupTask(index) }}
                                             onEdit={() => { setEditTaskBox(index) }}
-                                            onDelete={() => { deleteTask(index) }}
+                                            onDelete={() => { deleteTask(task.id) }}
                                             handleDone={() => { handleDoneChange(index) }}
                                         />
                                     )
@@ -170,7 +183,7 @@ const Tasks = ({ tasks, submit }) => {
                                             time={task.time}
                                             done={task.done}
                                             Pop={() => { popupTask(index) }}
-                                            onDelete={() => { deleteTask(index) }}
+                                            onDelete={() => { deleteTask(task.id) }}
                                             handleDone={() => { handleDoneChange(index) }}
                                         />
                                     )

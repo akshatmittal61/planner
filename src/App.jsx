@@ -17,38 +17,15 @@ const App = () => {
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, []);
-	let events=[],notes=[],tasks=[];
 	const [sideBarExpand, setsideBarExpand] = useState((window.innerWidth > 880 ? true : false));
 	const [render, setRender] = useState(0);
 	const handleRender = (link) => {
 		setsideBarExpand((window.innerWidth > 880 ? true : false));
 		setRender(link + 1);
 	}
-	const [allEvents, setAllEvents] = useState([...events]);
-	const [allNotes, setAllNotes] = useState([...notes]);
-	const [allTasks, setAllTasks] = useState([...tasks]);
 	const axiosInstance = axios.create({
 		baseURL: 'http://localhost:5000'
 	})
-	const handleChange = (a) => {
-		switch (render) {
-			case 1:
-				setAllEvents(a);
-				break;
-			case 2:
-				setAllEvents(a);
-				break;
-			case 3:
-				setAllNotes(a);
-				break;
-			case 4:
-				setAllTasks(a);
-				break;
-			default:
-				console.log(a);
-				break;
-		}
-	}
 	return (
 		<>
 			<Header sideBar={() => { setsideBarExpand(!sideBarExpand) }} GoTo={handleRender} onHelp={() => { setRender(5) }} />
@@ -58,7 +35,7 @@ const App = () => {
 					render === 0 && <Home GoTo={handleRender} />
 				}
 				{
-					render === 1 && <Calendar events={allEvents} submit={handleChange} />
+					render === 1 && <Calendar axiosInstance={axiosInstance} />
 				}
 				{
 					render === 2 && <Events axiosInstance={axiosInstance} />
@@ -67,7 +44,7 @@ const App = () => {
 					render === 3 && <Notes axiosInstance={axiosInstance} />
 				}
 				{
-					render === 4 && <Tasks tasks={allTasks} submit={handleChange} />
+					render === 4 && <Tasks axiosInstance={axiosInstance} />
 				}
 				{
 					render === 5 && <Help GoTo={handleRender} />
