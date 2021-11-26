@@ -161,6 +161,8 @@ const Notes = ({ axiosInstance }) => {
                                     onCopy={() => { copyNote(index) }}
                                     onEdit={() => { setEditNoteBox(index) }}
                                     onDelete={() => { deleteNote(index) }}
+                                    id={note.id}
+                                    axiosInstance={axiosInstance}
                                 />)
                             }
                         </Masonry>

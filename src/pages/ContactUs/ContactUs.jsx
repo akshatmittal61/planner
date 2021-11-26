@@ -2,6 +2,7 @@ import React from 'react'
 import useDocumentTitle from '../../components/Title';
 import Card from './Card';
 import people from './people.json';
+import user1 from '../../images/akshat.png'
 
 const ContactUs = () => {
     useDocumentTitle('Contact Us');
@@ -11,14 +12,14 @@ const ContactUs = () => {
                 <div className="row">
                     {
                         people.map((person, index) => (
-                            index === 0 && <div key={index} className="contact-card-container col-lg-50 col-md-100 col-sm-100">
+                            index === 0 && <div key={index} className="contact-card-container col-lg-100 col-md-100 col-sm-100">
                                 <Card
                                     name={person.name}
-                                    image={person.image}
+                                    image={user1}
                                     skills={person.skills}
                                     summary={person.summary}
                                     about={person.about}
-                                    socialLinks={person.socialLinks}
+                                    socials={person.socials}
                                 />
                             </div>
                         ))

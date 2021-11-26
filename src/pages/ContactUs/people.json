@@ -2,25 +2,28 @@
     {
         "name": "Akshat Mittal",
         "image": "https://pbs.twimg.com/profile_images/1456999448710504454/b4rjNopn_400x400.jpg",
-        "skills": [
-            "HTML",
-            "CSS",
-            "SASS",
-            "Javascript",
-            "git",
-            "github",
-            "React",
-            "jQuery",
-            "Bootstrap",
-            "Material UI"
-        ],
-        "summary": "Active frontend react developer",
-        "about": "It's not a crime to love what you cannot explain",
-        "socialLinks": [
-            "https://twitter.com/akshatmittal61",
-            "https://www.linkedin.com/in/akshat-mittal-851073202",
-            "https://www.github.com/akshatmittal61",
-            "akshatmittal2506@gmail.com"
+        "about": "MERN stack developer",
+        "socials": [
+            {
+                "username": "@akshatmittal61",
+                "link": "https://twitter.com/akshatmittal61"
+            },
+            {
+                "username": "@akshat-mittal-851073202",
+                "link": "https://www.linkedin.com/in/akshat-mittal-851073202"
+            },
+            {
+                "username": "@akshatmittal61",
+                "link": "https://www.github.com/akshatmittal61"
+            },
+            {
+                "username": "+91 94568 49466",
+                "link": "tel:919456849466"
+            },
+            {
+                "username": "akshatmittal2506@gmail.com",
+                "link": "mailto:akshatmittal2506@gmail.com"
+            }
         ]
     }
 ]

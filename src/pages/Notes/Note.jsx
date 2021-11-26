@@ -5,7 +5,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import TasksImage from '../../images/favicon.svg'
 
-const Note = ({ title, description, linkURL, linkText, color, Pop, onColor, onLink, onCopy, onEdit, onDelete }) => {
+const Note = ({ axiosInstance, id, title, description, linkURL, linkText, color, Pop, onColor, onLink, onCopy, onEdit, onDelete }) => {
     const { theme } = useWebContext();
     const weight = theme === "light" ? "100" : "700";
     const controls = [
@@ -35,6 +35,15 @@ const Note = ({ title, description, linkURL, linkText, color, Pop, onColor, onLi
             icon: "delete"
         },
     ];
+    /* async function getTitle(id) {
+        let title = "";
+        await axiosInstance.get(`/notes/${id}/title`)
+            .then(res => { title = res.data; })
+            .catch(err => console.log(err));
+        console.log(title);
+        return title;
+    }
+    const tooltipTitle = getTitle(id); */
     AOS.init();
     return (
         <div className="note" style={{ "backgroundColor": "var(--" + color + "-" + weight + ")" }}>
