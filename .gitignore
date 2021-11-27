@@ -24,3 +24,6 @@ yarn-error.log*
 
 # sass files
 /public/sass/
+
+# backend node_modules
+/backend/node_modules

@@ -23,8 +23,8 @@ const Calendar = ({ axiosInstance }) => {
     const [popupEventBox, setPopupEventBox] = useState(-1);
     const [editEventBox, setEditEventBox] = useState(-1);
     const [snackMessage, setSnackMessage] = useState("Action successful");
-    const getEvents = () => {
-        axiosInstance.get('/events')
+    async function getEvents() {
+        await axiosInstance.get('/events')
             .then((res) => {
                 setAllEvents([...res.data]);
             })
