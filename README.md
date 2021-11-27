@@ -82,6 +82,11 @@ cd into the directory
 cd Planner
 ```
 
+Install all the dependencies
+```sh
+npm i
+```
+
 Run the project in development mode
 
 ```sh
