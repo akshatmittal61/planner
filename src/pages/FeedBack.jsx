@@ -6,7 +6,7 @@ import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
 import useDocumentTitle from '../components/Title';
 
-const FeedBack = ({ close }) => {
+const FeedBack = () => {
     useDocumentTitle('Feedback');
     const [snackMessage, setSnackMessage] = useState("Your feedback has been submitted");
     const inputStyle = { color: "var(--tcolor)" };
@@ -37,7 +37,6 @@ const FeedBack = ({ close }) => {
                 content: ""
             }
         })
-        setTimeout(close, 1000);
     }
     const [open, setOpen] = React.useState(false);
     const handleClose = (event, reason) => {

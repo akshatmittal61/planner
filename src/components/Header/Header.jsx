@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { Link } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import AppsIcon from '@mui/icons-material/Apps';
@@ -9,7 +10,7 @@ import AppBoxLink from './AppBoxLink';
 import AppLinks from '../AppLinks.js';
 import { Tooltip } from '@mui/material';
 
-const Header = ({ sideBar, GoTo, onHelp }) => {
+const Header = ({ sideBar }) => {
     AOS.init();
     const [appBoxExpand, setAppBoxExpand] = useState(false);
     return (
@@ -20,22 +21,24 @@ const Header = ({ sideBar, GoTo, onHelp }) => {
                         <MenuIcon className="header-left__burger-icon" />
                     </button>
                 </Tooltip>
-                <div className="header-left__title" onClick={() => { GoTo(-1) }}>
-                    <span className="header-left__title__text">Planner</span>
+                <div className="header-left__title">
+                    <Link to='/' className="header-left__title__text">Planner</Link>
                 </div>
             </div>
             <div className="header-right">
                 <div className="header-right-links">
                     <Theme />
                     <Tooltip title="Help & Feedback">
-                        <button className="btn icon-btn header-right-link header-right-link-help" onClick={onHelp}>
-                            <div className="header-right-link__icon" title="Help & Feedback">
-                                <HelpOutlineIcon />
-                            </div>
-                            <div className="header-right-link__text">
-                                <span>Help</span>
-                            </div>
-                        </button>
+                        <Link to='/help'>
+                            <button className="btn icon-btn header-right-link header-right-link-help">
+                                <div className="header-right-link__icon" title="Help & Feedback">
+                                    <HelpOutlineIcon />
+                                </div>
+                                <div className="header-right-link__text">
+                                    <span>Help</span>
+                                </div>
+                            </button>
+                        </Link>
                     </Tooltip>
                     <Tooltip title="Apps">
                         <button className="btn icon-btn btn-small header-right-link apps" onClick={() => { setAppBoxExpand(!appBoxExpand) }}>
@@ -54,10 +57,8 @@ const Header = ({ sideBar, GoTo, onHelp }) => {
                                 key={index}
                                 icon={AppLink.icon}
                                 label={AppLink.label}
-                                GoToLink={() => {
-                                    setAppBoxExpand(false);
-                                    GoTo(index);
-                                }}
+                                link={AppLink.link}
+                                close={() => { setAppBoxExpand(false) }}
                             />
                         )))
                     }

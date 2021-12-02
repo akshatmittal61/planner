@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Button from '../../components/Button';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { Link } from 'react-router-dom';
 import favicon from '../../images/favicon.svg';
 import CalendarImg from '../../images/calendar.svg';
 import EventsImg from '../../images/events.svg';
@@ -13,7 +14,7 @@ import useDocumentTitle from '../../components/Title';
 import ScrollToTop from '../../components/ScrollToTop';
 import { useWebContext } from '../../components/Context/WebContext';
 
-const Home = ({ GoTo }) => {
+const Home = () => {
     useDocumentTitle('Planner');
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -24,22 +25,26 @@ const Home = ({ GoTo }) => {
         {
             title: "Calendar",
             description: "A calendar to show any day, any month, any year.",
-            img: CalendarImg
+            img: CalendarImg,
+            link: '/calendar'
         },
         {
             title: "Events",
             description: "Manage all your events, birthdays, meetings, festivals with Planner Events.",
-            img: EventsImg
+            img: EventsImg,
+            link: '/events'
         },
         {
             title: "Notes",
             description: "Create, Edit, and Share notes with Planner Notes..",
-            img: NotesImg
+            img: NotesImg,
+            link: '/notes'
         },
         {
             title: "Tasks",
             description: "Manage all your taska with Planner Tasks.",
-            img: TasksImg
+            img: TasksImg,
+            link: '/tasks'
         }
     ]
     return (
@@ -68,12 +73,15 @@ const Home = ({ GoTo }) => {
                                         <div className="home-item-content-description">{item.description}</div>
                                         <div className="home-item-content-button">
                                             <Button
-                                                text={item.title}
+                                                text={
+                                                    <Link to={item.link}>
+                                                        {item.title}
+                                                    </Link>
+                                                }
                                                 variant={theme === "light" ? "outline" : "fill"}
                                                 imgSrc={item.img}
                                                 imgAlt={item.title}
                                                 color="green"
-                                                onClick={() => { GoTo(index) }}
                                             />
                                         </div>
                                     </div>
@@ -83,7 +91,7 @@ const Home = ({ GoTo }) => {
                     </div>
                 </div>
             </div>
-            <Footer GoToLink={GoTo} />
+            <Footer />
             <ScrollToTop />
         </div>
     )

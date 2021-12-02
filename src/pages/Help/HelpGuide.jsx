@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom';
 import Guide from './Guide.json';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -56,11 +57,11 @@ const HelpGuide = ({ X, Y, submit, GoToLink }) => {
                             <ArrowBackIcon />
                         </span>
                     </div>
-                    <div className={X === 4 ? "help-guide-topbar-open dispn" : "help-guide-topbar-open"} onClick={GoToLink}>
+                    <Link className={X === 4 ? "help-guide-topbar-open dispn" : "help-guide-topbar-open"} to={GoToLink}>
                         <div className="help-guide-topbar-open__button">
                             <OpenInNewIcon />
                         </div>
-                    </div>
+                    </Link>
                 </div>
                 <div className="help-guide-content">
                     <div className="help-guide-content-header">

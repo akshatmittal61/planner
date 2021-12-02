@@ -1,10 +1,13 @@
 import React from "react";
-const AppBoxLink = ({ icon, label, GoToLink }) => {
+import { Link } from 'react-router-dom';
+
+const AppBoxLink = ({ icon, label, link, close }) => {
     return (
-        <span className="header-appbox-link" onClick={GoToLink}>
+        <Link to={link} className="header-appbox-link" onClick={close}>
             <span className="header-appbox-link__icon material-icons">{icon}</span>
             <span className="header-appbox-link__label">{label}</span>
-        </span>
+        </Link>
     )
 }
-export default AppBoxLink;
+
+export default AppBoxLink

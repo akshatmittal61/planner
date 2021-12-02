@@ -1,19 +1,23 @@
 const AppLinks = [
     {
         icon: "date_range",
-        label: "Calendar"
+        label: "Calendar",
+        link: '/calendar'
     },
     {
         icon: "event",
-        label: "Events"
+        label: "Events",
+        link: '/events'
     },
     {
         icon: "edit",
-        label: "Notes"
+        label: "Notes",
+        link: '/notes'
     },
     {
         icon: "task_alt",
-        label: "Tasks"
+        label: "Tasks",
+        link: '/tasks'
     }
 ]
 export default AppLinks;

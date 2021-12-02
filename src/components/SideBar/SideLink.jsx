@@ -1,11 +1,13 @@
 import React from 'react';
-const SideLink = ({ icon, label, GoToLink }) => {
+import { Link } from 'react-router-dom';
+
+const SideLink = ({ icon, label, link, close }) => {
     return (
         <li className="side-bar-nav-links">
-            <span className="side-bar-nav-link" onClick={GoToLink}>
+            <Link to={link} className="side-bar-nav-link" onClick={close}>
                 <span className="side-bar-nav-link__icon material-icons">{icon}</span>
                 <span className="side-bar-nav-link__label">{label}</span>
-            </span>
+            </Link>
         </li>
     )
 }

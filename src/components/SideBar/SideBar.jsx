@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import AppLinks from '../AppLinks.js';
 import SideLink from './SideLink';
 import AOS from 'aos';
@@ -16,23 +17,28 @@ const SideBar = ({ aside, GoTo }) => {
                     <ul className="side-bar-nav-list">
                         {
                             AppLinks.map(((AppLink, index) => (
-                                <SideLink key={index} icon={AppLink.icon} label={AppLink.label} GoToLink={() => { GoTo(index) }} />
+                                <SideLink
+                                    key={index}
+                                    icon={AppLink.icon}
+                                    label={AppLink.label}
+                                    link={AppLink.link}
+                                    close={() => { GoTo(index) }}
+                                />
                             )))
                         }
                     </ul>
                 </nav>
                 <div className="side-bar-social">
-                    <div className="side-bar-social-row">
+                    <Link to='/contact' className="side-bar-social-row">
                         <Button
                             text="Contact Us"
                             variant={theme === "light" ? "outline" : "fill"}
                             className="side-bar-social-row-button"
                             imgSrc={ContactImage}
                             imgAlt="Contact Us"
-                            onClick={() => GoTo(6)}
                             color="blue"
                         />
-                    </div>
+                    </Link>
                 </div>
             </div>
         </aside>

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { Divider } from '@mui/material';
@@ -32,11 +33,11 @@ const PlannerNavigation = ({ closeNav, GoToLink, submit }) => {
                             <ArrowBackIcon />
                         </span>
                     </div>
-                    <div className="help-guide-topbar-open" onClick={GoToLink}>
+                    <Link className="help-guide-topbar-open" to='/'>
                         <div className="help-guide-topbar-open__button">
                             <OpenInNewIcon />
                         </div>
-                    </div>
+                    </Link>
                 </div>
                 <div className="help-guide-content">
                     <div className="help-guide-content-header">

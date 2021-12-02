@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { Divider, Tooltip } from '@mui/material';
 
 const ColorPalette = ({ submit }) => {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     const submitHelp = (x, y) => {
         submit(x, y);
     }

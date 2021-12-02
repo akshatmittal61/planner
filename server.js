@@ -13,23 +13,23 @@ app.use(bodyParser.json());
 let events = [];
 let notes = [];
 let tasks = [];
-fs.readFile(path.join(__dirname, "events.json"), "utf8", (err, data) => {
+fs.readFile(path.join(__dirname, "data", "events.json"), "utf8", (err, data) => {
     if (err) throw err;
     console.log(data);
     events = [...JSON.parse(data)];
 })
-fs.readFile(path.join(__dirname, "notes.json"), "utf8", (err, data) => {
+fs.readFile(path.join(__dirname, "data", "notes.json"), "utf8", (err, data) => {
     if (err) throw err;
     console.log(data);
     notes = [...JSON.parse(data)];
 })
-fs.readFile(path.join(__dirname, "tasks.json"), "utf8", (err, data) => {
+fs.readFile(path.join(__dirname, "data", "tasks.json"), "utf8", (err, data) => {
     if (err) throw err;
     console.log(data);
     tasks = [...JSON.parse(data)];
 })
 const writeData = (arr, str) => {
-    fs.writeFile(path.join(__dirname, `${str}.json`), JSON.stringify(arr), (err) => {
+    fs.writeFile(path.join(__dirname, "data", `${str}.json`), JSON.stringify(arr), (err) => {
         if (err) throw err;
         console.log(`File Written to ${__dirname}/${str}.json`);
     })

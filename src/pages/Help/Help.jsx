@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom';
 import favicon from '../../images/favicon.svg';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -13,7 +14,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import useDocumentTitle from '../../components/Title';
 
-const Help = ({ GoTo }) => {
+const Help = () => {
     AOS.init();
     useDocumentTitle('Help');
     useEffect(() => {
@@ -22,6 +23,7 @@ const Help = ({ GoTo }) => {
     const noOfAccordians = Array(5).fill(null);
     const AccordionStyle = { backgroundColor: 'var(--bgcolor-100)', color: 'inherit', width: "85%" };
     const titles = ["Calendar", "Events", "Notes", "Tasks", "Themes"];
+    const links = ['/', '/calendar', '/events', '/notes', '/tasks', ''];
     const paragraphs = [
         ["Getting started with Calendar", "Switch between months", "Jump to any date"],
         ["Getting started with Events", "Events navigation", "Add a new event", "Edit an event", "Event types", "Delete an event"],
@@ -55,7 +57,7 @@ const Help = ({ GoTo }) => {
         <div className="help">
             <div className="help-head">
                 <div className="help-head-image">
-                    <img className="help-head-image__img" src={favicon} alt="Planner" onClick={() => { GoTo(-1) }} />
+                    <img className="help-head-image__img" src={favicon} alt="Planner" />
                 </div>
                 <div className="help-head-heading">
                     <div className="help-head-heading__title">Planner</div>
@@ -94,9 +96,11 @@ const Help = ({ GoTo }) => {
                                 <div className="help-body-accordian-paragraph" onClick={() => openHelpGuide(-2, -2)}>
                                     Planner navigation
                                 </div>
-                                <div className="help-body-accordian-paragraph" onClick={() => GoTo(6)}>
-                                    Contact Us
-                                </div>
+                                <Link to='/contact'>
+                                    <div className="help-body-accordian-paragraph">
+                                        Contact Us
+                                    </div>
+                                </Link>
                             </AccordionDetails>
                         </Accordion>
                         {
@@ -122,14 +126,13 @@ const Help = ({ GoTo }) => {
                                     <PlannerNavigation
                                         closeNav={closePlannerNav}
                                         submit={openHelpGuide}
-                                        GoToLink={() => { GoTo(-1) }}
                                     />
                                 ) : (
                                     <HelpGuide
                                         X={helpGuide[0]}
                                         Y={helpGuide[1]}
                                         submit={openHelpGuide}
-                                        GoToLink={() => { GoTo(helpGuide[0]) }}
+                                        GoToLink={links[helpGuide[0] + 1]}
                                     />
                                 )
                             )
@@ -137,7 +140,7 @@ const Help = ({ GoTo }) => {
                     </div>
                 )
             }
-            <Footer GoToLink={GoTo} />
+            <Footer />
         </div>
     )
 }
