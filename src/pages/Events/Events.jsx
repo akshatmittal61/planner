@@ -37,7 +37,7 @@ const Events = ({ axiosInstance }) => {
     const [editEventBox, setEditEventBox] = useState(-1);
     const [snackMessage, setSnackMessage] = useState("Action successful");
     async function getEvents() {
-        await axiosInstance.get('/events')
+        await axiosInstance.get('/api/events')
             .then((res) => {
                 setAllEvents([...res.data]);
             })

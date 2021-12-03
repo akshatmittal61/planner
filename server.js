@@ -38,16 +38,6 @@ const writeData = (arr, str) => {
 app.get('/api/events', (req, res) => {
     res.json(events);
 })
-app.get('/api/notes', (req, res) => {
-    res.json(notes);
-})
-app.get('/api/tasks', (req, res) => {
-    res.json(tasks);
-})
-
-app.get('/events', (req, res) => {
-    res.json(events);
-})
 app.post('/events', (req, res) => {
     let newEvent = req.body;
     events = [...events, newEvent];
@@ -76,7 +66,7 @@ app.delete('/events/:id', (req, res) => {
     res.json(events);
 })
 
-app.get('/notes', (req, res) => {
+app.get('/api/notes', (req, res) => {
     res.json(notes);
 })
 app.post('/notes', (req, res) => {
@@ -108,7 +98,7 @@ app.delete('/notes/:id', (req, res) => {
     res.json(notes);
 })
 
-app.get('/tasks', (req, res) => {
+app.get('/api/tasks', (req, res) => {
     res.json(tasks);
 })
 app.post('/tasks', (req, res) => {

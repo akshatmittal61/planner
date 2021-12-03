@@ -49,7 +49,7 @@ const Notes = ({ axiosInstance }) => {
     const [editNoteColorBox, setEditNoteColorBox] = useState(-1);
     const [snackMessage, setSnackMessage] = useState("Action successful");
     async function getNotes() {
-        await axiosInstance.get('/notes')
+        await axiosInstance.get('/api/notes')
             .then((res) => {
                 setAllNotes([...res.data]);
             })

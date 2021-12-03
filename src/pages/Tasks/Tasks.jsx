@@ -36,7 +36,7 @@ const Tasks = ({ axiosInstance }) => {
     const [editTaskBox, setEditTaskBox] = useState(-1);
     const [snackMessage, setSnackMessage] = useState("Action successful");
     async function getTasks() {
-        await axiosInstance.get('/tasks')
+        await axiosInstance.get('/api/tasks')
             .then((res) => {
                 setAllTasks([...res.data]);
             })
