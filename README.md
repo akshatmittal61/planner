@@ -90,7 +90,19 @@ npm i
 Run the project in development mode
 
 ```sh
-npm start
+npm run react
+```
+
+Run the backend server
+
+```sh
+npm run server
+```
+This will run the server on port [5000](http://localhost:5000) locally with nodemon to continuously watch every change.
+
+If you don't have nodemon on your system, run
+```sh
+npm i nodemon -g
 ```
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.

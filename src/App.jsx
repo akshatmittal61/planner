@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header/Header'
 import SideBar from './components/SideBar/SideBar'
 import Home from './pages/Home/Home'
@@ -12,6 +12,8 @@ import Help from './pages/Help/Help'
 import ContactUs from './pages/ContactUs/ContactUs'
 import FeedBack from './pages/FeedBack';
 import useDocumentTitle from './components/Title';
+import NotFound from './pages/NotFound';
+require('dotenv').config();
 
 const App = () => {
 	useDocumentTitle('Planner');
@@ -31,14 +33,15 @@ const App = () => {
 			<SideBar aside={sideBarExpand} GoTo={handleRender} />
 			<main className={`main main-aside-${sideBarExpand ? "expand" : "hide"}`}>
 				<Routes>
-					<Route path='/' element={<Home />} />
-					<Route path='/calendar' element={<Calendar axiosInstance={axiosInstance} />} />
-					<Route path='/events' element={<Events axiosInstance={axiosInstance} />} />
-					<Route path='/notes' element={<Notes axiosInstance={axiosInstance} />} />
-					<Route path='/tasks' element={<Tasks axiosInstance={axiosInstance} />} />
-					<Route path='/help' element={<Help />} />
-					<Route path='/contact' element={<ContactUs />} />
-					<Route path='/feedback' element={<FeedBack />} />
+					<Route exact path='/' element={<Home />} />
+					<Route exact path='/calendar' element={<Calendar axiosInstance={axiosInstance} />} />
+					<Route exact path='/events' element={<Events axiosInstance={axiosInstance} />} />
+					<Route exact path='/notes' element={<Notes axiosInstance={axiosInstance} />} />
+					<Route exact path='/tasks' element={<Tasks axiosInstance={axiosInstance} />} />
+					<Route exact path='/help' element={<Help />} />
+					<Route exact path='/contact' element={<ContactUs />} />
+					<Route exact path='/feedback' element={<FeedBack />} />
+					<Route path='*' element={<NotFound />} />
 				</Routes>
 			</main>
 		</Router>

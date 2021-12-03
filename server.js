@@ -35,26 +35,11 @@ const writeData = (arr, str) => {
     })
 }
 
-app.get('/', (req, res) => {
-    // res.sendFile(path.join(__dirname, 'index.html'));
-    res.json(events, notes, tasks);
-})
 app.get('/api/events', (req, res) => {
     res.json(events);
 })
 app.get('/api/notes', (req, res) => {
     res.json(notes);
-})
-app.get('/api/notes/:id', (req, res) => {
-    let id = +req.params.id;
-    if (id < notes.length) {
-        let note = notes[id];
-        res.json(note);
-    }
-    else res.json({
-        status: 404,
-        message: "Note Not Found"
-    })
 })
 app.get('/api/tasks', (req, res) => {
     res.json(tasks);
@@ -155,6 +140,12 @@ app.delete('/tasks/:id', (req, res) => {
     res.json(tasks);
 })
 
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('build'));
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
+    })
+}
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server started at port ${PORT}`))
