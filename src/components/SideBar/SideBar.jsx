@@ -29,16 +29,16 @@ const SideBar = ({ aside, GoTo }) => {
                     </ul>
                 </nav>
                 <div className="side-bar-social">
-                    <Link to='/contact' className="side-bar-social-row">
-                        <Button
-                            text="Contact Us"
-                            variant={theme === "light" ? "outline" : "fill"}
-                            className="side-bar-social-row-button"
-                            imgSrc={ContactImage}
-                            imgAlt="Contact Us"
-                            color="blue"
-                        />
-                    </Link>
+                    <Button
+                        text="Contact Us"
+                        variant={theme === "light" ? "outline" : "fill"}
+                        className="side-bar-social-row-button"
+                        imgSrc={ContactImage}
+                        imgAlt="Contact Us"
+                        color="blue"
+                        containsLink={true}
+                        link='/contact'
+                    />
                 </div>
             </div>
         </aside>

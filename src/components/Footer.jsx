@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
 import Button from './Button'
 import { useWebContext } from './Context/WebContext'
 import favicon from '../images/favicon.svg';
@@ -21,28 +20,24 @@ const Footer = () => {
             </div>
             <div className="footer-right">
                 <Button
-                    text={
-                        <Link to='/contact'>
-                            Contact Us
-                        </Link>
-                    }
+                    text="Contact Us"
                     variant={theme === "light" ? "outline" : "fill"}
                     className="footer-button"
                     imgSrc={ContactImage}
                     imgAlt="Contact Us"
                     color="blue"
+                    containsLink={true}
+                    link='/contact'
                 />
                 <Button
-                    text={
-                        <Link to='/feedback'>
-                            Send Us a Feedback
-                        </Link>
-                    }
+                    text="Send Us a Feedback"
                     variant={theme === "light" ? "outline" : "fill"}
                     className="footer-button"
                     imgSrc={FeedbackImage}
                     imgAlt="Feedback"
                     color="green"
+                    containsLink={true}
+                    link='/feedback'
                 />
             </div>
         </footer>

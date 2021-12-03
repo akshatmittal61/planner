@@ -11,7 +11,7 @@ const Card = ({ name, image, about, socials }) => {
     AOS.init();
     const icons = [<TwitterIcon />, <LinkedInIcon />, <GitHubIcon />, <CallIcon />, <MailIcon />];
     return (
-        <div className="card-frame">
+        <div className="card-frame" data-aos="zoom-in">
             <div className="card-box">
                 <div className="card">
                     <div className="card-image">

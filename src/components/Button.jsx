@@ -1,6 +1,7 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
-const Button = ({ className, text, variant, size, color, onClick, type, imgSrc, imgAlt }) => {
+const Button = ({ className, text, variant, size, color, onClick, type, imgSrc, imgAlt, containsLink = false, link = '' }) => {
     let classes = "btn";
     if (variant === "fill" || variant === "outline") {
         classes += ` btn-${variant}`;
@@ -20,10 +21,21 @@ const Button = ({ className, text, variant, size, color, onClick, type, imgSrc, 
         classes += " btn-lg";
     }
     return (
-        <button className={`${classes} ${className}`} onClick={onClick} type={type}>
-            {size !== "small" && <img className="btn__img" src={imgSrc} alt={imgAlt} />}
-            {text}
-        </button>
+        <>
+            {!containsLink ? (
+                <button className={`${classes} ${className}`} onClick={onClick} type={type}>
+                    {size !== "small" && <img className="btn__img" src={imgSrc} alt={imgAlt} />}
+                    {text}
+                </button>
+            ) : (
+                <Link to={link}>
+                    <button className={`${classes} ${className}`} type={type}>
+                        {size !== "small" && <img className="btn__img" src={imgSrc} alt={imgAlt} />}
+                        {text}
+                    </button>
+                </Link>
+            )}
+        </>
     )
 }
 

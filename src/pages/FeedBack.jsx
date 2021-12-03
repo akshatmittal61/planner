@@ -5,9 +5,12 @@ import { FormGroup, TextField } from '@mui/material';
 import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
 import useDocumentTitle from '../components/Title';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const FeedBack = () => {
     useDocumentTitle('Feedback');
+    AOS.init();
     const [snackMessage, setSnackMessage] = useState("Your feedback has been submitted");
     const inputStyle = { color: "var(--tcolor)" };
     const titleStyle = { ...inputStyle, fontSize: "1.25rem" };
@@ -58,7 +61,7 @@ const FeedBack = () => {
         </React.Fragment>
     );
     return (
-        <div className="feedback">
+        <div className="feedback" data-aos="zoom-in">
             <div className="feedback-box">
                 <div className="feedback-box-content">
                     <form className="feedback-form" onSubmit={submitFeedback}>

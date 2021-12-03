@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import Button from '../../components/Button';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { Link } from 'react-router-dom';
 import favicon from '../../images/favicon.svg';
 import CalendarImg from '../../images/calendar.svg';
 import EventsImg from '../../images/events.svg';
@@ -73,15 +72,13 @@ const Home = () => {
                                         <div className="home-item-content-description">{item.description}</div>
                                         <div className="home-item-content-button">
                                             <Button
-                                                text={
-                                                    <Link to={item.link}>
-                                                        {item.title}
-                                                    </Link>
-                                                }
+                                                text={item.title}
                                                 variant={theme === "light" ? "outline" : "fill"}
                                                 imgSrc={item.img}
                                                 imgAlt={item.title}
                                                 color="green"
+                                                containsLink={true}
+                                                link={item.link}
                                             />
                                         </div>
                                     </div>
