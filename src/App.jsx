@@ -25,7 +25,7 @@ const App = () => {
 		setsideBarExpand((window.innerWidth > 880 ? true : false));
 	}
 	const axiosInstance = axios.create({
-		baseURL: 'http://localhost:5000'
+		baseURL: ''
 	})
 	return (
 		<Router>
