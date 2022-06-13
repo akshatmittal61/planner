@@ -13,6 +13,7 @@
 
 # misc
 .DS_Store
+.env
 .env.local
 .env.development.local
 .env.test.local
@@ -23,7 +24,5 @@ yarn-debug.log*
 yarn-error.log*
 
 # sass files
-/public/sass/
-
-# backend node_modules
-/backend/node_modules
+*.scss
+*.css.map
