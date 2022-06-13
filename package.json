@@ -1,6 +1,6 @@
 {
   "name": "planner",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
   "dependencies": {
@@ -21,7 +21,7 @@
     "eject": "react-scripts eject",
     "server": "nodemon server.js",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build",
-    "sass": "sass public/sass/main.scss src/style.css -w"
+    "sass": "sass src/style.scss:src/style.css -w"
   },
   "eslintConfig": {
     "extends": [
