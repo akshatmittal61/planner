@@ -23,7 +23,7 @@
     "eject": "react-scripts eject",
     "server": "nodemon server.js",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build",
-    "sass": "sass src/style.scss:src/style.css src/components/Button/button.scss:src/components/Button/button.css src/pages/Home/home.scss:src/pages/Home/home.css -w"
+    "sass": "sass src/style.scss:src/style.css src/components/Button/button.scss:src/components/Button/button.css src/components/Header/header.scss:src/components/Header/header.css src/pages/Home/home.scss:src/pages/Home/home.css -w"
   },
   "eslintConfig": {
     "extends": [
