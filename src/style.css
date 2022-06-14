@@ -391,6 +391,10 @@ body,
   height: 100%;
 }
 
+svg {
+  overflow: visible;
+}
+
 a {
   color: inherit;
   text-decoration: none;

@@ -197,6 +197,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 .home-box-head {
   height: 90vh;
@@ -227,6 +228,7 @@
   object-fit: cover;
   max-width: 75%;
   max-height: 75%;
+  scale: 0.25;
 }
 @media (max-width: 880px) {
   .home-box-image__img {
@@ -240,6 +242,17 @@
   left: 50%;
   top: 100%;
   transform: translate(-50%, -100%);
+}
+.home-navigation {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .card {
@@ -259,7 +272,6 @@
   margin: 0.25rem;
   padding: 0.5rem 0.25rem;
   border-radius: 10px;
-  overflow: hidden;
   background: linear-gradient(90deg, var(--green) 4%, var(--blue) 0%) top/100% 34% no-repeat, linear-gradient(90deg, var(--yellow) 50%, var(--blue) 0%) top/100% 82% no-repeat, linear-gradient(90deg, var(--yellow) 10%, var(--red) 0%) top/100% 100%;
   box-shadow: 0 10px 15px rgba(60, 64, 67, 0.3);
 }
