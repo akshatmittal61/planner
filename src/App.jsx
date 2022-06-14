@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import Button from "./components/Button/Button";
 
 const App = () => {
 	return (
-		<>Hello World</>
-	)
-}
+		<>
+			<Button text="Enabled" icon="done" color="green" />
+		</>
+	);
+};
 
-export default App
+export default App;
