@@ -193,7 +193,7 @@
 
 .home {
   width: 100vw;
-  height: 200vh;
+  min-height: 100vh;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -201,7 +201,7 @@
   overflow: hidden;
 }
 .home-box-head {
-  height: 90vh;
+  height: 100vh;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -249,8 +249,8 @@
   margin: 0 2rem;
 }
 .home-navigation-card {
-  width: 97%;
-  height: 17.5rem;
+  width: 80%;
+  height: 20rem;
   margin: 2rem auto;
   border-radius: 32px;
   background-color: var(--blue-100);
@@ -261,7 +261,7 @@
   overflow: hidden;
 }
 .home-navigation-card-image {
-  width: 40%;
+  width: 45%;
   height: 100%;
   background-size: cover;
   background-position: center;
@@ -269,7 +269,7 @@
   border-radius: 32px;
 }
 .home-navigation-card-content {
-  width: 60%;
+  width: 55%;
   height: 100%;
   display: flex;
   justify-content: space-evenly;
