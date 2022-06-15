@@ -6,18 +6,18 @@ import "../Button/button.css";
 import GlobalContext from "../../Context/GlobalContext";
 
 const Header = () => {
-	const { user } = useContext(GlobalContext);
+	const { user, openSideBar, setOpenSideBar } = useContext(GlobalContext);
 	const vh = window.innerHeight / 100;
 	const location = useLocation();
 	const [shadow, setShadow] = useState("none");
 	const [height, setHeight] = useState(
-		location.pathname === "/" ? 0 : "4.5rem"
+		location.pathname === "/" ? 0 : "var(--head-height)"
 	);
 	useEffect(() => {
 		document.addEventListener("scroll", () => {
 			if (window.scrollY > 30 * vh) {
 				setShadow("var(--shadow-elevation-4dp)");
-				setHeight("4.5rem");
+				setHeight("var(--head-height)");
 			} else {
 				setShadow("none");
 				setHeight("0");
@@ -33,13 +33,23 @@ const Header = () => {
 					shadow === "none"
 						? "var(--back-shadow-light)"
 						: "transparent",
-				height: location.pathname === "/" ? height : "4.5rem",
+				height:
+					location.pathname === "/" && !openSideBar
+						? height
+						: "var(--head-height)",
 			}}
 		>
 			<div className="header-left">
 				<div className="header-left-burger">
-					<button className="header-left-burger__button icon">
-						<MaterialIcons>menu</MaterialIcons>
+					<button
+						className="header-left-burger__button icon"
+						onClick={() => {
+							setOpenSideBar(!openSideBar);
+						}}
+					>
+						<MaterialIcons>
+							{openSideBar ? "menu_open" : "menu"}
+						</MaterialIcons>
 					</button>
 				</div>
 				<Link to="/" className="header-left-logo">

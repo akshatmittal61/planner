@@ -60,7 +60,10 @@ const Home = () => {
 			<div className="home-navigation">
 				<div className="row">
 					{routes.map((route, index) => (
-						<div className="col-lg-100 col-md-100 col-sm-100">
+						<div
+							className="col-lg-100 col-md-100 col-sm-100"
+							key={index}
+						>
 							<div
 								className="home-navigation-card"
 								style={{

@@ -1,13 +1,13 @@
 .header {
   width: 100vw;
-  height: 4.5rem;
+  height: var(--head-height);
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 5;
+  z-index: 10;
   background-color: var(--bgcolor);
   border-bottom: 2px solid var(--back-shadow-light);
   overflow: hidden;
