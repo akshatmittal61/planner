@@ -1,0 +1,16 @@
+.link-button {
+  width: fit-content;
+  height: fit-content;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.65rem 1.15rem;
+  border-radius: 32px;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.link-button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+}
+
+/*# sourceMappingURL=link-button.css.map */

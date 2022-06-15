@@ -10,6 +10,7 @@
   z-index: 5;
   background-color: var(--bgcolor);
   border-bottom: 2px solid var(--back-shadow-light);
+  overflow: hidden;
 }
 .header-left {
   display: flex;
