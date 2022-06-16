@@ -5,34 +5,8 @@ import MaterialIcons from "../MaterialIcons";
 import "./side-bar.css";
 
 const SideBar = () => {
-	const { setOpenSideBar } = useContext(GlobalContext);
-	const navItems = [
-		{
-			title: "Home",
-			route: "/",
-			icon: "home",
-		},
-		{
-			title: "About",
-			route: "/about",
-			icon: "info",
-		},
-		{
-			title: "Help",
-			route: "/help",
-			icon: "help",
-		},
-		{
-			title: "Report A Bug",
-			route: "/report",
-			icon: "report",
-		},
-		{
-			title: "Contact Us",
-			route: "/contact",
-			icon: "call",
-		},
-	];
+	const { setOpenSideBar, sideBarLinks } = useContext(GlobalContext);
+
 	return (
 		<section className="side">
 			<div
@@ -42,7 +16,7 @@ const SideBar = () => {
 			<aside className="side-bar" data-aos="fade-right">
 				<nav className="side-nav">
 					<ul className="side-nav-ul">
-						{navItems.map((item, index) => (
+						{sideBarLinks.map((item, index) => (
 							<li className="side-nav-li" key={index}>
 								<Link to={item.route} className="side-nav-link">
 									<MaterialIcons>{item.icon}</MaterialIcons>

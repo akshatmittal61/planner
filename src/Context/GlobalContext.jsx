@@ -33,6 +33,33 @@ export const GlobalProvider = ({ children }) => {
 			"Content-Type": "application/json",
 		},
 	});
+	const [sideBarLinks, setSideBarLinks] = useState([
+		{
+			title: "Home",
+			route: "/",
+			icon: "home",
+		},
+		{
+			title: "About",
+			route: "/about",
+			icon: "info",
+		},
+		{
+			title: "Help",
+			route: "/help",
+			icon: "help",
+		},
+		{
+			title: "Report A Bug",
+			route: "/report",
+			icon: "report",
+		},
+		{
+			title: "Contact Us",
+			route: "/contact",
+			icon: "call",
+		},
+	]);
 	return (
 		<GlobalContext.Provider
 			value={{
@@ -46,6 +73,8 @@ export const GlobalProvider = ({ children }) => {
 				breakpoint,
 				openSideBar,
 				setOpenSideBar,
+				sideBarLinks,
+				setSideBarLinks,
 			}}
 		>
 			{children}
