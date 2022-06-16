@@ -9,12 +9,15 @@
   background-color: rgba(0, 0, 0, 0.05);
 }
 .link-button:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.075);
   border-radius: 12px;
 }
 .link-button .material-symbols-outlined {
   font-size: 1.25rem;
   margin: 0 0.25rem;
+}
+.link-button:hover .material-symbols-outlined {
+  transform: translate(2px, -2px);
 }
 
 /*# sourceMappingURL=link-button.css.map */

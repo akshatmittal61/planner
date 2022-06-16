@@ -1,0 +1,108 @@
+.footer {
+  width: 100vw;
+  height: 70vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: bottom;
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+.footer > * {
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-flow: column;
+}
+.footer-left {
+  width: 40%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.footer-left-container {
+  width: 100%;
+  height: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  position: relative;
+  overflow: visible;
+}
+.footer-left-logo, .footer-left-socials {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer-left img {
+  object-fit: cover;
+  max-width: 70%;
+  max-height: 70%;
+  overflow: visible;
+  z-index: 5;
+  animation: zoom 1.5s linear infinite;
+}
+.footer-left-social {
+  position: absolute;
+  padding: 0.75rem;
+  border-radius: 500px;
+  background-color: var(--indigo);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--white);
+}
+.footer-left-social:hover {
+  background-color: var(--indigo-700);
+}
+.footer-right {
+  width: 60%;
+}
+.footer-right-feedback {
+  width: 100%;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-flow: column;
+}
+.footer-right-feedback h2 {
+  width: 81%;
+  margin: 1rem auto;
+}
+.footer-right-form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.footer-right-socials {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+@keyframes zoom {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/*# sourceMappingURL=footer.css.map */

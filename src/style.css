@@ -433,6 +433,7 @@ select:focus {
 input::placeholder,
 textarea::placeholder,
 select::placeholder {
+  user-select: none;
   font-size: 0.875rem;
   color: var(--gray-700);
 }

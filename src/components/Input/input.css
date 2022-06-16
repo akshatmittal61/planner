@@ -1,0 +1,52 @@
+.form-group {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem 0;
+  position: relative;
+}
+
+label {
+  color: var(--indigo);
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(50%, -50%);
+}
+label .material-symbols-outlined {
+  font-size: 1.5rem;
+}
+
+input,
+textarea {
+  width: 100%;
+  position: relative;
+  margin: 0 auto;
+  padding: 0.6rem 3rem;
+  border-bottom: 2px solid var(--back-shadow);
+}
+input:hover,
+textarea:hover {
+  border-bottom: 2px solid var(--back-shadow);
+}
+input:active, input:focus,
+textarea:active,
+textarea:focus {
+  border-bottom: 2px solid var(--indigo);
+}
+input:active + label, input:focus + label,
+textarea:active + label,
+textarea:focus + label {
+  color: var(--red-700);
+}
+
+textarea + label {
+  color: var(--red-700);
+}
+
+button {
+  width: 40%;
+}
+
+/*# sourceMappingURL=input.css.map */
