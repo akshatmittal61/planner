@@ -11,6 +11,7 @@ const routes = [
 		poster: calendarPoster,
 		color: "var(--blue-100)",
 		navTitle: "View your calendar",
+		icon: "calendar_month",
 	},
 	{
 		title: "Events",
@@ -19,6 +20,7 @@ const routes = [
 		poster: eventsPoster,
 		color: "var(--orange-100)",
 		navTitle: "View your events",
+		icon: "event",
 	},
 	{
 		title: "Notes",
@@ -27,6 +29,7 @@ const routes = [
 		poster: notesPoster,
 		color: "var(--green-100)",
 		navTitle: "View your notes",
+		icon: "note",
 	},
 	{
 		title: "Tasks",
@@ -35,6 +38,7 @@ const routes = [
 		poster: tasksPoster,
 		color: "var(--indigo-100)",
 		navTitle: "View your tasks",
+		icon: "task_alt",
 	},
 ];
 

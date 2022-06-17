@@ -14,7 +14,7 @@ export const GlobalProvider = ({ children }) => {
 		JSON.parse(isLocalAuthenticated)
 	);
 	const [isLoading, setIsLoading] = useState(false);
-	const [openSideBar, setOpenSideBar] = useState(false);
+	const [openSideBar, setOpenSideBar] = useState(false);	
 	const [user, setUser] = useState({
 		name: "Akshat Mittal",
 		status: "Developing",

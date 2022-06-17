@@ -9,6 +9,7 @@ import GlobalContext from "./Context/GlobalContext";
 import SideBar from "./components/SideBar/SideBar";
 import Footer from "./components/Footer/Footer";
 import NotFound from "./pages/NotFound/NotFound";
+import Navigation from "./components/Navigation/Navigation";
 
 const App = () => {
 	AOS.init();
@@ -20,6 +21,7 @@ const App = () => {
 	return (
 		<>
 			<Header />
+			<Navigation />
 			{openSideBar && <SideBar />}
 			<Routes>
 				<Route path="/" element={<Home />} />

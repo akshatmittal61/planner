@@ -1,0 +1,84 @@
+.aside {
+  width: 6rem;
+  height: calc(100vh - var(--head-height));
+  background-color: var(--bgcolor-100);
+  position: fixed;
+  top: var(--head-height);
+  right: 0;
+  z-index: 9;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  border-radius: 16px 0 0 16px;
+  box-shadow: -7px 0px 12px 0px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+.aside-nav {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 1rem 0;
+}
+.aside-nav-ul {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-flow: column;
+}
+.aside-nav-li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem 0;
+}
+.aside-nav-li a {
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+.aside-nav-li a span:first-child {
+  width: 4.25rem;
+  border-radius: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.15rem 0;
+  margin: 0.1rem 0;
+}
+.aside-nav-li a:hover span:first-child {
+  background-color: var(--blue-100);
+}
+.aside-button {
+  position: fixed;
+  bottom: 1rem;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bgcolor-100);
+  border-radius: 500px 0 0 500px;
+  padding: 1rem 0;
+}
+
+@keyframes oscillate {
+  0% {
+    width: 4rem;
+  }
+  25% {
+    width: 3.75rem;
+  }
+  50% {
+    width: 4rem;
+  }
+  75% {
+    width: 4.25rem;
+  }
+  100% {
+    width: 4rem;
+  }
+}
+
+/*# sourceMappingURL=navigation.css.map */
