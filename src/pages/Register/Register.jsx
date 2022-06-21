@@ -3,10 +3,11 @@ import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
 import Row, { Col } from "../../components/Layout/Responsive";
-import LinkButton from "../../components/LinkButton/LinkButton";
+import LinkButton from "../../components/Button/LinkButton";
 import MaterialIcons from "../../components/MaterialIcons";
 import wavesBg from "../../images/waves-bg.png";
 import "./register.css";
+import IconButton from "../../components/Button/IconButton";
 
 const Register = () => {
 	const navigate = useNavigate();
@@ -44,9 +45,7 @@ const Register = () => {
 			className="register"
 			style={{ backgroundImage: `url(${wavesBg})` }}
 		>
-			<button className="register-back" onClick={() => navigate(-1)}>
-				<MaterialIcons>arrow_back</MaterialIcons>
-			</button>
+			<IconButton className="register-back" icon="arrow_back" link={-1} />
 			<div className="register-container">
 				<div className="register-head">
 					<MaterialIcons>lock</MaterialIcons>

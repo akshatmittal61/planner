@@ -251,11 +251,6 @@
   position: fixed;
   top: 1.75rem;
   left: 1.75rem;
-  width: 2rem;
-  height: 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 .login-container {
   min-height: 60%;

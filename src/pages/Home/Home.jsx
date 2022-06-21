@@ -3,7 +3,7 @@ import "./home.css";
 import people from "../../images/people.svg";
 import favicon from "../../images/favicon.svg";
 import MaterialIcons from "../../components/MaterialIcons";
-import LinkButton from "../../components/LinkButton/LinkButton";
+import LinkButton from "../../components/Button/LinkButton";
 import routes from "../../routes";
 
 const Home = () => {

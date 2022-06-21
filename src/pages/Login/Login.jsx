@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
-import LinkButton from "../../components/LinkButton/LinkButton";
+import LinkButton from "../../components/Button/LinkButton";
 import MaterialIcons from "../../components/MaterialIcons";
 import wavesBg from "../../images/waves-bg.png";
 import "./login.css";
+import IconButton from "../../components/Button/IconButton";
 
 const Login = () => {
 	const navigate = useNavigate();
@@ -30,9 +31,7 @@ const Login = () => {
 	};
 	return (
 		<main className="login" style={{ backgroundImage: `url(${wavesBg})` }}>
-			<button className="login-back" onClick={() => navigate(-1)}>
-				<MaterialIcons>arrow_back</MaterialIcons>
-			</button>
+			<IconButton className="register-back" icon="arrow_back" link={-1} />
 			<div className="login-container">
 				<div className="login-head">
 					<MaterialIcons>lock</MaterialIcons>

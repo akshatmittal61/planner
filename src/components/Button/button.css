@@ -135,4 +135,56 @@ button {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
+.link-button {
+  width: fit-content;
+  height: fit-content;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.65rem 1.15rem;
+  border-radius: 32px;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.link-button:hover {
+  background-color: rgba(0, 0, 0, 0.075);
+  border-radius: 12px;
+}
+.link-button .material-symbols-outlined {
+  font-size: 1.25rem;
+  margin: 0 0.25rem;
+}
+.link-button:hover .material-symbols-outlined {
+  transform: translate(2px, -2px);
+}
+
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+.icon-btn span {
+  z-index: 5;
+  font-size: 1.25rem;
+}
+.icon-btn svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+.icon-btn svg path {
+  width: 100%;
+  height: 100%;
+}
+.icon-btn:hover svg {
+  transform: translate(-50%, -50%) rotate(-90deg);
+}
+
 /*# sourceMappingURL=button.css.map */
