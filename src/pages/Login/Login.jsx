@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
+import LinkButton from "../../components/LinkButton/LinkButton";
 import MaterialIcons from "../../components/MaterialIcons";
+import wavesBg from "../../images/waves-bg.png";
 import "./login.css";
 
 const Login = () => {
@@ -27,7 +29,7 @@ const Login = () => {
 		});
 	};
 	return (
-		<main className="login">
+		<main className="login" style={{ backgroundImage: `url(${wavesBg})` }}>
 			<button className="login-back" onClick={() => navigate(-1)}>
 				<MaterialIcons>arrow_back</MaterialIcons>
 			</button>
@@ -53,6 +55,13 @@ const Login = () => {
 					/>
 					<Button text="Login" type="submit" />
 				</form>
+				<span className="login-foot">
+					Don't have an account?{" "}
+					<LinkButton to="/register">
+						<span>Sign Up</span>
+						<MaterialIcons>north_east</MaterialIcons>
+					</LinkButton>
+				</span>
 			</div>
 		</main>
 	);

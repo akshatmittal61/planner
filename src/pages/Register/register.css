@@ -1,4 +1,4 @@
-.login {
+.register {
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -9,7 +9,7 @@
   background-position-y: top;
   background-repeat: no-repeat;
 }
-.login-back {
+.register-back {
   position: fixed;
   top: 1.75rem;
   left: 1.75rem;
@@ -19,7 +19,7 @@
   justify-content: center;
   align-items: center;
 }
-.login-container {
+.register-container {
   min-height: 60%;
   padding: 1rem;
   border-radius: 32px;
@@ -29,10 +29,10 @@
   flex-flow: column;
   background-color: rgba(187, 222, 251, 0.75);
 }
-.login-container:hover {
+.register-container:hover {
   border-radius: 16px;
 }
-.login-head {
+.register-head {
   font-size: 1.25rem;
   line-height: 2rem;
   display: flex;
@@ -40,7 +40,7 @@
   align-items: center;
   flex-flow: column;
 }
-.login-head span {
+.register-head span {
   margin: 0.75rem 0;
   font-size: 1.55rem;
   border-radius: 500px;
@@ -49,8 +49,8 @@
   color: var(--white);
   font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 48;
 }
-.login-form {
-  width: 400px;
+.register-form {
+  width: 550px;
   max-width: 100%;
   margin: 2rem 0;
   display: flex;
@@ -58,11 +58,11 @@
   align-items: center;
   flex-flow: column;
 }
-.login-form button {
+.register-form button {
   width: 90%;
 }
-.login-form > div {
-  margin: 1rem 0;
+.register-form > div {
+  margin: 0.5rem 0;
 }
 
-/*# sourceMappingURL=login.css.map */
+/*# sourceMappingURL=register.css.map */

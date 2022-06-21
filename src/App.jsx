@@ -11,6 +11,7 @@ import Footer from "./components/Footer/Footer";
 import NotFound from "./pages/NotFound/NotFound";
 import Navigation from "./components/Navigation/Navigation";
 import Login from "./pages/Login/Login";
+import Register from "./pages/Register/Register";
 
 const App = () => {
 	AOS.init();
@@ -21,15 +22,16 @@ const App = () => {
 	}, [location.pathname]);
 	return (
 		<>
-			{location.pathname!=='/login'&&<Header />}
+			{location.pathname!=='/login'&&location.pathname!=='/register'&&<Header />}
 			<Navigation />
 			{openSideBar && <SideBar />}
 			<Routes>
 				<Route path="/" element={<Home />} />
 				<Route path="/login" element={<Login />} />
+				<Route path="/register" element={<Register />} />
 				<Route path="*" element={<NotFound />} />
 			</Routes>
-			{location.pathname!=='/login'&&<Footer />}
+			{location.pathname!=='/login'&&location.pathname!=='/register'&&<Footer />}
 		</>
 	);
 };
