@@ -13,6 +13,7 @@ const IconButton = ({
 	size = "",
 	icon = "",
 	onClick,
+	fill = "#C7DBFA",
 	...rest
 }) => {
 	const location = useLocation();
@@ -41,7 +42,7 @@ const IconButton = ({
 			}
 		>
 			<span className="material-symbols-outlined">{icon}</span>
-			<IconMask />
+			<IconMask fill={fill} />
 		</button>
 	);
 };

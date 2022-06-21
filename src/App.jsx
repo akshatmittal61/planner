@@ -12,7 +12,7 @@ import NotFound from "./pages/NotFound/NotFound";
 import Navigation from "./components/Navigation/Navigation";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
-import PrivateRoute from "./components/PrivateRoute";
+import Calendar from "./pages/Calendar/Calendar";
 
 const App = () => {
 	AOS.init();
@@ -31,14 +31,8 @@ const App = () => {
 				<Route path="/" element={<Home />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/register" element={<Register />} />
-				<Route
-					path="*"
-					element={
-						<PrivateRoute>
-							<NotFound />
-						</PrivateRoute>
-					}
-				/>
+				<Route path="/calendar" element={<Calendar />} />
+				<Route path="*" element={<NotFound />} />
 			</Routes>
 			{location.pathname !== "/login" &&
 				location.pathname !== "/register" && <Footer />}

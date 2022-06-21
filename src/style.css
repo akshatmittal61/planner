@@ -430,6 +430,7 @@ body,
   line-height: 1.25rem;
   transition: all var(--transition-time) ease-in-out;
   overflow-x: hidden;
+  position: relative;
 }
 
 #root {
