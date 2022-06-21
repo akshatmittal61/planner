@@ -11,21 +11,13 @@ export const GlobalProvider = ({ children }) => {
 	};
 	const isLocalAuthenticated = localStorage.getItem("isAuthenticated");
 	const [isAuthenticated, setIsAuthenticated] = useState(
-		JSON.parse(isLocalAuthenticated)
+		JSON.parse(isLocalAuthenticated) || false
 	);
 	const [isLoading, setIsLoading] = useState(false);
-	const [openSideBar, setOpenSideBar] = useState(false);	
-	const [user, setUser] = useState({
-		name: "Akshat Mittal",
-		status: "Developing",
-		email: "akshatmittal2506@gmail.com",
-		phone: 9456849466,
-		username: "akshatmittal61",
-		bio: "MERN Stack developer",
-		dob: "2002-06-25",
-		gender: "Male",
-		avatar: "https://avatars.githubusercontent.com/u/84612609",
-	});
+	const [openSideBar, setOpenSideBar] = useState(false);
+	const [user, setUser] = useState(
+		JSON.parse(localStorage.getItem("user")) || null
+	);
 	const axiosInstance = axios.create({
 		baseURL: "http://localhost:5000/",
 		headers: {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
@@ -7,9 +7,11 @@ import MaterialIcons from "../../components/MaterialIcons";
 import wavesBg from "../../images/waves-bg.png";
 import "./login.css";
 import IconButton from "../../components/Button/IconButton";
+import GlobalContext from "../../Context/GlobalContext";
 
 const Login = () => {
 	const navigate = useNavigate();
+	const { setUser, setIsAuthenticated } = useContext(GlobalContext);
 	const [loginUser, setLoginUser] = useState({
 		username: "",
 		password: "",
@@ -28,6 +30,22 @@ const Login = () => {
 			username: "",
 			password: "",
 		});
+		setIsAuthenticated(true);
+		localStorage.setItem("isAuthenticated", true);
+		const loggedInUser = {
+			name: "Akshat Mittal",
+			status: "Developing",
+			email: "akshatmittal2506@gmail.com",
+			phone: 9456849466,
+			username: "akshatmittal61",
+			bio: "MERN Stack developer",
+			dob: "2002-06-25",
+			gender: "Male",
+			avatar: "https://avatars.githubusercontent.com/u/84612609",
+		};
+		localStorage.setItem("user", JSON.stringify(loggedInUser));
+		setUser(loggedInUser);
+		navigate("/");
 	};
 	return (
 		<main className="login" style={{ backgroundImage: `url(${wavesBg})` }}>

@@ -12,6 +12,7 @@ import NotFound from "./pages/NotFound/NotFound";
 import Navigation from "./components/Navigation/Navigation";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
+import PrivateRoute from "./components/PrivateRoute";
 
 const App = () => {
 	AOS.init();
@@ -22,16 +23,25 @@ const App = () => {
 	}, [location.pathname]);
 	return (
 		<>
-			{location.pathname!=='/login'&&location.pathname!=='/register'&&<Header />}
+			{location.pathname !== "/login" &&
+				location.pathname !== "/register" && <Header />}
 			<Navigation />
 			{openSideBar && <SideBar />}
 			<Routes>
 				<Route path="/" element={<Home />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/register" element={<Register />} />
-				<Route path="*" element={<NotFound />} />
+				<Route
+					path="*"
+					element={
+						<PrivateRoute>
+							<NotFound />
+						</PrivateRoute>
+					}
+				/>
 			</Routes>
-			{location.pathname!=='/login'&&location.pathname!=='/register'&&<Footer />}
+			{location.pathname !== "/login" &&
+				location.pathname !== "/register" && <Footer />}
 		</>
 	);
 };

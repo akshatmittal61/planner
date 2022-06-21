@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import MaterialIcons from "../MaterialIcons";
 import "./header.css";
 import "../Button/button.css";
@@ -9,6 +9,7 @@ const Header = () => {
 	const { user, openSideBar, setOpenSideBar } = useContext(GlobalContext);
 	const vh = window.innerHeight / 100;
 	const location = useLocation();
+	const navigate = useNavigate();
 	const [shadow, setShadow] = useState("none");
 	const [height, setHeight] = useState(
 		location.pathname === "/" ? 0 : "var(--head-height)"
@@ -63,7 +64,12 @@ const Header = () => {
 				<button className="icon">
 					<MaterialIcons>settings</MaterialIcons>
 				</button>
-				<button className="icon">
+				<button
+					className="icon"
+					onClick={() => {
+						navigate("/profile");
+					}}
+				>
 					{user?.avatar ? (
 						<img
 							className="header-right-avatar"
