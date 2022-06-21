@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
+import Row, { Col } from "../../components/Layout/Responsive";
 import LinkButton from "../../components/LinkButton/LinkButton";
 import MaterialIcons from "../../components/MaterialIcons";
 import wavesBg from "../../images/waves-bg.png";
@@ -52,86 +53,84 @@ const Register = () => {
 					<h3 className="register-head__h3">Sign Up to Planner</h3>
 				</div>
 				<form className="register-form" onSubmit={handleSubmit}>
-					<div className="row">
-						<div className="col-lg-50">
+					<Row>
+						<Col lg={50} md={50}>
 							<Input
 								value={registerUser.fname}
 								name="fname"
+								type="text"
 								placeholder="First Name"
 								icon="person"
 								onChange={handleChange}
 							/>
-						</div>
-						<div className="col-lg-50">
+						</Col>
+						<Col lg={50} md={50}>
 							<Input
 								value={registerUser.lname}
 								name="lname"
+								type="text"
 								placeholder="Last Name"
 								icon="person"
 								onChange={handleChange}
 							/>
-						</div>
-					</div>
-					<div className="row">
-						<div className="col-lg-50">
+						</Col>
+					</Row>
+					<Row>
+						<Col lg={50} md={50}>
 							<Input
 								value={registerUser.email}
 								name="email"
+								type="email"
 								placeholder="Email"
 								icon="mail"
 								onChange={handleChange}
 							/>
-						</div>
-						<div className="col-lg-50">
+						</Col>
+						<Col lg={50} md={50}>
 							<Input
 								value={registerUser.username}
 								name="username"
+								type="text"
 								placeholder="Username"
 								icon="account_circle"
 								onChange={handleChange}
 							/>
-						</div>
-					</div>
-					<div className="row">
-						<div className="col-lg-50">
+						</Col>
+					</Row>
+					<Row>
+						<Col lg={50} md={50}>
 							<Input
 								value={registerUser.password}
 								name="password"
+								type="password"
 								placeholder="Password"
 								icon="key"
 								onChange={handleChange}
 							/>
-						</div>
-						<div className="col-lg-50">
+						</Col>
+						<Col lg={50} md={50}>
 							<Input
 								value={registerUser.confirmPassword}
 								name="confirmPassword"
+								type="password"
 								placeholder="Confirm Password"
 								icon="lock"
 								onChange={handleChange}
 							/>
-						</div>
-					</div>
-					<div className="row">
-						<div className="col-lg-50">
+						</Col>
+					</Row>
+					<Row>
+						<Col lg={100} md={100} sm={100}>
 							<Input
-								value={registerUser.password}
-								name="password"
-								placeholder="Password"
-								icon="key"
+								value={registerUser.avatar}
+								name="avatar"
+								type="url"
+								placeholder="Avatar"
+								icon="photo_camera"
 								onChange={handleChange}
 							/>
-						</div>
-						<div className="col-lg-50">
-							<Input
-								value={registerUser.confirmPassword}
-								name="confirmPassword"
-								placeholder="Confirm Password"
-								icon="lock"
-								onChange={handleChange}
-							/>
-						</div>
-					</div>
+						</Col>
+					</Row>
 					<Button text="Sign Up" type="submit" />
 				</form>
 				<span className="register-foot">
