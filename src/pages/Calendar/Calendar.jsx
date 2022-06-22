@@ -46,21 +46,18 @@ const Calendar = () => {
 		0, 1, 2, 3,
 	];
 	const colors = [
-		"bgcolor",
-		"red",
-		"pink",
+		"indigo",
 		"purple",
 		"dark-purple",
-		"indigo",
-		"blue",
-		"light-blue",
-		"cyan",
-		"green",
-		"light-green",
+		"pink",
 		"orange",
+		"red",
+		"light-green",
+		"green",
+		"light-blue",
+		"blue",
+		"cyan",
 		"brown",
-		"grey",
-		"blue-grey",
 	];
 	const images = [i1, i2, i3, i4, i5, i6, i7, i8, i9, i10, i11, i12];
 	const [month, setMonth] = useState(1);
@@ -141,7 +138,7 @@ const Calendar = () => {
 		<main className="calendar">
 			<section
 				className="calendar-head"
-				style={{ backgroundColor: `var(--${colors[month]}-100)` }}
+				style={{ backgroundColor: `var(--${colors[month % 12]}-100)` }}
 			>
 				<div className="calendar-head-labels">
 					<div
@@ -163,7 +160,7 @@ const Calendar = () => {
 										? "arrow_drop_up"
 										: "arrow_drop_down"
 								}
-								fill={`var(--${colors[month]}-400)`}
+								fill={`var(--${colors[month % 12]}-400)`}
 							/>
 						</div>
 						{openMonthDialogBox && (
@@ -188,12 +185,12 @@ const Calendar = () => {
 				<div className="calendar-head-buttons">
 					<IconButton
 						icon="arrow_back"
-						fill={`var(--${colors[month]}-400)`}
+						fill={`var(--${colors[month % 12]}-400)`}
 						onClick={handleBackButton}
 					/>
 					<IconButton
 						icon="arrow_forward"
-						fill={`var(--${colors[month]}-400)`}
+						fill={`var(--${colors[month % 12]}-400)`}
 						onClick={handleForwardButton}
 					/>
 				</div>
@@ -205,7 +202,7 @@ const Calendar = () => {
 				<table className="calendar-table">
 					<thead
 						style={{
-							backgroundColor: `var(--${colors[month]}-100)`,
+							backgroundColor: `var(--${colors[month % 12]}-100)`,
 						}}
 					>
 						<tr>
@@ -225,7 +222,9 @@ const Calendar = () => {
 											backgroundColor:
 												datesToDisplay[i * 7 + j] ===
 												currentDate
-													? `var(--${colors[month]}-100)`
+													? `var(--${
+															colors[month % 12]
+													  }-100)`
 													: "transparent",
 										}}
 										key={j}
