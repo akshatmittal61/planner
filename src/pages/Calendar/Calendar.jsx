@@ -14,6 +14,7 @@ import i11 from "../../images/calendar/11.png";
 import i12 from "../../images/calendar/12.png";
 import "./calendar.css";
 import IconButton from "../../components/Button/IconButton";
+import MonthDialogBox from "./MonthDialogBox";
 
 const Calendar = () => {
 	const days = [
@@ -93,7 +94,6 @@ const Calendar = () => {
 	};
 	const handleBackButton = (e) => {
 		e.preventDefault();
-		console.log(month, year);
 		if (month === 1) {
 			setMonth(() => 12);
 			setYear((prev) => prev - 1);
@@ -105,7 +105,6 @@ const Calendar = () => {
 	};
 	const handleForwardButton = (e) => {
 		e.preventDefault();
-		console.log(month, year);
 		if (month === 12) {
 			setMonth(() => 1);
 			setYear((prev) => prev + 1);
@@ -114,6 +113,10 @@ const Calendar = () => {
 			setMonth((prev) => prev + 1);
 			handleDatesToDisplay(month + 1, year);
 		}
+	};
+	const handleChangeYear = (e) => {
+		setYear(() => e.target.value);
+		handleDatesToDisplay(month, e.target.value);
 	};
 	useEffect(() => {
 		document.title = "Calendar";
@@ -132,6 +135,8 @@ const Calendar = () => {
 		setDatesToDisplay(handleDatesToDisplay(month + 1, year));
 	}, [month, year]);
 
+	const [openMonthDialogBox, setOpenMonthDialogBox] = useState(false);
+
 	return (
 		<main className="calendar">
 			<section
@@ -139,10 +144,46 @@ const Calendar = () => {
 				style={{ backgroundColor: `var(--${colors[month]}-100)` }}
 			>
 				<div className="calendar-head-labels">
-					<div className="calendar-head-month">
-						{months[month % 12]}
+					<div
+						className="calendar-head-month"
+						onClick={() =>
+							setOpenMonthDialogBox(!openMonthDialogBox)
+						}
+						style={{
+							width: `calc(${
+								months[month % 12].length
+							}ch + 40px)`,
+						}}
+					>
+						<div className="calendar-head-month-current">
+							{months[month % 12]}
+							<IconButton
+								icon={
+									openMonthDialogBox
+										? "arrow_drop_up"
+										: "arrow_drop_down"
+								}
+								fill={`var(--${colors[month]}-400)`}
+							/>
+						</div>
+						{openMonthDialogBox && (
+							<MonthDialogBox
+								months={months}
+								handle={(a) => {
+									setMonth(a);
+									handleDatesToDisplay(a, year);
+								}}
+							/>
+						)}
 					</div>
-					<div className="calendar-head-year">{year}</div>
+					<div className="calendar-head-year">
+						<input
+							name="year"
+							value={year}
+							onChange={handleChangeYear}
+							className="calendar-head-year-input"
+						/>
+					</div>
 				</div>
 				<div className="calendar-head-buttons">
 					<IconButton
@@ -179,7 +220,18 @@ const Calendar = () => {
 						{rowsToDisplay.map((row, i) => (
 							<tr key={i}>
 								{colsToDisplay.map((col, j) => (
-									<td style={{backgroundColor: datesToDisplay[i * 7 + j]===currentDate?`var(--${colors[month]}-100)`:'transparent'}} key={j}>{datesToDisplay[i * 7 + j]}</td>
+									<td
+										style={{
+											backgroundColor:
+												datesToDisplay[i * 7 + j] ===
+												currentDate
+													? `var(--${colors[month]}-100)`
+													: "transparent",
+										}}
+										key={j}
+									>
+										{datesToDisplay[i * 7 + j]}
+									</td>
 								))}
 							</tr>
 						))}
