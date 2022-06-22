@@ -67,6 +67,7 @@ const Calendar = () => {
 	const [datesToDisplay, setDatesToDisplay] = useState(Array(35).fill(null));
 	const rowsToDisplay = [...Array(5).keys()];
 	const colsToDisplay = [...Array(7).keys()];
+	let currentDate = parseInt(Date().substring(8, 10));
 	const handleDatesToDisplay = (m, y) => {
 		let noOfDays = 31;
 		let isLeapYear = false;
@@ -92,6 +93,7 @@ const Calendar = () => {
 	};
 	const handleBackButton = (e) => {
 		e.preventDefault();
+		console.log(month, year);
 		if (month === 1) {
 			setMonth(() => 12);
 			setYear((prev) => prev - 1);
@@ -103,6 +105,7 @@ const Calendar = () => {
 	};
 	const handleForwardButton = (e) => {
 		e.preventDefault();
+		console.log(month, year);
 		if (month === 12) {
 			setMonth(() => 1);
 			setYear((prev) => prev + 1);
@@ -136,7 +139,9 @@ const Calendar = () => {
 				style={{ backgroundColor: `var(--${colors[month]}-100)` }}
 			>
 				<div className="calendar-head-labels">
-					<div className="calendar-head-month">{months[month]}</div>
+					<div className="calendar-head-month">
+						{months[month % 12]}
+					</div>
 					<div className="calendar-head-year">{year}</div>
 				</div>
 				<div className="calendar-head-buttons">
@@ -154,7 +159,7 @@ const Calendar = () => {
 			</section>
 			<section
 				className="calendar-body"
-				style={{ backgroundImage: `url(${images[month]})` }}
+				style={{ backgroundImage: `url(${images[month % 12]})` }}
 			>
 				<table className="calendar-table">
 					<thead
@@ -174,7 +179,7 @@ const Calendar = () => {
 						{rowsToDisplay.map((row, i) => (
 							<tr key={i}>
 								{colsToDisplay.map((col, j) => (
-									<td key={j}>{datesToDisplay[i * 7 + j]}</td>
+									<td style={{backgroundColor: datesToDisplay[i * 7 + j]===currentDate?`var(--${colors[month]}-100)`:'transparent'}} key={j}>{datesToDisplay[i * 7 + j]}</td>
 								))}
 							</tr>
 						))}
