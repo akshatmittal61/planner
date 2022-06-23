@@ -105,7 +105,6 @@
   z-index: 7;
   width: 100vw;
   height: 100vh;
-  background-color: var(--back-shadow-light);
 }
 .calendar-dialog-month::-webkit-scrollbar {
   width: 1px;

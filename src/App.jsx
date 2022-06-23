@@ -13,6 +13,8 @@ import Navigation from "./components/Navigation/Navigation";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Calendar from "./pages/Calendar/Calendar";
+import Events from "./pages/Events/Events";
+import PrivateRoute from "./components/PrivateRoute";
 
 const App = () => {
 	AOS.init();
@@ -32,6 +34,14 @@ const App = () => {
 				<Route path="/login" element={<Login />} />
 				<Route path="/register" element={<Register />} />
 				<Route path="/calendar" element={<Calendar />} />
+				<Route
+					path="/events"
+					element={
+						<PrivateRoute>
+							<Events />
+						</PrivateRoute>
+					}
+				/>
 				<Route path="*" element={<NotFound />} />
 			</Routes>
 			{location.pathname !== "/login" &&

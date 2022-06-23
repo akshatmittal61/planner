@@ -12,9 +12,9 @@
 :root,
 :root::before,
 :root::after {
-  --bgcolor: #f0f0f0;
-  --bgcolor-400: #d2d2d2;
+  --bgcolor: #f9f9f9;
   --bgcolor-100: #e1e1e1;
+  --bgcolor-400: #d2d2d2;
   --bgcolor-700: #c3c3c3;
   --tcolor: #121212;
   --tcolor-100: #333333;
@@ -121,7 +121,7 @@
 }
 
 .light {
-  --bgcolor: #f0f0f0;
+  --bgcolor: #f9f9f9;
   --bgcolor-100: #e1e1e1;
   --bgcolor-400: #d2d2d2;
   --bgcolor-700: #c3c3c3;
@@ -139,7 +139,7 @@
   --bgcolor-100: #333333;
   --bgcolor-400: #272727;
   --bgcolor-700: #1d1d1d;
-  --tcolor: #f0f0f0;
+  --tcolor: #f9f9f9;
   --tcolor-100: #e1e1e1;
   --tcolor-400: #d2d2d2;
   --tcolor-700: #c3c3c3;
@@ -438,6 +438,11 @@ body,
   height: 100%;
   flex-flow: column;
   background: transparent;
+}
+
+main {
+  width: 100%;
+  min-height: calc(100vh - var(--head-height));
 }
 
 svg {
