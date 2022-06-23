@@ -15,6 +15,7 @@ import Register from "./pages/Register/Register";
 import Calendar from "./pages/Calendar/Calendar";
 import Events from "./pages/Events/Events";
 import PrivateRoute from "./components/PrivateRoute";
+import Notes from "./pages/Notes/Notes";
 
 const App = () => {
 	AOS.init();
@@ -39,6 +40,14 @@ const App = () => {
 					element={
 						<PrivateRoute>
 							<Events />
+						</PrivateRoute>
+					}
+				/>
+				<Route
+					path="/notes"
+					element={
+						<PrivateRoute>
+							<Notes />
 						</PrivateRoute>
 					}
 				/>
