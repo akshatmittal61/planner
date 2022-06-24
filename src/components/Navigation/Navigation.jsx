@@ -34,6 +34,9 @@ const Navigation = () => {
 					animation: openNavBar
 						? "none"
 						: "oscillate 3s linear infinite",
+					boxShadow: openNavBar
+						? "none"
+						: "var(--shadow-elevation-4dp)",
 				}}
 				className="aside-button"
 			>

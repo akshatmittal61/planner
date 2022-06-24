@@ -1,5 +1,6 @@
 import React, { useState, createContext } from "react";
 import axios from "axios";
+import defaultNavLinks from "../navigation";
 
 const GlobalContext = createContext();
 
@@ -31,33 +32,7 @@ export const GlobalProvider = ({ children }) => {
 			"Content-Type": "application/json",
 		},
 	});
-	const [sideBarLinks, setSideBarLinks] = useState([
-		{
-			title: "Home",
-			route: "/",
-			icon: "home",
-		},
-		{
-			title: "About",
-			route: "/about",
-			icon: "info",
-		},
-		{
-			title: "Help",
-			route: "/help",
-			icon: "help",
-		},
-		{
-			title: "Report A Bug",
-			route: "/report",
-			icon: "report",
-		},
-		{
-			title: "Contact Us",
-			route: "/contact",
-			icon: "call",
-		},
-	]);
+	const [sideBarLinks, setSideBarLinks] = useState(defaultNavLinks);
 	return (
 		<GlobalContext.Provider
 			value={{

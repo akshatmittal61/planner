@@ -1,20 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./home.css";
 import people from "../../images/people.svg";
 import favicon from "../../images/favicon.svg";
 import MaterialIcons from "../../components/MaterialIcons";
 import LinkButton from "../../components/Button/LinkButton";
 import routes from "../../routes";
+import defaultNavLinks from "../../navigation";
+import GlobalContext from "../../Context/GlobalContext";
 
 const Home = () => {
 	const [scrolled, setScrolled] = useState(false);
 	const vh = window.innerHeight / 100;
+	const { setSideBarLinks } = useContext(GlobalContext);
 	useEffect(() => {
 		window.scrollTo(0, 0);
 		document.addEventListener("scroll", () => {
 			if (window.scrollY > 25 * vh) setScrolled(true);
 			else setScrolled(false);
 		});
+		setSideBarLinks(defaultNavLinks);
 	}, []);
 
 	return (
