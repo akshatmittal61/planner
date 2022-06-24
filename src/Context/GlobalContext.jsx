@@ -4,11 +4,17 @@ import axios from "axios";
 const GlobalContext = createContext();
 
 export const GlobalProvider = ({ children }) => {
+	const mediaQuerySm = window.matchMedia("(max-width: 672px)");
+	const mediaQueryMd = window.matchMedia("(max-width: 880px)");
+	const mediaQueryLg = window.matchMedia("(min-width: 880px)");
 	const breakpoint = (device) => {
-		if (device === "mobile") return window.innerWidth < 672;
-		else if (device === "tab") return window.innerWidth <= 880;
-		else return window.innerWidth > 880;
+		if (device === "mobile") return mediaQuerySm.matches;
+		else if (device === "tab") return mediaQueryMd.matches;
+		else return mediaQueryLg.matches;
 	};
+	mediaQuerySm.addListener(breakpoint);
+	mediaQueryMd.addListener(breakpoint);
+	mediaQueryLg.addListener(breakpoint);
 	const isLocalAuthenticated = localStorage.getItem("isAuthenticated");
 	const [isAuthenticated, setIsAuthenticated] = useState(
 		JSON.parse(isLocalAuthenticated) || false
