@@ -1,12 +1,12 @@
-import React, { useContext, useEffect, useState } from "react";
-import GlobalContext from "../../Context/GlobalContext";
-import Masonry, { MasonryBox } from "../../Layout/Masonry/Masonry";
-import { notesNavLinks } from "../../navigation";
-import { allNotes } from "../../resources";
-import Note from "./Note";
+import React, { useContext, useEffect, useState } from 'react'
+import GlobalContext from '../../Context/GlobalContext';
+import Masonry, { MasonryBox } from '../../Layout/Masonry/Masonry';
+import { notesNavLinks } from '../../navigation';
+import { allNotes } from '../../resources';
+import Note from './Note';
 
-const NotesTrash = () => {
-	const [notes, setNotes] = useState([]);
+const NotesArchived = () => {
+    const [notes, setNotes] = useState([]);
 	const { setSideBarLinks } = useContext(GlobalContext);
 	useEffect(() => {
 		setSideBarLinks(notesNavLinks);
@@ -18,7 +18,7 @@ const NotesTrash = () => {
 				<Masonry>
 					{notes.map(
 						(note, index) =>
-							note.trashed && (
+							note.archived && (
 								<MasonryBox key={index}>
 									<Note
 										key={index}
@@ -35,6 +35,6 @@ const NotesTrash = () => {
 			</section>
 		</main>
 	);
-};
+}
 
-export default NotesTrash;
+export default NotesArchived

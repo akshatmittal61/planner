@@ -50,12 +50,16 @@
   align-items: center;
   margin: 0 0.5rem 0 0;
   border-radius: 500px;
+  opacity: 0;
 }
 .note-button:hover {
   background-color: var(--back-shadow-light);
 }
 .note-button .material-symbols-outlined {
   font-size: 1.125rem;
+}
+.note:hover .note-button {
+  opacity: 1;
 }
 
 /*# sourceMappingURL=notes.css.map */

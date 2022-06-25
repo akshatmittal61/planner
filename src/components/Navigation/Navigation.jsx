@@ -1,11 +1,15 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import routes from "../../routes";
 import MaterialIcons from "../MaterialIcons";
 import "./navigation.css";
 
 const Navigation = () => {
+	const location = useLocation();
 	const [openNavBar, setOpenNavBar] = useState(false);
+	useEffect(() => {
+		setOpenNavBar(false);
+	}, [location.pathname]);
 	return (
 		<aside className="aside" style={{ width: openNavBar ? "6rem" : 0 }}>
 			<div className="aside-bar">

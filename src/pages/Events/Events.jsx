@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { allEvents } from "../../resources";
 import Event from "./Event";
 import "./events.css";
 
 const Events = () => {
 	const [events, setEvents] = useState([]);
+	useEffect(() => {
+		setEvents(allEvents);
+	}, []);
 	return (
 		<main className="events">
 			<section className="events-head">

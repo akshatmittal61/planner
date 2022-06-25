@@ -39,7 +39,7 @@ const notesNavLinks = [
 	},
 	{
 		title: "Archived",
-		route: "/notes/archived",
+		route: "/notes/archive",
 		icon: "archive",
 	},
 	{

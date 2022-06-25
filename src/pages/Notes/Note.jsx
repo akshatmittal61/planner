@@ -2,7 +2,6 @@ import React from "react";
 import MaterialIcons from "../../components/MaterialIcons";
 
 const Note = ({ title, content, color, trashed, archived }) => {
-	console.log(title, archived);
 	return (
 		<div
 			className="note"
