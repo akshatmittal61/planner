@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
-import Row, { Col } from "../../components/Layout/Responsive";
+import Row, { Col } from "../../Layout/Responsive";
 import LinkButton from "../../components/Button/LinkButton";
 import MaterialIcons from "../../components/MaterialIcons";
 import wavesBg from "../../images/waves-bg.png";

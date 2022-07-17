@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Row, { Col } from "../../Layout/Responsive";
 import { allEvents } from "../../resources";
 import Event from "./Event";
 import "./events.css";
@@ -17,20 +18,17 @@ const Events = () => {
 				<div className="events-body-section">
 					<span className="events-body-section__head">June 2022</span>
 					<div className="events-body-section__body">
-						<div className="row">
+						<Row>
 							{events.map((event, index) => (
-								<div
-									className="col-lg-33 col-md-50 col-sm-50"
-									key={index}
-								>
+								<Col lg={33} md={50} sm={50} key={index}>
 									<Event
 										title={event.title}
 										date={event.date}
 										type={event.type}
 									/>
-								</div>
+								</Col>
 							))}
-						</div>
+						</Row>
 					</div>
 				</div>
 			</section>
