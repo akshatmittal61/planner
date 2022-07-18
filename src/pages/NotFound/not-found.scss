@@ -1,0 +1,48 @@
+.not-found {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	background-size: cover;
+	background-position-x: center;
+	background-position-y: top;
+	background-repeat: no-repeat;
+	background-blend-mode: lighten;
+	background-color: rgba(255, 255, 255, 0.3);
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 7;
+	&-image {
+		width: 40%;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: flex-end;
+		img {
+			object-fit: cover;
+			max-width: 100%;
+			max-height: 100%;
+		}
+	}
+	&-content {
+		width: 50%;
+		height: 100%;
+		padding: 5rem 0;
+		display: flex;
+		justify-content: flex-end;
+		align-items: flex-start;
+		flex-flow: column;
+		&__h1 {
+			font-size: 4rem;
+			line-height: 4.5rem;
+			margin: 1rem 0;
+		}
+		&__p {
+			font-size: 1.5rem;
+			line-height: 2rem;
+			margin-bottom: 1rem;
+		}
+	}
+}

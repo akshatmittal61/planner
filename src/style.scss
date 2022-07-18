@@ -1,0 +1,310 @@
+@import url("https://fonts.googleapis.com/css2?family=Cabin&family=Montserrat&family=Open+Sans&family=Roboto&family=Sacramento&display=swap");
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	scroll-behavior: smooth;
+	transition: all 0.25s ease-in-out;
+}
+:root,
+:root::before,
+:root::after {
+	--bgcolor: #f9f9f9;
+	--bgcolor-100: #e1e1e1;
+	--bgcolor-400: #d2d2d2;
+	--bgcolor-700: #c3c3c3;
+
+	--tcolor: #121212;
+	--tcolor-100: #333333;
+	--tcolor-400: #272727;
+	--tcolor-700: #1d1d1d;
+
+	--scroll-100: #e1e1e1;
+	--scroll-400: #4a4a4a;
+	--scroll-700: #272727;
+
+	--back-shadow: rgba(0, 0, 0, 0.2);
+	--back-shadow-dark: rgba(0, 0, 0, 0.25);
+	--back-shadow-light: rgba(0, 0, 0, 0.1);
+	--shadow-3d: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+		0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+		0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+		0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
+
+	--transition-time: 200ms;
+	--head-height: 4.5rem;
+	--shadow-transition: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+
+	--shadow-elevation-2dp: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+		0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+	--shadow-elevation-4dp: 0 4px 5px 0 rgba(0, 0, 0, 0.14),
+		0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.4);
+	--shadow-elevation-6dp: 0 6px 10px 0 rgba(0, 0, 0, 0.14),
+		0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.4);
+	--shadow-elevation-8dp: 0 8px 10px 1px rgba(0, 0, 0, 0.14),
+		0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.4);
+	--shadow-elevation-12dp: 0 12px 16px 1px rgba(0, 0, 0, 0.14),
+		0 4px 22px 3px rgba(0, 0, 0, 0.12), 0 6px 7px -4px rgba(0, 0, 0, 0.4);
+	--shadow-elevation-16dp: 0 16px 24px 2px rgba(0, 0, 0, 0.14),
+		0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.4);
+	--shadow-elevation-24dp: 0 24px 38px 3px rgba(0, 0, 0, 0.14),
+		0 9px 46px 8px rgba(0, 0, 0, 0.12), 0 11px 15px -7px rgba(0, 0, 0, 0.4);
+
+	--white: #ffffff;
+	--black: #000000;
+	--transparent: transparent;
+
+	--red: #f44336;
+	--red-100: #ffcdd2;
+	--red-400: #ef5350;
+	--red-700: #d32f2f;
+
+	--pink: #e91e63;
+	--pink-100: #f8bbd0;
+	--pink-400: #ec407a;
+	--pink-700: #c2185b;
+
+	--purple: #9c27b0;
+	--purple-100: #e1bee7;
+	--purple-400: #ab47bc;
+	--purple-700: #7b1fa2;
+
+	--dark-purple: #673ab7;
+	--dark-purple-100: #d1c4e9;
+	--dark-purple-400: #7e57c2;
+	--dark-purple-700: #512da8;
+
+	--indigo: #3f51b5;
+	--indigo-100: #c5cae9;
+	--indigo-400: #5c6bc0;
+	--indigo-700: #303f9f;
+
+	--blue: #2196f3;
+	--blue-100: #bbdefb;
+	--blue-400: #42a5f5;
+	--blue-700: #1976d2;
+
+	--light-blue: #03a9f4;
+	--light-blue-100: #b3e5fc;
+	--light-blue-400: #29b6f6;
+	--light-blue-700: #0288d1;
+
+	--cyan: #00bcd4;
+	--cyan-100: #b2ebf2;
+	--cyan-400: #26c6da;
+	--cyan-700: #0097a7;
+
+	--green: #4caf50;
+	--green-100: #c8e6c9;
+	--green-400: #66bb6a;
+	--green-700: #388e3c;
+
+	--light-green: #8bc34a;
+	--light-green-100: #dcedc8;
+	--light-green-400: #9ccc65;
+	--light-green-700: #689f38;
+
+	--yellow: #ffeb3b;
+	--yellow-100: #fff9c4;
+	--yellow-400: #ffee58;
+	--yellow-700: #fbc02d;
+
+	--orange: #ff9800;
+	--orange-100: #ffe0b2;
+	--orange-400: #ffa726;
+	--orange-700: #f57c00;
+
+	--deep-orange: #ff5722;
+	--deep-orange-100: #ffccbc;
+	--deep-orange-400: #ff7043;
+	--deep-orange-700: #e64a19;
+
+	--brown: #795548;
+	--brown-100: #d7ccc8;
+	--brown-400: #8d6e63;
+	--brown-700: #5d4037;
+
+	--grey: #9e9e9e;
+	--grey-100: #f5f5f5;
+	--grey-400: #bdbdbd;
+	--grey-700: #616161;
+
+	--blue-grey: #607d8b;
+	--blue-grey-100: #cfd8dc;
+	--blue-grey-400: #78909c;
+	--blue-grey-700: #455a64;
+
+	--blue: #4285f4;
+	--red: #ea4335;
+	--yellow: #fbbc05;
+	--green: #34a853;
+}
+
+.light {
+	--bgcolor: #f9f9f9;
+	--bgcolor-100: #e1e1e1;
+	--bgcolor-400: #d2d2d2;
+	--bgcolor-700: #c3c3c3;
+
+	--tcolor: #121212;
+	--tcolor-100: #333333;
+	--tcolor-400: #272727;
+	--tcolor-700: #1d1d1d;
+
+	--back-shadow: rgba(0, 0, 0, 0.2);
+	--back-shadow-dark: rgba(0, 0, 0, 0.25);
+	--back-shadow-light: rgba(0, 0, 0, 0.1);
+}
+.dark {
+	--bgcolor: #121212;
+	--bgcolor-100: #333333;
+	--bgcolor-400: #272727;
+	--bgcolor-700: #1d1d1d;
+
+	--tcolor: #f9f9f9;
+	--tcolor-100: #e1e1e1;
+	--tcolor-400: #d2d2d2;
+	--tcolor-700: #c3c3c3;
+
+	--back-shadow: rgba(255, 255, 255, 0.2);
+	--back-shadow-dark: rgba(255, 255, 255, 0.25);
+	--back-shadow-light: rgba(255, 255, 255, 0.1);
+}
+@import "./config";
+@import "./colors";
+html {
+	font-size: 16px;
+	@include respond(tab) {
+		font-size: 14px;
+	}
+	@include respond(phone) {
+		font-size: 12px;
+	}
+}
+@font-face {
+	font-family: "Google Sans";
+	src: url("./fonts/Google-Sans/GoogleSans-Regular.eot");
+	src: url("./fonts/Google-Sans/GoogleSans-Regular.eot?#iefix")
+			format("embedded-opentype"),
+		url("./fonts/Google-Sans/GoogleSans-Regular.woff2") format("woff2"),
+		url("./fonts/Google-Sans/GoogleSans-Regular.woff") format("woff"),
+		url("./fonts/Google-Sans/GoogleSans-Regular.ttf") format("truetype"),
+		url("./fonts/Google-Sans/GoogleSans-Regular.svg#GoogleSans-Regular")
+			format("svg");
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: "Chococooky";
+	src: url("./fonts/Choco-cooky/Choco-cooky.eot");
+	src: url("./fonts/Choco-cooky/Choco-cooky.eot?#iefix")
+			format("embedded-opentype"),
+		url("./fonts/Choco-cooky/Choco-cooky.woff2") format("woff2"),
+		url("./fonts/Choco-cooky/Choco-cooky.woff") format("woff"),
+		url("./fonts/Choco-cooky/Choco-cooky.ttf") format("truetype"),
+		url("./fonts/Choco-cooky/Choco-cooky.svg#Choco-cooky") format("svg");
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+body,
+#root {
+	font-family: "Google Sans", Cabin, -apple-system, BlinkMacSystemFont,
+		"Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+		"Helvetica Neue", sans-serif;
+	font-size: 1rem;
+	background-color: var(--bgcolor);
+	color: var(--tcolor);
+	min-height: 100vh;
+	width: 100vw;
+	display: flex;
+	letter-spacing: 0.025rem;
+	word-spacing: 0.25rem;
+	line-height: 1.25rem;
+	transition: all var(--transition-time) ease-in-out;
+	overflow-x: hidden;
+	position: relative;
+}
+#root {
+	width: 100%;
+	height: 100%;
+	flex-flow: column;
+	background: transparent;
+}
+main {
+	width: 100%;
+	min-height: calc(100vh - var(--head-height));
+}
+svg {
+	overflow: visible;
+}
+a {
+	color: inherit;
+	text-decoration: none;
+	&:hover,
+	&:active,
+	&:focus,
+	&:visited {
+		border: none;
+		outline: none;
+	}
+}
+button {
+	border: none;
+	outline: none;
+	background: none;
+	cursor: pointer;
+	user-select: none;
+	font: inherit;
+}
+input,
+textarea,
+select {
+	&,
+	&:hover,
+	&:active,
+	&:focus {
+		background: transparent;
+		font: inherit;
+		border: none;
+		outline: none;
+		resize: none;
+	}
+	&::placeholder {
+		user-select: none;
+		font-size: 0.875rem;
+		color: var(--gray-700);
+	}
+}
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+	background-color: rgba(0, 0, 0, 0.01);
+	border: 4px solid transparent;
+	&-track {
+		background-color: rgba(0, 0, 0, 0.2);
+	}
+	&-thumb {
+		background-color: rgba(0, 153, 255, 0.75);
+		border-radius: 500px;
+		&:hover {
+			background-color: rgba(0, 153, 255, 1);
+		}
+		&:hover {
+			background-color: rgba(0, 153, 255, 0.5);
+		}
+	}
+}
+.material-icons {
+	user-select: none;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.dispn {
+	display: none !important;
+}

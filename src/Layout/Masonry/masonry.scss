@@ -1,0 +1,25 @@
+@import "../../config";
+.masonry {
+	list-style: none;
+	column-gap: 0;
+	column-count: 3;
+	&-box {
+		width: 100%;
+		height: auto;
+		break-inside: avoid;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-flow: column;
+		overflow: hidden;
+	}
+	@include respond(phone) {
+		column-count: 1;
+	}
+	@include respond(tab) {
+		column-count: 2;
+	}
+	@include respond(main) {
+		column-count: 3;
+	}
+}
