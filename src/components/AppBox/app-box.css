@@ -1,0 +1,36 @@
+.app-box-cover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 7;
+}
+.app-box-container {
+  width: 11rem;
+  height: 11rem;
+  position: fixed;
+  z-index: 8;
+  top: var(--head-height);
+  right: 2rem;
+  border-radius: 16px;
+  background-color: var(--bgcolor);
+  box-shadow: var(--shadow-elevation-2dp);
+  margin: 0.5rem 2rem 0 0;
+  overflow: hidden;
+}
+.app-box-link {
+  width: 100%;
+  height: 5.5rem;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.875rem;
+  border-radius: 15px;
+}
+.app-box-link:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/*# sourceMappingURL=app-box.css.map */

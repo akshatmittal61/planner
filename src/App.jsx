@@ -31,7 +31,7 @@ const App = () => {
 		<>
 			{location.pathname !== "/login" &&
 				location.pathname !== "/register" && <Header />}
-			<Navigation />
+			{/* <Navigation /> */}
 			{openSideBar && <SideBar />}
 			<Routes>
 				<Route path="/" element={<Home />} />

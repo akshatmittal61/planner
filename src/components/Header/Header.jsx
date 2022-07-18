@@ -4,6 +4,7 @@ import MaterialIcons from "../MaterialIcons";
 import "./header.css";
 import "../Button/button.css";
 import GlobalContext from "../../Context/GlobalContext";
+import AppBox from "../AppBox/AppBox";
 
 const Header = () => {
 	const { user, openSideBar, setOpenSideBar } = useContext(GlobalContext);
@@ -14,6 +15,7 @@ const Header = () => {
 	const [height, setHeight] = useState(
 		location.pathname === "/" ? 0 : "var(--head-height)"
 	);
+	const [openAppBox, setOpenAppBox] = useState(false);
 	useEffect(() => {
 		document.addEventListener("scroll", () => {
 			if (window.scrollY > 30 * vh) {
@@ -25,6 +27,10 @@ const Header = () => {
 			}
 		});
 	}, []);
+	useEffect(() => {
+		setOpenAppBox(false);
+	}, [location.pathname]);
+
 	return (
 		<header
 			className="header"
@@ -64,6 +70,15 @@ const Header = () => {
 				<button className="icon">
 					<MaterialIcons>settings</MaterialIcons>
 				</button>
+				<button
+					className="icon"
+					onClick={() => {
+						setOpenAppBox((p) => !p);
+					}}
+				>
+					<MaterialIcons>apps</MaterialIcons>
+				</button>
+				{openAppBox && <AppBox close={() => setOpenAppBox(false)} />}
 				<button
 					className="icon"
 					onClick={() => {
