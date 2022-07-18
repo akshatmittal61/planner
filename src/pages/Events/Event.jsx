@@ -36,17 +36,17 @@ const Event = ({ type, title, date }) => {
 	};
 	return (
 		<div
-			class="events-body-event event"
+			className="events-body-event event"
 			style={{
 				backgroundColor: `var(--${getColor(type)}-100)`,
 			}}
 		>
-			<div class="event__icon">
+			<div className="event__icon">
 				<MaterialIcons>{showIcon(type)}</MaterialIcons>
 			</div>
-			<div class="event-details">
-				<div class="event-details__title">{title}</div>
-				<div class="event-details__date">{date}</div>
+			<div className="event-details">
+				<div className="event-details__title">{title}</div>
+				<div className="event-details__date">{date}</div>
 			</div>
 		</div>
 	);

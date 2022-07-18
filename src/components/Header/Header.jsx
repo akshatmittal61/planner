@@ -5,6 +5,7 @@ import "./header.css";
 import "../Button/button.css";
 import GlobalContext from "../../Context/GlobalContext";
 import AppBox from "../AppBox/AppBox";
+import userFallBack from "../../images/user.svg";
 
 const Header = () => {
 	const { user, openSideBar, setOpenSideBar } = useContext(GlobalContext);
@@ -16,6 +17,7 @@ const Header = () => {
 		location.pathname === "/" ? 0 : "var(--head-height)"
 	);
 	const [openAppBox, setOpenAppBox] = useState(false);
+	const [userImg, setUserImg] = useState(user.avatar);
 	useEffect(() => {
 		document.addEventListener("scroll", () => {
 			if (window.scrollY > 30 * vh) {
@@ -88,8 +90,11 @@ const Header = () => {
 					{user?.avatar ? (
 						<img
 							className="header-right-avatar"
-							src={user.avatar}
+							src={userImg}
 							alt={user.name}
+							onError={() => {
+								setUserImg(userFallBack);
+							}}
 						/>
 					) : (
 						<MaterialIcons>account_circle</MaterialIcons>

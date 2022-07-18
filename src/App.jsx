@@ -9,7 +9,6 @@ import GlobalContext from "./Context/GlobalContext";
 import SideBar from "./components/SideBar/SideBar";
 import Footer from "./components/Footer/Footer";
 import NotFound from "./pages/NotFound/NotFound";
-import Navigation from "./components/Navigation/Navigation";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Calendar from "./pages/Calendar/Calendar";
