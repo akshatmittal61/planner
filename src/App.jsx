@@ -18,6 +18,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import Notes from "./pages/Notes/Notes";
 import NotesTrash from "./pages/Notes/NotesTrash";
 import NotesArchived from "./pages/Notes/NotesArchived";
+import Tasks from "./pages/Tasks/Tasks";
 
 const App = () => {
 	AOS.init();
@@ -66,6 +67,14 @@ const App = () => {
 					element={
 						<PrivateRoute>
 							<NotesTrash />
+						</PrivateRoute>
+					}
+				/>
+				<Route
+					path="/tasks"
+					element={
+						<PrivateRoute>
+							<Tasks />
 						</PrivateRoute>
 					}
 				/>
