@@ -9,7 +9,7 @@ const AppBox = ({ close }) => {
 	return (
 		<section className="app-box">
 			<div className="app-box-cover" onClick={close}></div>
-			<div className="app-box-container">
+			<div className="app-box-container" data-aos="zoom-in">
 				<Row>
 					{routes.map((route, index) => (
 						<Col lg={50} md={50} sm={50} key={index}>

@@ -8,6 +8,7 @@ const Events = () => {
 	const [events, setEvents] = useState([]);
 	useEffect(() => {
 		setEvents(allEvents);
+		window.scrollTo(0, 0);
 	}, []);
 	return (
 		<main className="events">

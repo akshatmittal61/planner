@@ -21,6 +21,7 @@ import Tasks from "./pages/Tasks/Tasks";
 import TasksCompleted from "./pages/Tasks/TasksCompleted";
 import TasksTrash from "./pages/Tasks/TasksTrash";
 import Contact from "./pages/Contact/Contact";
+import About from "./pages/About/About";
 
 const App = () => {
 	AOS.init();
@@ -36,6 +37,7 @@ const App = () => {
 			{openSideBar && <SideBar />}
 			<Routes>
 				<Route path="/" element={<Home />} />
+				<Route path="/about" element={<About />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/register" element={<Register />} />
 				<Route path="/calendar" element={<Calendar />} />

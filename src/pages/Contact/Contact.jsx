@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./contact.css";
 import banner from "../../images/contact-us-banner.png";
 import people from "./people.json";
 import Card from "./Card";
 
 const Contact = () => {
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
+
 	return (
 		<main className="contact" style={{ backgroundImage: `url(${banner})` }}>
 			<section className="contact-section">
