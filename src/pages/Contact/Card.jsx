@@ -1,5 +1,5 @@
 import React from "react";
-import { GitHub, Linkedin, Mail } from "react-feather";
+import { GitHub, Linkedin, Mail, Phone, Twitter } from "react-feather";
 
 const Card = ({ name, about, image, socials }) => {
 	const getIcon = (a) => {
@@ -10,6 +10,10 @@ const Card = ({ name, about, image, socials }) => {
 				return <Linkedin />;
 			case "mail":
 				return <Mail />;
+			case "twitter":
+				return <Twitter />;
+			case "phone":
+				return <Phone />;
 			default:
 				break;
 		}
@@ -23,9 +27,11 @@ const Card = ({ name, about, image, socials }) => {
 					{socials?.map((social, index) => (
 						<a
 							key={index}
-							href={socials.link}
+							href={social.link}
+							target="_blank"
 							title={social.username}
 							className="icon"
+							rel="noreferrer"
 						>
 							{getIcon(social.service)}
 						</a>
