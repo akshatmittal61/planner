@@ -1,0 +1,25 @@
+.contact {
+  width: 100vw;
+  height: 100vh-var(--head-height);
+  margin-top: var(--head-height);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.contact-card {
+  width: 30rem;
+  height: 10rem;
+}
+.contact-card-image {
+  width: 40%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+.contact-card-content {
+  width: 60%;
+  height: 100%;
+  padding: 1rem;
+}
+
+/*# sourceMappingURL=contact.css.map */

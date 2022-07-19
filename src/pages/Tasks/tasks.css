@@ -53,8 +53,8 @@
 }
 
 .task {
-  width: 12.5rem;
-  min-height: 10rem;
+  width: 15rem;
+  min-height: 11.5rem;
   border-radius: 32px;
   position: relative;
   overflow: hidden;

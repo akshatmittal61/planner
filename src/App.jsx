@@ -20,6 +20,7 @@ import NotesArchived from "./pages/Notes/NotesArchived";
 import Tasks from "./pages/Tasks/Tasks";
 import TasksCompleted from "./pages/Tasks/TasksCompleted";
 import TasksTrash from "./pages/Tasks/TasksTrash";
+import Contact from "./pages/Contact/Contact";
 
 const App = () => {
 	AOS.init();
@@ -94,6 +95,7 @@ const App = () => {
 						</PrivateRoute>
 					}
 				/>
+				<Route path="/contact" element={<Contact />} />
 				<Route path="*" element={<NotFound />} />
 			</Routes>
 			{location.pathname !== "/login" &&
