@@ -1,15 +1,18 @@
-import React, { useEffect, useState } from "react";
-import IconButton from "../../components/Button/IconButton";
-import MaterialIcons from "../../components/MaterialIcons";
+import React, { useContext, useEffect, useState } from "react";
+import GlobalContext from "../../Context/GlobalContext";
 import Masonry, { MasonryBox } from "../../Layout/Masonry/Masonry";
+import { tasksNavLinks } from "../../navigation";
 import { allTasks } from "../../resources";
 import Task from "./Task";
 import "./tasks.css";
 
 const Tasks = () => {
 	const [tasks, setTasks] = useState([]);
+	const { setSideBarLinks } = useContext(GlobalContext);
 	useEffect(() => {
 		setTasks(allTasks);
+		setSideBarLinks(tasksNavLinks);
+		window.scrollTo(0, 0);
 	}, []);
 
 	return (
@@ -26,6 +29,7 @@ const Tasks = () => {
 								<MasonryBox key={index}>
 									<Task
 										title={task.title}
+										description={task.description}
 										color={task.color}
 										done={task.done}
 									/>

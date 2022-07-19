@@ -1,11 +1,17 @@
+@import "../../config";
+
 .task {
     width: 12.5rem;
-    height: 12.5rem;
+    min-height: 10rem;
     border-radius: 32px;
     position: relative;
     overflow: hidden;
     padding: 1rem;
     margin: 1rem;
+
+    @include respond(phone) {
+        border-radius: 24px;
+    }
 
     &-title {
         width: 70%;
@@ -13,19 +19,26 @@
         line-height: 1.75rem;
     }
 
+    &-description {
+        font-size: 0.9rem;
+        line-height: 1.25rem;
+        margin: 0.5rem 0;
+    }
+
     &-controls {
         position: absolute;
         bottom: 0.75rem;
         right: 0.5rem;
-        width: 100%;
+        padding: 0.15rem 0 0 0;
         display: flex;
         justify-content: flex-end;
         align-items: center;
+        opacity: 0;
     }
 
     &-control {
-        margin: 0 0.5rem;
         opacity: 0;
+        margin: 0 0.5rem;
 
         &-done {
             position: absolute;
@@ -36,6 +49,10 @@
 
     &:hover {
         border-radius: 16px;
+    }
+
+    &:hover &-controls {
+        opacity: 1;
     }
 
     &:hover &-control {

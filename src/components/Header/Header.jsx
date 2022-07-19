@@ -17,7 +17,7 @@ const Header = () => {
 		location.pathname === "/" ? 0 : "var(--head-height)"
 	);
 	const [openAppBox, setOpenAppBox] = useState(false);
-	const [userImg, setUserImg] = useState(user.avatar);
+	const [userImg, setUserImg] = useState(user?.avatar);
 	useEffect(() => {
 		document.addEventListener("scroll", () => {
 			if (window.scrollY > 30 * vh) {
