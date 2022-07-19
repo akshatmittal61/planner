@@ -6,7 +6,7 @@ import { allTasks } from "../../resources";
 import Task from "./Task";
 import "./tasks.css";
 
-const Tasks = () => {
+const TasksCompleted = () => {
 	const [tasks, setTasks] = useState([]);
 	const { setSideBarLinks } = useContext(GlobalContext);
 	useEffect(() => {
@@ -27,7 +27,7 @@ const Tasks = () => {
 						<Masonry lg={4} md={3} sm={2}>
 							{tasks.map(
 								(task, index) =>
-									!task.done &&
+									task.done &&
 									!task.trashed && (
 										<MasonryBox key={index}>
 											<Task
@@ -35,7 +35,7 @@ const Tasks = () => {
 												description={task.description}
 												color={task.color}
 												done={task.done}
-												trashed={task.trashed}
+                                                trashed={task.trashed}
 											/>
 										</MasonryBox>
 									)
@@ -48,4 +48,4 @@ const Tasks = () => {
 	);
 };
 
-export default Tasks;
+export default TasksCompleted;
