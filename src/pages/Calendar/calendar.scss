@@ -6,6 +6,7 @@
 	justify-content: flex-start;
 	align-items: center;
 	flex-flow: column;
+
 	&-head {
 		width: 100%;
 		height: calc(100% / 8);
@@ -15,25 +16,31 @@
 		padding: 0 5vw;
 		font-size: 2rem;
 		line-height: 2.5rem;
-		& > * {
+
+		&>* {
 			display: flex;
 			justify-content: space-evenly;
 			align-items: center;
-			& > * {
+
+			&>* {
 				margin: 0 0.75rem;
 			}
 		}
+
 		button {
 			color: var(--white);
 		}
+
 		&-month {
 			width: 9ch;
+
 			&-current {
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
 			}
 		}
+
 		&-year {
 			input {
 				width: 7ch;
@@ -42,6 +49,7 @@
 				border: 4px solid transparent;
 				border-radius: 4px;
 				padding: 0.3rem 0.75rem;
+
 				&:active,
 				&:focus {
 					border-bottom: 4px solid var(--back-shadow);
@@ -49,6 +57,7 @@
 			}
 		}
 	}
+
 	&-body {
 		width: 100%;
 		height: calc(700% / 8);
@@ -56,14 +65,17 @@
 		background-position: center;
 		background-blend-mode: lighten;
 		background-color: rgba(255, 255, 255, 0.7);
+
 		table {
 			width: 100%;
 			height: 100%;
 			border-spacing: 0;
+
 			tr {
 				width: 100%;
 				height: 100%;
 			}
+
 			th,
 			td {
 				width: calc(100% / 7);
@@ -72,16 +84,20 @@
 				justify-content: center;
 				align-items: center;
 			}
+
 			thead {
 				width: 100%;
 				height: calc(100% / 6);
 			}
+
 			tbody {
 				width: 100%;
 				height: calc(500% / 6);
+
 				tr {
 					height: calc(100% / 5);
 				}
+
 				td {
 					font-size: 1.5rem;
 				}
@@ -89,4 +105,5 @@
 		}
 	}
 }
+
 @import "./month-dialog-box";

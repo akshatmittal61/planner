@@ -23,9 +23,7 @@
 			height: 100%;
 		}
 	}
-	&:hover,
-	&:active,
-	&:focus {
+	&:hover {
 		svg {
 			transform: translate(-50%, -50%) rotate(-90deg);
 		}

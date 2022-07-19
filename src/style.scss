@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Cabin&family=Montserrat&family=Open+Sans&family=Roboto&family=Sacramento&display=swap");
+
 *,
 *::before,
 *::after {
@@ -8,6 +9,7 @@
 	scroll-behavior: smooth;
 	transition: all 0.25s ease-in-out;
 }
+
 :root,
 :root::before,
 :root::after {
@@ -157,6 +159,7 @@
 	--back-shadow-dark: rgba(0, 0, 0, 0.25);
 	--back-shadow-light: rgba(0, 0, 0, 0.1);
 }
+
 .dark {
 	--bgcolor: #121212;
 	--bgcolor-100: #333333;
@@ -172,37 +175,40 @@
 	--back-shadow-dark: rgba(255, 255, 255, 0.25);
 	--back-shadow-light: rgba(255, 255, 255, 0.1);
 }
+
 @import "./config";
 @import "./responsive";
 @import "./colors";
+
 html {
 	font-size: 16px;
+
 	@include respond(tab) {
 		font-size: 14px;
 	}
+
 	@include respond(phone) {
 		font-size: 12px;
 	}
 }
+
 @font-face {
 	font-family: "Google Sans";
 	src: url("./fonts/Google-Sans/GoogleSans-Regular.eot");
-	src: url("./fonts/Google-Sans/GoogleSans-Regular.eot?#iefix")
-			format("embedded-opentype"),
+	src: url("./fonts/Google-Sans/GoogleSans-Regular.eot?#iefix") format("embedded-opentype"),
 		url("./fonts/Google-Sans/GoogleSans-Regular.woff2") format("woff2"),
 		url("./fonts/Google-Sans/GoogleSans-Regular.woff") format("woff"),
 		url("./fonts/Google-Sans/GoogleSans-Regular.ttf") format("truetype"),
-		url("./fonts/Google-Sans/GoogleSans-Regular.svg#GoogleSans-Regular")
-			format("svg");
+		url("./fonts/Google-Sans/GoogleSans-Regular.svg#GoogleSans-Regular") format("svg");
 	font-weight: normal;
 	font-style: normal;
 	font-display: swap;
 }
+
 @font-face {
 	font-family: "Chococooky";
 	src: url("./fonts/Choco-cooky/Choco-cooky.eot");
-	src: url("./fonts/Choco-cooky/Choco-cooky.eot?#iefix")
-			format("embedded-opentype"),
+	src: url("./fonts/Choco-cooky/Choco-cooky.eot?#iefix") format("embedded-opentype"),
 		url("./fonts/Choco-cooky/Choco-cooky.woff2") format("woff2"),
 		url("./fonts/Choco-cooky/Choco-cooky.woff") format("woff"),
 		url("./fonts/Choco-cooky/Choco-cooky.ttf") format("truetype"),
@@ -211,6 +217,7 @@ html {
 	font-style: normal;
 	font-display: swap;
 }
+
 body,
 #root {
 	font-family: "Google Sans", Cabin, -apple-system, BlinkMacSystemFont,
@@ -229,22 +236,27 @@ body,
 	overflow-x: hidden;
 	position: relative;
 }
+
 #root {
 	width: 100%;
 	height: 100%;
 	flex-flow: column;
 	background: transparent;
 }
+
 main {
 	width: 100%;
 	min-height: calc(100vh - var(--head-height));
 }
+
 svg {
 	overflow: visible;
 }
+
 a {
 	color: inherit;
 	text-decoration: none;
+
 	&:hover,
 	&:active,
 	&:focus,
@@ -253,6 +265,7 @@ a {
 		outline: none;
 	}
 }
+
 button {
 	border: none;
 	outline: none;
@@ -261,9 +274,11 @@ button {
 	user-select: none;
 	font: inherit;
 }
+
 input,
 textarea,
 select {
+
 	&,
 	&:hover,
 	&:active,
@@ -274,31 +289,38 @@ select {
 		outline: none;
 		resize: none;
 	}
+
 	&::placeholder {
 		user-select: none;
 		font-size: 0.875rem;
 		color: var(--gray-700);
 	}
 }
+
 ::-webkit-scrollbar {
 	width: 8px;
 	height: 8px;
 	background-color: rgba(0, 0, 0, 0.01);
 	border: 4px solid transparent;
+
 	&-track {
 		background-color: rgba(0, 0, 0, 0.2);
 	}
+
 	&-thumb {
 		background-color: rgba(0, 153, 255, 0.75);
 		border-radius: 500px;
+
 		&:hover {
 			background-color: rgba(0, 153, 255, 1);
 		}
+
 		&:hover {
 			background-color: rgba(0, 153, 255, 0.5);
 		}
 	}
 }
+
 .material-icons {
 	user-select: none;
 	cursor: pointer;
@@ -306,6 +328,7 @@ select {
 	justify-content: center;
 	align-items: center;
 }
+
 .dispn {
 	display: none !important;
 }

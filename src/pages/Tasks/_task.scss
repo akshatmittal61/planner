@@ -1,0 +1,44 @@
+.task {
+    width: 12.5rem;
+    height: 12.5rem;
+    border-radius: 32px;
+    position: relative;
+    overflow: hidden;
+    padding: 1rem;
+    margin: 1rem;
+
+    &-title {
+        width: 70%;
+        font-size: 1.5rem;
+        line-height: 1.75rem;
+    }
+
+    &-controls {
+        position: absolute;
+        bottom: 0.75rem;
+        right: 0.5rem;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    &-control {
+        margin: 0 0.5rem;
+        opacity: 0;
+
+        &-done {
+            position: absolute;
+            top: 1rem;
+            right: 0.5rem;
+        }
+    }
+
+    &:hover {
+        border-radius: 16px;
+    }
+
+    &:hover &-control {
+        opacity: 1;
+    }
+}

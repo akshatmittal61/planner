@@ -1,7 +1,11 @@
 import React from "react";
 
-const MaterialIcons = ({ children }) => {
-	return <span className="material-symbols-outlined">{children}</span>;
+const MaterialIcons = ({ children, style }) => {
+	return (
+		<span className="material-symbols-outlined" style={style}>
+			{children}
+		</span>
+	);
 };
 
 export default MaterialIcons;
