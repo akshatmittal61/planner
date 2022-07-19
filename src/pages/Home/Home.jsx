@@ -19,7 +19,7 @@ const Home = () => {
 			else setScrolled(false);
 		});
 		setSideBarLinks(defaultNavLinks);
-	}, []);
+	}, [setSideBarLinks, vh]);
 
 	return (
 		<main className="home">

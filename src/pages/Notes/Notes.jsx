@@ -13,7 +13,7 @@ const Notes = () => {
 		setSideBarLinks(notesNavLinks);
 		window.scrollTo(0, 0);
 		setNotes(allNotes);
-	}, []);
+	}, [setSideBarLinks]);
 
 	return (
 		<main className="notes">

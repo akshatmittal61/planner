@@ -28,7 +28,7 @@ const Header = () => {
 				setHeight("0");
 			}
 		});
-	}, []);
+	}, [vh]);
 	useEffect(() => {
 		setOpenAppBox(false);
 	}, [location.pathname]);

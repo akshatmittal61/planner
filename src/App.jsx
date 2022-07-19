@@ -25,12 +25,11 @@ const App = () => {
 	const location = useLocation();
 	useEffect(() => {
 		setOpenSideBar(false);
-	}, [location.pathname]);
+	}, [location.pathname, setOpenSideBar]);
 	return (
 		<>
 			{location.pathname !== "/login" &&
 				location.pathname !== "/register" && <Header />}
-			{/* <Navigation /> */}
 			{openSideBar && <SideBar />}
 			<Routes>
 				<Route path="/" element={<Home />} />

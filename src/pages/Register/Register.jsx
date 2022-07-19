@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
 import Row, { Col } from "../../Layout/Responsive";
@@ -10,7 +9,6 @@ import "./register.css";
 import IconButton from "../../components/Button/IconButton";
 
 const Register = () => {
-	const navigate = useNavigate();
 	const [registerUser, setRegisterUser] = useState({
 		fname: "",
 		lname: "",
