@@ -17,6 +17,9 @@ label {
 label .material-symbols-outlined {
   font-size: 1.5rem;
 }
+body.dark label {
+  color: var(--indigo-100);
+}
 
 input,
 textarea {
@@ -24,6 +27,7 @@ textarea {
   position: relative;
   margin: 0 auto;
   padding: 0.6rem 3rem;
+  color: inherit;
   border-bottom: 2px solid var(--back-shadow);
 }
 input:hover,

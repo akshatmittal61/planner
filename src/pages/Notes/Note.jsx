@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import MaterialIcons from "../../components/MaterialIcons";
+import GlobalContext from "../../Context/GlobalContext";
 
 const Note = ({ title, content, color, trashed, archived }) => {
+	const { theme } = useContext(GlobalContext);
 	return (
 		<div
 			className="note"
-			style={{ backgroundColor: `var(--${color}-100)` }}
+			style={{
+				backgroundColor: `var(--${color}-${
+					theme === "light" ? "100" : "700"
+				})`,
+			}}
 		>
 			<div className="note-title">
 				<span>{title}</span>

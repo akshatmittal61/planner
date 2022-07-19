@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import MaterialIcons from "../../components/MaterialIcons";
+import GlobalContext from "../../Context/GlobalContext";
 
 const Event = ({ type, title, date }) => {
+	const {theme}=useContext(GlobalContext)
 	const showIcon = (e) => {
 		switch (e) {
 			case "birthday":
@@ -38,7 +40,7 @@ const Event = ({ type, title, date }) => {
 		<div
 			className="events-body-event event"
 			style={{
-				backgroundColor: `var(--${getColor(type)}-100)`,
+				backgroundColor: `var(--${getColor(type)}-${theme==='light'?'100':'700'})`,
 			}}
 		>
 			<div className="event__icon">

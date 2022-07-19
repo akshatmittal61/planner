@@ -8,7 +8,8 @@ import AppBox from "../AppBox/AppBox";
 import userFallBack from "../../images/user.svg";
 
 const Header = () => {
-	const { user, openSideBar, setOpenSideBar } = useContext(GlobalContext);
+	const { user, theme, setTheme, openSideBar, setOpenSideBar } =
+		useContext(GlobalContext);
 	const vh = window.innerHeight / 100;
 	const location = useLocation();
 	const navigate = useNavigate();
@@ -66,6 +67,16 @@ const Header = () => {
 				</Link>
 			</div>
 			<div className="header-right">
+				<button
+					className="icon"
+					onClick={() =>
+						setTheme((p) => (p === "light" ? "dark" : "light"))
+					}
+				>
+					<MaterialIcons>
+						{theme === "light" ? "dark_mode" : "light_mode"}
+					</MaterialIcons>
+				</button>
 				<button className="icon">
 					<MaterialIcons>sync</MaterialIcons>
 				</button>

@@ -5,6 +5,7 @@ button {
   cursor: pointer;
   user-select: none;
   font: inherit;
+  color: inherit;
 }
 
 .btn {
@@ -127,6 +128,7 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: var(--tcolor);
 }
 .icon .material-symbols-outlined {
   font-size: 1.5rem;

@@ -11,7 +11,7 @@ import GlobalContext from "../../Context/GlobalContext";
 const Home = () => {
 	const [scrolled, setScrolled] = useState(false);
 	const vh = window.innerHeight / 100;
-	const { setSideBarLinks } = useContext(GlobalContext);
+	const { theme, setSideBarLinks } = useContext(GlobalContext);
 	useEffect(() => {
 		window.scrollTo(0, 0);
 		document.addEventListener("scroll", () => {
@@ -72,7 +72,9 @@ const Home = () => {
 								className="home-navigation-card"
 								style={{
 									flexFlow: index % 2 ? "row-reverse" : "row",
-									backgroundColor: route.color,
+									backgroundColor: `var(--${route.color}-${
+										theme === "light" ? "100" : "700"
+									})`,
 								}}
 							>
 								<div

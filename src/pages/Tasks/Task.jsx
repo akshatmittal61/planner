@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import IconButton from "../../components/Button/IconButton";
 import MaterialIcons from "../../components/MaterialIcons";
+import GlobalContext from "../../Context/GlobalContext";
 
 const Task = ({ title, description, color, done, trashed }) => {
+	consy {theme}=useContext(GlobalContext)
 	return (
 		<div
 			className="tasks-body-task task"
 			style={{
-				backgroundColor: `var(--${color}-100)`,
+				backgroundColor: `var(--${color}-${theme==='light'?'100':'700'})`,
 			}}
 		>
 			<div className="task-title">{title}</div>

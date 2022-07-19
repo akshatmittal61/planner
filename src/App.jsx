@@ -25,11 +25,16 @@ import About from "./pages/About/About";
 
 const App = () => {
 	AOS.init();
-	const { openSideBar, setOpenSideBar } = useContext(GlobalContext);
+	const { theme, openSideBar, setOpenSideBar } = useContext(GlobalContext);
 	const location = useLocation();
 	useEffect(() => {
 		setOpenSideBar(false);
 	}, [location.pathname, setOpenSideBar]);
+	useEffect(() => {
+		document.body.classList = theme;
+		localStorage.setItem("theme", theme);
+	}, [theme]);
+
 	return (
 		<>
 			{location.pathname !== "/login" &&

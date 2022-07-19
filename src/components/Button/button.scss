@@ -1,4 +1,5 @@
 @import "../../colors";
+
 button {
 	border: none;
 	outline: none;
@@ -6,7 +7,9 @@ button {
 	cursor: pointer;
 	user-select: none;
 	font: inherit;
+	color: inherit;
 }
+
 .btn {
 	width: fit-content;
 	height: fit-content;
@@ -22,36 +25,45 @@ button {
 		Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
 		sans-serif;
 	box-shadow: var(--shadow-elevation-2dp);
+
 	&:hover {
 		box-shadow: var(--shadow-elevation-4dp);
 	}
+
 	&:active {
 		box-shadow: var(--shadow-elevation-2dp);
 	}
+
 	.material-symbols-outlined {
 		font-size: 1.25rem;
 		margin-right: 0.25rem;
 	}
+
 	@each $color in $colors {
 		&-#{$color} {
 			background-color: var(--#{$color});
 		}
+
 		&-#{$color}.btn-outline {
 			outline: 2px solid var(--#{$color});
 			color: var(--#{$color});
 		}
 	}
+
 	&-outline {
 		background-color: transparent;
 	}
+
 	&-white {
 		color: var(--black);
+
 		&.btn-outline {
 			outline: 2px solid var(--black);
 			color: var(--black);
 		}
 	}
 }
+
 .icon {
 	width: 2.5rem;
 	height: 2.5rem;
@@ -60,12 +72,16 @@ button {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	color: var(--tcolor);
+
 	.material-symbols-outlined {
 		font-size: 1.5rem;
 	}
+
 	&:hover {
 		background-color: rgba(0, 0, 0, 0.1);
 	}
 }
+
 @import "./link-button";
 @import "./icon-button";

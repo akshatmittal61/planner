@@ -6,7 +6,7 @@
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
-  transition: all 0.25s ease-in-out;
+  transition: all 0.1s ease-in-out;
 }
 
 :root,
@@ -511,7 +511,7 @@ select::placeholder {
   background-color: rgba(0, 153, 255, 0.5);
 }
 
-.material-icons {
+.material-symbols-outlined {
   user-select: none;
   cursor: pointer;
   display: flex;

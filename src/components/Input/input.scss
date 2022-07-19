@@ -13,33 +13,44 @@ label {
 	top: 50%;
 	left: 0;
 	transform: translate(50%, -50%);
+
 	.material-symbols-outlined {
 		font-size: 1.5rem;
 	}
+	body.dark &{
+		color: var(--indigo-100);
+	}
 }
+
 input,
 textarea {
 	width: 100%;
 	position: relative;
 	margin: 0 auto;
 	padding: 0.6rem 3rem;
+	color: inherit;
 	border-bottom: 2px solid var(--back-shadow);
+
 	&:hover {
 		border-bottom: 2px solid var(--back-shadow);
 	}
+
 	&:active,
 	&:focus {
 		border-bottom: 2px solid var(--indigo);
-		& + label {
+
+		&+label {
 			color: var(--red-700);
 		}
 	}
 }
-textarea + label {
+
+textarea+label {
 	// position: absolute;
 	// top: 0;
 	color: var(--red-700);
 }
+
 button {
 	width: 40%;
 }
