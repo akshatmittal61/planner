@@ -189,4 +189,33 @@ button {
   transform: translate(-50%, -50%) rotate(-90deg);
 }
 
+.fab {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  z-index: 5;
+  margin: 1.5rem;
+  border-radius: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 4rem;
+  height: 4rem;
+}
+.fab:hover {
+  border-radius: 16px;
+}
+.fab-lg {
+  width: 4.5rem;
+  height: 4.5rem;
+}
+.fab-sm {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 20px;
+}
+.fab-sm:hover {
+  border-radius: 12px;
+}
+
 /*# sourceMappingURL=button.css.map */

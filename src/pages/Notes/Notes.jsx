@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import Fab from "../../components/Button/Fab";
 import GlobalContext from "../../Context/GlobalContext";
 import Masonry, { MasonryBox } from "../../Layout/Masonry/Masonry";
 import { notesNavLinks } from "../../navigation";
@@ -37,6 +38,7 @@ const Notes = () => {
 					)}
 				</Masonry>
 			</section>
+			<Fab icon="edit" />
 		</main>
 	);
 };

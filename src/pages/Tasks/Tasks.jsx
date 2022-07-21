@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import Fab from "../../components/Button/Fab";
 import GlobalContext from "../../Context/GlobalContext";
 import Masonry, { MasonryBox } from "../../Layout/Masonry/Masonry";
 import { tasksNavLinks } from "../../navigation";
@@ -44,6 +45,7 @@ const Tasks = () => {
 					</div>
 				</div>
 			</section>
+			<Fab icon="add_task" />
 		</main>
 	);
 };

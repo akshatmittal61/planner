@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Fab from "../../components/Button/Fab";
 import Row, { Col } from "../../Layout/Responsive";
 import { allEvents } from "../../resources";
 import Event from "./Event";
@@ -33,6 +34,7 @@ const Events = () => {
 					</div>
 				</div>
 			</section>
+			<Fab icon="add" />
 		</main>
 	);
 };
