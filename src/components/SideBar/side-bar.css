@@ -57,6 +57,9 @@
 .side-nav-li a:hover {
   background-color: var(--blue-100);
 }
+body.dark .side-nav-li a:hover {
+  color: var(--black);
+}
 .side-nav-li a span {
   height: 1.5rem;
   display: flex;

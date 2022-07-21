@@ -1,4 +1,6 @@
 .fab {
+    width: 4rem;
+    height: 4rem;
     position: fixed;
     bottom: 0;
     right: 0;
@@ -8,8 +10,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 4rem;
-    height: 4rem;
+    box-shadow: var(--shadow-elevation-2dp);
 
     &:hover {
         border-radius: 16px;

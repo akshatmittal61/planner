@@ -52,6 +52,9 @@
 				background-color: var(--back-shadow-light);
 				&:hover {
 					background-color: var(--blue-100);
+					body.dark &{
+						color: var(--black);
+					}
 				}
 				span {
 					height: 1.5rem;

@@ -7,7 +7,7 @@
 	padding: 0;
 	box-sizing: border-box;
 	scroll-behavior: smooth;
-	transition: all 0.1s ease-in-out;
+	transition: all 0.05s ease-in-out;
 }
 
 :root,
@@ -158,6 +158,8 @@
 	--back-shadow: rgba(0, 0, 0, 0.2);
 	--back-shadow-dark: rgba(0, 0, 0, 0.25);
 	--back-shadow-light: rgba(0, 0, 0, 0.1);
+
+	transition: all 0.05s ease-in-out;
 }
 
 .dark {
@@ -174,6 +176,8 @@
 	--back-shadow: rgba(255, 255, 255, 0.2);
 	--back-shadow-dark: rgba(255, 255, 255, 0.25);
 	--back-shadow-light: rgba(255, 255, 255, 0.1);
+
+	transition: all 0.05s ease-in-out;
 }
 
 @import "./config";
@@ -235,6 +239,7 @@ body,
 	transition: all var(--transition-time) ease-in-out;
 	overflow-x: hidden;
 	position: relative;
+	transition: all 0.05s ease-in-out;
 }
 
 #root {

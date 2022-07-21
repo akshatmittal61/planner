@@ -190,6 +190,8 @@ button {
 }
 
 .fab {
+  width: 4rem;
+  height: 4rem;
   position: fixed;
   bottom: 0;
   right: 0;
@@ -199,8 +201,7 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 4rem;
-  height: 4rem;
+  box-shadow: var(--shadow-elevation-2dp);
 }
 .fab:hover {
   border-radius: 16px;
