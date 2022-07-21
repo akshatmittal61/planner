@@ -14,18 +14,21 @@
 	top: 0;
 	left: 0;
 	z-index: 7;
+
 	&-image {
 		width: 40%;
 		height: 100%;
 		display: flex;
 		justify-content: center;
 		align-items: flex-end;
+
 		img {
 			object-fit: cover;
 			max-width: 100%;
 			max-height: 100%;
 		}
 	}
+
 	&-content {
 		width: 50%;
 		height: 100%;
@@ -34,11 +37,14 @@
 		justify-content: flex-end;
 		align-items: flex-start;
 		flex-flow: column;
+		color: var(--black);
+
 		&__h1 {
 			font-size: 4rem;
 			line-height: 4.5rem;
 			margin: 1rem 0;
 		}
+
 		&__p {
 			font-size: 1.5rem;
 			line-height: 2rem;

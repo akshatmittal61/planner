@@ -4,12 +4,14 @@ import MaterialIcons from "../../components/MaterialIcons";
 import GlobalContext from "../../Context/GlobalContext";
 
 const Task = ({ title, description, color, done, trashed }) => {
-	consy {theme}=useContext(GlobalContext)
+	const { theme } = useContext(GlobalContext);
 	return (
 		<div
 			className="tasks-body-task task"
 			style={{
-				backgroundColor: `var(--${color}-${theme==='light'?'100':'700'})`,
+				backgroundColor: `var(--${color}-${
+					theme === "light" ? "100" : "700"
+				})`,
 			}}
 		>
 			<div className="task-title">{title}</div>
@@ -25,7 +27,11 @@ const Task = ({ title, description, color, done, trashed }) => {
 			)}
 			<div
 				className="task-controls"
-				style={{ backgroundColor: `var(--${color}-100)` }}
+				style={{
+					backgroundColor: `var(--${color}-${
+						theme === "light" ? "100" : "700"
+					})`,
+				}}
 			>
 				{!trashed && (
 					<IconButton
