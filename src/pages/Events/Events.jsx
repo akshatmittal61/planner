@@ -3,6 +3,7 @@ import Fab from "../../components/Button/Fab";
 import Dialog from "../../Layout/Dialog/Dialog";
 import Row, { Col } from "../../Layout/Responsive";
 import { allEvents } from "../../resources";
+import AddEvent from "./AddEvent";
 import Event from "./Event";
 import "./events.css";
 
@@ -12,7 +13,7 @@ const Events = () => {
 		setEvents(allEvents);
 		window.scrollTo(0, 0);
 	}, []);
-	const [showDialog, setShowDialog] = useState(false);
+	const [showAddEventBox, setShowAddEventBox] = useState(false);
 	return (
 		<main className="events">
 			<section className="events-head">
@@ -36,12 +37,9 @@ const Events = () => {
 					</div>
 				</div>
 			</section>
-			<Fab icon="add" onClick={() => setShowDialog(true)} />
-			{showDialog && (
-				<Dialog
-					title="Add a new Event"
-					close={() => setShowDialog(false)}
-				></Dialog>
+			<Fab icon="add" onClick={() => setShowAddEventBox(true)} />
+			{showAddEventBox && (
+				<AddEvent close={() => setShowAddEventBox(false)} />
 			)}
 		</main>
 	);
