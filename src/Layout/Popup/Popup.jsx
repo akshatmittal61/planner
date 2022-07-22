@@ -5,7 +5,7 @@ import "./popup.css";
 
 const Popup = ({
 	title = "",
-	close,
+	close = () => console.log("close popup box"),
 	children,
 	width = "60%",
 	height = "60%",

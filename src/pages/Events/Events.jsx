@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Fab from "../../components/Button/Fab";
+import Dialog from "../../Layout/Dialog/Dialog";
 import Row, { Col } from "../../Layout/Responsive";
 import { allEvents } from "../../resources";
 import Event from "./Event";
@@ -11,6 +12,7 @@ const Events = () => {
 		setEvents(allEvents);
 		window.scrollTo(0, 0);
 	}, []);
+	const [showDialog, setShowDialog] = useState(false);
 	return (
 		<main className="events">
 			<section className="events-head">
@@ -34,7 +36,13 @@ const Events = () => {
 					</div>
 				</div>
 			</section>
-			<Fab icon="add" />
+			<Fab icon="add" onClick={() => setShowDialog(true)} />
+			{showDialog && (
+				<Dialog
+					title="Add a new Event"
+					close={() => setShowDialog(false)}
+				></Dialog>
+			)}
 		</main>
 	);
 };
