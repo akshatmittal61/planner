@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Fab from "../../components/Button/Fab";
-import Dialog from "../../Layout/Dialog/Dialog";
 import Row, { Col } from "../../Layout/Responsive";
 import { allEvents } from "../../resources";
 import AddEvent from "./AddEvent";

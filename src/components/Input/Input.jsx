@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import MaterialIcons from "../MaterialIcons";
 import "./input.css";
 
@@ -20,36 +20,20 @@ const TextArea = ({ icon, ...rest }) => (
 	</div>
 );
 
-const Select = ({ icon, options, selected, ...rest }) => {
-	const [showOptionsList, setShowOptionsList] = useState(false);
-	return (
-		<div className="form-group">
-			<label>
-				<MaterialIcons>{icon}</MaterialIcons>
-			</label>
-			<select {...rest}>
-				{showOptionsList && (
-					<OptionsList
-						options={options}
-						handle={(a) => selected(a)}
-					/>
-				)}
-			</select>
-		</div>
-	);
-};
-
-const OptionsList = ({ options, handle }) => {
-	return (
-		<ul>
+const Select = ({ icon, options, selected, ...rest }) => (
+	<div className="form-group">
+		<label>
+			<MaterialIcons>{icon}</MaterialIcons>
+		</label>
+		<select {...rest}>
 			{options.map((option, index) => (
-				<li onClick={() => handle(option)} key={index}>
+				<option key={index} value={option}>
 					{option}
-				</li>
+				</option>
 			))}
-		</ul>
-	);
-};
+		</select>
+	</div>
+);
 
 export default Input;
 export { TextArea, Select };

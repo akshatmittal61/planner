@@ -22,7 +22,8 @@ body.dark label {
 }
 
 input,
-textarea {
+textarea,
+select {
   width: 100%;
   position: relative;
   margin: 0 auto;
@@ -31,17 +32,22 @@ textarea {
   border-bottom: 2px solid var(--back-shadow);
 }
 input:hover,
-textarea:hover {
+textarea:hover,
+select:hover {
   border-bottom: 2px solid var(--back-shadow);
 }
 input:active, input:focus,
 textarea:active,
-textarea:focus {
+textarea:focus,
+select:active,
+select:focus {
   border-bottom: 2px solid var(--indigo);
 }
 input:active + label, input:focus + label,
 textarea:active + label,
-textarea:focus + label {
+textarea:focus + label,
+select:active + label,
+select:focus + label {
   color: var(--red-700);
 }
 

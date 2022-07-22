@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Button from "../../components/Button/Button";
 import Input, { Select, TextArea } from "../../components/Input/Input";
 import Dialog from "../../Layout/Dialog/Dialog";
 import Row, { Col } from "../../Layout/Responsive";
@@ -18,6 +19,25 @@ const AddEvent = ({ close }) => {
 	};
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		console.log(newEvent);
+		setNewEvent({
+			title: "",
+			description: "",
+			date: "",
+			time: "",
+			type: "",
+			meeting: "",
+		});
+	};
+	const handleReset = (e) => {
+		setNewEvent({
+			title: "",
+			description: "",
+			date: "",
+			time: "",
+			type: "",
+			meeting: "",
+		});
 	};
 	return (
 		<Dialog
@@ -25,7 +45,11 @@ const AddEvent = ({ close }) => {
 			cta={{ text: "Add Event", action: handleSubmit }}
 			close={close}
 		>
-			<form className="add-event-form" onSubmit={handleSubmit}>
+			<form
+				className="add-event-form"
+				onReset={handleReset}
+				onSubmit={handleSubmit}
+			>
 				<Input
 					name="title"
 					placeholder="Event Title"
@@ -71,7 +95,7 @@ const AddEvent = ({ close }) => {
 					type="text"
 					icon="event"
 					value={newEvent.type}
-					selected={(a) => setNewEvent((p) => ({ ...p, type: a }))}
+					onChange={handleChange}
 					options={[
 						"birthday",
 						"anniversary",
@@ -80,6 +104,20 @@ const AddEvent = ({ close }) => {
 						"ceremony",
 					]}
 				/>
+				{newEvent.type === "meeting" && (
+					<Input
+						name="meeting"
+						placeholder="Meeting Link"
+						type="url"
+						icon="link"
+						value={newEvent.meeting}
+						onChange={handleChange}
+					/>
+				)}
+				<div className="form-group">
+					<Button text="Cancel" type="reset" variant="outline" />
+					<Button text="Add Event" type="submit" />
+				</div>
 			</form>
 		</Dialog>
 	);
