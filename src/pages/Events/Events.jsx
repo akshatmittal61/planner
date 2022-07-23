@@ -21,7 +21,7 @@ const Events = () => {
 			let presentDate = `${moment(event.date).format("MMMM YYYY")}`;
 			let a = m1.get(presentDate);
 			if (!a) m1.set(presentDate, [event]);
-			else m1.set(presentDate, [...m1.get(presentDate), event]);
+			else m1.set(presentDate, [...a, event]);
 		}
 		let newArr = [];
 		for (const [key, value] of m1) {
@@ -46,16 +46,18 @@ const Events = () => {
 				{events.map((element, index) => (
 					<div className="events-body-section" key={index}>
 						<span className="events-body-section__head">
-							{element.month}
+							{element?.month}
 						</span>
 						<div className="events-body-section__body">
 							<Row>
-								{element.eventsOfMonth.map((event, index) => (
+								{element?.eventsOfMonth.map((event, index) => (
 									<Col lg={33} md={50} sm={50} key={index}>
 										<Event
 											title={event.title}
+											description={event.description}
 											date={event.date}
 											type={event.type}
+											link={event.link}
 										/>
 									</Col>
 								))}

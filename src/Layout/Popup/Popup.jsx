@@ -1,7 +1,10 @@
 import React, { useContext, useEffect } from "react";
+import Button from "../../components/Button/Button";
 import MaterialIcons from "../../components/MaterialIcons";
 import GlobalContext from "../../Context/GlobalContext";
 import "./popup.css";
+
+const PopupCTA = ({ ...rest }) => <Button className=" popup-cta" {...rest} />;
 
 const Popup = ({
 	title = "",
@@ -13,6 +16,7 @@ const Popup = ({
 		tab: ["70%", "70%"],
 		mobile: ["85%", "70%"],
 	},
+	cta,
 }) => {
 	useEffect(() => {
 		document.addEventListener("keydown", (e) => {
@@ -48,12 +52,17 @@ const Popup = ({
 				data-aos="zoom-in"
 			>
 				<div className="popup-head">
-					<span className="popup-head__title">
-						{title !== "" && title}
-					</span>
-					<button className="icon" onClick={close}>
-						<MaterialIcons>close</MaterialIcons>
-					</button>
+					<div className="popup-head-left">
+						<span className="popup-head__title">
+							{title !== "" && title}
+						</span>
+					</div>
+					<div className="popup-head-right">
+						{cta && <PopupCTA {...cta} />}
+						<button className="icon" onClick={close}>
+							<MaterialIcons>close</MaterialIcons>
+						</button>
+					</div>
 				</div>
 				<div className="popup-body">{children}</div>
 			</div>
@@ -62,3 +71,4 @@ const Popup = ({
 };
 
 export default Popup;
+export { PopupCTA };

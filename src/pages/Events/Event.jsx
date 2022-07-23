@@ -1,9 +1,10 @@
 import moment from "moment";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import MaterialIcons from "../../components/MaterialIcons";
 import GlobalContext from "../../Context/GlobalContext";
+import EventPopup from "./EventPopup";
 
-const Event = ({ type, title, date }) => {
+const Event = ({ title, description, date, time, type, link }) => {
 	const { theme } = useContext(GlobalContext);
 	const showIcon = (e) => {
 		switch (e) {
@@ -37,6 +38,7 @@ const Event = ({ type, title, date }) => {
 				return "bgcolor";
 		}
 	};
+	const [openEventPopup, setOpenEventPopup] = useState(false);
 	return (
 		<div
 			className="events-body-event event"
@@ -45,6 +47,7 @@ const Event = ({ type, title, date }) => {
 					theme === "light" ? "100" : "700"
 				})`,
 			}}
+			onClick={() => setOpenEventPopup(true)}
 		>
 			<div className="event__icon">
 				<MaterialIcons>{showIcon(type)}</MaterialIcons>
@@ -55,6 +58,17 @@ const Event = ({ type, title, date }) => {
 					{moment(date).format("YYYY-MMM-DD")}
 				</div>
 			</div>
+			{openEventPopup && (
+				<EventPopup
+					title={title}
+					description={description}
+					date={date}
+					time={time}
+					type={type}
+					link={link}
+					close={() => setOpenEventPopup(() => false)}
+				/>
+			)}
 		</div>
 	);
 };

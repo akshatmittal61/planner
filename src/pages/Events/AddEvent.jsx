@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Button from "../../components/Button/Button";
-import Input, { Select, TextArea } from "../../components/Input/Input";
+import Input, { TextArea } from "../../components/Input/Input";
 import Dialog from "../../Layout/Dialog/Dialog";
 import Row, { Col } from "../../Layout/Responsive";
 
@@ -89,21 +89,22 @@ const AddEvent = ({ close }) => {
 						/>
 					</Col>
 				</Row>
-				<Select
+				<Input
 					name="type"
 					placeholder="Event Type"
 					type="text"
 					icon="event"
+					list="typeSuggestions"
 					value={newEvent.type}
 					onChange={handleChange}
-					options={[
-						"birthday",
-						"anniversary",
-						"meeting",
-						"festival",
-						"ceremony",
-					]}
 				/>
+				<datalist id="typeSuggestions">
+					<option value="birthday" />
+					<option value="anniversary" />
+					<option value="meeting" />
+					<option value="festival" />
+					<option value="ceremony" />
+				</datalist>
 				{newEvent.type === "meeting" && (
 					<Input
 						name="meeting"
@@ -115,7 +116,7 @@ const AddEvent = ({ close }) => {
 					/>
 				)}
 				<div className="form-group">
-					<Button text="Cancel" type="reset" variant="outline" />
+					<Button text="Clear" type="reset" variant="outline" />
 					<Button text="Add Event" type="submit" />
 				</div>
 			</form>

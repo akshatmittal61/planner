@@ -50,6 +50,15 @@ select:active + label,
 select:focus + label {
   color: var(--red-700);
 }
+input:disabled, input:disabled:active, input:disabled:focus,
+textarea:disabled,
+textarea:disabled:active,
+textarea:disabled:focus,
+select:disabled,
+select:disabled:active,
+select:disabled:focus {
+  border-bottom: 2px solid var(--transparent);
+}
 
 textarea + label {
   color: var(--red-700);

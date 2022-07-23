@@ -45,6 +45,12 @@ select {
 			color: var(--red-700);
 		}
 	}
+
+	&:disabled,
+	&:disabled:active,
+	&:disabled:focus {
+		border-bottom: 2px solid var(--transparent);
+	}
 }
 
 textarea+label {

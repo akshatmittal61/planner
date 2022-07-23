@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import GlobalContext from "../../Context/GlobalContext";
 import MaterialIcons from "../MaterialIcons";
@@ -6,6 +6,16 @@ import "./side-bar.css";
 
 const SideBar = () => {
 	const { setOpenSideBar, sideBarLinks } = useContext(GlobalContext);
+	useEffect(() => {
+		document.addEventListener("keydown", (e) => {
+			if (e.key === "Escape") setOpenSideBar(false);
+		});
+		return () => {
+			document.removeEventListener("keydown", (e) => {
+				if (e.key === "Escape") setOpenSideBar(false);
+			});
+		};
+	}, [setOpenSideBar]);
 
 	return (
 		<section className="side">
