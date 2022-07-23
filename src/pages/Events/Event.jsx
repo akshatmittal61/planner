@@ -1,5 +1,6 @@
 import moment from "moment";
 import React, { useContext, useState } from "react";
+import IconButton from "../../components/Button/IconButton";
 import MaterialIcons from "../../components/MaterialIcons";
 import GlobalContext from "../../Context/GlobalContext";
 import EventPopup from "./EventPopup";
@@ -56,6 +57,13 @@ const Event = ({ title, description, date, time, type, link }) => {
 				<div className="event-details__title">{title}</div>
 				<div className="event-details__date">
 					{moment(date).format("YYYY-MMM-DD")}
+				</div>
+				<div className="event-details__delete">
+					<IconButton
+						icon="delete"
+						fill="var(--back-shadow-light)"
+						title="Delete Event"
+					/>
 				</div>
 			</div>
 			{openEventPopup && (

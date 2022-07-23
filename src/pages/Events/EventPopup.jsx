@@ -41,13 +41,14 @@ const EventPopup = ({ close, title, description, date, time, type, link }) => {
 							name="description"
 							value={currEvent.description}
 							icon="notes"
+							placeholder="Event Description"
 							rows={4}
 							onChange={handleChange}
 						/>
 					</Col>
 					<Col
-						lg={currEvent.time ? 50 : 100}
-						md={currEvent.time ? 50 : 100}
+						lg={currEvent.time || edit ? 50 : 100}
+						md={currEvent.time || edit ? 50 : 100}
 						sm={100}
 					>
 						<Input
@@ -57,6 +58,7 @@ const EventPopup = ({ close, title, description, date, time, type, link }) => {
 							value={moment(currEvent.date).format("yyyy-MM-DD")}
 							onChange={handleChange}
 							icon="calendar_month"
+							placeholder="Event Date"
 							style={{ margin: "1rem 0" }}
 						/>
 					</Col>
@@ -67,6 +69,8 @@ const EventPopup = ({ close, title, description, date, time, type, link }) => {
 								disabled={!edit}
 								value={currEvent.time}
 								icon="schedule"
+								type="time"
+								placeholder="Event Time"
 								style={{ margin: "1rem 0" }}
 								onChange={handleChange}
 							/>
@@ -87,6 +91,7 @@ const EventPopup = ({ close, title, description, date, time, type, link }) => {
 							disabled={!edit}
 							value={currEvent.type}
 							icon="event"
+							placeholder="Event Type"
 							style={{ margin: "1rem 0" }}
 							onChange={handleChange}
 						/>
@@ -114,6 +119,7 @@ const EventPopup = ({ close, title, description, date, time, type, link }) => {
 										type="url"
 										value={currEvent.link}
 										icon="link"
+										placeholder="Event Link"
 										style={{ margin: "1rem 0" }}
 										onChange={handleChange}
 									/>

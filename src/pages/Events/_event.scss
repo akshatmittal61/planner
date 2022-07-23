@@ -1,4 +1,5 @@
 @import "../../config";
+
 .event {
 	width: 21rem;
 	height: 7rem;
@@ -9,33 +10,42 @@
 	margin: 1.5rem 0;
 	background-color: var(--bgcolor-100);
 	border-radius: 32px;
+
 	@include respond(phone) {
 		height: 60%;
 	}
+
 	&:hover {
 		background-color: var(--bgcolor-400);
 		border-radius: 16px;
 	}
-	& > * {
+
+	&>* {
 		height: 100%;
 		display: flex;
 		justify-content: center;
 		align-items: center;
 	}
+
 	&__icon {
 		width: 17.5%;
 		justify-content: flex-end;
+
 		& .material-symbols-outlined {
 			font-size: 1.75rem;
+
 			@include respond(phone) {
 				font-size: 1.5rem;
 			}
 		}
 	}
+
 	&-details {
 		width: 82.5%;
 		flex-flow: column;
-		& > * {
+		position: relative;
+
+		&>* {
 			width: 80%;
 			height: 35%;
 			padding: 0.15rem;
@@ -43,6 +53,7 @@
 			justify-content: flex-start;
 			align-items: center;
 		}
+
 		&__title {
 			font-size: 1.35rem;
 			line-height: 1.75rem;
@@ -50,8 +61,23 @@
 			text-overflow: ellipsis;
 			white-space: nowrap;
 		}
+
 		&__date {
 			font-size: 1rem;
 		}
+
+		&__delete {
+			position: absolute;
+			bottom: 0.75rem;
+			right: 0.75rem;
+			display: flex;
+			justify-content: flex-end;
+			align-items: center;
+			display: none;
+		}
+	}
+
+	&:hover &-details__delete {
+		display: flex;
 	}
 }

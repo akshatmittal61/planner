@@ -78,6 +78,7 @@
 .event-details {
   width: 82.5%;
   flex-flow: column;
+  position: relative;
 }
 .event-details > * {
   width: 80%;
@@ -96,6 +97,18 @@
 }
 .event-details__date {
   font-size: 1rem;
+}
+.event-details__delete {
+  position: absolute;
+  bottom: 0.75rem;
+  right: 0.75rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  display: none;
+}
+.event:hover .event-details__delete {
+  display: flex;
 }
 
 .add-event-form {
