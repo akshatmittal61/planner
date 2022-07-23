@@ -4,25 +4,9 @@ import IconButton from "../../components/Button/IconButton";
 import Input, { TextArea } from "../../components/Input/Input";
 import Dialog from "../../Layout/Dialog/Dialog";
 import Row, { Col } from "../../Layout/Responsive";
+import { colors, notesBackgrounds } from "../../utils";
 
 const AddNote = ({ close }) => {
-	const colors = [
-		"bgcolor",
-		"red",
-		"pink",
-		"purple",
-		"dark-purple",
-		"indigo",
-		"blue",
-		"light-blue",
-		"cyan",
-		"green",
-		"light-green",
-		"orange",
-		"brown",
-		"grey",
-		"blue-grey",
-	];
 	const [newNote, setNewNote] = useState({
 		title: "",
 		content: "",
@@ -32,6 +16,7 @@ const AddNote = ({ close }) => {
 		trashed: false,
 	});
 	const [openColorBox, setOpenColorBox] = useState(false);
+	const [openImageBox, setOpenImageBox] = useState(false);
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 		setNewNote((p) => ({ ...p, [name]: value }));
@@ -90,103 +75,135 @@ const AddNote = ({ close }) => {
 					value={newNote.content}
 					onChange={handleChange}
 				/>
-				<div className="add-note-form-group">
-					<IconButton
-						fill={`var(--${newNote.color}-100)`}
-						icon="palette"
-						onClick={(e) => {
-							e.preventDefault();
-							setOpenColorBox(true);
-						}}
-					/>
-					{openColorBox && (
-						<>
-							<div className="add-note-color-box">
-								<Row>
-									{colors.map((thisColor, index) => (
-										<Col
-											lg={25}
-											md={25}
-											sm={33}
-											key={index}
-										>
-											<button
-												style={{
-													width: "2rem",
-													height: "2rem",
-													backgroundColor: `var(--${thisColor})`,
-													borderRadius: "500px",
-													margin: "0.5rem",
-												}}
-												onClick={(e) => {
-													e.preventDefault();
-													setNewNote((p) => ({
-														...p,
-														color: thisColor,
-													}));
-													setOpenColorBox(false);
-												}}
-											></button>
-										</Col>
-									))}
-								</Row>
-							</div>
-						</>
-					)}
-				</div>
-				<div className="add-note-form-group">
-					<IconButton
-						fill={`var(--${newNote.color}-100)`}
-						icon="palette"
-						onClick={(e) => {
-							e.preventDefault();
-							setOpenColorBox(true);
-						}}
-					/>
-					{openColorBox && (
-						<>
-							<div className="add-note-color-box">
-								<Row>
-									{colors.map((thisColor, index) => (
-										<Col
-											lg={25}
-											md={25}
-											sm={33}
-											key={index}
-										>
-											<button
-												style={{
-													width: "2rem",
-													height: "2rem",
-													backgroundColor: `var(--${thisColor})`,
-													borderRadius: "500px",
-													margin: "0.5rem",
-												}}
-												onClick={(e) => {
-													e.preventDefault();
-													setNewNote((p) => ({
-														...p,
-														color: thisColor,
-													}));
-													setOpenColorBox(false);
-												}}
-											></button>
-										</Col>
-									))}
-								</Row>
-							</div>
-						</>
-					)}
+				<div
+					className="form-group"
+					style={{ justifyContent: "flex-start" }}
+				>
+					<div className="add-note-form-group">
+						<IconButton
+							fill={`var(--${newNote.color}-100)`}
+							icon="palette"
+							onClick={(e) => {
+								e.preventDefault();
+								setOpenColorBox(true);
+							}}
+						/>
+						{openColorBox && (
+							<>
+								<div className="add-note-color-box">
+									<Row>
+										{colors.map((thisColor, index) => (
+											<Col
+												lg={25}
+												md={25}
+												sm={33}
+												key={index}
+											>
+												<button
+													style={{
+														width: "2rem",
+														height: "2rem",
+														backgroundColor: `var(--${thisColor})`,
+														borderRadius: "500px",
+														margin: "0.5rem",
+													}}
+													onClick={(e) => {
+														e.preventDefault();
+														setNewNote((p) => ({
+															...p,
+															color: thisColor,
+														}));
+														setOpenColorBox(false);
+													}}
+												></button>
+											</Col>
+										))}
+									</Row>
+								</div>
+							</>
+						)}
+					</div>
+					<div className="add-note-form-group">
+						<IconButton
+							fill={`var(--${newNote.color}-100)`}
+							icon="image"
+							onClick={(e) => {
+								e.preventDefault();
+								setOpenImageBox(true);
+							}}
+						/>
+						{openImageBox && (
+							<>
+								<div
+									className="add-note-image-box"
+									style={{ width: "20rem", height: "12rem" }}
+								>
+									<Row>
+										{notesBackgrounds.map(
+											(thisImage, index) => (
+												<Col
+													lg={20}
+													md={25}
+													sm={33}
+													key={index}
+												>
+													<button
+														style={{
+															width: "2.5rem",
+															height: "2.5rem",
+															backgroundImage: `url(${thisImage})`,
+															backgroundSize:
+																"cover",
+															backgroundPosition:
+																"center",
+															backgroundRepeat:
+																"no-repeat",
+															borderRadius:
+																"500px",
+															margin: "0.5rem",
+														}}
+														onClick={(e) => {
+															e.preventDefault();
+															setNewNote((p) => ({
+																...p,
+																image: thisImage,
+															}));
+															setOpenImageBox(
+																false
+															);
+														}}
+													></button>
+												</Col>
+											)
+										)}
+									</Row>
+								</div>
+							</>
+						)}
+					</div>
+					<div className="add-note-form-group">
+						<IconButton
+							fill={`var(--${newNote.color}-100)`}
+							icon="archive"
+							onClick={(e) => {
+								e.preventDefault();
+								setNewNote((p) => ({ ...p, archived: true }));
+							}}
+						/>
+					</div>
 				</div>
 				<div className="form-group">
 					<Button text="Clear" type="reset" variant="outline" />
 					<Button text="Add Note" type="submit" />
 				</div>
 			</form>
-			{openColorBox && (
+			{(openColorBox || openImageBox) && (
 				<div
 					className="add-note-cover"
-					onClick={() => setOpenColorBox(false)}
+					onClick={() => {
+						setOpenColorBox(false);
+						setOpenImageBox(false);
+					}}
 				></div>
 			)}
 		</Dialog>

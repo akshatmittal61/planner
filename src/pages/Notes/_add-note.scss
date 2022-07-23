@@ -3,14 +3,22 @@
         width: 90%;
         margin: 2rem auto;
 
+        textarea {
+            height: 50vh;
+        }
+
         .form-group {
             width: 100%;
             margin: 1rem auto;
             position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         &-group {
             position: relative;
+            margin: 0 1rem;
         }
     }
 
@@ -23,16 +31,41 @@
         z-index: 15;
     }
 
-    &-color {
+    &-color,
+    &-image {
         &-box {
             position: absolute;
-            top: 3rem;
+            bottom: 3rem;
             left: 1rem;
             width: 15rem;
             background-color: var(--bgcolor);
             box-shadow: var(--shadow-elevation-2dp);
             border-radius: 8px;
             z-index: 16;
+            overflow: hidden;
+            overflow-y: auto;
+
+            &::-webkit-scrollbar {
+                width: 1px;
+                background-color: transparent;
+
+                &-track {
+                    background-color: transparent;
+                }
+
+                &-thumb {
+                    background-color: transparent;
+                    border-radius: 500px;
+
+                    &:hover {
+                        background-color: transparent;
+                    }
+
+                    &:hover {
+                        background-color: transparent;
+                    }
+                }
+            }
         }
     }
 }

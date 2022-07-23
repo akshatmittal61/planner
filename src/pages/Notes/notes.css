@@ -66,13 +66,20 @@
   width: 90%;
   margin: 2rem auto;
 }
+.add-note-form textarea {
+  height: 50vh;
+}
 .add-note-form .form-group {
   width: 100%;
   margin: 1rem auto;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .add-note-form-group {
   position: relative;
+  margin: 0 1rem;
 }
 .add-note-cover {
   width: 100vw;
@@ -82,15 +89,34 @@
   left: 0;
   z-index: 15;
 }
-.add-note-color-box {
+.add-note-color-box, .add-note-image-box {
   position: absolute;
-  top: 3rem;
+  bottom: 3rem;
   left: 1rem;
   width: 15rem;
   background-color: var(--bgcolor);
   box-shadow: var(--shadow-elevation-2dp);
   border-radius: 8px;
   z-index: 16;
+  overflow: hidden;
+  overflow-y: auto;
+}
+.add-note-color-box::-webkit-scrollbar, .add-note-image-box::-webkit-scrollbar {
+  width: 1px;
+  background-color: transparent;
+}
+.add-note-color-box::-webkit-scrollbar-track, .add-note-image-box::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+.add-note-color-box::-webkit-scrollbar-thumb, .add-note-image-box::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 500px;
+}
+.add-note-color-box::-webkit-scrollbar-thumb:hover, .add-note-image-box::-webkit-scrollbar-thumb:hover {
+  background-color: transparent;
+}
+.add-note-color-box::-webkit-scrollbar-thumb:hover, .add-note-image-box::-webkit-scrollbar-thumb:hover {
+  background-color: transparent;
 }
 
 /*# sourceMappingURL=notes.css.map */
