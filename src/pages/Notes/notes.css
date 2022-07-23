@@ -62,4 +62,35 @@
   opacity: 1;
 }
 
+.add-note-form {
+  width: 90%;
+  margin: 2rem auto;
+}
+.add-note-form .form-group {
+  width: 100%;
+  margin: 1rem auto;
+  position: relative;
+}
+.add-note-form-group {
+  position: relative;
+}
+.add-note-cover {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 15;
+}
+.add-note-color-box {
+  position: absolute;
+  top: 3rem;
+  left: 1rem;
+  width: 15rem;
+  background-color: var(--bgcolor);
+  box-shadow: var(--shadow-elevation-2dp);
+  border-radius: 8px;
+  z-index: 16;
+}
+
 /*# sourceMappingURL=notes.css.map */

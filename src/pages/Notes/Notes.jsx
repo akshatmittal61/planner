@@ -4,11 +4,13 @@ import GlobalContext from "../../Context/GlobalContext";
 import Masonry, { MasonryBox } from "../../Layout/Masonry/Masonry";
 import { notesNavLinks } from "../../navigation";
 import { allNotes } from "../../resources";
+import AddNote from "./AddNote";
 import Note from "./Note";
 import "./notes.css";
 
 const Notes = () => {
 	const [notes, setNotes] = useState([]);
+	const [showAddNoteBox, setShowAddNoteBox] = useState(false);
 	const { setSideBarLinks } = useContext(GlobalContext);
 	useEffect(() => {
 		setSideBarLinks(notesNavLinks);
@@ -38,7 +40,10 @@ const Notes = () => {
 					)}
 				</Masonry>
 			</section>
-			<Fab icon="edit" />
+			<Fab icon="edit" onClick={() => setShowAddNoteBox(true)} />
+			{showAddNoteBox && (
+				<AddNote close={() => setShowAddNoteBox(false)} />
+			)}
 		</main>
 	);
 };

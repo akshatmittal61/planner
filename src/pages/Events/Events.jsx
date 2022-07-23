@@ -9,6 +9,7 @@ import "./events.css";
 
 const Events = () => {
 	const [events, setEvents] = useState([]);
+	const [showAddEventBox, setShowAddEventBox] = useState(false);
 	useEffect(() => {
 		let newEvents = allEvents
 			.map((ev) => ({
@@ -36,7 +37,6 @@ const Events = () => {
 		setEvents(newArr);
 		window.scrollTo(0, 0);
 	}, []);
-	const [showAddEventBox, setShowAddEventBox] = useState(false);
 	return (
 		<main className="events">
 			<section className="events-head">

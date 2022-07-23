@@ -9,8 +9,6 @@ const Masonry = ({ lg = 3, md = 2, sm = 1, children }) => {
 	);
 	useEffect(() => {
 		window.addEventListener("change", () => {
-			console.log("mobile", breakpoint("mobile"));
-			console.log("tab", breakpoint("tab"));
 			if (breakpoint("mobile")) setCountOfColumns(sm);
 			else if (breakpoint("tab")) setCountOfColumns(md);
 			else setCountOfColumns(lg);
