@@ -1,9 +1,10 @@
+import moment from "moment";
 import React, { useContext } from "react";
 import MaterialIcons from "../../components/MaterialIcons";
 import GlobalContext from "../../Context/GlobalContext";
 
 const Event = ({ type, title, date }) => {
-	const {theme}=useContext(GlobalContext)
+	const { theme } = useContext(GlobalContext);
 	const showIcon = (e) => {
 		switch (e) {
 			case "birthday":
@@ -40,7 +41,9 @@ const Event = ({ type, title, date }) => {
 		<div
 			className="events-body-event event"
 			style={{
-				backgroundColor: `var(--${getColor(type)}-${theme==='light'?'100':'700'})`,
+				backgroundColor: `var(--${getColor(type)}-${
+					theme === "light" ? "100" : "700"
+				})`,
 			}}
 		>
 			<div className="event__icon">
@@ -48,7 +51,9 @@ const Event = ({ type, title, date }) => {
 			</div>
 			<div className="event-details">
 				<div className="event-details__title">{title}</div>
-				<div className="event-details__date">{date}</div>
+				<div className="event-details__date">
+					{moment(date).format("YYYY-MMM-DD")}
+				</div>
 			</div>
 		</div>
 	);
