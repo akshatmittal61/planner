@@ -4,14 +4,15 @@ import IconButton from "../../components/Button/IconButton";
 import Input, { TextArea } from "../../components/Input/Input";
 import Dialog from "../../Layout/Dialog/Dialog";
 import Row, { Col } from "../../Layout/Responsive";
-import { colors, notesBackgrounds } from "../../utils";
+import { colors, imageBackgroundUrl } from "../../utils";
 
 const AddNote = ({ close }) => {
+	const notesBackgrounds = Array(24).fill(null);
 	const [newNote, setNewNote] = useState({
 		title: "",
 		content: "",
-		color: "indigo",
-		image: "",
+		color: "bgcolor",
+		image: -1,
 		archived: false,
 		trashed: false,
 	});
@@ -27,8 +28,8 @@ const AddNote = ({ close }) => {
 		setNewNote({
 			title: "",
 			content: "",
-			color: "indigo",
-			image: "",
+			color: "bgcolor",
+			image: -1,
 			archived: false,
 			trashed: false,
 		});
@@ -38,8 +39,8 @@ const AddNote = ({ close }) => {
 		setNewNote({
 			title: "",
 			content: "",
-			color: "indigo",
-			image: "",
+			color: "bgcolor",
+			image: -1,
 			archived: false,
 			trashed: false,
 		});
@@ -52,6 +53,20 @@ const AddNote = ({ close }) => {
 				action: handleSubmit,
 			}}
 			close={close}
+			bodyStyle={{
+				backgroundImage:
+					newNote.image >= 0 && newNote.image < 24
+						? `url(${imageBackgroundUrl(newNote.image)})`
+						: "none",
+				backgroundSize: "cover",
+				backgroundPosition: "center",
+				backgroundRepeat: "no-repeat",
+				backgroundBlendMode: "lighten",
+				backgroundColor:
+					newNote.image >= 0 && newNote.image < 24
+						? "rgba(255,255,255,0.5)"
+						: `var(--${newNote.color}-100)`,
+			}}
 		>
 			<form
 				className="add-note-form"
@@ -81,7 +96,7 @@ const AddNote = ({ close }) => {
 				>
 					<div className="add-note-form-group">
 						<IconButton
-							fill={`var(--${newNote.color}-100)`}
+							fill={`var(--${newNote.color}-400)`}
 							icon="palette"
 							onClick={(e) => {
 								e.preventDefault();
@@ -125,7 +140,7 @@ const AddNote = ({ close }) => {
 					</div>
 					<div className="add-note-form-group">
 						<IconButton
-							fill={`var(--${newNote.color}-100)`}
+							fill={`var(--${newNote.color}-400)`}
 							icon="image"
 							onClick={(e) => {
 								e.preventDefault();
@@ -151,7 +166,9 @@ const AddNote = ({ close }) => {
 														style={{
 															width: "2.5rem",
 															height: "2.5rem",
-															backgroundImage: `url(https://raw.githubusercontent.com/akshatmittal61/planner/master/src/images/notes-background/${thisImage}.webp)`,
+															backgroundImage: `url(${imageBackgroundUrl(
+																index
+															)})`,
 															backgroundSize:
 																"cover",
 															backgroundPosition:
@@ -166,8 +183,7 @@ const AddNote = ({ close }) => {
 															e.preventDefault();
 															setNewNote((p) => ({
 																...p,
-																image:
-																	index + 1,
+																image: index,
 															}));
 															setOpenImageBox(
 																false
@@ -184,7 +200,7 @@ const AddNote = ({ close }) => {
 					</div>
 					<div className="add-note-form-group">
 						<IconButton
-							fill={`var(--${newNote.color}-100)`}
+							fill={`var(--${newNote.color}-400)`}
 							icon="archive"
 							onClick={(e) => {
 								e.preventDefault();

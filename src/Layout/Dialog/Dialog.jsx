@@ -10,6 +10,7 @@ const Dialog = ({
 	cta = { text: "Save", color: "indigo", action: () => console.log() },
 	children,
 	color = "indigo",
+	bodyStyle,
 }) => {
 	const { theme } = useContext(GlobalContext);
 	useEffect(() => {
@@ -48,7 +49,9 @@ const Dialog = ({
 					/>
 				</div>
 			</div>
-			<div className="dialog-body">{children}</div>
+			<div className="dialog-body" style={bodyStyle}>
+				{children}
+			</div>
 		</section>
 	);
 };
