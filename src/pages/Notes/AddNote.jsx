@@ -151,7 +151,7 @@ const AddNote = ({ close }) => {
 														style={{
 															width: "2.5rem",
 															height: "2.5rem",
-															backgroundImage: `url(${thisImage})`,
+															backgroundImage: `url(https://raw.githubusercontent.com/akshatmittal61/planner/master/src/images/notes-background/${thisImage}.webp)`,
 															backgroundSize:
 																"cover",
 															backgroundPosition:
@@ -166,7 +166,8 @@ const AddNote = ({ close }) => {
 															e.preventDefault();
 															setNewNote((p) => ({
 																...p,
-																image: thisImage,
+																image:
+																	index + 1,
 															}));
 															setOpenImageBox(
 																false
