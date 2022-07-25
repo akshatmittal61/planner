@@ -14,6 +14,16 @@
             display: flex;
             justify-content: center;
             align-items: center;
+
+            [name='title'] {
+                font-size: 1.5rem;
+                line-height: 2rem;
+            }
+
+            [name='content'] {
+                font-size: 1.25rem;
+                line-height: 1.75rem;
+            }
         }
 
         &-group {

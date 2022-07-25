@@ -20,6 +20,10 @@
   border-radius: 20px;
   padding: 0.75rem 0.75rem 0.25rem 0.75rem;
   overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-blend-mode: lighten;
 }
 .note:hover {
   border-radius: 12px;
@@ -76,6 +80,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.add-note-form .form-group [name=title] {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+.add-note-form .form-group [name=content] {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
 }
 .add-note-form-group {
   position: relative;

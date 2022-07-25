@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import MaterialIcons from "../../components/MaterialIcons";
 import GlobalContext from "../../Context/GlobalContext";
+import { imageBackgroundUrl } from "../../utils";
 import NotePopup from "./NotePopup";
 
 const Note = ({ title, content, color, image, trashed, archived }) => {
@@ -10,9 +11,21 @@ const Note = ({ title, content, color, image, trashed, archived }) => {
 		<div
 			className="note"
 			style={{
-				backgroundColor: `var(--${color}-${
+				/* backgroundColor: `var(--${color}-${
 					theme === "light" ? "100" : "700"
-				})`,
+				})`, */
+				backgroundImage:
+					image >= 0 && image < 24
+						? `url(${imageBackgroundUrl(image)})`
+						: "none",
+				backgroundColor:
+					image >= 0 && image < 24
+						? theme === "light"
+							? "rgba(255,255,255,0.5)"
+							: "rgba(0,0,0,0.5)"
+						: `var(--${color}-${
+								theme === "light" ? "100" : "700"
+						  })`,
 			}}
 			onClick={() => setOpenNotePopup(true)}
 		>

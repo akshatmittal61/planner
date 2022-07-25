@@ -22,7 +22,7 @@ const Header = () => {
 	useEffect(() => {
 		document.addEventListener("scroll", () => {
 			if (window.scrollY > 30 * vh) {
-				setShadow("var(--shadow-elevation-4dp)");
+				setShadow("var(--shadow-elevation-2dp)");
 				setHeight("var(--head-height)");
 			} else {
 				setShadow("none");

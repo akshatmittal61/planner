@@ -44,6 +44,7 @@ const NotePopup = ({ close, title, content, color, image, archived }) => {
 				backgroundPosition: "center",
 				backgroundRepeat: "no-repeat",
 				backgroundBlendMode: "lighten",
+				color: color==='bgcolor'?'var(--tcolor)':"var(--black)",
 				backgroundColor:
 					currNote.image >= 0 && currNote.image < 24
 						? "rgba(255,255,255,0.5)"
@@ -56,7 +57,6 @@ const NotePopup = ({ close, title, content, color, image, archived }) => {
 					placeholder="Note Title"
 					icon="edit"
 					type="text"
-					autoFocus
 					value={currNote.title}
 					onChange={handleChange}
 				/>
@@ -67,6 +67,7 @@ const NotePopup = ({ close, title, content, color, image, archived }) => {
 					rows={5}
 					value={currNote.content}
 					onChange={handleChange}
+					autoFocus
 				/>
 				<div
 					className="form-group"
