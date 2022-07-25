@@ -5,6 +5,7 @@ import Input, { TextArea } from "../../components/Input/Input";
 import Dialog from "../../Layout/Dialog/Dialog";
 import Row, { Col } from "../../Layout/Responsive";
 import { colors, imageBackgroundUrl } from "../../utils";
+import slash from "../../images/slash.svg";
 
 const AddNote = ({ close }) => {
 	const notesBackgrounds = Array(24).fill(null);
@@ -154,6 +155,30 @@ const AddNote = ({ close }) => {
 									style={{ width: "20rem", height: "12rem" }}
 								>
 									<Row>
+										<Col lg={20} md={25} sm={33}>
+											<button
+												style={{
+													width: "2.5rem",
+													height: "2.5rem",
+													backgroundImage: `url(${slash})`,
+													backgroundSize: "100% 100%",
+													backgroundPosition:
+														"center",
+													backgroundRepeat:
+														"no-repeat",
+													borderRadius: "500px",
+													margin: "0.5rem",
+												}}
+												onClick={(e) => {
+													e.preventDefault();
+													setNewNote((p) => ({
+														...p,
+														image: -1,
+													}));
+													setOpenImageBox(false);
+												}}
+											></button>
+										</Col>
 										{notesBackgrounds.map(
 											(thisImage, index) => (
 												<Col
