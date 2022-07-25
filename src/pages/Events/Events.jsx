@@ -56,6 +56,7 @@ const Events = () => {
 											title={event.title}
 											description={event.description}
 											date={event.date}
+											time={event.time}
 											type={event.type}
 											link={event.link}
 										/>

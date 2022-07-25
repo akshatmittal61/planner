@@ -23,6 +23,7 @@ const EventPopup = ({ close, title, description, date, time, type, link }) => {
 		e?.preventDefault();
 		console.log(currEvent);
 	};
+	console.log(currEvent);
 	return (
 		<Dialog
 			title={currEvent.title}
@@ -69,7 +70,7 @@ const EventPopup = ({ close, title, description, date, time, type, link }) => {
 								placeholder="Event Date"
 							/>
 						</Col>
-						{(currEvent.time || edit) && (
+						{(currEvent.time !== "" || edit) && (
 							<Col lg={50} md={50} sm={100}>
 								<Input
 									name="time"
