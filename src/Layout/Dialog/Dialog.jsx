@@ -7,7 +7,12 @@ import "./dialog.css";
 const Dialog = ({
 	title = "",
 	close = () => console.log("close dialog box"),
-	cta = { text: "Save", color: "indigo", action: () => console.log() },
+	cta = {
+		text: "Save",
+		icon: "save",
+		color: "indigo",
+		action: () => console.log(),
+	},
 	children,
 	color = "indigo",
 	bodyStyle,
@@ -46,6 +51,7 @@ const Dialog = ({
 						text={cta?.text}
 						onClick={cta?.action ? cta.action : () => console.log()}
 						color={cta?.color ? cta.color : "indigo"}
+						icon={cta?.icon ? cta?.icon : "save"}
 					/>
 				</div>
 			</div>
