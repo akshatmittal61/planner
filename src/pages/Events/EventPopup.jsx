@@ -19,6 +19,9 @@ const EventPopup = ({ close, title, description, date, time, type, link }) => {
 		const { name, value } = e.target;
 		setCurrEvent((p) => ({ ...p, [name]: value }));
 	};
+	const handleSubmit=()=>{
+		console.log(currEvent);
+	}
 	return (
 		<Popup
 			close={close}
@@ -28,7 +31,7 @@ const EventPopup = ({ close, title, description, date, time, type, link }) => {
 				text: edit ? "Save Changes" : "Edit Event",
 				icon: edit ? "save" : "edit",
 				onClick: () => {
-					if (edit) console.log(currEvent);
+					if (edit) handleSubmit();
 					setEdit((p) => !p);
 				},
 			}}
@@ -79,7 +82,7 @@ const EventPopup = ({ close, title, description, date, time, type, link }) => {
 					<Col
 						lg={
 							currEvent.type === "meeting" &&
-							(currEvent.link !== "" || edit)
+							(currEvent?.link !== "" || edit)
 								? 50
 								: 100
 						}
@@ -97,17 +100,17 @@ const EventPopup = ({ close, title, description, date, time, type, link }) => {
 						/>
 					</Col>
 					{currEvent.type === "meeting" &&
-						(currEvent.link !== "" || edit) && (
+						(currEvent?.link !== "" || edit) && (
 							<Col
 								lg={
 									currEvent.type === "meeting" &&
-									(currEvent.link !== "" || edit)
+									(currEvent?.link !== "" || edit)
 										? 50
 										: 100
 								}
 								md={
 									currEvent.type === "meeting" &&
-									(currEvent.link !== "" || edit)
+									(currEvent?.link !== "" || edit)
 										? 50
 										: 100
 								}
@@ -117,7 +120,7 @@ const EventPopup = ({ close, title, description, date, time, type, link }) => {
 									<Input
 										name="link"
 										type="url"
-										value={currEvent.link}
+										value={currEvent?.link}
 										icon="link"
 										placeholder="Event Link"
 										style={{ margin: "1rem 0" }}
@@ -125,7 +128,7 @@ const EventPopup = ({ close, title, description, date, time, type, link }) => {
 									/>
 								) : (
 									<a
-										href={currEvent.link}
+										href={currEvent?.link}
 										target="_blank"
 										style={{
 											width: "90%",
@@ -142,13 +145,14 @@ const EventPopup = ({ close, title, description, date, time, type, link }) => {
 										>
 											link
 										</MaterialIcons>
-										{currEvent.link.substr(0, 8) ===
-										"https://"
-											? currEvent.link.substr(
+										{currEvent?.link?.length > 8 &&
+										currEvent?.link.substr(0, 8) ===
+											"https://"
+											? currEvent?.link.substr(
 													8,
-													currEvent.link.length
+													currEvent?.link.length
 											  )
-											: currEvent.link}
+											: currEvent?.link}
 									</a>
 								)}
 							</Col>
