@@ -225,11 +225,18 @@ const AddNote = ({ close }) => {
 					</div>
 					<div className="add-note-form-group">
 						<IconButton
-							fill={`var(--${newNote.color}-400)`}
+							fill={
+								newNote.archived
+									? `var(--${newNote.color}-400)`
+									: "transparent"
+							}
 							icon="archive"
 							onClick={(e) => {
 								e.preventDefault();
-								setNewNote((p) => ({ ...p, archived: true }));
+								setNewNote((p) => ({
+									...p,
+									archived: !p.archived,
+								}));
 							}}
 						/>
 					</div>

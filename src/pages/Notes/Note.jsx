@@ -1,9 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import MaterialIcons from "../../components/MaterialIcons";
 import GlobalContext from "../../Context/GlobalContext";
+import NotePopup from "./NotePopup";
 
-const Note = ({ title, content, color, trashed, archived }) => {
+const Note = ({ title, content, color, image, trashed, archived }) => {
 	const { theme } = useContext(GlobalContext);
+	const [openNotePopup, setOpenNotePopup] = useState(false);
 	return (
 		<div
 			className="note"
@@ -12,6 +14,7 @@ const Note = ({ title, content, color, trashed, archived }) => {
 					theme === "light" ? "100" : "700"
 				})`,
 			}}
+			onClick={() => setOpenNotePopup(true)}
 		>
 			<div className="note-title">
 				<span>{title}</span>
@@ -55,6 +58,15 @@ const Note = ({ title, content, color, trashed, archived }) => {
 					</>
 				)}
 			</div>
+			{openNotePopup && (
+				<NotePopup
+					title={title}
+					content={content}
+					color={color}
+					image={image}
+					close={() => setOpenNotePopup(false)}
+				/>
+			)}
 		</div>
 	);
 };
