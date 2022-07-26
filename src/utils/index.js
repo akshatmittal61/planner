@@ -24,3 +24,7 @@ export const imageBackgroundUrl = (index) =>
 	`https://raw.githubusercontent.com/snehasharma1111/planner/master/src/images/notes-background/${
 		index + 1
 	}.webp`;
+
+export const copy = (text) => {
+	navigator.clipboard.writeText(text);
+};

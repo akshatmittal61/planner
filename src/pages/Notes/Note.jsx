@@ -1,12 +1,19 @@
 import React, { useContext, useState } from "react";
 import MaterialIcons from "../../components/MaterialIcons";
 import GlobalContext from "../../Context/GlobalContext";
-import { imageBackgroundUrl } from "../../utils";
+import { copy, imageBackgroundUrl } from "../../utils";
 import NotePopup from "./NotePopup";
 
 const Note = ({ title, content, color, image, trashed, archived }) => {
 	const { theme } = useContext(GlobalContext);
 	const [openNotePopup, setOpenNotePopup] = useState(false);
+	const handleCopy = (e) => {
+		e?.preventDefault();
+		let ans = `${title} \n${content}\n`;
+		if (archived) ans += " \nNote: This Note is in owner's archives";
+		if (trashed) ans += " \nNote: This Note is in owner's bin";
+		copy(ans);
+	};
 	return (
 		<div
 			className="note"
@@ -38,7 +45,11 @@ const Note = ({ title, content, color, image, trashed, archived }) => {
 						>
 							<MaterialIcons>palette</MaterialIcons>
 						</button>
-						<button className="note-button" title="Copy Note">
+						<button
+							onClick={handleCopy}
+							className="note-button"
+							title="Copy Note"
+						>
 							<MaterialIcons>content_copy</MaterialIcons>
 						</button>
 						<button className="note-button" title="Add to list">
