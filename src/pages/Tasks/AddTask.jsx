@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Button from "../../components/Button/Button";
 import IconButton from "../../components/Button/IconButton";
 import Input, { TextArea } from "../../components/Input/Input";
 import Dialog from "../../Layout/Dialog/Dialog";
@@ -28,6 +29,7 @@ const AddTask = ({ close }) => {
 			description: "",
 			date: "",
 			time: "",
+			color: "bgcolor",
 			done: false,
 			trashed: false,
 		});
@@ -40,6 +42,7 @@ const AddTask = ({ close }) => {
 			description: "",
 			date: "",
 			time: "",
+			color: "bgcolor",
 			done: false,
 			trashed: false,
 		});
@@ -148,6 +151,10 @@ const AddTask = ({ close }) => {
 							</>
 						)}
 					</div>
+				</div>
+				<div className="form-group">
+					<Button text="Cancel" type="reset" variant="outline" />
+					<Button text="Save Task" type="submit" />
 				</div>
 			</form>
 		</Dialog>

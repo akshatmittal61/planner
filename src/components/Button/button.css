@@ -31,7 +31,7 @@ button {
 }
 .btn .material-symbols-outlined {
   font-size: 1.25rem;
-  margin-right: 0.25rem;
+  margin-right: 0.5rem;
 }
 .btn-blue {
   background-color: var(--blue);
