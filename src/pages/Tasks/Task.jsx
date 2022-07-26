@@ -1,10 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import IconButton from "../../components/Button/IconButton";
 import MaterialIcons from "../../components/MaterialIcons";
 import GlobalContext from "../../Context/GlobalContext";
+import TaskPopup from "./TaskPopup";
 
-const Task = ({ title, description, color, done, trashed }) => {
+const Task = ({ title, description, color, date, time, done, trashed }) => {
 	const { theme } = useContext(GlobalContext);
+	const [openTaskPopup, setOpenTaskPopup] = useState(false);
 	return (
 		<div
 			className="tasks-body-task task"
@@ -13,6 +15,7 @@ const Task = ({ title, description, color, done, trashed }) => {
 					theme === "light" ? "100" : "700"
 				})`,
 			}}
+			onClick={() => setOpenTaskPopup(true)}
 		>
 			<div className="task-title">{title}</div>
 			<div className="task-description">{description}</div>
@@ -55,6 +58,17 @@ const Task = ({ title, description, color, done, trashed }) => {
 					fill="var(--back-shadow-light)"
 					title={trashed ? "Delete Forever" : "Move To Trash"}
 				/>
+				{openTaskPopup && (
+					<TaskPopup
+						close={() => setOpenTaskPopup(false)}
+						title={title}
+						description={description}
+						color={color}
+						date={date}
+						time={time}
+						done={done}
+					/>
+				)}
 			</div>
 		</div>
 	);

@@ -37,6 +37,8 @@ const Tasks = () => {
 												title={task.title}
 												description={task.description}
 												color={task.color}
+												date={task.date}
+												time={task.time}
 												done={task.done}
 												trashed={task.trashed}
 											/>

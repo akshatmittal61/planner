@@ -6,69 +6,50 @@ import Dialog from "../../Layout/Dialog/Dialog";
 import Row, { Col } from "../../Layout/Responsive";
 import { colors } from "../../utils";
 
-const AddTask = ({ close }) => {
-	const [openColorBox, setOpenColorBox] = useState(false);
-	const [newTask, setNewTask] = useState({
-		title: "",
-		description: "",
-		date: "",
-		time: "",
-		color: "bgcolor",
-		done: false,
-		trashed: false,
+const TaskPopup = ({ close, title, description, color, date, time, done }) => {
+	const [currTask, setCurrTask] = useState({
+		title,
+		description,
+		color,
+		date,
+		time,
+		done,
 	});
+	const [openColorBox, setOpenColorBox] = useState(false);
 	const handleChange = (e) => {
 		const { name, value } = e.target;
-		setNewTask((p) => ({ ...p, [name]: value }));
+		setCurrTask((p) => ({ ...p, [name]: value }));
 	};
 	const handleSubmit = (e) => {
 		e?.preventDefault();
-		console.log(newTask);
-		setNewTask({
-			title: "",
-			description: "",
-			date: "",
-			time: "",
-			color: "bgcolor",
-			done: false,
-			trashed: false,
-		});
-		close();
+		console.log(currTask);
 	};
 	const handleReset = (e) => {
 		e?.preventDefault();
-		setNewTask({
-			title: "",
-			description: "",
-			date: "",
-			time: "",
-			color: "bgcolor",
-			done: false,
-			trashed: false,
-		});
+		setCurrTask({ title, description, color, date, time, done });
 	};
 	return (
 		<Dialog
 			close={close}
-			color={newTask.color}
-			title="Add a new Task"
-			cta={{ text: "Add Task", action: handleSubmit }}
-			bodyStyle={{
-				backgroundColor: `var(--${newTask.color}-100)`,
+			color={currTask.color}
+			cta={{
+				text: "Save task",
+				icon: "save",
+				action: () => handleSubmit(),
 			}}
+			bodyStyle={{ backgroundColor: `var(--${currTask.color}-100)` }}
 		>
 			<form
 				className="add-task-form"
-				onReset={handleReset}
 				onSubmit={handleSubmit}
+				onReset={handleReset}
 			>
 				<Input
 					name="title"
 					placeholder="Task Title"
 					icon="edit"
 					type="text"
-					autoFocus
-					value={newTask.title}
+					value={currTask.title}
 					onChange={handleChange}
 				/>
 				<TextArea
@@ -76,7 +57,7 @@ const AddTask = ({ close }) => {
 					placeholder="Task Description"
 					icon="notes"
 					type="text"
-					value={newTask.description}
+					value={currTask.description}
 					onChange={handleChange}
 				/>
 				<Row>
@@ -86,7 +67,7 @@ const AddTask = ({ close }) => {
 							placeholder="Due Date"
 							icon="calendar_month"
 							type="date"
-							value={newTask.date}
+							value={currTask.date}
 							onChange={handleChange}
 						/>
 					</Col>
@@ -96,7 +77,7 @@ const AddTask = ({ close }) => {
 							placeholder="Due Time"
 							icon="schedule"
 							type="time"
-							value={newTask.time}
+							value={currTask.time}
 							onChange={handleChange}
 						/>
 					</Col>
@@ -107,7 +88,7 @@ const AddTask = ({ close }) => {
 				>
 					<div className="add-task-form-group">
 						<IconButton
-							fill={`var(--${newTask.color}-400)`}
+							fill={`var(--${currTask.color}-400)`}
 							icon="palette"
 							onClick={(e) => {
 								e.preventDefault();
@@ -135,7 +116,7 @@ const AddTask = ({ close }) => {
 													}}
 													onClick={(e) => {
 														e.preventDefault();
-														setNewTask((p) => ({
+														setCurrTask((p) => ({
 															...p,
 															color: thisColor,
 														}));
@@ -152,11 +133,11 @@ const AddTask = ({ close }) => {
 				</div>
 				<div className="form-group">
 					<Button text="Cancel" type="reset" variant="outline" />
-					<Button text="Save Task" type="submit" />
+					<Button text="Save Changes" type="submit" />
 				</div>
 			</form>
 		</Dialog>
 	);
 };
 
-export default AddTask;
+export default TaskPopup;
