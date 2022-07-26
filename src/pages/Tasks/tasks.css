@@ -105,4 +105,69 @@
   opacity: 1;
 }
 
+.add-task-form {
+  width: 90%;
+  margin: 2rem auto;
+}
+.add-task-form textarea {
+  height: 20vh;
+}
+.add-task-form .form-group {
+  width: 100%;
+  margin: 1rem auto;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.add-task-form .form-group [name=title] {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+.add-task-form .form-group [name=content] {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+.add-task-form-group {
+  position: relative;
+  margin: 0 1rem;
+}
+.add-task-cover {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 15;
+}
+.add-task-color-box {
+  position: absolute;
+  bottom: 3rem;
+  left: 1rem;
+  width: 15rem;
+  background-color: var(--bgcolor);
+  box-shadow: var(--shadow-elevation-2dp);
+  border-radius: 8px;
+  z-index: 16;
+  overflow: hidden;
+  overflow-y: auto;
+}
+.add-task-color-box::-webkit-scrollbar {
+  width: 1px;
+  background-color: transparent;
+}
+.add-task-color-box::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+.add-task-color-box::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 500px;
+}
+.add-task-color-box::-webkit-scrollbar-thumb:hover {
+  background-color: transparent;
+}
+.add-task-color-box::-webkit-scrollbar-thumb:hover {
+  background-color: transparent;
+}
+
 /*# sourceMappingURL=tasks.css.map */

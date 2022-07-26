@@ -28,8 +28,10 @@ const AddEvent = ({ close }) => {
 			type: "",
 			meeting: "",
 		});
+		close()
 	};
 	const handleReset = (e) => {
+		e?.preventDefault()
 		setNewEvent({
 			title: "",
 			description: "",

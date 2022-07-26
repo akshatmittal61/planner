@@ -4,11 +4,13 @@ import GlobalContext from "../../Context/GlobalContext";
 import Masonry, { MasonryBox } from "../../Layout/Masonry/Masonry";
 import { tasksNavLinks } from "../../navigation";
 import { allTasks } from "../../resources";
+import AddTask from "./AddTask";
 import Task from "./Task";
 import "./tasks.css";
 
 const Tasks = () => {
 	const [tasks, setTasks] = useState([]);
+	const [showAddTaskBox, setShowAddTaskBox] = useState(false);
 	const { setSideBarLinks } = useContext(GlobalContext);
 	useEffect(() => {
 		setTasks(allTasks);
@@ -45,7 +47,10 @@ const Tasks = () => {
 					</div>
 				</div>
 			</section>
-			<Fab icon="add_task" />
+			<Fab icon="add_task" onClick={() => setShowAddTaskBox(true)} />
+			{showAddTaskBox && (
+				<AddTask close={() => setShowAddTaskBox(false)} />
+			)}
 		</main>
 	);
 };
