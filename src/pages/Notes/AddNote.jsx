@@ -34,6 +34,7 @@ const AddNote = ({ close }) => {
 			archived: false,
 			trashed: false,
 		});
+		close();
 	};
 	const handleReset = (e) => {
 		e.preventDefault();
@@ -63,6 +64,10 @@ const AddNote = ({ close }) => {
 				backgroundPosition: "center",
 				backgroundRepeat: "no-repeat",
 				backgroundBlendMode: "lighten",
+				color:
+					newNote.color === "bgcolor"
+						? "var(--tcolor)"
+						: "var(--black)",
 				backgroundColor:
 					newNote.image >= 0 && newNote.image < 24
 						? "rgba(255,255,255,0.5)"

@@ -43,11 +43,10 @@ const NotePopup = ({ close, title, content, color, image, archived }) => {
 				backgroundSize: "cover",
 				backgroundPosition: "center",
 				backgroundRepeat: "no-repeat",
-				backgroundBlendMode: "lighten",
-				color: color==='bgcolor'?'var(--tcolor)':"var(--black)",
+				color: color === "bgcolor" ? "var(--tcolor)" : "var(--black)",
 				backgroundColor:
 					currNote.image >= 0 && currNote.image < 24
-						? "rgba(255,255,255,0.5)"
+						? "rgba(255,255,255,0.65)"
 						: `var(--${currNote.color}-100)`,
 			}}
 		>

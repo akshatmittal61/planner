@@ -11,18 +11,14 @@ const Note = ({ title, content, color, image, trashed, archived }) => {
 		<div
 			className="note"
 			style={{
-				/* backgroundColor: `var(--${color}-${
-					theme === "light" ? "100" : "700"
-				})`, */
 				backgroundImage:
 					image >= 0 && image < 24
 						? `url(${imageBackgroundUrl(image)})`
 						: "none",
+				backgroundBlendMode: "lighten",
 				backgroundColor:
 					image >= 0 && image < 24
-						? theme === "light"
-							? "rgba(255,255,255,0.5)"
-							: "rgba(0,0,0,0.5)"
+						? "rgba(255,255,255,0.65)"
 						: `var(--${color}-${
 								theme === "light" ? "100" : "700"
 						  })`,
