@@ -59,5 +59,38 @@ const notesNavLinks = [
 	},
 ];
 
+const tasksNavLinks = [
+	{
+		title: "Home",
+		route: "/",
+		icon: "home",
+	},
+	{
+		title: "All Tasks",
+		route: "/tasks",
+		icon: "task_alt",
+	},
+	{
+		title: "Completed",
+		route: "/tasks/completed",
+		icon: "done_all",
+	},
+	{
+		title: "Trash",
+		route: "/tasks/trash",
+		icon: "delete",
+	},
+	{
+		title: "Report A Bug",
+		route: "/report",
+		icon: "report",
+	},
+	{
+		title: "Contact Us",
+		route: "/contact",
+		icon: "call",
+	},
+];
+
 export default defaultNavLinks;
-export { notesNavLinks };
+export { notesNavLinks, tasksNavLinks };

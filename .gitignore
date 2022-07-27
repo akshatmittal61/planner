@@ -24,6 +24,5 @@ yarn-debug.log*
 yarn-error.log*
 
 # sass files
-*.scss
 *.css.map
 src/resources.js

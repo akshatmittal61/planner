@@ -1,0 +1,56 @@
+[
+    {
+        "name": "Akshat Mittal",
+        "image": "https://avatars.githubusercontent.com/u/84612609",
+        "about": "MERN stack developer",
+        "socials": [
+            {
+                "username": "@akshatmittal61",
+                "link": "https://twitter.com/akshatmittal61",
+                "service": "twitter"
+            },
+            {
+                "username": "@akshatmittal61",
+                "link": "https://www.linkedin.com/in/akshatmittal61",
+                "service": "linkedin"
+            },
+            {
+                "username": "@akshatmittal61",
+                "link": "https://www.github.com/akshatmittal61",
+                "service": "github"
+            },
+            {
+                "username": "+91 94568 49466",
+                "link": "tel:919456849466",
+                "service": "phone"
+            },
+            {
+                "username": "akshatmittal2506@gmail.com",
+                "link": "mailto:akshatmittal2506@gmail.com",
+                "service": "mail"
+            }
+        ]
+    },
+    {
+        "name": "Sneha Sharma",
+        "image": "https://avatars.githubusercontent.com/u/92130285",
+        "about": "Frontend developer",
+        "socials": [
+            {
+                "username": "@snehasharma1111",
+                "link": "https://www.linkedin.com/in/snehasharma1111",
+                "service": "linkedin"
+            },
+            {
+                "username": "@snehasharma1111",
+                "link": "https://www.github.com/snehasharma1111",
+                "service": "github"
+            },
+            {
+                "username": "snehasharma9205@gmail.com",
+                "link": "mailto:snehasharma9205@gmail.com",
+                "service": "mail"
+            }
+        ]
+    }
+]

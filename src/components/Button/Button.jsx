@@ -4,7 +4,7 @@ import "./button.css";
 
 const Button = ({
 	text = "Click Me",
-	color = "blue",
+	color = "indigo",
 	href = "#",
 	target = "_blank",
 	link,

@@ -11,7 +11,7 @@ const NotesTrash = () => {
 	useEffect(() => {
 		setSideBarLinks(notesNavLinks);
 		setNotes(allNotes);
-	}, []);
+	}, [setSideBarLinks]);
 	return (
 		<main className="notes">
 			<section className="notes-body">
@@ -24,6 +24,7 @@ const NotesTrash = () => {
 										key={index}
 										title={note.title}
 										color={note.color}
+										image={note.image}
 										content={note.content}
 										trashed={note.trashed}
 										archived={note.archived}

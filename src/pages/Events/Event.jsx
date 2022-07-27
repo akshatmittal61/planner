@@ -1,7 +1,12 @@
-import React from "react";
+import moment from "moment";
+import React, { useContext, useState } from "react";
+import IconButton from "../../components/Button/IconButton";
 import MaterialIcons from "../../components/MaterialIcons";
+import GlobalContext from "../../Context/GlobalContext";
+import EventPopup from "./EventPopup";
 
-const Event = ({ type, title, date }) => {
+const Event = ({ title, description, date, time, type, link }) => {
+	const { theme } = useContext(GlobalContext);
 	const showIcon = (e) => {
 		switch (e) {
 			case "birthday":
@@ -34,20 +39,44 @@ const Event = ({ type, title, date }) => {
 				return "bgcolor";
 		}
 	};
+	const [openEventPopup, setOpenEventPopup] = useState(false);
 	return (
 		<div
-			class="events-body-event event"
+			className="events-body-event event"
 			style={{
-				backgroundColor: `var(--${getColor(type)}-100)`,
+				backgroundColor: `var(--${getColor(type)}-${
+					theme === "light" ? "100" : "700"
+				})`,
 			}}
+			onClick={() => setOpenEventPopup(true)}
 		>
-			<div class="event__icon">
+			<div className="event__icon">
 				<MaterialIcons>{showIcon(type)}</MaterialIcons>
 			</div>
-			<div class="event-details">
-				<div class="event-details__title">{title}</div>
-				<div class="event-details__date">{date}</div>
+			<div className="event-details">
+				<div className="event-details__title">{title}</div>
+				<div className="event-details__date">
+					{moment(date).format("YYYY-MMM-DD")}
+				</div>
+				<div className="event-details__delete">
+					<IconButton
+						icon="delete"
+						fill="var(--back-shadow-light)"
+						title="Delete Event"
+					/>
+				</div>
 			</div>
+			{openEventPopup && (
+				<EventPopup
+					title={title}
+					description={description}
+					date={date}
+					time={time}
+					type={type}
+					link={link}
+					close={() => setOpenEventPopup(() => false)}
+				/>
+			)}
 		</div>
 	);
 };

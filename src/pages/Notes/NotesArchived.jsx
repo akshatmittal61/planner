@@ -1,17 +1,17 @@
-import React, { useContext, useEffect, useState } from 'react'
-import GlobalContext from '../../Context/GlobalContext';
-import Masonry, { MasonryBox } from '../../Layout/Masonry/Masonry';
-import { notesNavLinks } from '../../navigation';
-import { allNotes } from '../../resources';
-import Note from './Note';
+import React, { useContext, useEffect, useState } from "react";
+import GlobalContext from "../../Context/GlobalContext";
+import Masonry, { MasonryBox } from "../../Layout/Masonry/Masonry";
+import { notesNavLinks } from "../../navigation";
+import { allNotes } from "../../resources";
+import Note from "./Note";
 
 const NotesArchived = () => {
-    const [notes, setNotes] = useState([]);
+	const [notes, setNotes] = useState([]);
 	const { setSideBarLinks } = useContext(GlobalContext);
 	useEffect(() => {
 		setSideBarLinks(notesNavLinks);
 		setNotes(allNotes);
-	}, []);
+	}, [setSideBarLinks]);
 	return (
 		<main className="notes">
 			<section className="notes-body">
@@ -24,6 +24,7 @@ const NotesArchived = () => {
 										key={index}
 										title={note.title}
 										color={note.color}
+										image={note.image}
 										content={note.content}
 										trashed={note.trashed}
 										archived={note.archived}
@@ -35,6 +36,6 @@ const NotesArchived = () => {
 			</section>
 		</main>
 	);
-}
+};
 
-export default NotesArchived
+export default NotesArchived;

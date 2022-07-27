@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useContext, useEffect, useState } from "react";
 import _ from "lodash";
 import i1 from "../../images/calendar/1.png";
 import i2 from "../../images/calendar/2.png";
@@ -15,8 +16,10 @@ import i12 from "../../images/calendar/12.png";
 import "./calendar.css";
 import IconButton from "../../components/Button/IconButton";
 import MonthDialogBox from "./MonthDialogBox";
+import GlobalContext from "../../Context/GlobalContext";
 
 const Calendar = () => {
+	const { theme } = useContext(GlobalContext);
 	const days = [
 		"Monday",
 		"Tuesday",
@@ -138,7 +141,11 @@ const Calendar = () => {
 		<main className="calendar">
 			<section
 				className="calendar-head"
-				style={{ backgroundColor: `var(--${colors[month % 12]}-100)` }}
+				style={{
+					backgroundColor: `var(--${colors[month % 12]}-${
+						theme === "light" ? "100" : "700"
+					})`,
+				}}
 			>
 				<div className="calendar-head-labels">
 					<div
@@ -202,7 +209,9 @@ const Calendar = () => {
 				<table className="calendar-table">
 					<thead
 						style={{
-							backgroundColor: `var(--${colors[month % 12]}-100)`,
+							backgroundColor: `var(--${colors[month % 12]}-${
+								theme === "light" ? "100" : "700"
+							})`,
 						}}
 					>
 						<tr>

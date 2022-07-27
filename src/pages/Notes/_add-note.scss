@@ -1,0 +1,81 @@
+.add-note {
+    &-form {
+        width: 90%;
+        margin: 2rem auto;
+
+        textarea {
+            height: 50vh;
+        }
+
+        .form-group {
+            width: 100%;
+            margin: 1rem auto;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            [name='title'] {
+                font-size: 1.5rem;
+                line-height: 2rem;
+            }
+
+            [name='content'] {
+                font-size: 1.25rem;
+                line-height: 1.75rem;
+            }
+        }
+
+        &-group {
+            position: relative;
+            margin: 0 1rem;
+        }
+    }
+
+    &-cover {
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 15;
+    }
+
+    &-color,
+    &-image {
+        &-box {
+            position: absolute;
+            bottom: 3rem;
+            left: 1rem;
+            width: 15rem;
+            background-color: var(--bgcolor);
+            box-shadow: var(--shadow-elevation-2dp);
+            border-radius: 8px;
+            z-index: 16;
+            overflow: hidden;
+            overflow-y: auto;
+
+            &::-webkit-scrollbar {
+                width: 1px;
+                background-color: transparent;
+
+                &-track {
+                    background-color: transparent;
+                }
+
+                &-thumb {
+                    background-color: transparent;
+                    border-radius: 500px;
+
+                    &:hover {
+                        background-color: transparent;
+                    }
+
+                    &:hover {
+                        background-color: transparent;
+                    }
+                }
+            }
+        }
+    }
+}

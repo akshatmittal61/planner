@@ -1,0 +1,62 @@
+.form-group {
+	width: 90%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0.5rem 0;
+	position: relative;
+}
+
+label {
+	color: var(--indigo);
+	position: absolute;
+	top: 50%;
+	left: 0;
+	transform: translate(50%, -50%);
+
+	.material-symbols-outlined {
+		font-size: 1.5rem;
+	}
+
+	body.dark & {
+		color: var(--indigo-100);
+	}
+}
+
+input,
+textarea,
+select {
+	width: 100%;
+	position: relative;
+	margin: 0 auto;
+	padding: 0.6rem 3rem;
+	color: inherit;
+	border-bottom: 2px solid var(--back-shadow);
+
+	&:hover {
+		border-bottom: 2px solid var(--back-shadow);
+	}
+
+	&:active,
+	&:focus {
+		border-bottom: 2px solid var(--indigo);
+
+		&+label {
+			color: var(--red-700);
+		}
+	}
+
+	&:disabled,
+	&:disabled:active,
+	&:disabled:focus {
+		border-bottom: 2px solid var(--transparent);
+	}
+}
+
+textarea+label {
+	color: var(--red-700);
+}
+
+button {
+	width: 40%;
+}

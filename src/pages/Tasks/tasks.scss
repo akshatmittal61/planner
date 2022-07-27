@@ -1,0 +1,60 @@
+@import "../../config";
+
+.tasks {
+	margin-top: var(--head-height);
+	width: 100%;
+	min-height: calc(100vh - var(--head-height));
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	flex-flow: column;
+
+	&-head {
+		width: 100%;
+		height: 7.5rem;
+		font-size: 3.5rem;
+		line-height: 3.5rem;
+		font-weight: 100;
+		padding: 0.35rem 4rem;
+		margin: 0.5rem;
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+
+		@include respond(phone) {
+			padding: 0.5rem 1rem;
+		}
+	}
+
+	&-body {
+		width: 100%;
+		margin: 0.5rem 0;
+
+		&-section {
+			width: 100%;
+			margin: 0.5rem auto;
+
+			&__head {
+				font-size: 2rem;
+				line-height: 2.5rem;
+				padding: 0.5rem 4rem;
+
+				@include respond(phone) {
+					padding: 0.5rem 1rem;
+				}
+			}
+
+			&__body {
+				width: 85%;
+				margin: 0 auto;
+
+				@include respond(phone) {
+					width: 95%
+				}
+			}
+		}
+	}
+}
+
+@import "./task";
+@import "./add-task";

@@ -13,7 +13,7 @@ const Masonry = ({ lg = 3, md = 2, sm = 1, children }) => {
 			else if (breakpoint("tab")) setCountOfColumns(md);
 			else setCountOfColumns(lg);
 		});
-	}, [breakpoint, lg, md, sm, window.innerWidth]);
+	}, [breakpoint, lg, md, sm]);
 	return (
 		<div
 			className="masonry"

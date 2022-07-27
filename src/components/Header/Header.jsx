@@ -4,9 +4,12 @@ import MaterialIcons from "../MaterialIcons";
 import "./header.css";
 import "../Button/button.css";
 import GlobalContext from "../../Context/GlobalContext";
+import AppBox from "../AppBox/AppBox";
+import userFallBack from "../../images/user.svg";
 
 const Header = () => {
-	const { user, openSideBar, setOpenSideBar } = useContext(GlobalContext);
+	const { user, theme, setTheme, openSideBar, setOpenSideBar } =
+		useContext(GlobalContext);
 	const vh = window.innerHeight / 100;
 	const location = useLocation();
 	const navigate = useNavigate();
@@ -14,17 +17,23 @@ const Header = () => {
 	const [height, setHeight] = useState(
 		location.pathname === "/" ? 0 : "var(--head-height)"
 	);
+	const [openAppBox, setOpenAppBox] = useState(false);
+	const [userImg, setUserImg] = useState(user?.avatar);
 	useEffect(() => {
 		document.addEventListener("scroll", () => {
 			if (window.scrollY > 30 * vh) {
-				setShadow("var(--shadow-elevation-4dp)");
+				setShadow("var(--shadow-elevation-2dp)");
 				setHeight("var(--head-height)");
 			} else {
 				setShadow("none");
 				setHeight("0");
 			}
 		});
-	}, []);
+	}, [vh]);
+	useEffect(() => {
+		setOpenAppBox(false);
+	}, [location.pathname]);
+
 	return (
 		<header
 			className="header"
@@ -58,6 +67,16 @@ const Header = () => {
 				</Link>
 			</div>
 			<div className="header-right">
+				<button
+					className="icon"
+					onClick={() =>
+						setTheme((p) => (p === "light" ? "dark" : "light"))
+					}
+				>
+					<MaterialIcons>
+						{theme === "light" ? "dark_mode" : "light_mode"}
+					</MaterialIcons>
+				</button>
 				<button className="icon">
 					<MaterialIcons>sync</MaterialIcons>
 				</button>
@@ -67,14 +86,26 @@ const Header = () => {
 				<button
 					className="icon"
 					onClick={() => {
+						setOpenAppBox((p) => !p);
+					}}
+				>
+					<MaterialIcons>apps</MaterialIcons>
+				</button>
+				{openAppBox && <AppBox close={() => setOpenAppBox(false)} />}
+				<button
+					className="icon"
+					onClick={() => {
 						navigate("/profile");
 					}}
 				>
 					{user?.avatar ? (
 						<img
 							className="header-right-avatar"
-							src={user.avatar}
+							src={userImg}
 							alt={user.name}
+							onError={() => {
+								setUserImg(userFallBack);
+							}}
 						/>
 					) : (
 						<MaterialIcons>account_circle</MaterialIcons>

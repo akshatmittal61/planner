@@ -1,0 +1,56 @@
+.calendar-dialog-month {
+	width: 13ch;
+	height: 20rem;
+	position: absolute;
+	overflow: hidden;
+	font-size: 1.25rem;
+	line-height: 1.75rem;
+	overflow-y: auto;
+	border-radius: 4px;
+	box-shadow: var(--shadow-elevation-4dp);
+	&-cover {
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 7;
+		width: 100vw;
+		height: 100vh;
+	}
+	&::-webkit-scrollbar {
+		width: 1px;
+		background-color: transparent;
+		&-track {
+			background-color: transparent;
+		}
+		&-thumb {
+			background-color: transparent;
+			border-radius: 500px;
+			&:hover {
+				background-color: transparent;
+			}
+			&:hover {
+				background-color: transparent;
+			}
+		}
+	}
+	ul {
+		width: 100%;
+		height: 100%;
+		list-style: none;
+		position: relative;
+		z-index: 9;
+	}
+	li {
+		width: 100%;
+		height: 3rem;
+	}
+	button {
+		width: 100%;
+		height: 100%;
+		background-color: var(--bgcolor);
+		color: var(--tcolor);
+		&:hover {
+			background-color: var(--bgcolor-100);
+		}
+	}
+}

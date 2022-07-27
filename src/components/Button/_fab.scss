@@ -1,0 +1,34 @@
+.fab {
+    width: 4rem;
+    height: 4rem;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 5;
+    margin: 1.5rem;
+    border-radius: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: var(--shadow-elevation-2dp);
+
+    &:hover {
+        border-radius: 16px;
+    }
+
+    &-lg {
+        width: 4.5rem;
+        height: 4.5rem;
+    }
+
+    &-sm {
+        width: 3.5rem;
+        height: 3.5rem;
+        border-radius: 20px;
+
+        &:hover {
+            border-radius: 12px;
+        }
+    }
+
+}

@@ -1,0 +1,89 @@
+@import "../../colors";
+
+button {
+	border: none;
+	outline: none;
+	background: none;
+	cursor: pointer;
+	user-select: none;
+	font: inherit;
+	color: inherit;
+}
+
+.btn {
+	width: fit-content;
+	height: fit-content;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	margin: 1rem;
+	padding: 0.65rem 1.35rem;
+	background-color: var(--blue);
+	color: var(--white);
+	border-radius: 500px;
+	white-space: nowrap;
+	font-family: "Google Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+		Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+		sans-serif;
+	box-shadow: var(--shadow-elevation-2dp);
+
+	&:hover {
+		box-shadow: var(--shadow-elevation-4dp);
+	}
+
+	&:active {
+		box-shadow: var(--shadow-elevation-2dp);
+	}
+
+	.material-symbols-outlined {
+		font-size: 1.25rem;
+		margin-right: 0.5rem;
+	}
+
+	@each $color in $colors {
+		&-#{$color} {
+			background-color: var(--#{$color});
+		}
+
+		&-#{$color}.btn-outline {
+			outline: 2px solid var(--#{$color});
+			color: var(--#{$color});
+		}
+	}
+
+	&-outline {
+		background-color: transparent;
+	}
+
+	&-white {
+		color: var(--black);
+
+		&.btn-outline {
+			outline: 2px solid var(--black);
+			color: var(--black);
+		}
+	}
+}
+
+.icon {
+	width: 2.5rem;
+	height: 2.5rem;
+	padding: 1rem;
+	border-radius: 500px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: var(--tcolor);
+
+	.material-symbols-outlined {
+		font-size: 1.5rem;
+	}
+
+	&:hover {
+		background-color: var(--back-shadow-light);
+	}
+}
+
+@import "./link-button";
+@import "./icon-button";
+@import "./fab";

@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import wave from "../../images/wave.svg";
+import React, { useContext, useState } from "react";
+import wave1 from "../../images/wave1.svg";
+import wave2 from "../../images/wave2.svg";
 import Input, { TextArea } from "../Input/Input";
 import Button from "../Button/Button";
 import "./footer.css";
@@ -12,8 +13,10 @@ import {
 	Mail,
 	Twitter,
 } from "react-feather";
+import GlobalContext from "../../Context/GlobalContext";
 
 const Footer = () => {
+	const { theme } = useContext(GlobalContext);
 	const [userMessage, setUserMessage] = useState({
 		name: "",
 		email: "",
@@ -84,7 +87,12 @@ const Footer = () => {
 		});
 	};
 	return (
-		<footer className="footer" style={{ backgroundImage: `url(${wave})` }}>
+		<footer
+			className="footer"
+			style={{
+				backgroundImage: `url(${theme === "light" ? wave1 : wave2})`,
+			}}
+		>
 			<div className="footer-left">
 				<div className="footer-left-container">
 					<img

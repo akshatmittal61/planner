@@ -35,6 +35,7 @@
   justify-content: flex-end;
   align-items: flex-start;
   flex-flow: column;
+  color: var(--black);
 }
 .not-found-content__h1 {
   font-size: 4rem;

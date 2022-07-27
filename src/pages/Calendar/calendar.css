@@ -45,7 +45,7 @@
   padding: 0.3rem 0.75rem;
 }
 .calendar-head-year input:active, .calendar-head-year input:focus {
-  border: 4px solid var(--back-shadow);
+  border-bottom: 4px solid var(--back-shadow);
 }
 .calendar-body {
   width: 100%;
@@ -79,6 +79,7 @@
 .calendar-body table tbody {
   width: 100%;
   height: 83.3333333333%;
+  color: var(--black);
 }
 .calendar-body table tbody tr {
   height: 20%;

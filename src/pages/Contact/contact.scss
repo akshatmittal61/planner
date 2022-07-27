@@ -1,0 +1,102 @@
+@import "../../config";
+
+.contact {
+    width: 100vw;
+    height: 100vh - var(--head-height);
+    margin-top: var(--head-height);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &-section {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-flow: column;
+    }
+
+    &-card {
+        width: 37.5rem;
+        max-width: 90%;
+        height: 15rem;
+        margin: 2rem auto;
+        border-radius: 32px;
+        background-color: var(--indigo-100);
+        border: 1px solid var(--back-shadow-light);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+
+        @include respond(phone) {
+            width: 75%;
+            height: 35rem;
+            flex-flow: column-reverse;
+        }
+
+        &-image {
+            width: 45%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 32px;
+
+            @include respond(phone) {
+                width: 100%;
+                height: 55%;
+            }
+        }
+
+        &-content {
+            width: 55%;
+            height: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: flex-start;
+            flex-flow: column;
+            padding: 1rem 1.5rem;
+
+            @include respond(phone) {
+                width: 100%;
+                height: 45%;
+            }
+
+            &__name {
+                font-size: 2.25rem;
+                margin-bottom: 0.5rem;
+            }
+
+            &__about {
+                font-size: 1.25rem;
+                line-height: 1.5rem;
+            }
+
+            &__socials {
+                width: 100%;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+
+                a {
+                    margin: 0 0.15rem;
+                }
+            }
+        }
+
+        &:hover {
+            border-radius: 16px;
+        }
+
+        &:hover &-image {
+            border-radius: 16px;
+        }
+
+    }
+
+}

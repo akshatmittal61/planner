@@ -1,11 +1,36 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import MaterialIcons from "../../components/MaterialIcons";
+import GlobalContext from "../../Context/GlobalContext";
+import { copy, imageBackgroundUrl } from "../../utils";
+import NotePopup from "./NotePopup";
 
-const Note = ({ title, content, color, trashed, archived }) => {
+const Note = ({ title, content, color, image, trashed, archived }) => {
+	const { theme } = useContext(GlobalContext);
+	const [openNotePopup, setOpenNotePopup] = useState(false);
+	const handleCopy = (e) => {
+		e?.preventDefault();
+		let ans = `${title} \n${content}\n`;
+		if (archived) ans += " \nNote: This Note is in owner's archives";
+		if (trashed) ans += " \nNote: This Note is in owner's bin";
+		copy(ans);
+	};
 	return (
 		<div
 			className="note"
-			style={{ backgroundColor: `var(--${color}-100)` }}
+			style={{
+				backgroundImage:
+					image >= 0 && image < 24
+						? `url(${imageBackgroundUrl(image)})`
+						: "none",
+				backgroundBlendMode: "lighten",
+				backgroundColor:
+					image >= 0 && image < 24
+						? "rgba(255,255,255,0.65)"
+						: `var(--${color}-${
+								theme === "light" ? "100" : "700"
+						  })`,
+			}}
+			onClick={() => setOpenNotePopup(true)}
 		>
 			<div className="note-title">
 				<span>{title}</span>
@@ -20,7 +45,11 @@ const Note = ({ title, content, color, trashed, archived }) => {
 						>
 							<MaterialIcons>palette</MaterialIcons>
 						</button>
-						<button className="note-button" title="Copy Note">
+						<button
+							onClick={handleCopy}
+							className="note-button"
+							title="Copy Note"
+						>
 							<MaterialIcons>content_copy</MaterialIcons>
 						</button>
 						<button className="note-button" title="Add to list">
@@ -49,6 +78,15 @@ const Note = ({ title, content, color, trashed, archived }) => {
 					</>
 				)}
 			</div>
+			{openNotePopup && (
+				<NotePopup
+					title={title}
+					content={content}
+					color={color}
+					image={image}
+					close={() => setOpenNotePopup(false)}
+				/>
+			)}
 		</div>
 	);
 };

@@ -25,6 +25,9 @@ export const GlobalProvider = ({ children }) => {
 	const [user, setUser] = useState(
 		JSON.parse(localStorage.getItem("user")) || null
 	);
+	const [theme, setTheme] = useState(
+		localStorage.getItem("theme") || "light"
+	);
 	const axiosInstance = axios.create({
 		baseURL: "http://localhost:5000/",
 		headers: {
@@ -48,6 +51,8 @@ export const GlobalProvider = ({ children }) => {
 				setOpenSideBar,
 				sideBarLinks,
 				setSideBarLinks,
+				theme,
+				setTheme,
 			}}
 		>
 			{children}
