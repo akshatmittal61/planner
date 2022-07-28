@@ -9,7 +9,13 @@
     "@testing-library/user-event": "^12.8.3",
     "aos": "^2.3.4",
     "axios": "^0.27.2",
+    "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.4",
+    "mongoose": "^6.5.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-feather": "^2.0.10",
@@ -18,12 +24,12 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "node server.js",
+    "start": "node server.mjs",
     "react": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "nodemon server.js",
+    "server": "nodemon server.mjs",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build",
     "sass": "sass src/style.scss:src/style.css src/components/Button/button.scss:src/components/Button/button.css src/components/Header/header.scss:src/components/Header/header.css src/components/SideBar/side-bar.scss:src/components/SideBar/side-bar.css src/components/Footer/footer.scss:src/components/Footer/footer.css src/components/Input/input.scss:src/components/Input/input.css src/components/AppBox/app-box.scss:src/components/AppBox/app-box.css src/Layout/Masonry/masonry.scss:src/Layout/Masonry/masonry.css src/Layout/Popup/popup.scss:src/Layout/Popup/popup.css src/Layout/Dialog/dialog.scss:src/Layout/Dialog/dialog.css src/pages/Home/home.scss:src/pages/Home/home.css src/pages/About/about.scss:src/pages/About/about.css src/pages/Login/login.scss:src/pages/Login/login.css src/pages/Register/register.scss:src/pages/Register/register.css src/pages/Calendar/calendar.scss:src/pages/Calendar/calendar.css src/pages/Events/events.scss:src/pages/Events/events.css src/pages/Notes/notes.scss:src/pages/Notes/notes.css src/pages/Tasks/tasks.scss:src/pages/Tasks/tasks.css src/pages/Contact/contact.scss:src/pages/Contact/contact.css src/pages/NotFound/not-found.scss:src/pages/NotFound/not-found.css -w"
   },
