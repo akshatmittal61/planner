@@ -1,4 +1,4 @@
-import { Model, Schema } from "mongoose";
+import { model, Schema } from "mongoose";
 
 const UserSchema = new Schema(
 	{
@@ -24,14 +24,9 @@ const UserSchema = new Schema(
 			type: String,
 			required: true,
 		},
-		avatar: {
-			type: String,
-			default:
-				"https://raw.githubusercontent.com/akshatmittal61/planner/master/src/images/user.svg",
-		},
 	},
 	{ timestamps: true }
 );
 
-const User = Model("user", UserSchema);
+const User = model("user", UserSchema);
 export default User;
