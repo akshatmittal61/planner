@@ -1,9 +1,11 @@
-import { model, Schema } from "mongoose";
+import mongoose from "mongoose";
 
-const TaskSchema = new Schema(
+let a = new Date();
+
+const TaskSchema = new mongoose.Schema(
 	{
 		user: {
-			type: Schema.Types.ObjectId,
+			type: mongoose.Schema.Types.ObjectId,
 			ref: "User",
 		},
 		title: {
@@ -23,7 +25,7 @@ const TaskSchema = new Schema(
 		},
 		time: {
 			type: String,
-			default: `${Date.prototype.getHours()}:${Date.prototype.getMinutes()}:${Date.prototype.getSeconds()}`,
+			default: `${a.getHours()}:${a.getMinutes()}:${a.getSeconds()}`,
 		},
 		done: {
 			type: Boolean,
@@ -37,5 +39,5 @@ const TaskSchema = new Schema(
 	{ timestamps: true }
 );
 
-const Task = model("task", TaskSchema);
+const Task = mongoose.model("task", TaskSchema);
 export default Task;

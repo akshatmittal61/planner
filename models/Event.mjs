@@ -1,9 +1,11 @@
-import { model, Schema } from "mongoose";
+import mongoose from "mongoose";
 
-const EventSchema = new Schema(
+let a = new Date();
+
+const EventSchema = new mongoose.Schema(
 	{
 		user: {
-			type: Schema.Types.ObjectId,
+			type: mongoose.Schema.Types.ObjectId,
 			ref: "User",
 		},
 		title: {
@@ -26,7 +28,7 @@ const EventSchema = new Schema(
 		},
 		time: {
 			type: String,
-			default: `${Date.prototype.getHours()}:${Date.prototype.getMinutes()}:${Date.prototype.getSeconds()}`,
+			default: `${a.getHours()}:${a.getMinutes()}:${a.getSeconds()}`,
 		},
 		trashed: {
 			type: Boolean,
@@ -36,5 +38,5 @@ const EventSchema = new Schema(
 	{ timestamps: true }
 );
 
-const Event = model("event", EventSchema);
+const Event = mongoose.model("event", EventSchema);
 export default Event;

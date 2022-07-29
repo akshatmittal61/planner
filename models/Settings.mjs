@@ -1,9 +1,9 @@
-import { model, Schema } from "mongoose";
+import mongoose from "mongoose";
 
-const SettingsSchema = new Schema(
+const SettingsSchema = new mongoose.Schema(
 	{
 		user: {
-			type: Schema.Types.ObjectId,
+			type: mongoose.Schema.Types.ObjectId,
 			ref: "User",
 		},
 		theme: {
@@ -29,5 +29,5 @@ const SettingsSchema = new Schema(
 	}
 );
 
-const Settings = model("settings", SettingsSchema);
+const Settings = mongoose.model("settings", SettingsSchema);
 export default Settings;

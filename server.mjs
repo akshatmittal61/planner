@@ -4,6 +4,7 @@ import { config } from "dotenv";
 import connect from "./db/index.mjs";
 import { PORT } from "./config/index.mjs";
 import apiAuth from "./routes/auth.mjs";
+import apiEvent from "./routes/event.mjs";
 
 config();
 const app = express();
@@ -16,6 +17,7 @@ app.get("/", (req, res) => {
 	res.send("Hello World");
 });
 app.use("/api/auth", apiAuth);
+app.use("/api/event", apiEvent);
 
 app.listen(PORT, () => {
 	connect();

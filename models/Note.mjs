@@ -1,9 +1,9 @@
-import { model, Schema } from "mongoose";
+import mongoose from "mongoose";
 
-const NoteSchema = new Schema(
+const NoteSchema = new mongoose.Schema(
 	{
 		user: {
-			type: Schema.Types.ObjectId,
+			type: mongoose.Schema.Types.ObjectId,
 			ref: "User",
 		},
 		title: {
@@ -31,5 +31,5 @@ const NoteSchema = new Schema(
 	}
 );
 
-const Note = model("note", NoteSchema);
+const Note = mongoose.model("note", NoteSchema);
 export default Note;

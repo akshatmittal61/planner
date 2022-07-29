@@ -1,9 +1,9 @@
-import { model, Schema } from "mongoose";
+import mongoose from "mongoose";
 
-const ProfileSchema = new Schema(
+const ProfileSchema = new mongoose.Schema(
 	{
 		user: {
-			type: Schema.Types.ObjectId,
+			type: mongoose.Schema.Types.ObjectId,
 			ref: "User",
 		},
 		status: {
@@ -26,5 +26,5 @@ const ProfileSchema = new Schema(
 	{ timestamps: true }
 );
 
-const Profile = model("profile", ProfileSchema);
+const Profile = mongoose.model("profile", ProfileSchema);
 export default Profile;
