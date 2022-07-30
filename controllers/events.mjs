@@ -69,12 +69,12 @@ const editEvent = async (req, res) => {
 			},
 			{ new: true }
 		);
-		res.status(200).json({
-			message: "Updated event successfuly",
+		return res.status(200).json({
 			updatedEvent,
+			message: "Updated event successfuly",
 		});
 	} catch (error) {
-		console.log(error);
+		console.error(error);
 		if (error.kind === "ObjectId")
 			return res.status(404).json({ message: "Event not found" });
 		return res.status(500).json({ message: "Server Error" });
