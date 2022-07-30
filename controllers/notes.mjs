@@ -74,4 +74,21 @@ const editNote = async (req, res) => {
 	}
 };
 
-export { getAllNotes, getNote, addNote, editNote };
+const deleteNote = async (req, res) => {
+	const id = req.params.id;
+	try {
+		const note = await Note.findById(id);
+		if (!note) return res.status(404).json({ message: "Note not found" });
+		if (note.user.toString() !== req.user.id)
+			return res.status(401).json({ message: "User not authorized" });
+		await note.remove();
+		return res.status(200).json({ message: "Note deleted" });
+	} catch (error) {
+		console.error(error);
+		if (error.kind === "ObjectId")
+			return res.status(404).json({ message: "Noet not found" });
+		return res.status(500).json({ message: "Server Error" });
+	}
+};
+
+export { getAllNotes, getNote, addNote, editNote, deleteNote };
