@@ -24,6 +24,11 @@ const UserSchema = new mongoose.Schema(
 			type: String,
 			required: true,
 		},
+		avatar: {
+			type: String,
+			default:
+				"https://raw.githubusercontent.com/akshatmittal61/planner/master/src/images/user.svg",
+		},
 	},
 	{ timestamps: true }
 );
