@@ -20,9 +20,9 @@ const getEvent = async (req, res) => {
 			return res.status(404).json({ message: "Event not found" });
 		return res.status(200).json(foundEvent);
 	} catch (error) {
-		console.log(error);
+		console.error(error);
 		if (error.kind === "ObjectId")
-			return res.status(404).json({ message: "Post not found" });
+			return res.status(404).json({ message: "Event not found" });
 		return res.status(500).json({ message: "Server Error" });
 	}
 };
