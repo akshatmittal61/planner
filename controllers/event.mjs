@@ -67,11 +67,28 @@ const editEvent = async (req, res) => {
 			updatedEvent,
 		});
 	} catch (error) {
-		console.log("error", error);
+		console.log(error);
 		if (error.kind === "ObjectId")
-			return res.status(404).json({ message: "Post not found" });
-		return res.status(500).json({ message: "Final Server Error" });
+			return res.status(404).json({ message: "Event not found" });
+		return res.status(500).json({ message: "Server Error" });
 	}
 };
 
-export { getAllEvents, getEvent, addEvent, editEvent };
+const deleteEvent = async (req, res) => {
+	const id = req.params.id;
+	try {
+		const event = await Event.findById(id);
+		if (!event) return res.status(404).json({ message: "Event not found" });
+		if (event.user.toString() !== req.user.id)
+			return res.status(401).json({ message: "User not authorized" });
+		await event.remove();
+		return res.status(200).json({ message: "Event deleted" });
+	} catch (error) {
+		console.log(error);
+		if (error.kind === "ObjectId")
+			return res.status(404).json({ message: "Event not found" });
+		return res.status(500).json({ message: "Server Error" });
+	}
+};
+
+export { getAllEvents, getEvent, addEvent, editEvent, deleteEvent };
