@@ -51,4 +51,27 @@ const addEvent = async (req, res) => {
 	}
 };
 
-export { getAllEvents, getEvent, addEvent };
+const editEvent = async (req, res) => {
+	const id = req.params.id;
+	try {
+		const { ...updatedFields } = req.body;
+		let updatedEvent = await Event.findByIdAndUpdate(
+			id,
+			{
+				$set: updatedFields,
+			},
+			{ new: true }
+		);
+		res.status(200).json({
+			message: "Updated event successfuly",
+			updatedEvent,
+		});
+	} catch (error) {
+		console.log("error", error);
+		if (error.kind === "ObjectId")
+			return res.status(404).json({ message: "Post not found" });
+		return res.status(500).json({ message: "Final Server Error" });
+	}
+};
+
+export { getAllEvents, getEvent, addEvent, editEvent };
