@@ -13,9 +13,11 @@ const register = async (req, res) => {
 		});
 	try {
 		let user = await User.findOne({ email });
-		if (user) {
+		if (user)
 			return res.status(400).json({ message: "User already registered" });
-		}
+		user = await User.findOne({ username });
+		if (user)
+			return res.status(400).json({ message: "User already registered" });
 		user = new User({ fname, lname, email, password, username });
 		user.password = await bcrypt.hash(password, 10);
 		await user.save();
