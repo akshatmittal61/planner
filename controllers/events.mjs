@@ -18,6 +18,8 @@ const getEvent = async (req, res) => {
 		const foundEvent = await Event.findById(id);
 		if (!foundEvent)
 			return res.status(404).json({ message: "Event not found" });
+		if (foundEvent.user.toString() !== req.user.id)
+			return res.status(401).json({ message: "User not authorized" });
 		return res.status(200).json(foundEvent);
 	} catch (error) {
 		console.error(error);
@@ -46,7 +48,7 @@ const addEvent = async (req, res) => {
 			.status(200)
 			.json({ event, message: "Added event succesfully" });
 	} catch (error) {
-		console.log(error);
+		console.error(error);
 		return res.status(500).json({ message: "Server Error" });
 	}
 };
@@ -55,6 +57,11 @@ const editEvent = async (req, res) => {
 	const id = req.params.id;
 	try {
 		const { ...updatedFields } = req.body;
+		let foundEvent = await Event.findById(id);
+		if (!foundEvent)
+			return res.status(404).json({ message: "Event not found" });
+		if (foundEvent.user.toString() !== req.user.id)
+			return res.status(401).json({ message: "User not authorized" });
 		let updatedEvent = await Event.findByIdAndUpdate(
 			id,
 			{
