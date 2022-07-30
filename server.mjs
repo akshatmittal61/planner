@@ -4,7 +4,8 @@ import { config } from "dotenv";
 import connect from "./db/index.mjs";
 import { PORT } from "./config/index.mjs";
 import apiAuth from "./routes/auth.mjs";
-import apiEvent from "./routes/event.mjs";
+import apiEvents from "./routes/events.mjs";
+import apiNotes from "./routes/notes.mjs";
 
 config();
 const app = express();
@@ -17,7 +18,8 @@ app.get("/", (req, res) => {
 	res.send("Hello World");
 });
 app.use("/api/auth", apiAuth);
-app.use("/api/event", apiEvent);
+app.use("/api/events", apiEvents);
+app.use("/api/notes", apiNotes);
 
 app.listen(PORT, () => {
 	connect();

@@ -5,7 +5,7 @@ import {
 	editEvent,
 	getAllEvents,
 	getEvent,
-} from "../controllers/event.mjs";
+} from "../controllers/events.mjs";
 import auth from "../middleware/auth.mjs";
 
 const router = Router();
