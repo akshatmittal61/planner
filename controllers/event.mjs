@@ -1,5 +1,17 @@
 import Event from "../models/Event.mjs";
 
+const getAllEvents = async (req, res) => {
+	try {
+		const allEvents = await Event.find({ user: req.user.id }).sort({
+			date: -1,
+		});
+		res.status(200).json(allEvents);
+	} catch (error) {
+		console.error(error);
+		return res.status(500).json({ message: "Server Error" });
+	}
+};
+
 const getEvent = async (req, res) => {
 	const id = req.params.id;
 	try {
@@ -17,7 +29,7 @@ const getEvent = async (req, res) => {
 
 const addEvent = async (req, res) => {
 	const { title, description, type, link, date, time } = req.body;
-	if (!title || !description || !type || !link || !date || !time)
+	if (!title || !description || !type || !date || !time)
 		return res.status(500).json({ message: "Invalid Data" });
 	try {
 		const newEvent = new Event({
@@ -39,4 +51,4 @@ const addEvent = async (req, res) => {
 	}
 };
 
-export { getEvent, addEvent };
+export { getAllEvents, getEvent, addEvent };
