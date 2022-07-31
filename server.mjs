@@ -6,6 +6,7 @@ import { PORT } from "./config/index.mjs";
 import apiAuth from "./routes/auth.mjs";
 import apiEvents from "./routes/events.mjs";
 import apiNotes from "./routes/notes.mjs";
+import apiTasks from "./routes/tasks.mjs";
 
 config();
 const app = express();
@@ -20,6 +21,7 @@ app.get("/", (req, res) => {
 app.use("/api/auth", apiAuth);
 app.use("/api/events", apiEvents);
 app.use("/api/notes", apiNotes);
+app.use("/api/tasks", apiTasks);
 
 app.listen(PORT, () => {
 	connect();
