@@ -6,22 +6,13 @@ const SettingsSchema = new mongoose.Schema(
 			type: mongoose.Schema.Types.ObjectId,
 			ref: "User",
 		},
-		theme: {
-			type: String,
-			enum: ["light", "dark"],
-			default: "light",
-		},
-		fontSize: {
-			type: Number,
-			default: 16,
-		},
 		accentColor: {
 			type: String,
 			default: "indigo",
 		},
-		sendPushNotifications: {
-			type: Boolean,
-			default: true,
+		trashDuration: {
+			type: Number,
+			default: 30,
 		},
 	},
 	{

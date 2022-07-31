@@ -4,6 +4,7 @@ import { config } from "dotenv";
 import connect from "./db/index.mjs";
 import { PORT } from "./config/index.mjs";
 import apiAuth from "./routes/auth.mjs";
+import apiSettings from "./routes/settings.mjs";
 import apiEvents from "./routes/events.mjs";
 import apiNotes from "./routes/notes.mjs";
 import apiTasks from "./routes/tasks.mjs";
@@ -19,6 +20,7 @@ app.get("/", (req, res) => {
 	res.send("Hello World");
 });
 app.use("/api/auth", apiAuth);
+app.use("/api/settings", apiSettings);
 app.use("/api/events", apiEvents);
 app.use("/api/notes", apiNotes);
 app.use("/api/tasks", apiTasks);

@@ -2,6 +2,7 @@ import User from "../models/User.mjs";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { jwtSecret } from "../config/index.mjs";
+import Settings from "../models/Settings.mjs";
 
 const register = async (req, res) => {
 	const { fname, lname, email, username, password } = req.body;
@@ -21,6 +22,8 @@ const register = async (req, res) => {
 		user = new User({ fname, lname, email, password, username });
 		user.password = await bcrypt.hash(password, 10);
 		await user.save();
+		let settings = new Settings({ user: user.id });
+		await settings.save();
 		const payload = {
 			user: {
 				id: user.id,
