@@ -1,6 +1,6 @@
 import Settings from "../models/Settings.mjs";
 
-const getAccentColor = async (req, res) => {
+const getSettings = async (req, res) => {
 	const id = req.user.id;
 	try {
 		const settings = await Settings.findOne({ user: id });
@@ -10,11 +10,36 @@ const getAccentColor = async (req, res) => {
 				.json({ massage: "Unablt to process your query" });
 		if (settings.user.toString() !== req.user.id)
 			return res.status(401).json({ message: "User not Authorized" });
-		return res.status(200).json({ accentColor: settings.accentColor });
+		return res.status(200).json(settings);
 	} catch (error) {
 		console.error(error);
-		res.status(500).json({ message: "Server Error" });
+		return res.status(500).json({ message: "Server Error" });
 	}
 };
 
-export { getAccentColor };
+const editSettings = async (req, res) => {
+	const id = req.user.id;
+	try {
+		const { ...updatedFields } = req.body;
+		let foundSettings = await Settings.findOne({ user: id });
+		if (!foundSettings)
+			return res
+				.status(404)
+				.json({ massage: "Unablt to process your query" });
+		if (foundSettings.user.toString() !== req.user.id)
+			return res.status(401).json({ message: "User not Authorized" });
+		let updatedSettings = await Settings.findOneAndUpdate(
+			{ user: id },
+			{ $set: updatedFields },
+			{ new: true }
+		);
+		return res
+			.status(200)
+			.json({ message: "Updated preferences", updatedSettings });
+	} catch (error) {
+		console.error(error);
+		return res.status(500).json({ message: "Server Error" });
+	}
+};
+
+export { getSettings, editSettings };
