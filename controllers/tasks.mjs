@@ -29,4 +29,27 @@ const getTask = async (req, res) => {
 	}
 };
 
-export { getAllTaks, getTask };
+const addTask = async (req, res) => {
+	const { title, description, date, time, color } = req.body;
+	if (!title || !description || !date || !time || !color)
+		return res.status(400).json({ message: "Invalid Data" });
+	try {
+		const newTask = new Task({
+			user: req.user.id,
+			title,
+			description,
+			color,
+			date,
+			time,
+		});
+		const task = await newTask.save();
+		return res
+			.status(200)
+			.json({ task, message: "Added task successfully" });
+	} catch (error) {
+		console.error(error);
+		res.status(500).json({ message: "Server Error" });
+	}
+};
+
+export { getAllTaks, getTask, addTask };

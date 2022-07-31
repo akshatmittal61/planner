@@ -30,7 +30,7 @@ const getNote = async (req, res) => {
 const addNote = async (req, res) => {
 	const { title, content, color, archived } = req.body;
 	if (!title || !content || !color)
-		return res.status(500).json({ message: "Invalid Data" });
+		return res.status(400).json({ message: "Invalid Data" });
 	try {
 		const newNote = new Note({
 			user: req.user.id,

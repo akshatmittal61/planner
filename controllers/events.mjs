@@ -32,7 +32,7 @@ const getEvent = async (req, res) => {
 const addEvent = async (req, res) => {
 	const { title, description, type, link, date, time } = req.body;
 	if (!title || !description || !type || !date || !time)
-		return res.status(500).json({ message: "Invalid Data" });
+		return res.status(400).json({ message: "Invalid Data" });
 	try {
 		const newEvent = new Event({
 			user: req.user.id,
