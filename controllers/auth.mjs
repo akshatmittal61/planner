@@ -95,6 +95,11 @@ const editProfile = async (req, res) => {
 			return res.status(401).json({ message: "User not authorized" });
 		if (username !== userById.username)
 			return res.status(400).json({ message: "Can't update username" });
+		if (updatedFields.password)
+			updatedFields.password = await bcrypt.hash(
+				updatedFields.password,
+				10
+			);
 		let updatedProfile = await User.findByIdAndUpdate(
 			id,
 			{ $set: updatedFields },
