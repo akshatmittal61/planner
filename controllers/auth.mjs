@@ -81,4 +81,30 @@ const login = async (req, res) => {
 	}
 };
 
-export { register, login };
+const editProfile = async (req, res) => {
+	const id = req.user.id;
+	try {
+		const userById = await User.findById(id);
+		if (!userById)
+			return res.status(400).json({ message: "User not found" });
+		const { username, ...updatedFields } = req.body;
+		const userByUsername = await User.findOne({ username: username });
+		if (!userByUsername)
+			return res.status(404).json({ message: "User not found" });
+		if (userByUsername.id.toString() !== req.user.id)
+			return res.status(401).json({ message: "User not authorized" });
+		if (username !== userById.username)
+			return res.status(400).json({ message: "Can't update username" });
+		let updatedProfile = await User.findByIdAndUpdate(
+			id,
+			{ $set: updatedFields },
+			{ new: true }
+		);
+		return res.status(200).json(updatedProfile);
+	} catch (error) {
+		console.error(error);
+		return res.status(500).json({ message: "Server Error" });
+	}
+};
+
+export { register, login, editProfile };
