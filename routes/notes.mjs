@@ -10,10 +10,11 @@ import auth from "../middleware/auth.mjs";
 
 const router = Router();
 
-router.get("/", auth, getAllNotes);
-router.get("/:id", auth, getNote);
-router.post("/add", auth, addNote);
-router.put("/edit/:id", auth, editNote);
-router.delete("/delete/:id", auth, deleteNote);
+router.use(auth);
+router.get("/", getAllNotes);
+router.get("/:id", getNote);
+router.post("/add", addNote);
+router.put("/edit/:id", editNote);
+router.delete("/delete/:id", deleteNote);
 
 export default router;

@@ -7,7 +7,7 @@ const getSettings = async (req, res) => {
 		if (!settings)
 			return res
 				.status(404)
-				.json({ massage: "Unablt to process your query" });
+				.json({ massage: "Unable to process your query" });
 		if (settings.user.toString() !== req.user.id)
 			return res.status(401).json({ message: "User not Authorized" });
 		return res.status(200).json(settings);
@@ -25,7 +25,7 @@ const editSettings = async (req, res) => {
 		if (!foundSettings)
 			return res
 				.status(404)
-				.json({ massage: "Unablt to process your query" });
+				.json({ massage: "Unable to process your query" });
 		if (foundSettings.user.toString() !== req.user.id)
 			return res.status(401).json({ message: "User not Authorized" });
 		let updatedSettings = await Settings.findOneAndUpdate(

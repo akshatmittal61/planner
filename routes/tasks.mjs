@@ -10,10 +10,11 @@ import auth from "../middleware/auth.mjs";
 
 const router = Router();
 
-router.get("/", auth, getAllTaks);
-router.get("/:id", auth, getTask);
-router.post("/add", auth, addTask);
-router.put("/edit/:id", auth, editTask);
-router.delete("/delete/:id", auth, deteleTask);
+router.use(auth);
+router.get("/", getAllTaks);
+router.get("/:id", getTask);
+router.post("/add", addTask);
+router.put("/edit/:id", editTask);
+router.delete("/delete/:id", deteleTask);
 
 export default router;
