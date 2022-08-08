@@ -1,14 +1,13 @@
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
-import Row, { Col } from "../../Layout/Responsive";
-import LinkButton from "../../components/Button/LinkButton";
 import MaterialIcons from "../../components/MaterialIcons";
-import wavesBg from "../../images/waves-bg.png";
+import Row, { Col } from "../../Layout/Responsive";
 import "./register.css";
-import IconButton from "../../components/Button/IconButton";
 
 const Register = () => {
+	const navigate = useNavigate();
 	const [registerUser, setRegisterUser] = useState({
 		fname: "",
 		lname: "",
@@ -39,106 +38,117 @@ const Register = () => {
 		});
 	};
 	return (
-		<main
-			className="register"
-			style={{ backgroundImage: `url(${wavesBg})` }}
-		>
-			<IconButton className="register-back" icon="arrow_back" link={-1} />
-			<div className="register-container">
-				<div className="register-head">
-					<MaterialIcons>lock</MaterialIcons>
-					<h3 className="register-head__h3">Sign Up to Planner</h3>
+		<section className="register">
+			<div className="register-container" data-aos="zoom-in">
+				<div className="register-content">
+					<div className="register-title">
+						<span>Sign Up</span>
+						<button className="icon" onClick={() => navigate("/")}>
+							<MaterialIcons>close</MaterialIcons>
+						</button>
+					</div>
+					<form className="register-form" onSubmit={handleSubmit}>
+						<Row>
+							<Col lg={50} md={50}>
+								<Input
+									value={registerUser.fname}
+									name="fname"
+									type="text"
+									placeholder="First Name"
+									icon="person"
+									onChange={handleChange}
+								/>
+							</Col>
+							<Col lg={50} md={50}>
+								<Input
+									value={registerUser.lname}
+									name="lname"
+									type="text"
+									placeholder="Last Name"
+									icon="person"
+									onChange={handleChange}
+								/>
+							</Col>
+						</Row>
+						<Row>
+							<Col lg={50} md={50}>
+								<Input
+									value={registerUser.email}
+									name="email"
+									type="email"
+									placeholder="Email"
+									icon="mail"
+									onChange={handleChange}
+								/>
+							</Col>
+							<Col lg={50} md={50}>
+								<Input
+									value={registerUser.username}
+									name="username"
+									type="text"
+									placeholder="Username"
+									icon="account_circle"
+									onChange={handleChange}
+								/>
+							</Col>
+						</Row>
+						<Row>
+							<Col lg={50} md={50}>
+								<Input
+									value={registerUser.password}
+									name="password"
+									type="password"
+									placeholder="Password"
+									icon="key"
+									onChange={handleChange}
+								/>
+							</Col>
+							<Col lg={50} md={50}>
+								<Input
+									value={registerUser.confirmPassword}
+									name="confirmPassword"
+									type="password"
+									placeholder="Confirm Password"
+									icon="lock"
+									onChange={handleChange}
+								/>
+							</Col>
+						</Row>
+						<Row>
+							<Col lg={100} md={100} sm={100}>
+								<Input
+									value={registerUser.avatar}
+									name="avatar"
+									type="url"
+									placeholder="Avatar"
+									icon="photo_camera"
+									onChange={handleChange}
+									style={{
+										width: "100%",
+									}}
+								/>
+							</Col>
+						</Row>
+						<Button
+							text="Sign Up"
+							type="submit"
+							color="brown"
+							style={{ width: "40%" }}
+						/>
+					</form>
+					<div className="register-bottom">
+						<span>Already have an account?</span>
+						<Link to="/login">Log In</Link>
+					</div>
 				</div>
-				<form className="register-form" onSubmit={handleSubmit}>
-					<Row>
-						<Col lg={50} md={50}>
-							<Input
-								value={registerUser.fname}
-								name="fname"
-								type="text"
-								placeholder="First Name"
-								icon="person"
-								onChange={handleChange}
-							/>
-						</Col>
-						<Col lg={50} md={50}>
-							<Input
-								value={registerUser.lname}
-								name="lname"
-								type="text"
-								placeholder="Last Name"
-								icon="person"
-								onChange={handleChange}
-							/>
-						</Col>
-					</Row>
-					<Row>
-						<Col lg={50} md={50}>
-							<Input
-								value={registerUser.email}
-								name="email"
-								type="email"
-								placeholder="Email"
-								icon="mail"
-								onChange={handleChange}
-							/>
-						</Col>
-						<Col lg={50} md={50}>
-							<Input
-								value={registerUser.username}
-								name="username"
-								type="text"
-								placeholder="Username"
-								icon="account_circle"
-								onChange={handleChange}
-							/>
-						</Col>
-					</Row>
-					<Row>
-						<Col lg={50} md={50}>
-							<Input
-								value={registerUser.password}
-								name="password"
-								type="password"
-								placeholder="Password"
-								icon="key"
-								onChange={handleChange}
-							/>
-						</Col>
-						<Col lg={50} md={50}>
-							<Input
-								value={registerUser.confirmPassword}
-								name="confirmPassword"
-								type="password"
-								placeholder="Confirm Password"
-								icon="lock"
-								onChange={handleChange}
-							/>
-						</Col>
-					</Row>
-					<Row>
-						<Col lg={100} md={100} sm={100}>
-							<Input
-								value={registerUser.avatar}
-								name="avatar"
-								type="url"
-								placeholder="Avatar"
-								icon="photo_camera"
-								onChange={handleChange}
-							/>
-						</Col>
-					</Row>
-					<Button text="Sign Up" type="submit" />
-				</form>
-				<span className="register-foot">
-					Already have an account?{" "}
-					<LinkButton to="/login">
-						<span>Log In</span>
-						<MaterialIcons>north_east</MaterialIcons>
-					</LinkButton>
-				</span>
+				<div className="register-background">
+					<div className="register-background-shape register-background-shape__4"></div>
+					<div className="register-background-shape register-background-shape__3"></div>
+					<div className="register-background-shape register-background-shape__2"></div>
+					<div className="register-background-shape register-background-shape__1"></div>
+				</div>
 			</div>
-		</main>
+		</section>
 	);
 };
 

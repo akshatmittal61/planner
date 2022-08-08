@@ -1,17 +1,17 @@
-import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Button from "../../components/Button/Button";
-import Input from "../../components/Input/Input";
-import LinkButton from "../../components/Button/LinkButton";
-import MaterialIcons from "../../components/MaterialIcons";
-import wavesBg from "../../images/waves-bg.png";
+import React, { useContext, useEffect, useState } from "react";
 import "./login.css";
-import IconButton from "../../components/Button/IconButton";
+import loginBg from "../../images/login-bg.jpeg";
+import a from "../../images/brick.svg";
+import Button from "../../components/Button/Button";
+import { Link, useNavigate } from "react-router-dom";
 import GlobalContext from "../../Context/GlobalContext";
+import MaterialIcons from "../../components/MaterialIcons";
+import Input from "../../components/Input/Input";
 
 const Login = () => {
 	const navigate = useNavigate();
-	const { setUser, setIsAuthenticated } = useContext(GlobalContext);
+	const { setUser, setIsAuthenticated, isAuthenticated } =
+		useContext(GlobalContext);
 	const [loginUser, setLoginUser] = useState({
 		username: "",
 		password: "",
@@ -47,40 +47,67 @@ const Login = () => {
 		setUser(loggedInUser);
 		navigate("/");
 	};
+	useEffect(() => {
+		if (isAuthenticated) navigate("/dashboard");
+	}, [isAuthenticated, navigate]);
 	return (
-		<main className="login" style={{ backgroundImage: `url(${wavesBg})` }}>
-			<IconButton className="register-back" icon="arrow_back" link={-1} />
-			<div className="login-container">
-				<div className="login-head">
-					<MaterialIcons>lock</MaterialIcons>
-					<h3 className="login-head__h3">Login to your account</h3>
+		<section
+			className="login"
+			style={{
+				backgroundImage: `url(${a})`,
+			}}
+		>
+			<div className="login-container" data-aos="zoom-in">
+				<div className="login-left">
+					<div className="legin-left-top">
+						<div className="login-left-title">Welcome!</div>
+						<form
+							className="login-left-form"
+							onSubmit={handleSubmit}
+						>
+							<Input
+								icon="person"
+								type="text"
+								name="username"
+								value={loginUser.username}
+								onChange={handleChange}
+								placeholder="Username"
+							/>
+							<Input
+								icon="lock"
+								type="password"
+								name="password"
+								value={loginUser.password}
+								onChange={handleChange}
+								placeholder="Password"
+							/>
+							<div className="login-left-form-group">
+								<span></span>
+								<Button
+									type="submit"
+									text="Login"
+									color="brown"
+								/>
+							</div>
+						</form>
+					</div>
+					<div className="login-left-bottom">
+						<span>Don't have an account? </span>
+						<Link to="/register">Sign Up</Link>
+					</div>
 				</div>
-				<form className="login-form" onSubmit={handleSubmit}>
-					<Input
-						value={loginUser.username}
-						name="username"
-						placeholder="Username"
-						icon="account_circle"
-						onChange={handleChange}
-					/>
-					<Input
-						value={loginUser.password}
-						name="password"
-						placeholder="Password"
-						icon="key"
-						onChange={handleChange}
-					/>
-					<Button text="Login" type="submit" />
-				</form>
-				<span className="login-foot">
-					Don't have an account?{" "}
-					<LinkButton to="/register">
-						<span>Sign Up</span>
-						<MaterialIcons>north_east</MaterialIcons>
-					</LinkButton>
-				</span>
+				<div
+					className="login-right"
+					style={{
+						backgroundImage: `url(${loginBg})`,
+					}}
+				>
+					<button className="icon" onClick={() => navigate("/")}>
+						<MaterialIcons>close</MaterialIcons>
+					</button>
+				</div>
 			</div>
-		</main>
+		</section>
 	);
 };
 
