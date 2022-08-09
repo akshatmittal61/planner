@@ -25,98 +25,105 @@ import Profile from "./pages/Profile/Profile";
 import { useContextData } from "./Context/useContext";
 import GlobalContext from "./Context/GlobalContext";
 
-const App = () => {
+const Wrapper = () => {
 	AOS.init();
-	const { openSideBar, setOpenSideBar } = useContext(GlobalContext);
+	const { theme, openSideBar, setOpenSideBar } = useContext(GlobalContext);
 	const location = useLocation();
 	useEffect(() => {
 		setOpenSideBar(false);
-	}, [location.pathname, setOpenSideBar]);
-	const context = useContextData();
+		document.body.classList = localStorage.getItem("theme");
+	}, [location.pathname, setOpenSideBar, theme]);
 
 	return (
 		<>
-			<GlobalContext.Provider value={context}>
-				{location.pathname !== "/login" &&
-					location.pathname !== "/register" && <Header />}
-				{openSideBar && <SideBar />}
-				<Routes>
-					<Route path="/" element={<Home />} />
-					<Route path="/about" element={<About />} />
-					<Route path="/login" element={<Login />} />
-					<Route path="/register" element={<Register />} />
-					<Route path="/calendar" element={<Calendar />} />
-					<Route
-						path="/profile"
-						element={
-							<PrivateRoute>
-								<Profile />
-							</PrivateRoute>
-						}
-					/>
-					<Route
-						path="/events"
-						element={
-							<PrivateRoute>
-								<Events />
-							</PrivateRoute>
-						}
-					/>
-					<Route
-						path="/notes"
-						element={
-							<PrivateRoute>
-								<Notes />
-							</PrivateRoute>
-						}
-					/>
-					<Route
-						path="/notes/archive"
-						element={
-							<PrivateRoute>
-								<NotesArchived />
-							</PrivateRoute>
-						}
-					/>
-					<Route
-						path="/notes/trash"
-						element={
-							<PrivateRoute>
-								<NotesTrash />
-							</PrivateRoute>
-						}
-					/>
-					<Route
-						path="/tasks"
-						element={
-							<PrivateRoute>
-								<Tasks />
-							</PrivateRoute>
-						}
-					/>
-					<Route
-						path="/tasks/completed"
-						element={
-							<PrivateRoute>
-								<TasksCompleted />
-							</PrivateRoute>
-						}
-					/>
-					<Route
-						path="/tasks/trash"
-						element={
-							<PrivateRoute>
-								<TasksTrash />
-							</PrivateRoute>
-						}
-					/>
-					<Route path="/contact" element={<Contact />} />
-					<Route path="*" element={<NotFound />} />
-				</Routes>
-				{location.pathname !== "/login" &&
-					location.pathname !== "/register" && <Footer />}
-			</GlobalContext.Provider>
+			{location.pathname !== "/login" &&
+				location.pathname !== "/register" && <Header />}
+			{openSideBar && <SideBar />}
+			<Routes>
+				<Route path="/" element={<Home />} />
+				<Route path="/about" element={<About />} />
+				<Route path="/login" element={<Login />} />
+				<Route path="/register" element={<Register />} />
+				<Route path="/calendar" element={<Calendar />} />
+				<Route
+					path="/profile"
+					element={
+						<PrivateRoute>
+							<Profile />
+						</PrivateRoute>
+					}
+				/>
+				<Route
+					path="/events"
+					element={
+						<PrivateRoute>
+							<Events />
+						</PrivateRoute>
+					}
+				/>
+				<Route
+					path="/notes"
+					element={
+						<PrivateRoute>
+							<Notes />
+						</PrivateRoute>
+					}
+				/>
+				<Route
+					path="/notes/archive"
+					element={
+						<PrivateRoute>
+							<NotesArchived />
+						</PrivateRoute>
+					}
+				/>
+				<Route
+					path="/notes/trash"
+					element={
+						<PrivateRoute>
+							<NotesTrash />
+						</PrivateRoute>
+					}
+				/>
+				<Route
+					path="/tasks"
+					element={
+						<PrivateRoute>
+							<Tasks />
+						</PrivateRoute>
+					}
+				/>
+				<Route
+					path="/tasks/completed"
+					element={
+						<PrivateRoute>
+							<TasksCompleted />
+						</PrivateRoute>
+					}
+				/>
+				<Route
+					path="/tasks/trash"
+					element={
+						<PrivateRoute>
+							<TasksTrash />
+						</PrivateRoute>
+					}
+				/>
+				<Route path="/contact" element={<Contact />} />
+				<Route path="*" element={<NotFound />} />
+			</Routes>
+			{location.pathname !== "/login" &&
+				location.pathname !== "/register" && <Footer />}
 		</>
+	);
+};
+
+const App = () => {
+	const context = useContextData();
+	return (
+		<GlobalContext.Provider value={context}>
+			<Wrapper />
+		</GlobalContext.Provider>
 	);
 };
 

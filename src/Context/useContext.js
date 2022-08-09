@@ -1,16 +1,21 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import defaultNavLinks from "../utils/navigation";
 
 export const useContextData = () => {
 	const [isLoading, setIsLoading] = useState(false);
+
 	const [openSideBar, setOpenSideBar] = useState(false);
+	const toggleSideBar = () => {
+		setOpenSideBar((p) => !p);
+	};
+
 	const [sideBarLinks, setSideBarLinks] = useState(defaultNavLinks);
 
 	const [theme, setTheme] = useState(
 		localStorage.getItem("theme") || "light"
 	);
-	const handleTheme = () => {
+	const toggleTheme = () => {
 		document.body.classList = theme === "light" ? "dark" : "light";
 		localStorage.setItem("theme", theme === "light" ? "dark" : "light");
 		setTheme((p) => (p === "light" ? "dark" : "light"));
@@ -43,15 +48,10 @@ export const useContextData = () => {
 	mediaQueryMd.addListener(breakpoint);
 	mediaQueryLg.addListener(breakpoint);
 
-	useEffect(() => {
-		handleTheme();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
-
 	return {
 		theme,
 		setTheme,
-		handleTheme,
+		toggleTheme,
 		breakpoint,
 		isLoading,
 		setIsLoading,
@@ -61,6 +61,7 @@ export const useContextData = () => {
 		setUser,
 		openSideBar,
 		setOpenSideBar,
+		toggleSideBar,
 		sideBarLinks,
 		setSideBarLinks,
 		axiosInstance,

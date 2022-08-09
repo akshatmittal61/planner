@@ -8,7 +8,7 @@ import userFallBack from "../../images/user.svg";
 import GlobalContext from "../../Context/GlobalContext";
 
 const Header = () => {
-	const { user, theme, handleTheme, openSideBar, setOpenSideBar } =
+	const { user, theme, toggleTheme, openSideBar, toggleSideBar } =
 		useContext(GlobalContext);
 	const vh = window.innerHeight / 100;
 	const location = useLocation();
@@ -53,9 +53,7 @@ const Header = () => {
 				<div className="header-left-burger">
 					<button
 						className="header-left-burger__button icon"
-						onClick={() => {
-							setOpenSideBar(!openSideBar);
-						}}
+						onClick={toggleSideBar}
 					>
 						<MaterialIcons>
 							{openSideBar ? "menu_open" : "menu"}
@@ -67,7 +65,7 @@ const Header = () => {
 				</Link>
 			</div>
 			<div className="header-right">
-				<button className="icon" onClick={handleTheme}>
+				<button className="icon" onClick={toggleTheme}>
 					<MaterialIcons>
 						{theme === "light" ? "dark_mode" : "light_mode"}
 					</MaterialIcons>
