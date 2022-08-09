@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-export const GlobalContext = createContext({
+const GlobalContext = createContext({
 	theme: "",
 	setTheme: () => {},
 	handleTheme: () => {},
@@ -17,3 +17,5 @@ export const GlobalContext = createContext({
 	setSideBarLinks: () => {},
 	axiosInstance: undefined,
 });
+
+export default GlobalContext;

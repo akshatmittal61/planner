@@ -5,7 +5,7 @@ import "./header.css";
 import "../Button/button.css";
 import AppBox from "../AppBox/AppBox";
 import userFallBack from "../../images/user.svg";
-import { GlobalContext } from "../../context/GlobalContext";
+import GlobalContext from "../../Context/GlobalContext";
 
 const Header = () => {
 	const { user, theme, setTheme, openSideBar, setOpenSideBar } =

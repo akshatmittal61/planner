@@ -22,8 +22,8 @@ import TasksTrash from "./pages/Tasks/TasksTrash";
 import Contact from "./pages/Contact/Contact";
 import About from "./pages/About/About";
 import Profile from "./pages/Profile/Profile";
-import { GlobalContext } from "./context/GlobalContext";
-import { useContextData } from "./context/useContext";
+import { useContextData } from "./Context/useContext";
+import GlobalContext from "./Context/GlobalContext";
 
 const App = () => {
 	AOS.init();
