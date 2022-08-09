@@ -29,6 +29,9 @@ const Header = () => {
 				setHeight("0");
 			}
 		});
+		return () => {
+			document.removeEventListener("scroll", () => {});
+		};
 	}, [vh]);
 	useEffect(() => {
 		setOpenAppBox(false);

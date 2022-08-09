@@ -63,7 +63,7 @@ const Profile = () => {
 					<Row>
 						<Col lg={50} md={50} sm={100}>
 							<div className="profile-image">
-								<img src={user.avatar} alt={user.name} />
+								<img src={user?.avatar} alt={user?.name} />
 							</div>
 						</Col>
 						<Col lg={50} md={50} sm={100}>
@@ -74,9 +74,9 @@ const Profile = () => {
 										name="name"
 										disabled={!edit}
 										value={
-											profileUser.fname +
+											profileUser?.fname +
 											" " +
-											profileUser.lname
+											profileUser?.lname
 										}
 										onChange={handleChange}
 										placeholder="Your Name"
@@ -89,7 +89,7 @@ const Profile = () => {
 										name="username"
 										icon="account_circle"
 										disabled
-										value={profileUser.username}
+										value={profileUser?.username}
 										onChange={handleChange}
 										placeholder="Username"
 										title="Username is not editable"
@@ -101,7 +101,7 @@ const Profile = () => {
 										name="bio"
 										icon="tips_and_updates"
 										disabled={!edit}
-										value={profileUser.bio}
+										value={profileUser?.bio}
 										onChange={handleChange}
 										placeholder="Short Bio"
 									/>
@@ -114,7 +114,7 @@ const Profile = () => {
 								name="email"
 								icon="mail"
 								disabled={!edit}
-								value={profileUser.email}
+								value={profileUser?.email}
 								onChange={handleChange}
 								placeholder="Email Address"
 							/>
@@ -125,7 +125,7 @@ const Profile = () => {
 								name="phone"
 								icon="call"
 								disabled={!edit}
-								value={profileUser.phone}
+								value={profileUser?.phone}
 								onChange={handleChange}
 								placeholder="Phone No."
 							/>
@@ -136,7 +136,7 @@ const Profile = () => {
 								name="avatar"
 								icon="image"
 								disabled={!edit}
-								value={profileUser.avatar}
+								value={profileUser?.avatar}
 								onChange={handleChange}
 								placeholder="Avatar"
 							/>
@@ -148,7 +148,7 @@ const Profile = () => {
 									name="password"
 									icon="lock"
 									disabled={!edit}
-									value={profileUser.password}
+									value={profileUser?.password}
 									onChange={handleChange}
 									placeholder="Password"
 								/>

@@ -10,7 +10,8 @@ import Input from "../../components/Input/Input";
 
 const Login = () => {
 	const navigate = useNavigate();
-	const { isAuthenticated } = useContext(GlobalContext);
+	const { isAuthenticated, setIsAuthenticated, setUser, axiosInstance } =
+		useContext(GlobalContext);
 	const [loginUser, setLoginUser] = useState({
 		username: "",
 		password: "",
@@ -22,34 +23,26 @@ const Login = () => {
 			[name]: value,
 		}));
 	};
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e?.preventDefault();
-		// axiosInstance.post('/api/auth/login')
-		/* console.log(loginUser);
-		setLoginUser({
-			username: "",
-			password: "",
-		});
-		setIsAuthenticated(true);
-		localStorage.setItem("isAuthenticated", true);
-		const loggedInUser = {
-			fname: "Akshat",
-			lname: "Mittal",
-			status: "Developing",
-			email: "akshatmittal2506@gmail.com",
-			phone: 9456849466,
-			username: "akshatmittal61",
-			bio: "MERN Stack developer",
-			dob: "2002-06-25",
-			gender: "Male",
-			avatar: "https://avatars.githubusercontent.com/u/84612609",
-		};
-		localStorage.setItem("user", JSON.stringify(loggedInUser));
-		setUser(loggedInUser);
-		navigate("/"); */
+		try {
+			const res = await axiosInstance.post("/api/auth/login", {
+				...loginUser,
+			});
+			console.log(res);
+			if (res.status === 200) {
+				setIsAuthenticated(true);
+				localStorage.setItem("token", res.data.token);
+				localStorage.setItem("user", JSON.stringify(res.data.user));
+				localStorage.setItem("isAuthenticated", true);
+				setUser({ ...res.data.user });
+			}
+		} catch (error) {
+			console.log(error.response.data.message);
+		}
 	};
 	useEffect(() => {
-		if (isAuthenticated) navigate("/dashboard");
+		if (isAuthenticated) navigate(-1);
 	}, [isAuthenticated, navigate]);
 	return (
 		<section

@@ -19,6 +19,9 @@ const Home = () => {
 			else setScrolled(false);
 		});
 		setSideBarLinks(defaultNavLinks);
+		return () => {
+			document.removeEventListener("scroll", () => {});
+		};
 	}, [setSideBarLinks, vh]);
 
 	return (
