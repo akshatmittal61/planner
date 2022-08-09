@@ -33,7 +33,8 @@ const Login = () => {
 		setIsAuthenticated(true);
 		localStorage.setItem("isAuthenticated", true);
 		const loggedInUser = {
-			name: "Akshat Mittal",
+			fname: "Akshat",
+			lname: "Mittal",
 			status: "Developing",
 			email: "akshatmittal2506@gmail.com",
 			phone: 9456849466,

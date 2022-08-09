@@ -22,6 +22,7 @@ import TasksCompleted from "./pages/Tasks/TasksCompleted";
 import TasksTrash from "./pages/Tasks/TasksTrash";
 import Contact from "./pages/Contact/Contact";
 import About from "./pages/About/About";
+import Profile from "./pages/Profile/Profile";
 
 const App = () => {
 	AOS.init();
@@ -46,6 +47,14 @@ const App = () => {
 				<Route path="/login" element={<Login />} />
 				<Route path="/register" element={<Register />} />
 				<Route path="/calendar" element={<Calendar />} />
+				<Route
+					path="/profile"
+					element={
+						<PrivateRoute>
+							<Profile />
+						</PrivateRoute>
+					}
+				/>
 				<Route
 					path="/events"
 					element={
