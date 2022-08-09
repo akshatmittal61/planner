@@ -10,7 +10,7 @@ import Input from "../../components/Input/Input";
 
 const Login = () => {
 	const navigate = useNavigate();
-	const { setUser, setIsAuthenticated, isAuthenticated } =
+	const { setUser, setIsAuthenticated, isAuthenticated,axiosInstance } =
 		useContext(GlobalContext);
 	const [loginUser, setLoginUser] = useState({
 		username: "",
@@ -24,8 +24,9 @@ const Login = () => {
 		}));
 	};
 	const handleSubmit = (e) => {
-		e.preventDefault();
-		console.log(loginUser);
+		e?.preventDefault();
+		// axiosInstance.post('/api/auth/login')
+		/* console.log(loginUser);
 		setLoginUser({
 			username: "",
 			password: "",
@@ -46,7 +47,7 @@ const Login = () => {
 		};
 		localStorage.setItem("user", JSON.stringify(loggedInUser));
 		setUser(loggedInUser);
-		navigate("/");
+		navigate("/"); */
 	};
 	useEffect(() => {
 		if (isAuthenticated) navigate("/dashboard");

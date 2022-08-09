@@ -1,11 +1,10 @@
 import React, { useContext, useEffect } from "react";
 import "./style.css";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Header from "./components/Header/Header";
-import GlobalContext from "./Context/GlobalContext";
 import SideBar from "./components/SideBar/SideBar";
 import Footer from "./components/Footer/Footer";
 import NotFound from "./pages/NotFound/NotFound";
@@ -23,99 +22,102 @@ import TasksTrash from "./pages/Tasks/TasksTrash";
 import Contact from "./pages/Contact/Contact";
 import About from "./pages/About/About";
 import Profile from "./pages/Profile/Profile";
+import { GlobalContext } from "./context/GlobalContext";
+import { useContextData } from "./context/useContext";
 
 const App = () => {
 	AOS.init();
-	const { theme, openSideBar, setOpenSideBar } = useContext(GlobalContext);
+	const { openSideBar, setOpenSideBar } = useContext(GlobalContext);
 	const location = useLocation();
 	useEffect(() => {
 		setOpenSideBar(false);
 	}, [location.pathname, setOpenSideBar]);
-	useEffect(() => {
-		document.body.classList = theme;
-		localStorage.setItem("theme", theme);
-	}, [theme]);
+	const context = useContextData();
 
 	return (
 		<>
-			{location.pathname !== "/login" &&
-				location.pathname !== "/register" && <Header />}
-			{openSideBar && <SideBar />}
-			<Routes>
-				<Route path="/" element={<Home />} />
-				<Route path="/about" element={<About />} />
-				<Route path="/login" element={<Login />} />
-				<Route path="/register" element={<Register />} />
-				<Route path="/calendar" element={<Calendar />} />
-				<Route
-					path="/profile"
-					element={
-						<PrivateRoute>
-							<Profile />
-						</PrivateRoute>
-					}
-				/>
-				<Route
-					path="/events"
-					element={
-						<PrivateRoute>
-							<Events />
-						</PrivateRoute>
-					}
-				/>
-				<Route
-					path="/notes"
-					element={
-						<PrivateRoute>
-							<Notes />
-						</PrivateRoute>
-					}
-				/>
-				<Route
-					path="/notes/archive"
-					element={
-						<PrivateRoute>
-							<NotesArchived />
-						</PrivateRoute>
-					}
-				/>
-				<Route
-					path="/notes/trash"
-					element={
-						<PrivateRoute>
-							<NotesTrash />
-						</PrivateRoute>
-					}
-				/>
-				<Route
-					path="/tasks"
-					element={
-						<PrivateRoute>
-							<Tasks />
-						</PrivateRoute>
-					}
-				/>
-				<Route
-					path="/tasks/completed"
-					element={
-						<PrivateRoute>
-							<TasksCompleted />
-						</PrivateRoute>
-					}
-				/>
-				<Route
-					path="/tasks/trash"
-					element={
-						<PrivateRoute>
-							<TasksTrash />
-						</PrivateRoute>
-					}
-				/>
-				<Route path="/contact" element={<Contact />} />
-				<Route path="*" element={<NotFound />} />
-			</Routes>
-			{location.pathname !== "/login" &&
-				location.pathname !== "/register" && <Footer />}
+			<GlobalContext.Provider value={context}>
+				<BrowserRouter>
+					{location.pathname !== "/login" &&
+						location.pathname !== "/register" && <Header />}
+					{openSideBar && <SideBar />}
+					<Routes>
+						<Route path="/" element={<Home />} />
+						<Route path="/about" element={<About />} />
+						<Route path="/login" element={<Login />} />
+						<Route path="/register" element={<Register />} />
+						<Route path="/calendar" element={<Calendar />} />
+						<Route
+							path="/profile"
+							element={
+								<PrivateRoute>
+									<Profile />
+								</PrivateRoute>
+							}
+						/>
+						<Route
+							path="/events"
+							element={
+								<PrivateRoute>
+									<Events />
+								</PrivateRoute>
+							}
+						/>
+						<Route
+							path="/notes"
+							element={
+								<PrivateRoute>
+									<Notes />
+								</PrivateRoute>
+							}
+						/>
+						<Route
+							path="/notes/archive"
+							element={
+								<PrivateRoute>
+									<NotesArchived />
+								</PrivateRoute>
+							}
+						/>
+						<Route
+							path="/notes/trash"
+							element={
+								<PrivateRoute>
+									<NotesTrash />
+								</PrivateRoute>
+							}
+						/>
+						<Route
+							path="/tasks"
+							element={
+								<PrivateRoute>
+									<Tasks />
+								</PrivateRoute>
+							}
+						/>
+						<Route
+							path="/tasks/completed"
+							element={
+								<PrivateRoute>
+									<TasksCompleted />
+								</PrivateRoute>
+							}
+						/>
+						<Route
+							path="/tasks/trash"
+							element={
+								<PrivateRoute>
+									<TasksTrash />
+								</PrivateRoute>
+							}
+						/>
+						<Route path="/contact" element={<Contact />} />
+						<Route path="*" element={<NotFound />} />
+					</Routes>
+					{location.pathname !== "/login" &&
+						location.pathname !== "/register" && <Footer />}
+				</BrowserRouter>
+			</GlobalContext.Provider>
 		</>
 	);
 };

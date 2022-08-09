@@ -3,9 +3,9 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import MaterialIcons from "../MaterialIcons";
 import "./header.css";
 import "../Button/button.css";
-import GlobalContext from "../../Context/GlobalContext";
 import AppBox from "../AppBox/AppBox";
 import userFallBack from "../../images/user.svg";
+import { GlobalContext } from "../../context/GlobalContext";
 
 const Header = () => {
 	const { user, theme, setTheme, openSideBar, setOpenSideBar } =
