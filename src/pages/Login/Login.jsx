@@ -10,8 +10,7 @@ import Input from "../../components/Input/Input";
 
 const Login = () => {
 	const navigate = useNavigate();
-	const { setUser, setIsAuthenticated, isAuthenticated,axiosInstance } =
-		useContext(GlobalContext);
+	const { isAuthenticated } = useContext(GlobalContext);
 	const [loginUser, setLoginUser] = useState({
 		username: "",
 		password: "",

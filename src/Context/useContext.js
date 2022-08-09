@@ -11,9 +11,9 @@ export const useContextData = () => {
 		localStorage.getItem("theme") || "light"
 	);
 	const handleTheme = () => {
+		document.body.classList = theme === "light" ? "dark" : "light";
+		localStorage.setItem("theme", theme === "light" ? "dark" : "light");
 		setTheme((p) => (p === "light" ? "dark" : "light"));
-		document.body.classList = theme;
-		localStorage.setItem("theme", theme);
 	};
 
 	const [user, setUser] = useState(
@@ -46,7 +46,7 @@ export const useContextData = () => {
 	useEffect(() => {
 		handleTheme();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [theme]);
+	}, []);
 
 	return {
 		theme,

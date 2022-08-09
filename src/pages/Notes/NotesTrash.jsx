@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import GlobalContext from "../../Context/GlobalContext";
 import Masonry, { MasonryBox } from "../../Layout/Masonry/Masonry";
-import { notesNavLinks } from "../../navigation";
+import { notesNavLinks } from "../../utils/navigation";
 import { allNotes } from "../../resources";
 import Note from "./Note";
 

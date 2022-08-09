@@ -5,7 +5,7 @@ import favicon from "../../images/favicon.svg";
 import MaterialIcons from "../../components/MaterialIcons";
 import LinkButton from "../../components/Button/LinkButton";
 import routes from "../../routes";
-import defaultNavLinks from "../../navigation";
+import defaultNavLinks from "../../utils/navigation";
 import GlobalContext from "../../Context/GlobalContext";
 
 const Home = () => {
