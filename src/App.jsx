@@ -24,10 +24,12 @@ import About from "./pages/About/About";
 import Profile from "./pages/Profile/Profile";
 import { useContextData } from "./Context/useContext";
 import GlobalContext from "./Context/GlobalContext";
+import Loader from "./components/Loader/Loader";
 
 const Wrapper = () => {
 	AOS.init();
-	const { theme, openSideBar, setOpenSideBar } = useContext(GlobalContext);
+	const { theme, openSideBar, setOpenSideBar, isLoading } =
+		useContext(GlobalContext);
 	const location = useLocation();
 	useEffect(() => {
 		setOpenSideBar(false);
@@ -39,6 +41,7 @@ const Wrapper = () => {
 			{location.pathname !== "/login" &&
 				location.pathname !== "/register" && <Header />}
 			{openSideBar && <SideBar />}
+			{isLoading && <Loader />}
 			<Routes>
 				<Route path="/" element={<Home />} />
 				<Route path="/about" element={<About />} />

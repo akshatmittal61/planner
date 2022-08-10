@@ -1,0 +1,67 @@
+.loader {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 15;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  --full: 10px;
+  --small: 4px;
+}
+.loader-spinner {
+  width: 120px;
+  height: 120px;
+  position: relative;
+}
+.loader-spinner > * {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: var(--full) solid transparent;
+  border-radius: 50%;
+  border-top-color: var(--blue);
+  border-left-color: var(--red);
+  border-bottom-color: var(--yellow);
+  border-right-color: var(--green);
+}
+.loader-spinner div:nth-child(2n-1) {
+  animation: spin1 1.2s linear infinite;
+}
+.loader-spinner div:nth-child(2n) {
+  animation: spin2 1.2s linear infinite;
+}
+
+@keyframes spin1 {
+  0% {
+    transform: rotate(0deg);
+    border-width: var(--full);
+  }
+  50% {
+    transform: rotate(180deg);
+    border-width: var(--small);
+  }
+  100% {
+    transform: rotate(360deg);
+    border-width: var(--full);
+  }
+}
+@keyframes spin2 {
+  0% {
+    transform: rotate(0deg);
+    border-width: var(--small);
+  }
+  50% {
+    transform: rotate(180deg);
+    border-width: var(--full);
+  }
+  100% {
+    transform: rotate(360deg);
+    border-width: var(--small);
+  }
+}
+
+/*# sourceMappingURL=loader.css.map */

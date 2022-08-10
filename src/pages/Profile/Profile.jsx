@@ -44,6 +44,7 @@ const Profile = () => {
 				editedUser = { ...editedUser, [i]: profileUser[i] };
 		try {
 			setIsLoading(true);
+			console.log(editedUser);
 			const res = await axiosInstance.put("/api/auth/edit", {
 				...editedUser,
 			});
