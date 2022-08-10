@@ -16,7 +16,7 @@ import {
 import GlobalContext from "../../Context/GlobalContext";
 
 const Footer = () => {
-	const { theme } = useContext(GlobalContext);
+	const { theme, accentColor } = useContext(GlobalContext);
 	const [userMessage, setUserMessage] = useState({
 		name: "",
 		email: "",
@@ -168,13 +168,13 @@ const Footer = () => {
 								text="Cancel"
 								type="reset"
 								variant="outline"
-								color="indigo"
+								color={accentColor}
 							/>
 							<Button
 								text="Submit"
 								type="submit"
 								variant="fill"
-								color="indigo"
+								color={accentColor}
 							/>
 						</div>
 					</form>

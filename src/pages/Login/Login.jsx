@@ -7,14 +7,26 @@ import { Link, useNavigate } from "react-router-dom";
 import GlobalContext from "../../Context/GlobalContext";
 import MaterialIcons from "../../components/MaterialIcons";
 import Input from "../../components/Input/Input";
+import SnackBar from "../../components/SnackBar/SnackBar";
 
 const Login = () => {
 	const navigate = useNavigate();
-	const { isAuthenticated, setIsAuthenticated, setUser, axiosInstance } =
-		useContext(GlobalContext);
+	const {
+		isAuthenticated,
+		setIsAuthenticated,
+		setUser,
+		axiosInstance,
+		setIsLoading,
+	} = useContext(GlobalContext);
 	const [loginUser, setLoginUser] = useState({
 		username: "",
 		password: "",
+	});
+	const [open, setOpen] = useState(false);
+	const [snack, setSnack] = useState({
+		text: "Registered successfuly, create your profile now",
+		bgColor: "var(--green)",
+		color: "var(--white)",
 	});
 	const handleChange = (e) => {
 		const { name, value } = e.target;
@@ -26,19 +38,40 @@ const Login = () => {
 	const handleSubmit = async (e) => {
 		e?.preventDefault();
 		try {
+			setIsLoading(true);
 			const res = await axiosInstance.post("/api/auth/login", {
 				...loginUser,
 			});
-			console.log(res);
 			if (res.status === 200) {
-				setIsAuthenticated(true);
+				setSnack({
+					text: res.data.message,
+					bgColor: "var(--green)",
+					color: "var(--white)",
+				});
+				setOpen(true);
+				setTimeout(() => {
+					setOpen(false);
+				}, 5000);
+				setTimeout(() => {
+					setIsAuthenticated(true);
+				}, 2500);
 				localStorage.setItem("token", res.data.token);
 				localStorage.setItem("user", JSON.stringify(res.data.user));
 				localStorage.setItem("isAuthenticated", true);
 				setUser({ ...res.data.user });
+				setIsLoading(false);
 			}
 		} catch (error) {
-			console.log(error.response.data.message);
+			setSnack({
+				text: error.response.data.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpen(true);
+			setTimeout(() => {
+				setOpen(false);
+			}, 5000);
+			setIsLoading(false);
 		}
 	};
 	useEffect(() => {
@@ -101,6 +134,14 @@ const Login = () => {
 					</button>
 				</div>
 			</div>
+			{open && (
+				<SnackBar
+					text={snack.text}
+					bgColor={snack.bgColor}
+					color={snack.color}
+					close={() => setOpen(false)}
+				/>
+			)}
 		</section>
 	);
 };

@@ -21,6 +21,11 @@ export const useContextData = () => {
 		setTheme((p) => (p === "light" ? "dark" : "light"));
 	};
 
+	const [accentColor, setAccentColor] = useState("red");
+	const handleAccentColor = (color) => {
+		setAccentColor(color);
+	};
+
 	const [user, setUser] = useState(
 		JSON.parse(localStorage.getItem("user")) || null
 	);
@@ -51,6 +56,9 @@ export const useContextData = () => {
 	return {
 		theme,
 		setTheme,
+		accentColor,
+		setAccentColor,
+		handleAccentColor,
 		toggleTheme,
 		breakpoint,
 		isLoading,
