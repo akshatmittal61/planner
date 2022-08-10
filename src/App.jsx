@@ -5,7 +5,6 @@ import Home from "./pages/Home/Home";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Header from "./components/Header/Header";
-import GlobalContext from "./Context/GlobalContext";
 import SideBar from "./components/SideBar/SideBar";
 import Footer from "./components/Footer/Footer";
 import NotFound from "./pages/NotFound/NotFound";
@@ -22,18 +21,18 @@ import TasksCompleted from "./pages/Tasks/TasksCompleted";
 import TasksTrash from "./pages/Tasks/TasksTrash";
 import Contact from "./pages/Contact/Contact";
 import About from "./pages/About/About";
+import Profile from "./pages/Profile/Profile";
+import { useContextData } from "./Context/useContext";
+import GlobalContext from "./Context/GlobalContext";
 
-const App = () => {
+const Wrapper = () => {
 	AOS.init();
 	const { theme, openSideBar, setOpenSideBar } = useContext(GlobalContext);
 	const location = useLocation();
 	useEffect(() => {
 		setOpenSideBar(false);
-	}, [location.pathname, setOpenSideBar]);
-	useEffect(() => {
-		document.body.classList = theme;
-		localStorage.setItem("theme", theme);
-	}, [theme]);
+		document.body.classList = localStorage.getItem("theme");
+	}, [location.pathname, setOpenSideBar, theme]);
 
 	return (
 		<>
@@ -46,6 +45,14 @@ const App = () => {
 				<Route path="/login" element={<Login />} />
 				<Route path="/register" element={<Register />} />
 				<Route path="/calendar" element={<Calendar />} />
+				<Route
+					path="/profile"
+					element={
+						<PrivateRoute>
+							<Profile />
+						</PrivateRoute>
+					}
+				/>
 				<Route
 					path="/events"
 					element={
@@ -108,6 +115,15 @@ const App = () => {
 			{location.pathname !== "/login" &&
 				location.pathname !== "/register" && <Footer />}
 		</>
+	);
+};
+
+const App = () => {
+	const context = useContextData();
+	return (
+		<GlobalContext.Provider value={context}>
+			<Wrapper />
+		</GlobalContext.Provider>
 	);
 };
 

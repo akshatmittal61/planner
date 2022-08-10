@@ -3,12 +3,12 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import MaterialIcons from "../MaterialIcons";
 import "./header.css";
 import "../Button/button.css";
-import GlobalContext from "../../Context/GlobalContext";
 import AppBox from "../AppBox/AppBox";
 import userFallBack from "../../images/user.svg";
+import GlobalContext from "../../Context/GlobalContext";
 
 const Header = () => {
-	const { user, theme, setTheme, openSideBar, setOpenSideBar } =
+	const { user, theme, toggleTheme, openSideBar, toggleSideBar } =
 		useContext(GlobalContext);
 	const vh = window.innerHeight / 100;
 	const location = useLocation();
@@ -29,6 +29,9 @@ const Header = () => {
 				setHeight("0");
 			}
 		});
+		return () => {
+			document.removeEventListener("scroll", () => {});
+		};
 	}, [vh]);
 	useEffect(() => {
 		setOpenAppBox(false);
@@ -53,9 +56,7 @@ const Header = () => {
 				<div className="header-left-burger">
 					<button
 						className="header-left-burger__button icon"
-						onClick={() => {
-							setOpenSideBar(!openSideBar);
-						}}
+						onClick={toggleSideBar}
 					>
 						<MaterialIcons>
 							{openSideBar ? "menu_open" : "menu"}
@@ -67,12 +68,7 @@ const Header = () => {
 				</Link>
 			</div>
 			<div className="header-right">
-				<button
-					className="icon"
-					onClick={() =>
-						setTheme((p) => (p === "light" ? "dark" : "light"))
-					}
-				>
+				<button className="icon" onClick={toggleTheme}>
 					<MaterialIcons>
 						{theme === "light" ? "dark_mode" : "light_mode"}
 					</MaterialIcons>

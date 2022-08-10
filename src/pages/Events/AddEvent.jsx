@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Button from "../../components/Button/Button";
 import Input, { TextArea } from "../../components/Input/Input";
+import GlobalContext from "../../Context/GlobalContext";
 import Dialog from "../../Layout/Dialog/Dialog";
 import Row, { Col } from "../../Layout/Responsive";
 
 const AddEvent = ({ close }) => {
+	const { accentColor } = useContext(GlobalContext);
 	const [newEvent, setNewEvent] = useState({
 		title: "",
 		description: "",
@@ -28,10 +30,10 @@ const AddEvent = ({ close }) => {
 			type: "",
 			meeting: "",
 		});
-		close()
+		close();
 	};
 	const handleReset = (e) => {
-		e?.preventDefault()
+		e?.preventDefault();
 		setNewEvent({
 			title: "",
 			description: "",
@@ -118,8 +120,17 @@ const AddEvent = ({ close }) => {
 					/>
 				)}
 				<div className="form-group">
-					<Button text="Clear" type="reset" variant="outline" />
-					<Button text="Add Event" type="submit" />
+					<Button
+						text="Clear"
+						type="reset"
+						variant="outline"
+						color={accentColor}
+					/>
+					<Button
+						text="Add Event"
+						type="submit"
+						color={accentColor}
+					/>
 				</div>
 			</form>
 		</Dialog>

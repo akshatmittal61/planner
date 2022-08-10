@@ -4,6 +4,8 @@ import MaterialIcons from "../../components/MaterialIcons";
 import GlobalContext from "../../Context/GlobalContext";
 import "./dialog.css";
 
+let a = "indigo";
+
 const Dialog = ({
 	title = "",
 	close = () => console.log("close dialog box"),
@@ -14,10 +16,11 @@ const Dialog = ({
 		action: () => console.log(),
 	},
 	children,
-	color = "indigo",
+	color = a,
 	bodyStyle,
 }) => {
-	const { theme } = useContext(GlobalContext);
+	const { theme, accentColor } = useContext(GlobalContext);
+	a = accentColor;
 	useEffect(() => {
 		document.addEventListener("keydown", (e) => {
 			if (e.key === "Escape") close();
@@ -50,7 +53,7 @@ const Dialog = ({
 					<Button
 						text={cta?.text}
 						onClick={cta?.action ? cta.action : () => console.log()}
-						color={cta?.color ? cta.color : "indigo"}
+						color={cta?.color ? cta.color : accentColor}
 						icon={cta?.icon ? cta?.icon : "save"}
 					/>
 				</div>

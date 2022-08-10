@@ -24,6 +24,10 @@ const UserSchema = new mongoose.Schema(
 			type: String,
 			required: true,
 		},
+		gender: {
+			type: String,
+			enum: ["Male", "Female", "Rather Not Say"],
+		},
 		avatar: {
 			type: String,
 			default:

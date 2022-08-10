@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import GlobalContext from "../../Context/GlobalContext";
 import Masonry, { MasonryBox } from "../../Layout/Masonry/Masonry";
-import { tasksNavLinks } from "../../navigation";
+import { tasksNavLinks } from "../../utils/navigation";
 import { allTasks } from "../../resources";
 import Task from "./Task";
 import "./tasks.css";
