@@ -2,17 +2,26 @@ import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Input from "../../components/Input/Input";
 import MaterialIcons from "../../components/MaterialIcons";
+import SnackBar from "../../components/SnackBar/SnackBar";
 import GlobalContext from "../../Context/GlobalContext";
 import Row, { Col } from "../../Layout/Responsive";
 import "./profile.css";
 
 const Profile = () => {
 	const navigate = useNavigate();
-	const { user } = useContext(GlobalContext);
+	const { user, setUser, setIsLoading, axiosInstance } =
+		useContext(GlobalContext);
 	const [profileUser, setProfileUser] = useState({
 		...user,
 	});
 	const [edit, setEdit] = useState(false);
+	const [open, setOpen] = useState(false);
+	const [snack, setSnack] = useState({
+		text: "Login Successful",
+		bgColor: "var(--green)",
+		color: "var(--white)",
+	});
+
 	const handleChange = (e) => {
 		const { name, value } = e?.target;
 		if (name === "name") {
@@ -27,9 +36,43 @@ const Profile = () => {
 			}));
 		} else setProfileUser((p) => ({ ...p, [name]: value }));
 	};
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e?.preventDefault();
-		console.log(profileUser);
+		let editedUser = {};
+		for (let i in profileUser)
+			if (profileUser[i] !== user[i])
+				editedUser = { ...editedUser, [i]: profileUser[i] };
+		try {
+			setIsLoading(true);
+			const res = await axiosInstance.put("/api/auth/edit", {
+				...editedUser,
+			});
+			console.log(res);
+			if (res.status === 200) {
+				setSnack({
+					text: res.data.message,
+					bgColor: "var(--green)",
+					color: "var(--white)",
+				});
+				setOpen(true);
+				setTimeout(() => {
+					setOpen(false);
+				}, 5000);
+				// setUser((p) => ({ ...p, ...res.data.user }));
+				setIsLoading(false);
+			}
+		} catch (error) {
+			setSnack({
+				text: error.response.data.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpen(true);
+			setTimeout(() => {
+				setOpen(false);
+			}, 5000);
+			setIsLoading(false);
+		}
 	};
 	return (
 		<main className="profile">
@@ -157,6 +200,14 @@ const Profile = () => {
 					</Row>
 				</form>
 			</section>
+			{open && (
+				<SnackBar
+					text={snack.text}
+					bgColor={snack.bgColor}
+					color={snack.color}
+					close={() => setOpen(false)}
+				/>
+			)}
 		</main>
 	);
 };

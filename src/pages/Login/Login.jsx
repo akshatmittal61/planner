@@ -24,7 +24,7 @@ const Login = () => {
 	});
 	const [open, setOpen] = useState(false);
 	const [snack, setSnack] = useState({
-		text: "Registered successfuly, create your profile now",
+		text: "Login Successful",
 		bgColor: "var(--green)",
 		color: "var(--white)",
 	});
