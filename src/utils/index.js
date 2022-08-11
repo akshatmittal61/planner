@@ -28,3 +28,8 @@ export const imageBackgroundUrl = (index) =>
 export const copy = (text) => {
 	navigator.clipboard.writeText(text);
 };
+
+export const omit = (obj, key) => {
+	const { [key]: omitted, ...rest } = obj;
+	return rest;
+};

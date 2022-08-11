@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Input from "../../components/Input/Input";
 import MaterialIcons from "../../components/MaterialIcons";
@@ -6,10 +6,12 @@ import SnackBar from "../../components/SnackBar/SnackBar";
 import GlobalContext from "../../Context/GlobalContext";
 import Row, { Col } from "../../Layout/Responsive";
 import "./profile.css";
+import userFallBackImg from "../../images/user.svg";
+import Button from "../../components/Button/Button";
 
 const Profile = () => {
 	const navigate = useNavigate();
-	const { user, setUser, setIsLoading, axiosInstance } =
+	const { user, setIsLoading, axiosInstance, updateUser } =
 		useContext(GlobalContext);
 	const [profileUser, setProfileUser] = useState({
 		...user,
@@ -21,6 +23,10 @@ const Profile = () => {
 		bgColor: "var(--green)",
 		color: "var(--white)",
 	});
+	const [userImage, setUserImage] = useState(user?.avatar);
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
 
 	const handleChange = (e) => {
 		const { name, value } = e?.target;
@@ -38,17 +44,15 @@ const Profile = () => {
 	};
 	const handleSubmit = async (e) => {
 		e?.preventDefault();
-		let editedUser = {};
+		let editedUser = { username: user.username };
 		for (let i in profileUser)
 			if (profileUser[i] !== user[i])
 				editedUser = { ...editedUser, [i]: profileUser[i] };
 		try {
 			setIsLoading(true);
-			console.log(editedUser);
 			const res = await axiosInstance.put("/api/auth/edit", {
 				...editedUser,
 			});
-			console.log(res);
 			if (res.status === 200) {
 				setSnack({
 					text: res.data.message,
@@ -59,9 +63,21 @@ const Profile = () => {
 				setTimeout(() => {
 					setOpen(false);
 				}, 5000);
-				// setUser((p) => ({ ...p, ...res.data.user }));
-				setIsLoading(false);
+				updateUser({ ...res.data.user });
+				setProfileUser({ ...profileUser, ...res.data.user });
+				setUserImage(res.data.user?.avatar);
+			} else {
+				setSnack({
+					text: res.data.message,
+					bgColor: "var(--yellow)",
+					color: "var(--white)",
+				});
+				setOpen(true);
+				setTimeout(() => {
+					setOpen(false);
+				}, 5000);
 			}
+			setIsLoading(false);
 		} catch (error) {
 			setSnack({
 				text: error.response.data.message,
@@ -107,7 +123,13 @@ const Profile = () => {
 					<Row>
 						<Col lg={50} md={50} sm={100}>
 							<div className="profile-image">
-								<img src={user?.avatar} alt={user?.name} />
+								<img
+									src={userImage}
+									alt={user?.name}
+									onError={() =>
+										setUserImage(userFallBackImg)
+									}
+								/>
 							</div>
 						</Col>
 						<Col lg={50} md={50} sm={100}>
@@ -185,7 +207,7 @@ const Profile = () => {
 								placeholder="Avatar"
 							/>
 						</Col>
-						{edit && (
+						{/*edit && (
 							<Col lg={50} md={50} sm={100}>
 								<Input
 									type="password"
@@ -197,8 +219,9 @@ const Profile = () => {
 									placeholder="Password"
 								/>
 							</Col>
-						)}
+						)*/}
 					</Row>
+					<Button className="dispn" type="submit" />
 				</form>
 			</section>
 			{open && (

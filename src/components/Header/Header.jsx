@@ -36,6 +36,9 @@ const Header = () => {
 	useEffect(() => {
 		setOpenAppBox(false);
 	}, [location.pathname]);
+	useEffect(() => {
+		setUserImg(() => user?.avatar);
+	}, [user]);
 
 	return (
 		<header

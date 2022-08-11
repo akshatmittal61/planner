@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { jwtSecret } from "../config/index.mjs";
 import Settings from "../models/Settings.mjs";
+import { omit } from "../helpers/index.mjs";
 
 const register = async (req, res) => {
 	const { fname, lname, email, username, password } = req.body;
@@ -71,7 +72,7 @@ const login = async (req, res) => {
 			if (err) throw err;
 			res.status(200).json({
 				token,
-				user: { ...sendUser },
+				user: omit(user, "password"),
 				message: "Login successful",
 			});
 		});
@@ -105,7 +106,10 @@ const editProfile = async (req, res) => {
 			{ $set: updatedFields },
 			{ new: true }
 		);
-		return res.status(200).json(updatedProfile);
+		return res.status(200).json({
+			user: omit(updatedProfile, "password"),
+			message: "Updated Profile successfully",
+		});
 	} catch (error) {
 		console.error(error);
 		return res.status(500).json({ message: "Server Error" });

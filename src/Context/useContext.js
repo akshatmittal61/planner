@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { omit } from "../utils";
 import defaultNavLinks from "../utils/navigation";
 
 export const useContextData = () => {
@@ -29,6 +30,21 @@ export const useContextData = () => {
 	const [user, setUser] = useState(
 		JSON.parse(localStorage.getItem("user")) || null
 	);
+	const updateUser = (newUser) => {
+		localStorage.setItem(
+			"user",
+			JSON.stringify(omit({ ...user, ...newUser }, "password"))
+		);
+		setUser((p) => ({ ...p, ...newUser }));
+	};
+
+	const [snack, setSnack] = useState({
+		text: "Snackbar Message",
+		bgColor: "var(--indigo)",
+		color: "var(--white)",
+	});
+	const [openSnackBar, setOpenSnackBar] = useState(false);
+
 	const isLocalAuthenticated = localStorage.getItem("isAuthenticated");
 	const [isAuthenticated, setIsAuthenticated] = useState(
 		JSON.parse(isLocalAuthenticated) || false
@@ -63,10 +79,15 @@ export const useContextData = () => {
 		breakpoint,
 		isLoading,
 		setIsLoading,
+		snack,
+		setSnack,
+		openSnackBar,
+		setOpenSnackBar,
 		isAuthenticated,
 		setIsAuthenticated,
 		user,
 		setUser,
+		updateUser,
 		openSideBar,
 		setOpenSideBar,
 		toggleSideBar,

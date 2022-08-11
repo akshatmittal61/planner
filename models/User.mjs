@@ -33,6 +33,14 @@ const UserSchema = new mongoose.Schema(
 			default:
 				"https://raw.githubusercontent.com/akshatmittal61/planner/master/src/images/user.svg",
 		},
+		phone: {
+			type: String,
+			required: false,
+		},
+		bio: {
+			type: String,
+			required: false,
+		},
 	},
 	{ timestamps: true }
 );
