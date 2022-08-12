@@ -7,6 +7,8 @@ const GlobalContext = createContext({
 	accentColor: "",
 	setAccentColor: () => {},
 	handleAccentColor: () => {},
+	networkStatus: "offline",
+	setNetworkStatus: () => {},
 	breakpoint: () => {},
 	isLoading: "",
 	setIsLoading: () => {},
@@ -25,6 +27,11 @@ const GlobalContext = createContext({
 	sideBarLinks: [],
 	setSideBarLinks: () => {},
 	axiosInstance: undefined,
+	events: [],
+	setEvents: () => {},
+	getAllEvents: () => {},
+	addNewEvent: () => {},
+	updateOneEvent: () => {},
 });
 
 export default GlobalContext;

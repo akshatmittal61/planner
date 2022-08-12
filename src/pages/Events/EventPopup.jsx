@@ -17,8 +17,7 @@ const EventPopup = ({
 	...rest
 }) => {
 	let originalEvent = { title, description, date, time, type, link };
-	const { setIsLoading, setSnack, setOpenSnackBar, axiosInstance, user } =
-		useContext(GlobalContext);
+	const { user, updateOneEvent } = useContext(GlobalContext);
 	const [edit, setEdit] = useState(false);
 	const [currEvent, setCurrEvent] = useState({
 		title,
@@ -39,45 +38,7 @@ const EventPopup = ({
 			if (currEvent[i] !== originalEvent[i])
 				editedEvent = { ...editedEvent, [i]: currEvent[i] };
 		}
-		try {
-			setIsLoading(true);
-			const res = await axiosInstance.put(
-				`/api/events/edit/${rest._id}`,
-				{
-					...editedEvent,
-				}
-			);
-			if (res.status === 200) {
-				setSnack({
-					text: res.data.message,
-					bgColor: "var(--green)",
-					color: "var(--white)",
-				});
-				setOpenSnackBar(true);
-				const getUpdatedEventRes = await axiosInstance.get(
-					`/api/events/${rest._id}`
-				);
-				setCurrEvent((p) => ({
-					...p,
-					...getUpdatedEventRes.data.updatedEvent,
-				}));
-				setTimeout(() => {
-					setOpenSnackBar(false);
-				}, 5000);
-			}
-			setIsLoading(false);
-		} catch (error) {
-			setSnack({
-				text: error.response.data.message,
-				bgColor: "var(--red)",
-				color: "var(--white)",
-			});
-			setOpenSnackBar(true);
-			setTimeout(() => {
-				setOpenSnackBar(false);
-			}, 5000);
-			setIsLoading(false);
-		}
+		updateOneEvent(rest._id, editedEvent);
 	};
 	return (
 		<Dialog

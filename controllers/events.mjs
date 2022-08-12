@@ -5,7 +5,7 @@ const getAllEvents = async (req, res) => {
 		const allEvents = await Event.find({ user: req.user.id }).sort({
 			date: -1,
 		});
-		return res.status(200).json(allEvents);
+		return res.status(200).json({ allEvents: allEvents });
 	} catch (error) {
 		console.error(error);
 		return res.status(500).json({ message: "Server Error" });
@@ -46,7 +46,7 @@ const addEvent = async (req, res) => {
 		const event = await newEvent.save();
 		return res
 			.status(200)
-			.json({ event, message: "Added event succesfully" });
+			.json({ newEvent: event, message: "Added event succesfully" });
 	} catch (error) {
 		console.error(error);
 		return res.status(500).json({ message: "Server Error" });

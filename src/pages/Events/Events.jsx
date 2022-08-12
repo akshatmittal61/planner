@@ -10,79 +10,60 @@ import "./events.css";
 import nullEvents from "../../images/nullEvents.svg";
 
 const Events = () => {
-	const { setSnack, setOpenSnackBar, setIsLoading, axiosInstance } =
-		useContext(GlobalContext);
-	const [events, setEvents] = useState([]);
+	const { getAllEvents, events } = useContext(GlobalContext);
+	const [eventsToRender, setEventsToRender] = useState([]);
 	const [showAddEventBox, setShowAddEventBox] = useState(false);
 	useEffect(() => {
-		const getAllEvents = async () => {
-			try {
-				setIsLoading(true);
-				const res = await axiosInstance.get("/api/events");
-				let allEvents = res.data;
-				let newEvents = allEvents
-					.map((ev) => ({
-						...ev,
-						date: new Date(ev.date),
-					}))
-					.sort((a, b) => b.date - a.date);
-				let m1 = new Map();
-				for (let event of newEvents) {
-					let presentDate = `${moment(event.date).format(
-						"MMMM YYYY"
-					)}`;
-					let a = m1.get(presentDate);
-					if (!a) m1.set(presentDate, [event]);
-					else m1.set(presentDate, [...a, event]);
-				}
-				let newArr = [];
-				for (const [key, value] of m1) {
-					newArr = [
-						...newArr,
-						{
-							month: key,
-							eventsOfMonth: value,
-						},
-					];
-				}
-				setEvents(newArr);
-				setIsLoading(false);
-			} catch (error) {
-				setSnack({
-					text: error.response?.data?.message,
-					bgColor: "var(--red)",
-					color: "var(--white)",
-				});
-				setOpenSnackBar(true);
-				setTimeout(() => {
-					setOpenSnackBar(false);
-				}, 5000);
-				setIsLoading(false);
-			}
-		};
 		getAllEvents();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [setIsLoading, setOpenSnackBar, setSnack]);
+	}, []);
+	useEffect(() => {
+		let allEvents = [...events];
+		let newEvents = allEvents
+			.map((ev) => ({
+				...ev,
+				date: new Date(ev.date),
+			}))
+			.sort((a, b) => b.date - a.date);
+		let m1 = new Map();
+		for (let event of newEvents) {
+			let presentDate = `${moment(event.date).format("MMMM YYYY")}`;
+			let a = m1.get(presentDate);
+			if (!a) m1.set(presentDate, [event]);
+			else m1.set(presentDate, [...a, event]);
+		}
+		let newArr = [];
+		for (const [key, value] of m1) {
+			newArr = [
+				...newArr,
+				{
+					month: key,
+					eventsOfMonth: value,
+				},
+			];
+		}
+		setEventsToRender(newArr);
+	}, [events]);
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, []);
 
 	return (
 		<main className="events">
-			{events.length > 0 ? (
+			{eventsToRender.length > 0 ? (
 				<>
 					<section className="events-head">
 						<span>Events</span>
 					</section>
 					<section className="events-body">
-						{events.map((element, index) => (
+						{eventsToRender?.map((element, index) => (
 							<div className="events-body-section" key={index}>
 								<span className="events-body-section__head">
 									{element?.month}
 								</span>
 								<div className="events-body-section__body">
 									<Row>
-										{element?.eventsOfMonth.map(
+										{element?.eventsOfMonth?.map(
 											(event, index) => (
 												<Col
 													lg={33}

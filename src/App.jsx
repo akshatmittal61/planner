@@ -38,12 +38,16 @@ const Wrapper = () => {
 		snack,
 		openSnackBar,
 		setOpenSnackBar,
+		setNetworkStatus,
 	} = useContext(GlobalContext);
 	const location = useLocation();
 	useEffect(() => {
 		setOpenSideBar(false);
 		document.body.classList = localStorage.getItem("theme");
 	}, [location.pathname, setOpenSideBar, theme]);
+	useEffect(() => {
+		setNetworkStatus(navigator.onLine ? "online" : "offline");
+	});
 
 	return (
 		<>
