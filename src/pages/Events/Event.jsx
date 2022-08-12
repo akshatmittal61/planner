@@ -5,7 +5,7 @@ import MaterialIcons from "../../components/MaterialIcons";
 import GlobalContext from "../../Context/GlobalContext";
 import EventPopup from "./EventPopup";
 
-const Event = ({ title, description, date, time, type, link }) => {
+const Event = ({ title, description, date, time, type, link, ...rest }) => {
 	const { theme } = useContext(GlobalContext);
 	const showIcon = (e) => {
 		switch (e) {
@@ -75,6 +75,7 @@ const Event = ({ title, description, date, time, type, link }) => {
 					type={type}
 					link={link}
 					close={() => setOpenEventPopup(() => false)}
+					{...rest}
 				/>
 			)}
 		</div>

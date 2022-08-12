@@ -1,11 +1,23 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import moment from "moment";
 import Input, { TextArea } from "../../components/Input/Input";
 import MaterialIcons from "../../components/MaterialIcons";
 import Dialog from "../../Layout/Dialog/Dialog";
 import Row, { Col } from "../../Layout/Responsive";
+import GlobalContext from "../../Context/GlobalContext";
 
-const EventPopup = ({ close, title, description, date, time, type, link }) => {
+const EventPopup = ({
+	close,
+	title,
+	description,
+	date,
+	time,
+	type,
+	link,
+	...rest
+}) => {
+	let originalEvent = { title, description, date, time, type, link };
+	const { user, updateOneEvent } = useContext(GlobalContext);
 	const [edit, setEdit] = useState(false);
 	const [currEvent, setCurrEvent] = useState({
 		title,
@@ -19,11 +31,15 @@ const EventPopup = ({ close, title, description, date, time, type, link }) => {
 		const { name, value } = e.target;
 		setCurrEvent((p) => ({ ...p, [name]: value }));
 	};
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e?.preventDefault();
-		console.log(currEvent);
+		let editedEvent = { username: user.username };
+		for (let i in currEvent) {
+			if (currEvent[i] !== originalEvent[i])
+				editedEvent = { ...editedEvent, [i]: currEvent[i] };
+		}
+		updateOneEvent(rest._id, editedEvent);
 	};
-	console.log(currEvent);
 	return (
 		<Dialog
 			title={currEvent.title}

@@ -1,23 +1,24 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import MaterialIcons from "../MaterialIcons";
 import "./header.css";
 import "../Button/button.css";
 import AppBox from "../AppBox/AppBox";
 import userFallBack from "../../images/user.svg";
 import GlobalContext from "../../Context/GlobalContext";
+import UserMenu from "../UserMenu/UserMenu";
 
 const Header = () => {
 	const { user, theme, toggleTheme, openSideBar, toggleSideBar } =
 		useContext(GlobalContext);
 	const vh = window.innerHeight / 100;
 	const location = useLocation();
-	const navigate = useNavigate();
 	const [shadow, setShadow] = useState("none");
 	const [height, setHeight] = useState(
 		location.pathname === "/" ? 0 : "var(--head-height)"
 	);
 	const [openAppBox, setOpenAppBox] = useState(false);
+	const [openUserMenu, setOpenUserMenu] = useState(false);
 	const [userImg, setUserImg] = useState(user?.avatar);
 	useEffect(() => {
 		document.addEventListener("scroll", () => {
@@ -35,6 +36,7 @@ const Header = () => {
 	}, [vh]);
 	useEffect(() => {
 		setOpenAppBox(false);
+		setOpenUserMenu(false);
 	}, [location.pathname]);
 	useEffect(() => {
 		setUserImg(() => user?.avatar);
@@ -84,19 +86,12 @@ const Header = () => {
 				</button>
 				<button
 					className="icon"
-					onClick={() => {
-						setOpenAppBox((p) => !p);
-					}}
+					onClick={() => setOpenAppBox((p) => !p)}
 				>
 					<MaterialIcons>apps</MaterialIcons>
 				</button>
 				{openAppBox && <AppBox close={() => setOpenAppBox(false)} />}
-				<button
-					className="icon"
-					onClick={() => {
-						navigate("/profile");
-					}}
-				>
+				<button className="icon" onClick={() => setOpenUserMenu(true)}>
 					{user?.avatar ? (
 						<img
 							className="header-right-avatar"
@@ -110,6 +105,9 @@ const Header = () => {
 						<MaterialIcons>account_circle</MaterialIcons>
 					)}
 				</button>
+				{openUserMenu && (
+					<UserMenu close={() => setOpenUserMenu(false)} />
+				)}
 			</div>
 		</header>
 	);

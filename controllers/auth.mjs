@@ -6,7 +6,7 @@ import Settings from "../models/Settings.mjs";
 import { omit } from "../helpers/index.mjs";
 
 const register = async (req, res) => {
-	const { fname, lname, email, username, password } = req.body;
+	const { fname, lname, email, username, password, avatar } = req.body;
 	if (!fname || !lname || !email || !password || !username)
 		return res.status(400).json({ message: "Invalid Data" });
 	if (password.length < 6)
@@ -16,11 +16,13 @@ const register = async (req, res) => {
 	try {
 		let user = await User.findOne({ email });
 		if (user)
-			return res.status(400).json({ message: "User already registered" });
+			return res.status(400).json({ message: "Email already in use" });
 		user = await User.findOne({ username });
 		if (user)
-			return res.status(400).json({ message: "User already registered" });
-		user = new User({ fname, lname, email, password, username });
+			return res
+				.status(400)
+				.json({ message: "This username has been taken" });
+		user = new User({ fname, lname, email, password, username, avatar });
 		user.password = await bcrypt.hash(password, 10);
 		await user.save();
 		let settings = new Settings({ user: user.id });
@@ -61,12 +63,6 @@ const login = async (req, res) => {
 			user: {
 				id: user.id,
 			},
-		};
-		const sendUser = {
-			fname: user.fname,
-			lname: user.lname,
-			username: user.username,
-			avatar: user.avatar,
 		};
 		jwt.sign(payload, jwtSecret, { expiresIn: 360000 }, (err, token) => {
 			if (err) throw err;

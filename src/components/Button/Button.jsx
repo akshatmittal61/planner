@@ -30,13 +30,9 @@ const Button = ({
 			{...rest}
 			onClick={
 				href !== "" && href !== "#"
-					? () => {
-							window.open(href, target);
-					  }
+					? () => window.open(href, target)
 					: link !== location.pathname && link !== undefined
-					? () => {
-							navigate(link);
-					  }
+					? () => navigate(link)
 					: onClick
 			}
 		>

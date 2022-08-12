@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Input from "../../components/Input/Input";
 import MaterialIcons from "../../components/MaterialIcons";
-import SnackBar from "../../components/SnackBar/SnackBar";
 import GlobalContext from "../../Context/GlobalContext";
 import Row, { Col } from "../../Layout/Responsive";
 import "./profile.css";
@@ -11,18 +10,18 @@ import Button from "../../components/Button/Button";
 
 const Profile = () => {
 	const navigate = useNavigate();
-	const { user, setIsLoading, axiosInstance, updateUser } =
-		useContext(GlobalContext);
+	const {
+		user,
+		setIsLoading,
+		axiosInstance,
+		updateUser,
+		setSnack,
+		setOpenSnackBar,
+	} = useContext(GlobalContext);
 	const [profileUser, setProfileUser] = useState({
 		...user,
 	});
 	const [edit, setEdit] = useState(false);
-	const [open, setOpen] = useState(false);
-	const [snack, setSnack] = useState({
-		text: "Login Successful",
-		bgColor: "var(--green)",
-		color: "var(--white)",
-	});
 	const [userImage, setUserImage] = useState(user?.avatar);
 	useEffect(() => {
 		window.scrollTo(0, 0);
@@ -59,9 +58,9 @@ const Profile = () => {
 					bgColor: "var(--green)",
 					color: "var(--white)",
 				});
-				setOpen(true);
+				setOpenSnackBar(true);
 				setTimeout(() => {
-					setOpen(false);
+					setOpenSnackBar(false);
 				}, 5000);
 				updateUser({ ...res.data.user });
 				setProfileUser({ ...profileUser, ...res.data.user });
@@ -72,9 +71,9 @@ const Profile = () => {
 					bgColor: "var(--yellow)",
 					color: "var(--white)",
 				});
-				setOpen(true);
+				setOpenSnackBar(true);
 				setTimeout(() => {
-					setOpen(false);
+					setOpenSnackBar(false);
 				}, 5000);
 			}
 			setIsLoading(false);
@@ -84,9 +83,9 @@ const Profile = () => {
 				bgColor: "var(--red)",
 				color: "var(--white)",
 			});
-			setOpen(true);
+			setOpenSnackBar(true);
 			setTimeout(() => {
-				setOpen(false);
+				setOpenSnackBar(false);
 			}, 5000);
 			setIsLoading(false);
 		}
@@ -224,14 +223,6 @@ const Profile = () => {
 					<Button className="dispn" type="submit" />
 				</form>
 			</section>
-			{open && (
-				<SnackBar
-					text={snack.text}
-					bgColor={snack.bgColor}
-					color={snack.color}
-					close={() => setOpen(false)}
-				/>
-			)}
 		</main>
 	);
 };

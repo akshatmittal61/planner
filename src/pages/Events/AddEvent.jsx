@@ -6,31 +6,22 @@ import Dialog from "../../Layout/Dialog/Dialog";
 import Row, { Col } from "../../Layout/Responsive";
 
 const AddEvent = ({ close }) => {
-	const { accentColor } = useContext(GlobalContext);
+	const { accentColor, addNewEvent } = useContext(GlobalContext);
 	const [newEvent, setNewEvent] = useState({
 		title: "",
 		description: "",
 		date: "",
 		time: "",
 		type: "",
-		meeting: "",
+		link: "",
 	});
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 		setNewEvent((p) => ({ ...p, [name]: value }));
 	};
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		console.log(newEvent);
-		setNewEvent({
-			title: "",
-			description: "",
-			date: "",
-			time: "",
-			type: "",
-			meeting: "",
-		});
-		close();
+	const handleSubmit = async (e) => {
+		e?.preventDefault();
+		addNewEvent(newEvent);
 	};
 	const handleReset = (e) => {
 		e?.preventDefault();
@@ -40,7 +31,7 @@ const AddEvent = ({ close }) => {
 			date: "",
 			time: "",
 			type: "",
-			meeting: "",
+			link: "",
 		});
 	};
 	return (
@@ -111,11 +102,11 @@ const AddEvent = ({ close }) => {
 				</datalist>
 				{newEvent.type === "meeting" && (
 					<Input
-						name="meeting"
+						name="link"
 						placeholder="Meeting Link"
 						type="url"
 						icon="link"
-						value={newEvent.meeting}
+						value={newEvent.link}
 						onChange={handleChange}
 					/>
 				)}

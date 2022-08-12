@@ -8,12 +8,12 @@ let a = "indigo";
 
 const Dialog = ({
 	title = "",
-	close = () => console.log("close dialog box"),
+	close = () => {},
 	cta = {
 		text: "Save",
 		icon: "save",
 		color: "indigo",
-		action: () => console.log(),
+		action: () => {},
 	},
 	children,
 	color = a,
@@ -52,7 +52,7 @@ const Dialog = ({
 				<div className="dialog-head-right">
 					<Button
 						text={cta?.text}
-						onClick={cta?.action ? cta.action : () => console.log()}
+						onClick={cta?.action}
 						color={cta?.color ? cta.color : accentColor}
 						icon={cta?.icon ? cta?.icon : "save"}
 					/>
