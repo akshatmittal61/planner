@@ -67,13 +67,15 @@ const Events = () => {
 			}
 		};
 		getAllEvents();
-		window.scrollTo(0, 0);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [setIsLoading, setOpenSnackBar, setSnack]);
+	}, [setIsLoading, setOpenSnackBar, setSnack, showAddEventBox]);
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, []);
 
 	return (
 		<main className="events">
-			{!isLoading && events.size > 0 ? (
+			{!isLoading && events.length > 0 ? (
 				<>
 					<section className="events-head">
 						<span>Events</span>

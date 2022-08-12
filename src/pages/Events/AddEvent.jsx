@@ -6,29 +6,64 @@ import Dialog from "../../Layout/Dialog/Dialog";
 import Row, { Col } from "../../Layout/Responsive";
 
 const AddEvent = ({ close }) => {
-	const { accentColor } = useContext(GlobalContext);
+	const {
+		accentColor,
+		setSnack,
+		setOpenSnackBar,
+		setIsLoading,
+		axiosInstance,
+	} = useContext(GlobalContext);
 	const [newEvent, setNewEvent] = useState({
 		title: "",
 		description: "",
 		date: "",
 		time: "",
 		type: "",
-		meeting: "",
+		link: "",
 	});
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 		setNewEvent((p) => ({ ...p, [name]: value }));
 	};
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 		console.log(newEvent);
+		try {
+			setIsLoading(true);
+			const res = await axiosInstance.post("/api/events/add", {
+				...newEvent,
+			});
+			if (res.status === 200) {
+				setSnack({
+					text: res.data.message,
+					bgColor: "var(--green)",
+					color: "var(--white)",
+				});
+				setOpenSnackBar(true);
+				setTimeout(() => {
+					setOpenSnackBar(false);
+				}, 5000);
+				setIsLoading(false);
+			}
+		} catch (error) {
+			setSnack({
+				text: error.response.data.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		}
 		setNewEvent({
 			title: "",
 			description: "",
 			date: "",
 			time: "",
 			type: "",
-			meeting: "",
+			link: "",
 		});
 		close();
 	};
@@ -40,7 +75,7 @@ const AddEvent = ({ close }) => {
 			date: "",
 			time: "",
 			type: "",
-			meeting: "",
+			link: "",
 		});
 	};
 	return (
@@ -111,11 +146,11 @@ const AddEvent = ({ close }) => {
 				</datalist>
 				{newEvent.type === "meeting" && (
 					<Input
-						name="meeting"
+						name="link"
 						placeholder="Meeting Link"
 						type="url"
 						icon="link"
-						value={newEvent.meeting}
+						value={newEvent.link}
 						onChange={handleChange}
 					/>
 				)}
