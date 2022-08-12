@@ -22,7 +22,7 @@ export const useContextData = () => {
 		setTheme((p) => (p === "light" ? "dark" : "light"));
 	};
 
-	const [accentColor, setAccentColor] = useState("red");
+	const [accentColor, setAccentColor] = useState("indigo");
 	const handleAccentColor = (color) => {
 		setAccentColor(color);
 	};

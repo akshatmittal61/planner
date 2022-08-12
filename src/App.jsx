@@ -26,6 +26,7 @@ import { useContextData } from "./Context/useContext";
 import GlobalContext from "./Context/GlobalContext";
 import Loader from "./components/Loader/Loader";
 import SnackBar from "./components/SnackBar/SnackBar";
+import Logout from "./pages/Logout";
 
 const Wrapper = () => {
 	AOS.init();
@@ -55,6 +56,7 @@ const Wrapper = () => {
 				<Route path="/about" element={<About />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/register" element={<Register />} />
+				<Route path="/logout" element={<Logout />} />
 				<Route path="/calendar" element={<Calendar />} />
 				<Route
 					path="/profile"
