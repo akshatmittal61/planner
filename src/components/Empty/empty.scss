@@ -1,0 +1,29 @@
+.empty {
+    width: 100%;
+    height: calc(100vh - var(--head-height));
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+
+    &-text {
+        font-size: 2rem;
+        line-height: 1.5rem;
+        text-align: center;
+        margin: 2rem 0;
+    }
+
+    &-img {
+        width: 50vh;
+        height: 50vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
