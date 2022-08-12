@@ -27,7 +27,6 @@ const AddEvent = ({ close }) => {
 	};
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		console.log(newEvent);
 		try {
 			setIsLoading(true);
 			const res = await axiosInstance.post("/api/events/add", {
@@ -43,8 +42,8 @@ const AddEvent = ({ close }) => {
 				setTimeout(() => {
 					setOpenSnackBar(false);
 				}, 5000);
-				setIsLoading(false);
 			}
+			setIsLoading(false);
 		} catch (error) {
 			setSnack({
 				text: error.response.data.message,

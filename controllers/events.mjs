@@ -70,7 +70,7 @@ const editEvent = async (req, res) => {
 			{ new: true }
 		);
 		return res.status(200).json({
-			updatedEvent,
+			updatedEvent: updatedEvent,
 			message: "Updated event successfuly",
 		});
 	} catch (error) {

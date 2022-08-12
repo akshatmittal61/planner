@@ -1,11 +1,24 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import moment from "moment";
 import Input, { TextArea } from "../../components/Input/Input";
 import MaterialIcons from "../../components/MaterialIcons";
 import Dialog from "../../Layout/Dialog/Dialog";
 import Row, { Col } from "../../Layout/Responsive";
+import GlobalContext from "../../Context/GlobalContext";
 
-const EventPopup = ({ close, title, description, date, time, type, link }) => {
+const EventPopup = ({
+	close,
+	title,
+	description,
+	date,
+	time,
+	type,
+	link,
+	...rest
+}) => {
+	let originalEvent = { title, description, date, time, type, link };
+	const { setIsLoading, setSnack, setOpenSnackBar, axiosInstance, user } =
+		useContext(GlobalContext);
 	const [edit, setEdit] = useState(false);
 	const [currEvent, setCurrEvent] = useState({
 		title,
@@ -19,11 +32,53 @@ const EventPopup = ({ close, title, description, date, time, type, link }) => {
 		const { name, value } = e.target;
 		setCurrEvent((p) => ({ ...p, [name]: value }));
 	};
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e?.preventDefault();
-		console.log(currEvent);
+		let editedEvent = { username: user.username };
+		for (let i in currEvent) {
+			if (currEvent[i] !== originalEvent[i])
+				editedEvent = { ...editedEvent, [i]: currEvent[i] };
+		}
+		try {
+			setIsLoading(true);
+			const res = await axiosInstance.put(
+				`/api/events/edit/${rest._id}`,
+				{
+					...editedEvent,
+				}
+			);
+			if (res.status === 200) {
+				setSnack({
+					text: res.data.message,
+					bgColor: "var(--green)",
+					color: "var(--white)",
+				});
+				setOpenSnackBar(true);
+				const getUpdatedEventRes = await axiosInstance.get(
+					`/api/events/${rest._id}`
+				);
+				setCurrEvent((p) => ({
+					...p,
+					...getUpdatedEventRes.data.updatedEvent,
+				}));
+				setTimeout(() => {
+					setOpenSnackBar(false);
+				}, 5000);
+			}
+			setIsLoading(false);
+		} catch (error) {
+			setSnack({
+				text: error.response.data.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		}
 	};
-	console.log(currEvent);
 	return (
 		<Dialog
 			title={currEvent.title}

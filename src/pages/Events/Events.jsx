@@ -13,7 +13,6 @@ const Events = () => {
 	const {
 		setSnack,
 		setOpenSnackBar,
-		isLoading,
 		setIsLoading,
 		axiosInstance,
 	} = useContext(GlobalContext);
@@ -53,7 +52,6 @@ const Events = () => {
 				setEvents(newArr);
 				setIsLoading(false);
 			} catch (error) {
-				console.log(error);
 				setSnack({
 					text: error.response?.data?.message,
 					bgColor: "var(--red)",
@@ -75,7 +73,7 @@ const Events = () => {
 
 	return (
 		<main className="events">
-			{!isLoading && events.length > 0 ? (
+			{events.length > 0 ? (
 				<>
 					<section className="events-head">
 						<span>Events</span>
@@ -96,16 +94,7 @@ const Events = () => {
 													sm={50}
 													key={index}
 												>
-													<Event
-														title={event.title}
-														description={
-															event.description
-														}
-														date={event.date}
-														time={event.time}
-														type={event.type}
-														link={event.link}
-													/>
+													<Event {...event} />
 												</Col>
 											)
 										)}

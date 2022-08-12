@@ -8,7 +8,7 @@ const PopupCTA = ({ ...rest }) => <Button className=" popup-cta" {...rest} />;
 
 const Popup = ({
 	title = "",
-	close = () => console.log("close popup box"),
+	close = () => {},
 	children,
 	width = "60%",
 	height = "60%",
