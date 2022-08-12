@@ -110,6 +110,35 @@ const moveEventToTrash = async (req, res) => {
 	}
 };
 
+const restoreEventFromTrash = async (req, res) => {
+	const id = req.params.id;
+	try {
+		let foundEvent = await Event.findById(id);
+		if (!foundEvent)
+			return res.status(404).json({ message: "Event not found" });
+		if (foundEvent.user.toString() !== req.user.id)
+			return res.status(401).json({ message: "User not authorized" });
+		if (!foundEvent.trashed)
+			return res.status(400).json({ message: "Event not in trash" });
+		let updatedEvent = await Event.findByIdAndUpdate(
+			id,
+			{
+				$set: { trashed: false },
+			},
+			{ new: true }
+		);
+		return res.status(200).json({
+			updatedEvent: updatedEvent,
+			message: "Event restored",
+		});
+	} catch (error) {
+		console.error(error);
+		if (error.kind === "ObjectId")
+			return res.status(404).json({ message: "Event not found" });
+		return res.status(500).json({ message: "Server Error" });
+	}
+};
+
 const deleteEvent = async (req, res) => {
 	const id = req.params.id;
 	try {
@@ -133,5 +162,6 @@ export {
 	addEvent,
 	editEvent,
 	moveEventToTrash,
+	restoreEventFromTrash,
 	deleteEvent,
 };

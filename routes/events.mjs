@@ -6,6 +6,7 @@ import {
 	moveEventToTrash,
 	getAllEvents,
 	getEvent,
+	restoreEventFromTrash,
 } from "../controllers/events.mjs";
 import auth from "../middleware/auth.mjs";
 
@@ -17,6 +18,7 @@ router.get("/:id", getEvent);
 router.post("/add", addEvent);
 router.put("/edit/:id", editEvent);
 router.put("/trash/:id", moveEventToTrash);
+router.put("/restore/:id", restoreEventFromTrash);
 router.delete("/delete/:id", deleteEvent);
 
 export default router;
