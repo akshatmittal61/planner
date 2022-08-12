@@ -42,6 +42,7 @@ const AddEvent = ({ close }) => {
 				setTimeout(() => {
 					setOpenSnackBar(false);
 				}, 5000);
+				close();
 			}
 			setIsLoading(false);
 		} catch (error) {
@@ -56,15 +57,6 @@ const AddEvent = ({ close }) => {
 			}, 5000);
 			setIsLoading(false);
 		}
-		setNewEvent({
-			title: "",
-			description: "",
-			date: "",
-			time: "",
-			type: "",
-			link: "",
-		});
-		close();
 	};
 	const handleReset = (e) => {
 		e?.preventDefault();

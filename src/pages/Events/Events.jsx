@@ -10,12 +10,8 @@ import "./events.css";
 import nullEvents from "../../images/nullEvents.svg";
 
 const Events = () => {
-	const {
-		setSnack,
-		setOpenSnackBar,
-		setIsLoading,
-		axiosInstance,
-	} = useContext(GlobalContext);
+	const { setSnack, setOpenSnackBar, setIsLoading, axiosInstance } =
+		useContext(GlobalContext);
 	const [events, setEvents] = useState([]);
 	const [showAddEventBox, setShowAddEventBox] = useState(false);
 	useEffect(() => {
@@ -66,7 +62,7 @@ const Events = () => {
 		};
 		getAllEvents();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [setIsLoading, setOpenSnackBar, setSnack, showAddEventBox]);
+	}, [setIsLoading, setOpenSnackBar, setSnack]);
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, []);
