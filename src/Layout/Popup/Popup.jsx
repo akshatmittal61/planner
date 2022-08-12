@@ -58,13 +58,13 @@ const Popup = ({
 						</span>
 					</div>
 					<div className="popup-head-right">
-						{cta && <PopupCTA {...cta} />}
 						<button className="icon" onClick={close}>
 							<MaterialIcons>close</MaterialIcons>
 						</button>
 					</div>
 				</div>
 				<div className="popup-body">{children}</div>
+				<div className="popup-foot">{cta && <PopupCTA {...cta} />}</div>
 			</div>
 		</section>
 	);

@@ -118,6 +118,13 @@ button {
   outline: 2px solid var(--brown);
   color: var(--brown);
 }
+.btn-pink {
+  background-color: var(--pink);
+}
+.btn-pink.btn-outline {
+  outline: 2px solid var(--pink);
+  color: var(--pink);
+}
 .btn-outline {
   background-color: transparent;
 }

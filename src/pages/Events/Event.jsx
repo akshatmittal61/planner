@@ -1,11 +1,22 @@
 import moment from "moment";
 import React, { useContext, useState } from "react";
 import IconButton from "../../components/Button/IconButton";
+import Chip from "../../components/Chip/Chip";
 import MaterialIcons from "../../components/MaterialIcons";
 import GlobalContext from "../../Context/GlobalContext";
+import Popup from "../../Layout/Popup/Popup";
 import EventPopup from "./EventPopup";
 
-const Event = ({ title, description, date, time, type, link, ...rest }) => {
+const Event = ({
+	title,
+	description,
+	date,
+	time,
+	type,
+	link,
+	trashed,
+	...rest
+}) => {
 	const { theme } = useContext(GlobalContext);
 	const showIcon = (e) => {
 		switch (e) {
@@ -40,6 +51,7 @@ const Event = ({ title, description, date, time, type, link, ...rest }) => {
 		}
 	};
 	const [openEventPopup, setOpenEventPopup] = useState(false);
+	const [openTrashPopup, setOpenTrashPopup] = useState(false);
 	return (
 		<div
 			className="events-body-event event"
@@ -48,14 +60,24 @@ const Event = ({ title, description, date, time, type, link, ...rest }) => {
 					theme === "light" ? "100" : "700"
 				})`,
 			}}
-			onClick={() => setOpenEventPopup(true)}
 		>
-			<div className="event__icon">
+			<div
+				className="event__icon"
+				onClick={() => setOpenEventPopup(true)}
+			>
 				<MaterialIcons>{showIcon(type)}</MaterialIcons>
 			</div>
 			<div className="event-details">
-				<div className="event-details__title">{title}</div>
-				<div className="event-details__date">
+				<div
+					className="event-details__title"
+					onClick={() => setOpenEventPopup(true)}
+				>
+					{title}
+				</div>
+				<div
+					className="event-details__date"
+					onClick={() => setOpenEventPopup(true)}
+				>
 					{moment(date).format("YYYY-MMM-DD")}
 				</div>
 				<div className="event-details__delete">
@@ -63,6 +85,10 @@ const Event = ({ title, description, date, time, type, link, ...rest }) => {
 						icon="delete"
 						fill="var(--back-shadow-light)"
 						title="Delete Event"
+						onClick={() => {
+							setOpenEventPopup(false);
+							setOpenTrashPopup(true);
+						}}
 					/>
 				</div>
 			</div>
@@ -74,9 +100,36 @@ const Event = ({ title, description, date, time, type, link, ...rest }) => {
 					time={time}
 					type={type}
 					link={link}
+					color={getColor(type)}
 					close={() => setOpenEventPopup(() => false)}
 					{...rest}
 				/>
+			)}
+			{openTrashPopup && (
+				<Popup
+					width="50%"
+					height="fit-content"
+					breakpoints={{
+						tab: ["75%", "fit-content"],
+						mobile: ["90%", "fit-content"],
+					}}
+					cta={{
+						text: "Move to Trash",
+						color: "red",
+						icon: "delete",
+					}}
+					close={() => setOpenTrashPopup(false)}
+				>
+					<span>
+						Move the event{" "}
+						<Chip
+							text={title}
+							size="small"
+							color={getColor(type)}
+						/>{" "}
+						to Trash Bin?
+					</span>
+				</Popup>
 			)}
 		</div>
 	);

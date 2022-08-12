@@ -14,6 +14,7 @@ const EventPopup = ({
 	time,
 	type,
 	link,
+	color,
 	...rest
 }) => {
 	let originalEvent = { title, description, date, time, type, link };
@@ -51,7 +52,9 @@ const EventPopup = ({
 					if (edit) handleSubmit();
 					setEdit((p) => !p);
 				},
+				color: color,
 			}}
+			color={color}
 		>
 			<div className="event-dialog" style={{ margin: "1rem 0" }}>
 				<form className="event-dialog-form" onSubmit={handleSubmit}>
