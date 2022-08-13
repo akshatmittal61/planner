@@ -248,6 +248,38 @@ export const useContextData = () => {
 			setIsLoading(false);
 		}
 	};
+	const addNewNote = async (newNote) => {
+		try {
+			setIsLoading(true);
+			const res = await axiosInstance.post("/api/notes/add", {
+				...newNote,
+			});
+			if (res.status === 200) {
+				setSnack({
+					text: res.data.message,
+					bgColor: "var(--green)",
+					color: "var(--white)",
+				});
+				setNotes((prevNotes) => [...prevNotes, res.data.newNote]);
+				setOpenSnackBar(true);
+				setTimeout(() => {
+					setOpenSnackBar(false);
+				}, 5000);
+				setIsLoading(false);
+			}
+		} catch (error) {
+			setSnack({
+				text: error.response?.data?.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		}
+	};
 
 	// Side Bar
 	const [openSideBar, setOpenSideBar] = useState(false);
@@ -323,5 +355,6 @@ export const useContextData = () => {
 		notes,
 		setNotes,
 		getAllNotes,
+		addNewNote,
 	};
 };

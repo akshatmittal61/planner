@@ -38,6 +38,7 @@ const GlobalContext = createContext({
 	notes: [],
 	setNotes: () => {},
 	getAllNotes: () => {},
+	addNewNote: () => {},
 });
 
 export default GlobalContext;

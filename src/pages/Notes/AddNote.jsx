@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Button from "../../components/Button/Button";
 import IconButton from "../../components/Button/IconButton";
 import Input, { TextArea } from "../../components/Input/Input";
@@ -6,8 +6,10 @@ import Dialog from "../../Layout/Dialog/Dialog";
 import Row, { Col } from "../../Layout/Responsive";
 import { colors, imageBackgroundUrl } from "../../utils";
 import slash from "../../images/slash.svg";
+import GlobalContext from "../../Context/GlobalContext";
 
 const AddNote = ({ close }) => {
+	const { addNewNote } = useContext(GlobalContext);
 	const notesBackgrounds = Array(24).fill(null);
 	const [newNote, setNewNote] = useState({
 		title: "",
@@ -24,20 +26,11 @@ const AddNote = ({ close }) => {
 		setNewNote((p) => ({ ...p, [name]: value }));
 	};
 	const handleSubmit = (e) => {
-		e.preventDefault();
-		console.log(newNote);
-		setNewNote({
-			title: "",
-			content: "",
-			color: "bgcolor",
-			image: -1,
-			archived: false,
-			trashed: false,
-		});
-		close();
+		e?.preventDefault();
+		addNewNote(newNote);
 	};
 	const handleReset = (e) => {
-		e.preventDefault();
+		e?.preventDefault();
 		setNewNote({
 			title: "",
 			content: "",
