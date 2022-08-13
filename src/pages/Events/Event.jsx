@@ -17,7 +17,8 @@ const Event = ({
 	trashed,
 	...rest
 }) => {
-	const { theme, moveEventToTrash,restoreEventFromTrash } = useContext(GlobalContext);
+	const { theme, moveEventToTrash, restoreEventFromTrash } =
+		useContext(GlobalContext);
 	const showIcon = (e) => {
 		switch (e) {
 			case "birthday":
@@ -109,7 +110,7 @@ const Event = ({
 										color: "green",
 										icon: "restore",
 										onClick: () => {
-											moveEventToTrash(rest._id);
+											restoreEventFromTrash(rest._id);
 											setOpenTrashPopup(false);
 										},
 									}));

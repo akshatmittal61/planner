@@ -163,6 +163,41 @@ export const useContextData = () => {
 			setIsLoading(false);
 		}
 	};
+	const restoreEventFromTrash = async (id) => {
+		try {
+			setIsLoading(true);
+			const resp = await axiosInstance.put(`/api/events/restore/${id}`);
+			setEvents((prevEvents) => {
+				let newEvents = prevEvents.map((singleEvent) =>
+					singleEvent._id !== id
+						? singleEvent
+						: resp.data.updatedEvent
+				);
+				return newEvents;
+			});
+			setSnack({
+				text: resp.data.message,
+				bgColor: "var(--green)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		} catch (error) {
+			setSnack({
+				text: error.response?.data?.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		}
+	};
 
 	// Side Bar
 	const [openSideBar, setOpenSideBar] = useState(false);
@@ -233,5 +268,6 @@ export const useContextData = () => {
 		addNewEvent,
 		updateOneEvent,
 		moveEventToTrash,
+		restoreEventFromTrash,
 	};
 };
