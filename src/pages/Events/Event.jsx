@@ -17,7 +17,7 @@ const Event = ({
 	trashed,
 	...rest
 }) => {
-	const { theme } = useContext(GlobalContext);
+	const { theme, moveEventToTrash } = useContext(GlobalContext);
 	const showIcon = (e) => {
 		switch (e) {
 			case "birthday":
@@ -110,17 +110,21 @@ const Event = ({
 					width="50%"
 					height="fit-content"
 					breakpoints={{
-						tab: ["75%", "fit-content"],
+						tab: ["60%", "fit-content"],
 						mobile: ["90%", "fit-content"],
 					}}
 					cta={{
 						text: "Move to Trash",
 						color: "red",
 						icon: "delete",
+						onClick: () => {
+							moveEventToTrash(rest._id);
+							setOpenTrashPopup(false);
+						},
 					}}
 					close={() => setOpenTrashPopup(false)}
 				>
-					<span>
+					<span style={{ fontSize: "1.25rem", lineHeight: "1.5rem" }}>
 						Move the event{" "}
 						<Chip
 							text={title}

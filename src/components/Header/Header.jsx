@@ -9,8 +9,14 @@ import GlobalContext from "../../Context/GlobalContext";
 import UserMenu from "../UserMenu/UserMenu";
 
 const Header = () => {
-	const { user, theme, toggleTheme, openSideBar, toggleSideBar } =
-		useContext(GlobalContext);
+	const {
+		user,
+		theme,
+		toggleTheme,
+		openSideBar,
+		toggleSideBar,
+		getAllEvents,
+	} = useContext(GlobalContext);
 	const vh = window.innerHeight / 100;
 	const location = useLocation();
 	const [shadow, setShadow] = useState("none");
@@ -78,7 +84,7 @@ const Header = () => {
 						{theme === "light" ? "dark_mode" : "light_mode"}
 					</MaterialIcons>
 				</button>
-				<button className="icon">
+				<button className="icon" onClick={getAllEvents}>
 					<MaterialIcons>sync</MaterialIcons>
 				</button>
 				<button className="icon">

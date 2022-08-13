@@ -32,6 +32,7 @@ const GlobalContext = createContext({
 	getAllEvents: () => {},
 	addNewEvent: () => {},
 	updateOneEvent: () => {},
+	moveEventToTrash: () => {},
 });
 
 export default GlobalContext;

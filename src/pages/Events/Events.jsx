@@ -29,8 +29,10 @@ const Events = () => {
 		for (let event of newEvents) {
 			let presentDate = `${moment(event.date).format("MMMM YYYY")}`;
 			let a = m1.get(presentDate);
-			if (!a) m1.set(presentDate, [event]);
-			else m1.set(presentDate, [...a, event]);
+			if (!event.trashed) {
+				if (!a) m1.set(presentDate, [event]);
+				else m1.set(presentDate, [...a, event]);
+			}
 		}
 		let newArr = [];
 		for (const [key, value] of m1) {

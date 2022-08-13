@@ -20,7 +20,7 @@ const getEvent = async (req, res) => {
 			return res.status(404).json({ message: "Event not found" });
 		if (foundEvent.user.toString() !== req.user.id)
 			return res.status(401).json({ message: "User not authorized" });
-		return res.status(200).json(foundEvent);
+		return res.status(200).json({ event: foundEvent });
 	} catch (error) {
 		console.error(error);
 		if (error.kind === "ObjectId")
