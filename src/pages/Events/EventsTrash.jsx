@@ -14,6 +14,7 @@ const EventsTrash = () => {
 		setSideBarLinks(eventsNavLinks);
 		window.scrollTo(0, 0);
 		getAllEvents();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 	useEffect(() => {
 		let allEvents = [...events];

@@ -17,7 +17,7 @@ const Event = ({
 	trashed,
 	...rest
 }) => {
-	const { theme, moveEventToTrash, restoreEventFromTrash } =
+	const { theme, moveEventToTrash, restoreEventFromTrash, deleteEvent } =
 		useContext(GlobalContext);
 	const showIcon = (e) => {
 		switch (e) {
@@ -139,7 +139,7 @@ const Event = ({
 										color: "red",
 										icon: "delete_forever",
 										onClick: () => {
-											moveEventToTrash(rest._id);
+											deleteEvent(rest._id);
 											setOpenTrashPopup(false);
 										},
 									}));
