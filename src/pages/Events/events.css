@@ -108,6 +108,9 @@
   align-items: center;
   display: none;
 }
+.event-details__delete button {
+  margin-left: 0.75rem;
+}
 .event:hover .event-details__delete {
   display: flex;
 }

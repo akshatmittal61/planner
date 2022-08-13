@@ -4,6 +4,7 @@ import Masonry, { MasonryBox } from "../../Layout/Masonry/Masonry";
 import { notesNavLinks } from "../../utils/navigation";
 import { allNotes } from "../../resources";
 import Note from "./Note";
+import "./notes.css";
 
 const NotesTrash = () => {
 	const [notes, setNotes] = useState([]);

@@ -26,6 +26,34 @@ const defaultNavLinks = [
 	},
 ];
 
+const eventsNavLinks = [
+	{
+		title: "Home",
+		route: "/",
+		icon: "home",
+	},
+	{
+		title: "All Events",
+		route: "/events",
+		icon: "event",
+	},
+	{
+		title: "Trash",
+		route: "/events/trash",
+		icon: "delete",
+	},
+	{
+		title: "Report A Bug",
+		route: "/report",
+		icon: "report",
+	},
+	{
+		title: "Contact Us",
+		route: "/contact",
+		icon: "call",
+	},
+];
+
 const notesNavLinks = [
 	{
 		title: "Home",
@@ -93,4 +121,4 @@ const tasksNavLinks = [
 ];
 
 export default defaultNavLinks;
-export { notesNavLinks, tasksNavLinks };
+export { eventsNavLinks, notesNavLinks, tasksNavLinks };

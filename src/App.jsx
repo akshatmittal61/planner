@@ -27,6 +27,7 @@ import GlobalContext from "./Context/GlobalContext";
 import Loader from "./components/Loader/Loader";
 import SnackBar from "./components/SnackBar/SnackBar";
 import Logout from "./pages/Logout";
+import EventsTrash from "./pages/Events/EventsTrash";
 
 const Wrapper = () => {
 	AOS.init();
@@ -75,6 +76,14 @@ const Wrapper = () => {
 					element={
 						<PrivateRoute>
 							<Events />
+						</PrivateRoute>
+					}
+				/>
+				<Route
+					path="/events/trash"
+					element={
+						<PrivateRoute>
+							<EventsTrash />
 						</PrivateRoute>
 					}
 				/>

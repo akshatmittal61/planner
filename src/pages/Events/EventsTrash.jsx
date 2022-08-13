@@ -1,24 +1,19 @@
-import moment from "moment";
 import React, { useContext, useEffect, useState } from "react";
-import Fab from "../../components/Button/Fab";
-import Empty from "../../components/Empty/Empty";
 import GlobalContext from "../../Context/GlobalContext";
-import Row, { Col } from "../../Layout/Responsive";
-import AddEvent from "./AddEvent";
-import Event from "./Event";
-import "./events.css";
-import nullEvents from "../../images/nullEvents.svg";
 import { eventsNavLinks } from "../../utils/navigation";
+import nullTrash from "../../images/empty-trash.svg";
+import moment from "moment";
+import Empty from "../../components/Empty/Empty";
+import Row, { Col } from "../../Layout/Responsive";
+import Event from "./Event";
 
-const Events = () => {
-	const { getAllEvents, events, setSideBarLinks } = useContext(GlobalContext);
+const EventsTrash = () => {
 	const [eventsToRender, setEventsToRender] = useState([]);
-	const [showAddEventBox, setShowAddEventBox] = useState(false);
+	const { setSideBarLinks, events, getAllEvents } = useContext(GlobalContext);
 	useEffect(() => {
 		setSideBarLinks(eventsNavLinks);
 		window.scrollTo(0, 0);
 		getAllEvents();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 	useEffect(() => {
 		let allEvents = [...events];
@@ -32,7 +27,7 @@ const Events = () => {
 		for (let event of newEvents) {
 			let presentDate = `${moment(event.date).format("MMMM YYYY")}`;
 			let a = m1.get(presentDate);
-			if (!event.trashed) {
+			if (event.trashed) {
 				if (!a) m1.set(presentDate, [event]);
 				else m1.set(presentDate, [...a, event]);
 			}
@@ -85,21 +80,33 @@ const Events = () => {
 				</>
 			) : (
 				<Empty
-					img={nullEvents}
-					text="No Event Yet"
-					cta={{
-						text: "Add an Event",
-						icon: "add",
-						action: () => setShowAddEventBox(true),
-					}}
+					img={nullTrash}
+					text={
+						<>
+							<h3
+								style={{
+									fontSize: "3rem",
+									lineHeight: "4rem",
+									margin: "0 0 1rem 0",
+								}}
+							>
+								Bin is Empty
+							</h3>
+							<span
+								style={{
+									fontSize: "2rem",
+									lineHeight: "3rem",
+								}}
+							>
+								Items in bin will be deleted forever after 30
+								days
+							</span>
+						</>
+					}
 				/>
-			)}
-			<Fab icon="add" onClick={() => setShowAddEventBox(true)} />
-			{showAddEventBox && (
-				<AddEvent close={() => setShowAddEventBox(false)} />
 			)}
 		</main>
 	);
 };
 
-export default Events;
+export default EventsTrash;

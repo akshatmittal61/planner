@@ -131,7 +131,6 @@ export const useContextData = () => {
 	const moveEventToTrash = async (id) => {
 		try {
 			setIsLoading(true);
-			// const res = await axiosInstance.get(`/api/events/${id}`);
 			const resp = await axiosInstance.put(`/api/events/trash/${id}`);
 			setEvents((prevEvents) => {
 				let newEvents = prevEvents.map((singleEvent) =>
