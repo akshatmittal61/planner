@@ -227,6 +227,28 @@ export const useContextData = () => {
 		}
 	};
 
+	// Notes
+	const [notes, setNotes] = useState([]);
+	const getAllNotes = async () => {
+		try {
+			setIsLoading(true);
+			const res = await axiosInstance.get("/api/notes");
+			setNotes(() => res.data.allNotes);
+			setIsLoading(false);
+		} catch (error) {
+			setSnack({
+				text: error.response?.data?.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		}
+	};
+
 	// Side Bar
 	const [openSideBar, setOpenSideBar] = useState(false);
 	const [sideBarLinks, setSideBarLinks] = useState(defaultNavLinks);
@@ -298,5 +320,8 @@ export const useContextData = () => {
 		moveEventToTrash,
 		restoreEventFromTrash,
 		deleteEvent,
+		notes,
+		setNotes,
+		getAllNotes,
 	};
 };
