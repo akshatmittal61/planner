@@ -84,7 +84,7 @@ const verifyUser = async (req, res) => {
 		return res.json({ user: user, message: "User Verified" });
 	} catch (error) {
 		console.log(error);
-		res.status(500).json({ message: "Server Error" });
+		return res.status(500).json({ message: "Server Error" });
 	}
 };
 

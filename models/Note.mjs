@@ -25,6 +25,10 @@ const NoteSchema = new mongoose.Schema(
 			type: Boolean,
 			default: false,
 		},
+		image: {
+			type: Number,
+			default: -1,
+		},
 	},
 	{
 		timestamps: true,

@@ -63,7 +63,6 @@ const editNote = async (req, res) => {
 			{ $set: updatedFields },
 			{ new: true }
 		);
-		console.log(updatedFields, foundNote, updatedNote);
 		return res.status(200).json({
 			updatedNote: updatedNote,
 			message: "Updated note successfully",
