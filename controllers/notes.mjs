@@ -3,7 +3,7 @@ import Note from "../models/Note.mjs";
 const getAllNotes = async (req, res) => {
 	try {
 		const allNotes = await Note.find({ user: req.user.id });
-		return res.status(200).json(allNotes);
+		return res.status(200).json({ allNotes: allNotes });
 	} catch (error) {
 		console.error(error);
 		return res.status(500).json({ message: "Server Error" });
@@ -42,7 +42,7 @@ const addNote = async (req, res) => {
 		const note = await newNote.save();
 		return res
 			.status(200)
-			.json({ note, message: "Added note successfully" });
+			.json({ newNote: note, message: "Added note successfully" });
 	} catch (error) {
 		console.log(error);
 		return res.status(500).json({ message: "Server Error" });
@@ -63,9 +63,11 @@ const editNote = async (req, res) => {
 			{ $set: updatedFields },
 			{ new: true }
 		);
-		return res
-			.status(200)
-			.json({ updatedNote, message: "Updated note successfully" });
+		console.log(updatedFields, foundNote, updatedNote);
+		return res.status(200).json({
+			updatedNote: updatedNote,
+			message: "Updated note successfully",
+		});
 	} catch (error) {
 		console.error(error);
 		if (error.kind === "ObjectId")

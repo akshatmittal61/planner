@@ -36,7 +36,6 @@
 				object-fit: cover;
 				max-width: 75%;
 				max-height: 75%;
-				scale: 0.25;
 				@include respond(tab) {
 					max-height: 55%;
 					max-width: 55%;

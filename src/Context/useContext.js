@@ -38,6 +38,8 @@ export const useContextData = () => {
 		JSON.parse(localStorage.getItem("user")) || null
 	);
 	const updateUser = (newUser) => {
+		localStorage.removeItem("user");
+		setUser(null);
 		localStorage.setItem(
 			"user",
 			JSON.stringify(omit({ ...user, ...newUser }, "password"))
@@ -227,6 +229,86 @@ export const useContextData = () => {
 		}
 	};
 
+	// Notes
+	const [notes, setNotes] = useState([]);
+	const getAllNotes = async () => {
+		try {
+			setIsLoading(true);
+			const res = await axiosInstance.get("/api/notes");
+			setNotes(() => res.data.allNotes);
+			setIsLoading(false);
+		} catch (error) {
+			setSnack({
+				text: error.response?.data?.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		}
+	};
+	const addNewNote = async (newNote) => {
+		try {
+			setIsLoading(true);
+			const res = await axiosInstance.post("/api/notes/add", {
+				...newNote,
+			});
+			if (res.status === 200) {
+				setSnack({
+					text: res.data.message,
+					bgColor: "var(--green)",
+					color: "var(--white)",
+				});
+				setNotes((prevNotes) => [...prevNotes, res.data.newNote]);
+				setOpenSnackBar(true);
+				setTimeout(() => {
+					setOpenSnackBar(false);
+				}, 5000);
+				setIsLoading(false);
+			}
+		} catch (error) {
+			setSnack({
+				text: error.response?.data?.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		}
+	};
+	const updateOneNote = async (id, updatedNote) => {
+		try {
+			setIsLoading(true);
+			const resp = await axiosInstance.put(`/api/notes/edit/${id}`, {
+				...updatedNote,
+			});
+			setNotes((prevNotes) => {
+				let newNotes = prevNotes.map((singleNote) =>
+					singleNote._id !== id ? singleNote : resp.data.updatedNote
+				);
+				return newNotes;
+			});
+			setIsLoading(false);
+		} catch (error) {
+			setSnack({
+				text: error.response?.data?.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		}
+	};
+
 	// Side Bar
 	const [openSideBar, setOpenSideBar] = useState(false);
 	const [sideBarLinks, setSideBarLinks] = useState(defaultNavLinks);
@@ -298,5 +380,10 @@ export const useContextData = () => {
 		moveEventToTrash,
 		restoreEventFromTrash,
 		deleteEvent,
+		notes,
+		setNotes,
+		getAllNotes,
+		addNewNote,
+		updateOneNote,
 	};
 };
