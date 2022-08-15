@@ -46,6 +46,29 @@ export const useContextData = () => {
 		);
 		setUser((p) => ({ ...p, ...newUser }));
 	};
+	const verifyUser = async () => {
+		try {
+			setIsLoading(true);
+			const res = await axiosInstance.get("/api/auth");
+			setUser(res.data.user);
+			localStorage.setItem("user", JSON.stringify(res.data.user));
+			setIsLoading(false);
+		} catch (error) {
+			setSnack({
+				text: error.response?.data?.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+			localStorage.removeItem("token");
+			setUser(null);
+			setIsAuthenticated(false);
+		}
+	};
 
 	// Events
 	const [events, setEvents] = useState([]);
@@ -365,6 +388,7 @@ export const useContextData = () => {
 		setIsAuthenticated,
 		user,
 		setUser,
+		verifyUser,
 		updateUser,
 		openSideBar,
 		setOpenSideBar,

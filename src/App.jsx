@@ -40,6 +40,7 @@ const Wrapper = () => {
 		openSnackBar,
 		setOpenSnackBar,
 		setNetworkStatus,
+		verifyUser,
 	} = useContext(GlobalContext);
 	const location = useLocation();
 	useEffect(() => {
@@ -49,6 +50,10 @@ const Wrapper = () => {
 	useEffect(() => {
 		setNetworkStatus(navigator.onLine ? "online" : "offline");
 	});
+	useEffect(() => {
+		verifyUser();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	return (
 		<>
