@@ -36,7 +36,6 @@
   object-fit: cover;
   max-width: 75%;
   max-height: 75%;
-  scale: 0.25;
 }
 @media (max-width: 880px) {
   .home-box-image__img {

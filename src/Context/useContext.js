@@ -38,6 +38,8 @@ export const useContextData = () => {
 		JSON.parse(localStorage.getItem("user")) || null
 	);
 	const updateUser = (newUser) => {
+		localStorage.removeItem("user");
+		setUser(null);
 		localStorage.setItem(
 			"user",
 			JSON.stringify(omit({ ...user, ...newUser }, "password"))
@@ -280,6 +282,32 @@ export const useContextData = () => {
 			setIsLoading(false);
 		}
 	};
+	const updateOneNote = async (id, updatedNote) => {
+		try {
+			setIsLoading(true);
+			const resp = await axiosInstance.put(`/api/notes/edit/${id}`, {
+				...updatedNote,
+			});
+			setNotes((prevNotes) => {
+				let newNotes = prevNotes.map((singleNote) =>
+					singleNote._id !== id ? singleNote : resp.data.updatedNote
+				);
+				return newNotes;
+			});
+			setIsLoading(false);
+		} catch (error) {
+			setSnack({
+				text: error.response?.data?.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		}
+	};
 
 	// Side Bar
 	const [openSideBar, setOpenSideBar] = useState(false);
@@ -356,5 +384,6 @@ export const useContextData = () => {
 		setNotes,
 		getAllNotes,
 		addNewNote,
+		updateOneNote,
 	};
 };

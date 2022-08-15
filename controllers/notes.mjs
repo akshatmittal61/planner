@@ -63,9 +63,11 @@ const editNote = async (req, res) => {
 			{ $set: updatedFields },
 			{ new: true }
 		);
-		return res
-			.status(200)
-			.json({ updatedNote, message: "Updated note successfully" });
+		console.log(updatedFields, foundNote, updatedNote);
+		return res.status(200).json({
+			updatedNote: updatedNote,
+			message: "Updated note successfully",
+		});
 	} catch (error) {
 		console.error(error);
 		if (error.kind === "ObjectId")

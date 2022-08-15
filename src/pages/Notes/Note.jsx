@@ -4,7 +4,7 @@ import GlobalContext from "../../Context/GlobalContext";
 import { copy, imageBackgroundUrl } from "../../utils";
 import NotePopup from "./NotePopup";
 
-const Note = ({ title, content, color, image, trashed, archived }) => {
+const Note = ({ title, content, color, image, trashed, archived, ...rest }) => {
 	const { theme } = useContext(GlobalContext);
 	const [openNotePopup, setOpenNotePopup] = useState(false);
 	const handleCopy = (e) => {
@@ -85,6 +85,7 @@ const Note = ({ title, content, color, image, trashed, archived }) => {
 					color={color}
 					image={image}
 					close={() => setOpenNotePopup(false)}
+					{...rest}
 				/>
 			)}
 		</div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Button from "../../components/Button/Button";
 import IconButton from "../../components/Button/IconButton";
 import Input, { TextArea } from "../../components/Input/Input";
@@ -6,8 +6,19 @@ import Dialog from "../../Layout/Dialog/Dialog";
 import Row, { Col } from "../../Layout/Responsive";
 import { colors, imageBackgroundUrl } from "../../utils";
 import slash from "../../images/slash.svg";
+import GlobalContext from "../../Context/GlobalContext";
 
-const NotePopup = ({ close, title, content, color, image, archived }) => {
+const NotePopup = ({
+	close,
+	title,
+	content,
+	color,
+	image,
+	archived,
+	...rest
+}) => {
+	const { user, updateOneNote } = useContext(GlobalContext);
+	let originalNote = { title, content, color, image, archived };
 	const [currNote, setCurrNote] = useState({
 		title,
 		content,
@@ -24,7 +35,12 @@ const NotePopup = ({ close, title, content, color, image, archived }) => {
 	};
 	const handleSubmit = (e) => {
 		e?.preventDefault();
-		console.log(currNote);
+		let editedNote = { username: user.username };
+		for (let i in currNote) {
+			if (currNote[i] !== originalNote[i])
+				editedNote = { ...editedNote, [i]: currNote[i] };
+		}
+		updateOneNote(rest._id, editedNote);
 	};
 	return (
 		<Dialog
