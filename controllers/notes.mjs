@@ -28,7 +28,7 @@ const getNote = async (req, res) => {
 };
 
 const addNote = async (req, res) => {
-	const { title, content, color, archived } = req.body;
+	const { title, content, color, image, archived } = req.body;
 	if (!title || !content || !color)
 		return res.status(400).json({ message: "Invalid Data" });
 	try {
@@ -37,6 +37,7 @@ const addNote = async (req, res) => {
 			title,
 			content,
 			color,
+			image,
 			archived,
 		});
 		const note = await newNote.save();
@@ -75,6 +76,34 @@ const editNote = async (req, res) => {
 	}
 };
 
+const moveNoteToTrash = async (req, res) => {
+	const id = req.params.id;
+	try {
+		let foundNote = await Note.findById(id);
+		if (!foundNote)
+			return res.status(404).json({ message: "Note not found" });
+		if (foundNote.user.toString() !== req.user.id)
+			return res.status(401).json({ message: "User not authorized" });
+		if (foundNote.trashed)
+			return res.status(400).json({ message: "Note already in trash" });
+		let updatedNote = await Note.findByIdAndUpdate(
+			id,
+			{
+				$set: { trashed: true },
+			},
+			{ new: true }
+		);
+		return res
+			.status(200)
+			.json({ updatedNote: updatedNote, message: "Note moved to Trash" });
+	} catch (error) {
+		console.error(error);
+		if (error.kind === "ObjectId")
+			return res.status(404).json({ message: "Note not found" });
+		return res.status(500).json({ message: "Server Error" });
+	}
+};
+
 const deleteNote = async (req, res) => {
 	const id = req.params.id;
 	try {
@@ -92,4 +121,4 @@ const deleteNote = async (req, res) => {
 	}
 };
 
-export { getAllNotes, getNote, addNote, editNote, deleteNote };
+export { getAllNotes, getNote, addNote, editNote, moveNoteToTrash, deleteNote };
