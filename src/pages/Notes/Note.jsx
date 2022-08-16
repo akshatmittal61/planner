@@ -13,6 +13,7 @@ const Note = ({ title, content, color, image, trashed, archived, ...rest }) => {
 		unArchiveNote,
 		moveNoteToTrash,
 		restoreNoteFromTrash,
+		deleteNote,
 	} = useContext(GlobalContext);
 	let chipText = `${title?.slice(0, min(15, title.length))}${
 		title.length > 15 ? "..." : ""
@@ -208,7 +209,34 @@ const Note = ({ title, content, color, image, trashed, archived, ...rest }) => {
 						>
 							<MaterialIcons>restore</MaterialIcons>
 						</button>
-						<button className="note-button" title="Delete forever">
+						<button
+							className="note-button"
+							title="Delete forever"
+							onClick={() => {
+								setPopupCta(() => ({
+									text: "Delete forever",
+									color: "red",
+									icon: "delete",
+									onClick: () => {
+										deleteNote(rest._id);
+										setOpenPopup(false);
+									},
+								}));
+								setPopupContent(() => (
+									<>
+										Delete note{" "}
+										<Chip
+											text={chipText}
+											size="small"
+											color={color}
+										/>{" "}
+										forever? This actions can't be undone.
+									</>
+								));
+								setOpenNotePopup(false);
+								setOpenPopup(true);
+							}}
+						>
 							<MaterialIcons>delete_forever</MaterialIcons>
 						</button>
 					</>
