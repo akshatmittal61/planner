@@ -76,6 +76,38 @@ const editNote = async (req, res) => {
 	}
 };
 
+const archiveNote = async (req, res) => {
+	const id = req.params.id;
+	try {
+		let foundNote = await Note.findById(id);
+		if (!foundNote)
+			return res.status(404).json({ message: "Note not found" });
+		if (foundNote.user.toString() !== req.user.id)
+			return res.status(401).json({ message: "User not authorized" });
+		if (foundNote.trashed)
+			return res
+				.status(400)
+				.json({ message: "Cannot archive a trashed note" });
+		if (foundNote.archived)
+			return res.status(400).json({ message: "Note already archived" });
+		let updatedNote = await Note.findByIdAndUpdate(
+			id,
+			{
+				$set: { archived: true },
+			},
+			{ new: true }
+		);
+		return res
+			.status(200)
+			.json({ updatedNote: updatedNote, message: "Note archived" });
+	} catch (error) {
+		console.error(error);
+		if (error.kind === "ObjectId")
+			return res.status(404).json({ message: "Note not found" });
+		return res.status(500).json({ message: "Server Error" });
+	}
+};
+
 const moveNoteToTrash = async (req, res) => {
 	const id = req.params.id;
 	try {
@@ -155,6 +187,7 @@ export {
 	getNote,
 	addNote,
 	editNote,
+	archiveNote,
 	moveNoteToTrash,
 	restoreNoteFromTrash,
 	deleteNote,
