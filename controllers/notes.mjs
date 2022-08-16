@@ -104,6 +104,35 @@ const moveNoteToTrash = async (req, res) => {
 	}
 };
 
+const restoreNoteFromTrash = async (req, res) => {
+	const id = req.params.id;
+	try {
+		let foundNote = await Note.findById(id);
+		if (!foundNote)
+			return res.status(404).json({ message: "Note not found" });
+		if (foundNote.user.toString() !== req.user.id)
+			return res.status(401).json({ message: "User not authorized" });
+		if (!foundNote.trashed)
+			return res.status(400).json({ message: "Note not in trash" });
+		let updatedNote = await Note.findByIdAndUpdate(
+			id,
+			{
+				$set: { trashed: false },
+			},
+			{ new: true }
+		);
+		return res.status(200).json({
+			updatedNote: updatedNote,
+			message: "Note restored",
+		});
+	} catch (error) {
+		console.error(error);
+		if (error.kind === "ObjectId")
+			return res.status(404).json({ message: "Note not found" });
+		return res.status(500).json({ message: "Server Error" });
+	}
+};
+
 const deleteNote = async (req, res) => {
 	const id = req.params.id;
 	try {
@@ -121,4 +150,12 @@ const deleteNote = async (req, res) => {
 	}
 };
 
-export { getAllNotes, getNote, addNote, editNote, moveNoteToTrash, deleteNote };
+export {
+	getAllNotes,
+	getNote,
+	addNote,
+	editNote,
+	moveNoteToTrash,
+	restoreNoteFromTrash,
+	deleteNote,
+};
