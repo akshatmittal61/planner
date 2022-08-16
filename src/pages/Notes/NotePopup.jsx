@@ -15,6 +15,7 @@ const NotePopup = ({
 	color,
 	image,
 	archived,
+	trashed,
 	...rest
 }) => {
 	const { user, updateOneNote } = useContext(GlobalContext);
@@ -74,6 +75,7 @@ const NotePopup = ({
 					type="text"
 					value={currNote.title}
 					onChange={handleChange}
+					disabled={trashed}
 				/>
 				<TextArea
 					name="content"
@@ -82,113 +84,97 @@ const NotePopup = ({
 					rows={5}
 					value={currNote.content}
 					onChange={handleChange}
+					disabled={trashed}
 					autoFocus
 				/>
-				<div
-					className="form-group"
-					style={{ justifyContent: "flex-start" }}
-				>
-					<div className="add-note-form-group">
-						<IconButton
-							fill={`var(--${currNote.color}-400)`}
-							icon="palette"
-							onClick={(e) => {
-								e.preventDefault();
-								setOpenColorBox(true);
-							}}
-						/>
-						{openColorBox && (
-							<>
-								<div className="add-note-color-box">
-									<Row>
-										{colors.map((thisColor, index) => (
-											<Col
-												lg={25}
-												md={25}
-												sm={33}
-												key={index}
-											>
-												<button
-													style={{
-														width: "2rem",
-														height: "2rem",
-														backgroundColor: `var(--${thisColor})`,
-														borderRadius: "500px",
-														margin: "0.5rem",
-													}}
-													onClick={(e) => {
-														e.preventDefault();
-														setCurrNote((p) => ({
-															...p,
-															color: thisColor,
-														}));
-														setOpenColorBox(false);
-													}}
-												></button>
-											</Col>
-										))}
-									</Row>
-								</div>
-							</>
-						)}
-					</div>
-					<div className="add-note-form-group">
-						<IconButton
-							fill={`var(--${currNote.color}-400)`}
-							icon="image"
-							onClick={(e) => {
-								e.preventDefault();
-								setOpenImageBox(true);
-							}}
-						/>
-						{openImageBox && (
-							<>
-								<div
-									className="add-note-image-box"
-									style={{ width: "20rem", height: "12rem" }}
-								>
-									<Row>
-										<Col lg={20} md={25} sm={33}>
-											<button
-												style={{
-													width: "2.5rem",
-													height: "2.5rem",
-													backgroundImage: `url(${slash})`,
-													backgroundSize: "100% 100%",
-													backgroundPosition:
-														"center",
-													backgroundRepeat:
-														"no-repeat",
-													borderRadius: "500px",
-													margin: "0.5rem",
-												}}
-												onClick={(e) => {
-													e.preventDefault();
-													setCurrNote((p) => ({
-														...p,
-														image: -1,
-													}));
-													setOpenImageBox(false);
-												}}
-											></button>
-										</Col>
-										{notesBackgrounds.map(
-											(thisImage, index) => (
-												<Col
-													lg={20}
-													md={25}
-													sm={33}
-													key={index}
-												>
+				{!trashed && (
+					<>
+						<div
+							className="form-group"
+							style={{ justifyContent: "flex-start" }}
+						>
+							<div className="add-note-form-group">
+								<IconButton
+									fill={`var(--${currNote.color}-400)`}
+									icon="palette"
+									onClick={(e) => {
+										e.preventDefault();
+										setOpenColorBox(true);
+									}}
+								/>
+								{openColorBox && !trashed && (
+									<>
+										<div className="add-note-color-box">
+											<Row>
+												{colors.map(
+													(thisColor, index) => (
+														<Col
+															lg={25}
+															md={25}
+															sm={33}
+															key={index}
+														>
+															<button
+																style={{
+																	width: "2rem",
+																	height: "2rem",
+																	backgroundColor: `var(--${thisColor})`,
+																	borderRadius:
+																		"500px",
+																	margin: "0.5rem",
+																}}
+																onClick={(
+																	e
+																) => {
+																	e.preventDefault();
+																	setCurrNote(
+																		(
+																			p
+																		) => ({
+																			...p,
+																			color: thisColor,
+																		})
+																	);
+																	setOpenColorBox(
+																		false
+																	);
+																}}
+															></button>
+														</Col>
+													)
+												)}
+											</Row>
+										</div>
+									</>
+								)}
+							</div>
+							<div className="add-note-form-group">
+								<IconButton
+									fill={`var(--${currNote.color}-400)`}
+									icon="image"
+									onClick={(e) => {
+										e.preventDefault();
+										setOpenImageBox(true);
+									}}
+								/>
+								{openImageBox && !trashed && (
+									<>
+										<div
+											className="add-note-image-box"
+											style={{
+												width: "20rem",
+												height: "12rem",
+											}}
+										>
+											<Row>
+												<Col lg={20} md={25} sm={33}>
 													<button
 														style={{
 															width: "2.5rem",
 															height: "2.5rem",
-															backgroundImage: `url(${imageBackgroundUrl(
-																index
-															)})`,
+															backgroundImage: `url(${slash})`,
 															backgroundSize:
-																"cover",
+																"100% 100%",
 															backgroundPosition:
 																"center",
 															backgroundRepeat:
@@ -202,7 +188,7 @@ const NotePopup = ({
 															setCurrNote(
 																(p) => ({
 																	...p,
-																	image: index,
+																	image: -1,
 																})
 															);
 															setOpenImageBox(
@@ -211,49 +197,94 @@ const NotePopup = ({
 														}}
 													></button>
 												</Col>
-											)
-										)}
-									</Row>
-								</div>
-							</>
-						)}
-					</div>
-					<div className="add-note-form-group">
-						<IconButton
-							fill={
-								currNote.archived
-									? `var(--${currNote.color}-400)`
-									: "transparent"
-							}
-							icon="archive"
-							onClick={(e) => {
-								e.preventDefault();
-								setCurrNote((p) => ({
-									...p,
-									archived: !p.archived,
-								}));
-							}}
-						/>
-					</div>
-				</div>
-				<div className="form-group">
-					<Button
-						text="Cancel"
-						onClick={(e) => {
-							e.preventDefault();
-							setCurrNote({
-								title,
-								content,
-								color,
-								image,
-								archived,
-							});
-							close();
-						}}
-						variant="outline"
-					/>
-					<Button text="Save Changes" type="submit" />
-				</div>
+												{notesBackgrounds.map(
+													(thisImage, index) => (
+														<Col
+															lg={20}
+															md={25}
+															sm={33}
+															key={index}
+														>
+															<button
+																style={{
+																	width: "2.5rem",
+																	height: "2.5rem",
+																	backgroundImage: `url(${imageBackgroundUrl(
+																		index
+																	)})`,
+																	backgroundSize:
+																		"cover",
+																	backgroundPosition:
+																		"center",
+																	backgroundRepeat:
+																		"no-repeat",
+																	borderRadius:
+																		"500px",
+																	margin: "0.5rem",
+																}}
+																onClick={(
+																	e
+																) => {
+																	e.preventDefault();
+																	setCurrNote(
+																		(
+																			p
+																		) => ({
+																			...p,
+																			image: index,
+																		})
+																	);
+																	setOpenImageBox(
+																		false
+																	);
+																}}
+															></button>
+														</Col>
+													)
+												)}
+											</Row>
+										</div>
+									</>
+								)}
+							</div>
+							<div className="add-note-form-group">
+								<IconButton
+									fill={
+										currNote.archived
+											? `var(--${currNote.color}-400)`
+											: "transparent"
+									}
+									icon="archive"
+									onClick={(e) => {
+										e.preventDefault();
+										setCurrNote((p) => ({
+											...p,
+											archived: !p.archived,
+										}));
+									}}
+								/>
+							</div>
+						</div>
+						<div className="form-group">
+							<Button
+								text="Cancel"
+								onClick={(e) => {
+									e.preventDefault();
+									setCurrNote({
+										title,
+										content,
+										color,
+										image,
+										archived,
+									});
+									close();
+								}}
+								variant="outline"
+							/>
+							<Button text="Save Changes" type="submit" />
+						</div>
+					</>
+				)}
 			</form>
 			{(openColorBox || openImageBox) && (
 				<div

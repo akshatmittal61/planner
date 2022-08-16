@@ -98,13 +98,13 @@ export const useContextData = () => {
 				...newEvent,
 			});
 			if (res.status === 200) {
+				setEvents((prevEvents) => {
+					return [...prevEvents, res.data.newEvent];
+				});
 				setSnack({
 					text: res.data.message,
 					bgColor: "var(--green)",
 					color: "var(--white)",
-				});
-				setEvents((prevEvents) => {
-					return [...prevEvents, res.data.newEvent];
 				});
 				setOpenSnackBar(true);
 				setTimeout(() => {
@@ -139,6 +139,15 @@ export const useContextData = () => {
 				);
 				return newEvents;
 			});
+			setSnack({
+				text: resp.data.message,
+				bgColor: "var(--green)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
 			setIsLoading(false);
 		} catch (error) {
 			setSnack({
@@ -317,6 +326,15 @@ export const useContextData = () => {
 				);
 				return newNotes;
 			});
+			setSnack({
+				text: resp.data.message,
+				bgColor: "var(--green)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
 			setIsLoading(false);
 		} catch (error) {
 			setSnack({

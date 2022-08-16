@@ -18,7 +18,7 @@ const NotesTrash = () => {
 	return (
 		<main className="notes">
 			<section className="notes-body">
-				{notes.some((p) => p.archived && !p.trashed) ? (
+				{notes.some((p) => p.trashed) ? (
 					<Masonry>
 						{notes.map(
 							(note, index) =>
