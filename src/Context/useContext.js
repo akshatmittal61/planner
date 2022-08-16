@@ -382,6 +382,39 @@ export const useContextData = () => {
 			setIsLoading(false);
 		}
 	};
+	const unArchiveNote = async (id) => {
+		try {
+			setIsLoading(true);
+			const resp = await axiosInstance.put(`/api/notes/unarchive/${id}`);
+			setNotes((prevNotes) => {
+				let newNotes = prevNotes.map((singleNote) =>
+					singleNote._id !== id ? singleNote : resp.data.updatedNote
+				);
+				return newNotes;
+			});
+			setSnack({
+				text: resp.data.message,
+				bgColor: "var(--green)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		} catch (error) {
+			setSnack({
+				text: error.response?.data?.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		}
+	};
 	const moveNoteToTrash = async (id) => {
 		try {
 			setIsLoading(true);
@@ -494,6 +527,7 @@ export const useContextData = () => {
 		addNewNote,
 		updateOneNote,
 		archiveNote,
+		unArchiveNote,
 		moveNoteToTrash,
 	};
 };

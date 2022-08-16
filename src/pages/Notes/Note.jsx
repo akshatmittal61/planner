@@ -7,7 +7,8 @@ import { copy, imageBackgroundUrl, min } from "../../utils";
 import NotePopup from "./NotePopup";
 
 const Note = ({ title, content, color, image, trashed, archived, ...rest }) => {
-	const { theme, archiveNote, moveNoteToTrash } = useContext(GlobalContext);
+	const { theme, archiveNote, unArchiveNote, moveNoteToTrash } =
+		useContext(GlobalContext);
 	const [openNotePopup, setOpenNotePopup] = useState(false);
 	const [openPopup, setOpenPopup] = useState(false);
 	const [popupCta, setPopupCta] = useState({
@@ -15,7 +16,6 @@ const Note = ({ title, content, color, image, trashed, archived, ...rest }) => {
 		color: "red",
 		icon: "delete",
 	});
-	console.log(title?.slice(0, min(10, title.length)));
 	const [popupContent, setPopupContent] = useState(
 		<>
 			Move the note{" "}
@@ -83,6 +83,33 @@ const Note = ({ title, content, color, image, trashed, archived, ...rest }) => {
 							<button
 								className="note-button"
 								title="Unarchive Note"
+								onClick={() => {
+									setPopupCta(() => ({
+										text: "Unarchive Note",
+										color: "green",
+										icon: "unarchive",
+										onClick: () => {
+											unArchiveNote(rest._id);
+											setOpenPopup(false);
+										},
+									}));
+									setPopupContent(() => (
+										<>
+											Archive Note{" "}
+											<Chip
+												text={title?.slice(
+													0,
+													min(10, title.length)
+												)}
+												size="small"
+												color={color}
+											/>{" "}
+											?
+										</>
+									));
+									setOpenNotePopup(false);
+									setOpenPopup(true);
+								}}
 							>
 								<MaterialIcons>unarchive</MaterialIcons>
 							</button>

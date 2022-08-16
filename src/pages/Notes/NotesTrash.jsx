@@ -24,15 +24,7 @@ const NotesTrash = () => {
 							(note, index) =>
 								note.trashed && (
 									<MasonryBox key={index}>
-										<Note
-											key={index}
-											title={note.title}
-											color={note.color}
-											image={note.image}
-											content={note.content}
-											trashed={note.trashed}
-											archived={note.archived}
-										/>
+										<Note {...note} />
 									</MasonryBox>
 								)
 						)}

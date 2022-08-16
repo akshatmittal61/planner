@@ -24,15 +24,7 @@ const NotesArchived = () => {
 								!note.trashed &&
 								note.archived && (
 									<MasonryBox key={index}>
-										<Note
-											key={index}
-											title={note.title}
-											color={note.color}
-											image={note.image}
-											content={note.content}
-											trashed={note.trashed}
-											archived={note.archived}
-										/>
+										<Note {...note} />
 									</MasonryBox>
 								)
 						)}
