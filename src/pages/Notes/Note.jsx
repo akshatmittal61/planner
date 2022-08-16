@@ -7,8 +7,16 @@ import { copy, imageBackgroundUrl, min } from "../../utils";
 import NotePopup from "./NotePopup";
 
 const Note = ({ title, content, color, image, trashed, archived, ...rest }) => {
-	const { theme, archiveNote, unArchiveNote, moveNoteToTrash } =
-		useContext(GlobalContext);
+	const {
+		theme,
+		archiveNote,
+		unArchiveNote,
+		moveNoteToTrash,
+		restoreNoteFromTrash,
+	} = useContext(GlobalContext);
+	let chipText = `${title?.slice(0, min(15, title.length))}${
+		title.length > 15 ? "..." : ""
+	}`;
 	const [openNotePopup, setOpenNotePopup] = useState(false);
 	const [openPopup, setOpenPopup] = useState(false);
 	const [popupCta, setPopupCta] = useState({
@@ -18,13 +26,8 @@ const Note = ({ title, content, color, image, trashed, archived, ...rest }) => {
 	});
 	const [popupContent, setPopupContent] = useState(
 		<>
-			Move the note{" "}
-			<Chip
-				text={title?.slice(0, min(10, title.length))}
-				size="small"
-				color={color}
-			/>{" "}
-			to Trash Bin?
+			Move the note <Chip text={chipText} size="small" color={color} /> to
+			Trash Bin?
 		</>
 	);
 	const handleCopy = (e) => {
@@ -97,10 +100,7 @@ const Note = ({ title, content, color, image, trashed, archived, ...rest }) => {
 										<>
 											Archive Note{" "}
 											<Chip
-												text={title?.slice(
-													0,
-													min(10, title.length)
-												)}
+												text={chipText}
 												size="small"
 												color={color}
 											/>{" "}
@@ -131,10 +131,7 @@ const Note = ({ title, content, color, image, trashed, archived, ...rest }) => {
 										<>
 											Archive Note{" "}
 											<Chip
-												text={title?.slice(
-													0,
-													min(10, title.length)
-												)}
+												text={chipText}
 												size="small"
 												color={color}
 											/>{" "}
@@ -165,10 +162,7 @@ const Note = ({ title, content, color, image, trashed, archived, ...rest }) => {
 									<>
 										Move the note{" "}
 										<Chip
-											text={title?.slice(
-												0,
-												min(10, title.length)
-											)}
+											text={chipText}
 											size="small"
 											color={color}
 										/>{" "}
@@ -184,7 +178,34 @@ const Note = ({ title, content, color, image, trashed, archived, ...rest }) => {
 					</>
 				) : (
 					<>
-						<button className="note-button" title="Restore Note">
+						<button
+							className="note-button"
+							title="Restore Note"
+							onClick={() => {
+								setPopupCta(() => ({
+									text: "Restore Note",
+									color: "green",
+									icon: "restore",
+									onClick: () => {
+										restoreNoteFromTrash(rest._id);
+										setOpenPopup(false);
+									},
+								}));
+								setPopupContent(() => (
+									<>
+										Restore note{" "}
+										<Chip
+											text={chipText}
+											size="small"
+											color={color}
+										/>{" "}
+										?
+									</>
+								));
+								setOpenNotePopup(false);
+								setOpenPopup(true);
+							}}
+						>
 							<MaterialIcons>restore</MaterialIcons>
 						</button>
 						<button className="note-button" title="Delete forever">

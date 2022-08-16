@@ -44,6 +44,7 @@ const GlobalContext = createContext({
 	archiveNote: () => {},
 	unArchiveNote: () => {},
 	moveNoteToTrash: () => {},
+	restoreNoteFromTrash: () => {},
 });
 
 export default GlobalContext;

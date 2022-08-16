@@ -448,6 +448,39 @@ export const useContextData = () => {
 			setIsLoading(false);
 		}
 	};
+	const restoreNoteFromTrash = async (id) => {
+		try {
+			setIsLoading(true);
+			const resp = await axiosInstance.put(`/api/notes/restore/${id}`);
+			setNotes((prevNotes) => {
+				let newNotes = prevNotes.map((singleNote) =>
+					singleNote._id !== id ? singleNote : resp.data.updatedNote
+				);
+				return newNotes;
+			});
+			setSnack({
+				text: resp.data.message,
+				bgColor: "var(--green)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		} catch (error) {
+			setSnack({
+				text: error.response?.data?.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		}
+	};
 
 	// Side Bar
 	const [openSideBar, setOpenSideBar] = useState(false);
@@ -529,5 +562,6 @@ export const useContextData = () => {
 		archiveNote,
 		unArchiveNote,
 		moveNoteToTrash,
+		restoreNoteFromTrash,
 	};
 };
