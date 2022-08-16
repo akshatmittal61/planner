@@ -7,7 +7,7 @@ import { copy, imageBackgroundUrl, min } from "../../utils";
 import NotePopup from "./NotePopup";
 
 const Note = ({ title, content, color, image, trashed, archived, ...rest }) => {
-	const { theme } = useContext(GlobalContext);
+	const { theme, moveNoteToTrash } = useContext(GlobalContext);
 	const [openNotePopup, setOpenNotePopup] = useState(false);
 	const [openPopup, setOpenPopup] = useState(false);
 	const [popupCta, setPopupCta] = useState({
@@ -87,16 +87,37 @@ const Note = ({ title, content, color, image, trashed, archived, ...rest }) => {
 								{archived ? "unarchive" : "archive"}
 							</MaterialIcons>
 						</button>
-						<button className="note-button" title="Delete Note" onClick={()=>{
-							setPopupCta(()=>({
-								text: 'Move to Trash',
-								color: 'red',
-								icon: 'delete',
-								onClick: ()=>{
-									setOpenPopup(false)
-								}
-							}))
-						}}>
+						<button
+							className="note-button"
+							title="Delete Note"
+							onClick={() => {
+								setPopupCta(() => ({
+									text: "Move to Trash",
+									color: "red",
+									icon: "delete",
+									onClick: () => {
+										moveNoteToTrash(rest._id);
+										setOpenPopup(false);
+									},
+								}));
+								setPopupContent(() => (
+									<>
+										Move the note{" "}
+										<Chip
+											text={title?.slice(
+												0,
+												min(10, title.length)
+											)}
+											size="small"
+											color={color}
+										/>{" "}
+										to Trash Bin?
+									</>
+								));
+								setOpenNotePopup(false);
+								setOpenPopup(true);
+							}}
+						>
 							<MaterialIcons>delete</MaterialIcons>
 						</button>
 					</>
