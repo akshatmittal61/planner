@@ -7,7 +7,7 @@ import { copy, imageBackgroundUrl, min } from "../../utils";
 import NotePopup from "./NotePopup";
 
 const Note = ({ title, content, color, image, trashed, archived, ...rest }) => {
-	const { theme, moveNoteToTrash } = useContext(GlobalContext);
+	const { theme, archiveNote, moveNoteToTrash } = useContext(GlobalContext);
 	const [openNotePopup, setOpenNotePopup] = useState(false);
 	const [openPopup, setOpenPopup] = useState(false);
 	const [popupCta, setPopupCta] = useState({
@@ -79,14 +79,48 @@ const Note = ({ title, content, color, image, trashed, archived, ...rest }) => {
 						<button className="note-button" title="Add to list">
 							<MaterialIcons>playlist_add</MaterialIcons>
 						</button>
-						<button
-							className="note-button"
-							title={archived ? "Unarchive Note" : "Archive Note"}
-						>
-							<MaterialIcons>
-								{archived ? "unarchive" : "archive"}
-							</MaterialIcons>
-						</button>
+						{archived ? (
+							<button
+								className="note-button"
+								title="Unarchive Note"
+							>
+								<MaterialIcons>unarchive</MaterialIcons>
+							</button>
+						) : (
+							<button
+								className="note-button"
+								title="Archive Note"
+								onClick={() => {
+									setPopupCta(() => ({
+										text: "Archive Note",
+										color: "green",
+										icon: "archive",
+										onClick: () => {
+											archiveNote(rest._id);
+											setOpenPopup(false);
+										},
+									}));
+									setPopupContent(() => (
+										<>
+											Archive Note{" "}
+											<Chip
+												text={title?.slice(
+													0,
+													min(10, title.length)
+												)}
+												size="small"
+												color={color}
+											/>{" "}
+											?
+										</>
+									));
+									setOpenNotePopup(false);
+									setOpenPopup(true);
+								}}
+							>
+								<MaterialIcons>archive</MaterialIcons>
+							</button>
+						)}
 						<button
 							className="note-button"
 							title="Delete Note"
