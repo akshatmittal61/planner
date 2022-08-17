@@ -4,7 +4,16 @@ import MaterialIcons from "../../components/MaterialIcons";
 import GlobalContext from "../../Context/GlobalContext";
 import TaskPopup from "./TaskPopup";
 
-const Task = ({ title, description, color, date, time, done, trashed }) => {
+const Task = ({
+	title,
+	description,
+	color,
+	date,
+	time,
+	done,
+	trashed,
+	...rest
+}) => {
 	const { theme } = useContext(GlobalContext);
 	const [openTaskPopup, setOpenTaskPopup] = useState(false);
 	return (
@@ -60,13 +69,14 @@ const Task = ({ title, description, color, date, time, done, trashed }) => {
 				/>
 				{openTaskPopup && (
 					<TaskPopup
-						close={() => setOpenTaskPopup(false)}
 						title={title}
 						description={description}
 						color={color}
 						date={date}
 						time={time}
 						done={done}
+						close={() => setOpenTaskPopup(false)}
+						{...rest}
 					/>
 				)}
 			</div>
