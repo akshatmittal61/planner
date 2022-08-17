@@ -1,8 +1,11 @@
 import React, { useContext, useState } from "react";
 import IconButton from "../../components/Button/IconButton";
+import Chip from "../../components/Chip/Chip";
 import MaterialIcons from "../../components/MaterialIcons";
 import GlobalContext from "../../Context/GlobalContext";
 import TaskPopup from "./TaskPopup";
+import Popup from "../../Layout/Popup/Popup";
+import { min } from "../../utils";
 
 const Task = ({
 	title,
@@ -14,8 +17,23 @@ const Task = ({
 	trashed,
 	...rest
 }) => {
-	const { theme } = useContext(GlobalContext);
+	const { theme, markTaskAsDone } = useContext(GlobalContext);
+	let chipText = `${title?.slice(0, min(15, title.length))}${
+		title.length > 15 ? "..." : ""
+	}`;
 	const [openTaskPopup, setOpenTaskPopup] = useState(false);
+	const [openPopup, setOpenPopup] = useState(false);
+	const [popupCta, setPopupCta] = useState({
+		text: "Move to Trash",
+		color: "red",
+		icon: "delete",
+	});
+	const [popupContent, setPopupContent] = useState(
+		<>
+			Move the note <Chip text={chipText} size="small" color={color} /> to
+			Trash Bin?
+		</>
+	);
 	return (
 		<div
 			className="tasks-body-task task"
@@ -24,12 +42,17 @@ const Task = ({
 					theme === "light" ? "100" : "700"
 				})`,
 			}}
-			onClick={() => setOpenTaskPopup(true)}
 		>
 			<div className="task-title">{title}</div>
 			<div className="task-description">{description}</div>
 			{!trashed && (
-				<button className="icon task-control task-control-done">
+				<button
+					className="icon task-control task-control-done"
+					onClick={() => {
+						markTaskAsDone(rest._id);
+						setOpenTaskPopup(false);
+					}}
+				>
 					<MaterialIcons
 						title={done ? "Mark as not done" : "Mark as done"}
 					>
@@ -51,6 +74,7 @@ const Task = ({
 						className="task-control task-control-edit"
 						fill="var(--back-shadow-light)"
 						title="Edit Task"
+						onClick={() => setOpenTaskPopup(true)}
 					/>
 				)}
 				{trashed && (
@@ -67,19 +91,35 @@ const Task = ({
 					fill="var(--back-shadow-light)"
 					title={trashed ? "Delete Forever" : "Move To Trash"}
 				/>
-				{openTaskPopup && (
-					<TaskPopup
-						title={title}
-						description={description}
-						color={color}
-						date={date}
-						time={time}
-						done={done}
-						close={() => setOpenTaskPopup(false)}
-						{...rest}
-					/>
-				)}
 			</div>
+			{openTaskPopup && (
+				<TaskPopup
+					title={title}
+					description={description}
+					color={color}
+					date={date}
+					time={time}
+					done={done}
+					close={() => setOpenTaskPopup(false)}
+					{...rest}
+				/>
+			)}
+			{openPopup && (
+				<Popup
+					width="50%"
+					height="fit-content"
+					breakpoints={{
+						tab: ["60%", "fit-content"],
+						mobile: ["90%", "fit-content"],
+					}}
+					cta={popupCta}
+					close={() => setOpenPopup(false)}
+				>
+					<span style={{ fontSize: "1.25rem", lineHeight: "1.5rem" }}>
+						{popupContent}
+					</span>
+				</Popup>
+			)}
 		</div>
 	);
 };

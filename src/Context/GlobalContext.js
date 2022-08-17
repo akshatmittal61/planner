@@ -51,6 +51,7 @@ const GlobalContext = createContext({
 	getAllTasks: () => {},
 	addNewTask: () => {},
 	updateOneTask: () => {},
+	markTaskAsDone: () => {},
 });
 
 export default GlobalContext;

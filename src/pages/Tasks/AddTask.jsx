@@ -26,6 +26,7 @@ const AddTask = ({ close }) => {
 	const handleSubmit = (e) => {
 		e?.preventDefault();
 		addNewTask(newTask);
+		close();
 	};
 	const handleReset = (e) => {
 		e?.preventDefault();

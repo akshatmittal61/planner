@@ -21,7 +21,7 @@ const Tasks = () => {
 
 	return (
 		<main className="tasks">
-			{tasks?.length > 0 ? (
+			{tasks?.length > 0 && tasks.some((p) => !p.done) ? (
 				<>
 					<section className="tasks-head">
 						<span>Tasks</span>
