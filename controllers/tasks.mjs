@@ -5,7 +5,7 @@ const getAllTaks = async (req, res) => {
 		const allTasks = await Task.find({ user: req.user.id }).sort({
 			date: -1,
 		});
-		return res.status(200).json(allTasks);
+		return res.status(200).json({ allTasks: allTasks });
 	} catch (error) {
 		console.error(error);
 		return res.status(500).json({ message: "Server Error" });
@@ -41,11 +41,13 @@ const addTask = async (req, res) => {
 			color,
 			date,
 			time,
+			done: false,
+			trashed: false,
 		});
 		const task = await newTask.save();
 		return res
 			.status(200)
-			.json({ task, message: "Added task successfully" });
+			.json({ newTask: task, message: "Added task successfully" });
 	} catch (error) {
 		console.error(error);
 		res.status(500).json({ message: "Server Error" });
@@ -66,9 +68,10 @@ const editTask = async (req, res) => {
 			{ $set: updatedFields },
 			{ new: true }
 		);
-		return res
-			.status(200)
-			.json({ updatedTask, message: "Updated task successfully" });
+		return res.status(200).json({
+			updatedTask: updatedTask,
+			message: "Updated task successfully",
+		});
 	} catch (error) {
 		console.error(error);
 		if (error.kind === "ObjectId")

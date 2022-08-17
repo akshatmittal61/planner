@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Button from "../../components/Button/Button";
 import IconButton from "../../components/Button/IconButton";
 import Input, { TextArea } from "../../components/Input/Input";
+import GlobalContext from "../../Context/GlobalContext";
 import Dialog from "../../Layout/Dialog/Dialog";
 import Row, { Col } from "../../Layout/Responsive";
 import { colors } from "../../utils";
 
 const AddTask = ({ close }) => {
+	const { addNewTask } = useContext(GlobalContext);
 	const [openColorBox, setOpenColorBox] = useState(false);
 	const [newTask, setNewTask] = useState({
 		title: "",
@@ -23,17 +25,7 @@ const AddTask = ({ close }) => {
 	};
 	const handleSubmit = (e) => {
 		e?.preventDefault();
-		console.log(newTask);
-		setNewTask({
-			title: "",
-			description: "",
-			date: "",
-			time: "",
-			color: "bgcolor",
-			done: false,
-			trashed: false,
-		});
-		close();
+		addNewTask(newTask);
 	};
 	const handleReset = (e) => {
 		e?.preventDefault();

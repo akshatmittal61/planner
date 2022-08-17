@@ -510,6 +510,95 @@ export const useContextData = () => {
 		}
 	};
 
+	// Tasks
+	const [tasks, setTasks] = useState([]);
+	const getAllTasks = async () => {
+		try {
+			setIsLoading(true);
+			const res = await axiosInstance.get("/api/tasks");
+			setTasks(() => res.data.allTasks);
+			setIsLoading(false);
+		} catch (error) {
+			setSnack({
+				text: error.response?.data?.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		}
+	};
+	const addNewTask = async (newTask) => {
+		try {
+			setIsLoading(true);
+			const res = await axiosInstance.post("/api/tasks/add", {
+				...newTask,
+			});
+			if (res.status === 200) {
+				setSnack({
+					text: res.data.message,
+					bgColor: "var(--green)",
+					color: "var(--white)",
+				});
+				setTasks((prevTasks) => [...prevTasks, res.data.newTask]);
+				setOpenSnackBar(true);
+				setTimeout(() => {
+					setOpenSnackBar(false);
+				}, 5000);
+			}
+			setIsLoading(false);
+		} catch (error) {
+			setSnack({
+				text: error.response?.data?.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		}
+	};
+	const updateOneTask = async (id, updatedTask) => {
+		try {
+			setIsLoading(true);
+			const resp = await axiosInstance.put(`/api/tasks/edit/${id}`, {
+				...updatedTask,
+			});
+			setTasks((prevTasks) => {
+				let newTasks = prevTasks.map((singleTask) =>
+					singleTask._id !== id ? singleTask : resp.data.updatedTask
+				);
+				return newTasks;
+			});
+			setSnack({
+				text: resp.data.message,
+				bgColor: "var(--green)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		} catch (error) {
+			setSnack({
+				text: error.response?.data?.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		}
+	};
+
 	// Side Bar
 	const [openSideBar, setOpenSideBar] = useState(false);
 	const [sideBarLinks, setSideBarLinks] = useState(defaultNavLinks);
@@ -592,5 +681,10 @@ export const useContextData = () => {
 		moveNoteToTrash,
 		restoreNoteFromTrash,
 		deleteNote,
+		tasks,
+		setTasks,
+		getAllTasks,
+		addNewTask,
+		updateOneTask,
 	};
 };

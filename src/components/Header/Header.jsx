@@ -17,6 +17,7 @@ const Header = () => {
 		toggleSideBar,
 		getAllEvents,
 		getAllNotes,
+		getAllTasks,
 	} = useContext(GlobalContext);
 	const vh = window.innerHeight / 100;
 	const location = useLocation();
@@ -90,6 +91,7 @@ const Header = () => {
 					onClick={() => {
 						getAllEvents();
 						getAllNotes();
+						getAllTasks();
 					}}
 				>
 					<MaterialIcons>sync</MaterialIcons>

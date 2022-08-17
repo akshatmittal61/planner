@@ -1,12 +1,24 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Button from "../../components/Button/Button";
 import IconButton from "../../components/Button/IconButton";
 import Input, { TextArea } from "../../components/Input/Input";
+import GlobalContext from "../../Context/GlobalContext";
 import Dialog from "../../Layout/Dialog/Dialog";
 import Row, { Col } from "../../Layout/Responsive";
 import { colors } from "../../utils";
 
-const TaskPopup = ({ close, title, description, color, date, time, done }) => {
+const TaskPopup = ({
+	close,
+	title,
+	description,
+	color,
+	date,
+	time,
+	done,
+	...rest
+}) => {
+	let originalTask = { title, description, color, date, time, done };
+	const { user, updateOneTask } = useContext(GlobalContext);
 	const [currTask, setCurrTask] = useState({
 		title,
 		description,
@@ -22,7 +34,12 @@ const TaskPopup = ({ close, title, description, color, date, time, done }) => {
 	};
 	const handleSubmit = (e) => {
 		e?.preventDefault();
-		console.log(currTask);
+		let editedTask = { username: user.username };
+		for (let i in currTask) {
+			if (currTask[i] !== originalTask[i])
+				editedTask = { ...editedTask, [i]: currTask[i] };
+		}
+		updateOneTask(rest._id, editedTask);
 	};
 	const handleReset = (e) => {
 		e?.preventDefault();
