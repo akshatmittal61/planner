@@ -110,12 +110,8 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 # Author
 
-[Akshat Mittal](https://akshatmittal61.github.io/portfolio)
-
-## Contributors
-
--   [Akshat Khosya](https://github.com/akshat-khosya)
--   [Sneha Sharma](https://github.com/snehasharma1111)
+-   [Akshat Mittal](https://akshatmittal61.vercel.app/)
+-   [Sneha Sharma](https://snehasharma1111.github.io/)
 
 ## References and Libraries Used
 
