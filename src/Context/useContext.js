@@ -531,6 +531,38 @@ export const useContextData = () => {
 			setIsLoading(false);
 		}
 	};
+	const addNewTask = async (newTask) => {
+		try {
+			setIsLoading(true);
+			const res = await axiosInstance.post("/api/tasks/add", {
+				...newTask,
+			});
+			if (res.status === 200) {
+				setSnack({
+					text: res.data.message,
+					bgColor: "var(--green)",
+					color: "var(--white)",
+				});
+				setTasks((prevTasks) => [...prevTasks, res.data.newTask]);
+				setOpenSnackBar(true);
+				setTimeout(() => {
+					setOpenSnackBar(false);
+				}, 5000);
+			}
+			setIsLoading(false);
+		} catch (error) {
+			setSnack({
+				text: error.response?.data?.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		}
+	};
 
 	// Side Bar
 	const [openSideBar, setOpenSideBar] = useState(false);
@@ -617,5 +649,6 @@ export const useContextData = () => {
 		tasks,
 		setTasks,
 		getAllTasks,
+		addNewTask,
 	};
 };

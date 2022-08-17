@@ -35,20 +35,10 @@ const Tasks = () => {
 								<Masonry lg={4} md={3} sm={2}>
 									{tasks?.map(
 										(task, index) =>
-											!task.done &&
-											!task.trashed && (
+											!task?.done &&
+											!task?.trashed && (
 												<MasonryBox key={index}>
-													<Task
-														title={task.title}
-														description={
-															task.description
-														}
-														color={task.color}
-														date={task.date}
-														time={task.time}
-														done={task.done}
-														trashed={task.trashed}
-													/>
+													<Task {...task} />
 												</MasonryBox>
 											)
 									)}
