@@ -113,6 +113,39 @@ const markAsDone = async (req, res) => {
 	}
 };
 
+const markAsNotDone = async (req, res) => {
+	const id = req.params.id;
+	try {
+		let foundTask = await Task.findById(id);
+		if (!foundTask)
+			return res.status(404).json({ message: "Task not found" });
+		if (foundTask.user.toString() !== req.user.id)
+			return res.status(401).json({ message: "User not authorized" });
+		if (foundTask.trashed)
+			return res
+				.status(400)
+				.json({ message: "Cannot mark a trashed note as not done." });
+		if (!foundTask.done)
+			return res
+				.status(400)
+				.json({ message: "Task is already marked as not done." });
+		let updatedTask = await Task.findByIdAndUpdate(
+			id,
+			{ $set: { done: false } },
+			{ new: true }
+		);
+		return res.status(200).json({
+			updatedTask: updatedTask,
+			message: "Task marked as not done",
+		});
+	} catch (error) {
+		console.error(error);
+		if (error.kind === "ObjectId")
+			return res.status(404).json({ message: "Task not found" });
+		return res.status(500).json({ message: "Server Error" });
+	}
+};
+
 const deteleTask = async (req, res) => {
 	const id = req.params.id;
 	try {
@@ -130,4 +163,12 @@ const deteleTask = async (req, res) => {
 	}
 };
 
-export { getAllTaks, getTask, addTask, editTask,markAsDone, deteleTask };
+export {
+	getAllTaks,
+	getTask,
+	addTask,
+	editTask,
+	markAsDone,
+	markAsNotDone,
+	deteleTask,
+};
