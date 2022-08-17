@@ -46,6 +46,9 @@ const GlobalContext = createContext({
 	moveNoteToTrash: () => {},
 	restoreNoteFromTrash: () => {},
 	deleteNote: () => {},
+	tasks: [],
+	setTasks: () => {},
+	getAllTasks: () => {},
 });
 
 export default GlobalContext;
