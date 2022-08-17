@@ -8,6 +8,7 @@ import {
 	markAsDone,
 	markAsNotDone,
 	moveTaskToTrash,
+	restoreTaskFromTrash,
 } from "../controllers/tasks.mjs";
 import auth from "../middleware/auth.mjs";
 
@@ -21,6 +22,7 @@ router.put("/edit/:id", editTask);
 router.put("/mark-as-done/:id", markAsDone);
 router.put("/mark-as-not-done/:id", markAsNotDone);
 router.put("/trash/:id", moveTaskToTrash);
+router.put("/restore/:id", restoreTaskFromTrash);
 router.delete("/delete/:id", deteleTask);
 
 export default router;
