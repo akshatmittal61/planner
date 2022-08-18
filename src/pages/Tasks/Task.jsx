@@ -17,7 +17,7 @@ const Task = ({
 	trashed,
 	...rest
 }) => {
-	const { theme, markTaskAsDone, markTaskAsNotDone } =
+	const { theme, markTaskAsDone, markTaskAsNotDone, moveTaskToTrash } =
 		useContext(GlobalContext);
 	let chipText = `${title?.slice(0, min(15, title.length))}${
 		title.length > 15 ? "..." : ""
@@ -71,29 +71,62 @@ const Task = ({
 					})`,
 				}}
 			>
-				{!trashed && (
-					<IconButton
-						icon="edit"
-						className="task-control task-control-edit"
-						fill="var(--back-shadow-light)"
-						title="Edit Task"
-						onClick={() => setOpenTaskPopup(true)}
-					/>
+				{trashed ? (
+					<>
+						<IconButton
+							icon="restore"
+							className="task-control task-control-edit"
+							fill="var(--back-shadow-light)"
+							title="Restore Task"
+						/>
+						<IconButton
+							icon="delete_forever"
+							className="task-control task-control-delete"
+							fill="var(--back-shadow-light)"
+							title="Delete Forever"
+						/>
+					</>
+				) : (
+					<>
+						<IconButton
+							icon="edit"
+							className="task-control task-control-edit"
+							fill="var(--back-shadow-light)"
+							title="Edit Task"
+							onClick={() => setOpenTaskPopup(true)}
+						/>
+						<IconButton
+							icon="delete"
+							className="task-control task-control-delete"
+							fill="var(--back-shadow-light)"
+							title="Move To Trash"
+							onClick={() => {
+								setPopupCta(() => ({
+									text: "Move to Trash",
+									color: "red",
+									icon: "delete",
+									onClick: () => {
+										moveTaskToTrash(rest._id);
+										setOpenPopup(false);
+									},
+								}));
+								setPopupContent(() => (
+									<>
+										Move the note{" "}
+										<Chip
+											text={chipText}
+											size="small"
+											color={color}
+										/>{" "}
+										to Trash Bin?
+									</>
+								));
+								setOpenTaskPopup(false);
+								setOpenPopup(true);
+							}}
+						/>
+					</>
 				)}
-				{trashed && (
-					<IconButton
-						icon="restore"
-						className="task-control task-control-edit"
-						fill="var(--back-shadow-light)"
-						title="Restore Task"
-					/>
-				)}
-				<IconButton
-					icon={trashed ? "delete_forever" : "delete"}
-					className="task-control task-control-delete"
-					fill="var(--back-shadow-light)"
-					title={trashed ? "Delete Forever" : "Move To Trash"}
-				/>
 			</div>
 			{openTaskPopup && (
 				<TaskPopup

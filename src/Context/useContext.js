@@ -668,6 +668,39 @@ export const useContextData = () => {
 			setIsLoading(false);
 		}
 	};
+	const moveTaskToTrash = async (id) => {
+		try {
+			setIsLoading(true);
+			const resp = await axiosInstance.put(`/api/tasks/trash/${id}`);
+			setTasks((prevTasks) => {
+				let newTasks = prevTasks.map((singleTask) =>
+					singleTask._id !== id ? singleTask : resp.data.updatedTask
+				);
+				return newTasks;
+			});
+			setSnack({
+				text: resp.data.message,
+				bgColor: "var(--green)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		} catch (error) {
+			setSnack({
+				text: error.response?.data?.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		}
+	};
 
 	// Side Bar
 	const [openSideBar, setOpenSideBar] = useState(false);
@@ -758,5 +791,6 @@ export const useContextData = () => {
 		updateOneTask,
 		markTaskAsDone,
 		markTaskAsNotDone,
+		moveTaskToTrash,
 	};
 };
