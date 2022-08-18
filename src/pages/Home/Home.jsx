@@ -11,7 +11,7 @@ import GlobalContext from "../../Context/GlobalContext";
 const Home = () => {
 	const [scrolled, setScrolled] = useState(false);
 	const vh = window.innerHeight / 100;
-	const { theme, setSideBarLinks } = useContext(GlobalContext);
+	const { theme, setSideBarLinks, breakpoint } = useContext(GlobalContext);
 	useEffect(() => {
 		window.scrollTo(0, 0);
 		document.addEventListener("scroll", () => {
@@ -30,7 +30,11 @@ const Home = () => {
 				<div
 					className="card-frame"
 					style={{
-						padding: scrolled ? "0" : "0.5rem 0.25rem",
+						padding: scrolled
+							? "0"
+							: breakpoint("mobile")
+							? "0.5rem 0.65rem"
+							: "0.5rem 0.25rem",
 					}}
 					data-aos="fade-in"
 					data-aos-duration={2000}
@@ -74,7 +78,11 @@ const Home = () => {
 							<div
 								className="home-navigation-card"
 								style={{
-									flexFlow: index % 2 ? "row-reverse" : "row",
+									flexFlow: breakpoint("mobile")
+										? "column"
+										: index % 2
+										? "row-reverse"
+										: "row",
 									backgroundColor: `var(--${route.color}-${
 										theme === "light" ? "100" : "700"
 									})`,
