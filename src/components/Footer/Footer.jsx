@@ -5,14 +5,7 @@ import Input, { TextArea } from "../Input/Input";
 import Button from "../Button/Button";
 import "./footer.css";
 import favicon from "../../images/favicon.svg";
-import {
-	Facebook,
-	GitHub,
-	Instagram,
-	Linkedin,
-	Mail,
-	Twitter,
-} from "react-feather";
+import { GitHub, Linkedin, Mail } from "react-feather";
 import GlobalContext from "../../Context/GlobalContext";
 
 const Footer = () => {
@@ -29,9 +22,9 @@ const Footer = () => {
 	const r = 7;
 	const socials = [
 		{
-			username: "@akshatmittal61",
-			link: "https://twitter.com/akshatmittal61",
-			icon: <Twitter />,
+			username: "akshatmittal2506@gmail.com",
+			link: "mailto:akshatmittal2506@gmail.com",
+			icon: <Mail />,
 			angle: -90,
 		},
 		{
@@ -47,21 +40,21 @@ const Footer = () => {
 			angle: 30,
 		},
 		{
-			username: "@akshatmittal61",
-			link: "https://instagram.com/akshatmittal61",
-			icon: <Instagram />,
+			username: "snehasharma9205@gmail.com",
+			link: "mailto:snehasharma9205@gmail.com",
+			icon: <Mail />,
 			angle: 90,
 		},
 		{
-			username: "akshatmittal2506@gmail.com",
-			link: "mailto:akshatmittal2506@gmail.com",
-			icon: <Mail />,
+			username: "@snehasharma1111",
+			link: "https://www.linkedin.com/in/snehasharma1111",
+			icon: <Linkedin />,
 			angle: 150,
 		},
 		{
-			username: "akshatmittal61",
-			link: "https://www.facebook.com/akshatmittal61/",
-			icon: <Facebook />,
+			username: "@snehasharma1111",
+			link: "https://www.github.com/snehasharma1111",
+			icon: <GitHub />,
 			angle: 210,
 		},
 	];

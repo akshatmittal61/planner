@@ -1,3 +1,5 @@
+@import "../../config";
+
 .profile {
     width: 100%;
     padding-top: var(--head-height);
@@ -14,6 +16,10 @@
         padding: 1rem 2rem 2rem 2rem;
         position: relative;
         box-shadow: var(--shadow-elevation-2dp);
+
+        @include respond(phone) {
+            height: auto;
+        }
     }
 
     &-head {
@@ -52,7 +58,8 @@
             max-height: 100%;
         }
     }
-    .form-group{
+
+    .form-group {
         margin: 1rem 0;
     }
 

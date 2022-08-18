@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import path from "path";
 import { config } from "dotenv";
 import connect from "./db/index.mjs";
 import { PORT } from "./config/index.mjs";
@@ -16,14 +17,18 @@ app.use(cors("*"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.get("/", (req, res) => {
-	res.send("Hello World");
-});
 app.use("/api/auth", apiAuth);
 app.use("/api/settings", apiSettings);
 app.use("/api/events", apiEvents);
 app.use("/api/notes", apiNotes);
 app.use("/api/tasks", apiTasks);
+
+if (process.env.NODE_ENV === "production") {
+	app.use(express.static("build"));
+	app.get("*", (req, res) => {
+		res.sendFile(path.resolve(__dirname, "build", "index.html"));
+	});
+}
 
 app.listen(PORT, () => {
 	connect();

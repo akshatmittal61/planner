@@ -1,3 +1,5 @@
+@import "../../config";
+
 .not-found {
 	width: 100vw;
 	height: 100vh;
@@ -15,12 +17,21 @@
 	left: 0;
 	z-index: 7;
 
+	@include respond(phone) {
+		flex-flow: column-reverse;
+	}
+
 	&-image {
 		width: 40%;
 		height: 100%;
 		display: flex;
 		justify-content: center;
 		align-items: flex-end;
+
+		@include respond(phone) {
+			width: 100%;
+			height: 40%;
+		}
 
 		img {
 			object-fit: cover;
@@ -38,6 +49,11 @@
 		align-items: flex-start;
 		flex-flow: column;
 		color: var(--black);
+
+		@include respond(phone) {
+			width: 90%;
+			height: 60%;
+		}
 
 		&__h1 {
 			font-size: 4rem;

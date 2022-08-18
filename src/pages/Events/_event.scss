@@ -12,7 +12,7 @@
 	border-radius: 32px;
 
 	@include respond(phone) {
-		height: 60%;
+		height: 8rem;
 	}
 
 	&:hover {

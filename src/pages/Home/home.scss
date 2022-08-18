@@ -1,4 +1,5 @@
 @import "../../config";
+
 .home {
 	width: 100vw;
 	min-height: 100vh;
@@ -7,6 +8,7 @@
 	align-items: center;
 	flex-flow: column;
 	overflow: hidden;
+
 	&-box {
 		&-head {
 			height: 100vh;
@@ -16,7 +18,8 @@
 			align-items: center;
 			flex-flow: column;
 			position: relative;
-			& > * {
+
+			&>* {
 				display: flex;
 				justify-content: center;
 				align-items: center;
@@ -24,6 +27,7 @@
 				position: absolute;
 			}
 		}
+
 		&-image {
 			left: 0;
 			top: 0;
@@ -32,27 +36,37 @@
 			background-size: contain;
 			background-repeat: no-repeat;
 			background-position-y: bottom;
+
 			&__img {
 				object-fit: cover;
 				max-width: 75%;
 				max-height: 75%;
+
 				@include respond(tab) {
 					max-height: 55%;
 					max-width: 55%;
 				}
 			}
 		}
+
 		&-title {
 			height: 25%;
 			font-size: 5rem;
+			line-height: 6rem;
 			left: 50%;
 			top: 100%;
 			transform: translate(-50%, -100%);
+
+			@include respond(phone) {
+				transform: translate(-50%, -150%);
+			}
 		}
 	}
+
 	&-navigation {
 		width: 95vw;
 		margin: 0 2rem;
+
 		&-card {
 			width: 80%;
 			height: 20rem;
@@ -64,6 +78,11 @@
 			justify-content: center;
 			align-items: center;
 			overflow: hidden;
+
+			@include respond(phone) {
+				height: 27.5rem;
+			}
+
 			&-image {
 				width: 45%;
 				height: 100%;
@@ -71,7 +90,13 @@
 				background-position: center;
 				background-repeat: no-repeat;
 				border-radius: 32px;
+
+				@include respond(phone) {
+					width: 100%;
+					height: 45%;
+				}
 			}
+
 			&-content {
 				width: 55%;
 				height: 100%;
@@ -80,24 +105,34 @@
 				align-items: flex-start;
 				flex-flow: column;
 				padding: 1rem;
+
+				@include respond(phone) {
+					width: 100%;
+					height: 55%;
+				}
+
 				&__title {
 					font-size: 2.25rem;
 					margin-bottom: 0.5rem;
 				}
+
 				&__about {
 					font-size: 1.25rem;
 					line-height: 1.5rem;
 				}
 			}
+
 			&:hover {
 				border-radius: 16px;
 			}
+
 			&:hover &-image {
 				border-radius: 16px;
 			}
 		}
 	}
 }
+
 .card {
 	width: 100%;
 	height: 100vh;
@@ -108,6 +143,7 @@
 	font-family: "Chococooky", -apple-system, BlinkMacSystemFont, "Segoe UI",
 		Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
 		sans-serif;
+
 	&-frame {
 		height: 90%;
 		width: 90%;
@@ -117,17 +153,16 @@
 		margin: 0.25rem;
 		padding: 0.5rem 0.25rem;
 		border-radius: 10px;
-		background: linear-gradient(90deg, var(--green) 4%, var(--blue) 0%)
-				top/100% 34% no-repeat,
-			linear-gradient(90deg, var(--yellow) 50%, var(--blue) 0%) top/100%
-				82% no-repeat,
-			linear-gradient(90deg, var(--yellow) 10%, var(--red) 0%) top/100%
-				100%;
+		background: linear-gradient(90deg, var(--green) 4%, var(--blue) 0%) top/100% 34% no-repeat,
+			linear-gradient(90deg, var(--yellow) 50%, var(--blue) 0%) top/100% 82% no-repeat,
+			linear-gradient(90deg, var(--yellow) 10%, var(--red) 0%) top/100% 100%;
 		box-shadow: 0 10px 15px rgba(60, 64, 67, 0.3);
+
 		@include respond(phone) {
 			padding: 0.25rem;
 		}
 	}
+
 	&-box {
 		position: relative;
 		height: 99%;

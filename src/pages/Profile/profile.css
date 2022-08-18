@@ -15,6 +15,11 @@
   position: relative;
   box-shadow: var(--shadow-elevation-2dp);
 }
+@media (max-width: 672px) {
+  .profile-container {
+    height: auto;
+  }
+}
 .profile-head {
   width: 100%;
   display: flex;

@@ -50,7 +50,7 @@
 }
 @media (max-width: 672px) {
   .event {
-    height: 60%;
+    height: 8rem;
   }
 }
 .event:hover {

@@ -17,6 +17,11 @@
   font-size: 2rem;
   line-height: 2.5rem;
 }
+@media (max-width: 672px) {
+  .calendar-head {
+    padding: 0;
+  }
+}
 .calendar-head > * {
   display: flex;
   justify-content: space-evenly;
@@ -43,6 +48,11 @@
   border: 4px solid transparent;
   border-radius: 4px;
   padding: 0.3rem 0.75rem;
+}
+@media (max-width: 672px) {
+  .calendar-head-year input {
+    width: 5.5ch;
+  }
 }
 .calendar-head-year input:active, .calendar-head-year input:focus {
   border-bottom: 4px solid var(--back-shadow);
