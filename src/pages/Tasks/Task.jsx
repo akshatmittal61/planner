@@ -17,7 +17,8 @@ const Task = ({
 	trashed,
 	...rest
 }) => {
-	const { theme, markTaskAsDone } = useContext(GlobalContext);
+	const { theme, markTaskAsDone, markTaskAsNotDone } =
+		useContext(GlobalContext);
 	let chipText = `${title?.slice(0, min(15, title.length))}${
 		title.length > 15 ? "..." : ""
 	}`;
@@ -49,7 +50,9 @@ const Task = ({
 				<button
 					className="icon task-control task-control-done"
 					onClick={() => {
-						markTaskAsDone(rest._id);
+						done
+							? markTaskAsNotDone(rest._id)
+							: markTaskAsDone(rest._id);
 						setOpenTaskPopup(false);
 					}}
 				>

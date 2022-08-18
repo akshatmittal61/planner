@@ -1,8 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import GlobalContext from "../../Context/GlobalContext";
 import Masonry, { MasonryBox } from "../../Layout/Masonry/Masonry";
 import { tasksNavLinks } from "../../utils/navigation";
-import { allTasks } from "../../resources";
 import Task from "./Task";
 import "./tasks.css";
 import Empty from "../../components/Empty/Empty";
@@ -37,15 +36,7 @@ const TasksCompleted = () => {
 											task.done &&
 											!task.trashed && (
 												<MasonryBox key={index}>
-													<Task
-														title={task.title}
-														description={
-															task.description
-														}
-														color={task.color}
-														done={task.done}
-														trashed={task.trashed}
-													/>
+													<Task {...task} />
 												</MasonryBox>
 											)
 									)}
