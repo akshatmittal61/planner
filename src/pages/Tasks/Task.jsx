@@ -17,8 +17,13 @@ const Task = ({
 	trashed,
 	...rest
 }) => {
-	const { theme, markTaskAsDone, markTaskAsNotDone, moveTaskToTrash } =
-		useContext(GlobalContext);
+	const {
+		theme,
+		markTaskAsDone,
+		markTaskAsNotDone,
+		moveTaskToTrash,
+		restoreTaskFromTrash,
+	} = useContext(GlobalContext);
 	let chipText = `${title?.slice(0, min(15, title.length))}${
 		title.length > 15 ? "..." : ""
 	}`;
@@ -78,6 +83,30 @@ const Task = ({
 							className="task-control task-control-edit"
 							fill="var(--back-shadow-light)"
 							title="Restore Task"
+							onClick={() => {
+								setPopupCta(() => ({
+									text: "Restore Note",
+									color: "green",
+									icon: "restore",
+									onClick: () => {
+										restoreTaskFromTrash(rest._id);
+										setOpenPopup(false);
+									},
+								}));
+								setPopupContent(() => (
+									<>
+										Restore task{" "}
+										<Chip
+											text={chipText}
+											size="small"
+											color={color}
+										/>{" "}
+										?
+									</>
+								));
+								setOpenTaskPopup(false);
+								setOpenPopup(true);
+							}}
 						/>
 						<IconButton
 							icon="delete_forever"
@@ -112,7 +141,7 @@ const Task = ({
 								}));
 								setPopupContent(() => (
 									<>
-										Move the note{" "}
+										Move the task{" "}
 										<Chip
 											text={chipText}
 											size="small"
