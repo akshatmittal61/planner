@@ -5,14 +5,7 @@ import Input, { TextArea } from "../Input/Input";
 import Button from "../Button/Button";
 import "./footer.css";
 import favicon from "../../images/favicon.svg";
-import {
-	Facebook,
-	GitHub,
-	Instagram,
-	Linkedin,
-	Mail,
-	Twitter,
-} from "react-feather";
+import { GitHub, Linkedin, Mail } from "react-feather";
 import GlobalContext from "../../Context/GlobalContext";
 
 const Footer = () => {
