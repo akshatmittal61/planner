@@ -23,6 +23,7 @@ const Task = ({
 		markTaskAsNotDone,
 		moveTaskToTrash,
 		restoreTaskFromTrash,
+		deleteTask,
 	} = useContext(GlobalContext);
 	let chipText = `${title?.slice(0, min(15, title.length))}${
 		title.length > 15 ? "..." : ""
@@ -113,6 +114,30 @@ const Task = ({
 							className="task-control task-control-delete"
 							fill="var(--back-shadow-light)"
 							title="Delete Forever"
+							onClick={() => {
+								setPopupCta(() => ({
+									text: "Delete forever",
+									color: "red",
+									icon: "delete",
+									onClick: () => {
+										deleteTask(rest._id);
+										setOpenPopup(false);
+									},
+								}));
+								setPopupContent(() => (
+									<>
+										Delete task{" "}
+										<Chip
+											text={chipText}
+											size="small"
+											color={color}
+										/>{" "}
+										forever? This actions can't be undone.
+									</>
+								));
+								setOpenTaskPopup(false);
+								setOpenPopup(true);
+							}}
 						/>
 					</>
 				) : (

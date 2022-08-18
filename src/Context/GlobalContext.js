@@ -55,6 +55,7 @@ const GlobalContext = createContext({
 	markTaskAsNotDone: () => {},
 	moveTaskToTrash: () => {},
 	restoreTaskFromTrash: () => {},
+	deleteTask: () => {},
 });
 
 export default GlobalContext;
