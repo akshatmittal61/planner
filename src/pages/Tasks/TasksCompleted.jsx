@@ -19,7 +19,7 @@ const TasksCompleted = () => {
 
 	return (
 		<main className="tasks">
-			{tasks?.length > 0 && tasks.some((p) => !p.done) ? (
+			{tasks?.length > 0 && tasks.some((p) => p.done) ? (
 				<>
 					<section className="tasks-head">
 						<span>Completed Tasks</span>

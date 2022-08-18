@@ -4,6 +4,8 @@ import Masonry, { MasonryBox } from "../../Layout/Masonry/Masonry";
 import { tasksNavLinks } from "../../utils/navigation";
 import Task from "./Task";
 import "./tasks.css";
+import nullTrash from "../../images/empty-trash.svg";
+import Empty from "../../components/Empty/Empty";
 
 const TasksTrash = () => {
 	const { setSideBarLinks, tasks, getAllTasks } = useContext(GlobalContext);
@@ -16,7 +18,7 @@ const TasksTrash = () => {
 
 	return (
 		<main className="tasks">
-			{tasks?.length > 0 && (
+			{tasks?.length > 0 && tasks?.some((p) => p.trashed) ? (
 				<>
 					<section className="tasks-head">
 						<span>Trash Bin</span>
@@ -41,6 +43,32 @@ const TasksTrash = () => {
 						</div>
 					</section>
 				</>
+			) : (
+				<Empty
+					img={nullTrash}
+					text={
+						<>
+							<h3
+								style={{
+									fontSize: "3rem",
+									lineHeight: "4rem",
+									margin: "0 0 1rem 0",
+								}}
+							>
+								Bin is Empty
+							</h3>
+							<span
+								style={{
+									fontSize: "2rem",
+									lineHeight: "3rem",
+								}}
+							>
+								Items in bin will be deleted forever after 30
+								days
+							</span>
+						</>
+					}
+				/>
 			)}
 		</main>
 	);
