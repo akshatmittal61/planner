@@ -6,7 +6,7 @@ import defaultNavLinks from "../utils/navigation";
 export const useContextData = () => {
 	// Axios Instance Configurations
 	const axiosInstance = axios.create({
-		baseURL: "http://localhost:5000/",
+		baseURL: process.env.REACT_APP_BACKEND_URL,
 		headers: {
 			"x-auth-token": localStorage.getItem("token"),
 			"Content-Type": "application/json",
