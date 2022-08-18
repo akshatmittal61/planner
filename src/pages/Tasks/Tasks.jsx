@@ -53,7 +53,7 @@ const Tasks = () => {
 					text="No Task Yet"
 					cta={{
 						text: "Add a task",
-						icon: "add",
+						icon: "add", 
 						action: () => setShowAddTaskBox(true),
 					}}
 				/>
