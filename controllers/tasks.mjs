@@ -31,7 +31,7 @@ const getTask = async (req, res) => {
 
 const addTask = async (req, res) => {
 	const { title, description, date, time, color } = req.body;
-	if (!title || !description || !date || !time || !color)
+	if (!title || !description || !color)
 		return res.status(400).json({ message: "Invalid Data" });
 	try {
 		const newTask = new Task({

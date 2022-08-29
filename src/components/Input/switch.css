@@ -1,0 +1,38 @@
+:root, :root::before, :root::after {
+  --switch-size: 24px;
+  --switch-time: 400ms;
+}
+
+.switch {
+  width: calc(var(--switch-size) * 3.5);
+  height: calc(var(--switch-size) * 2);
+  padding: calc(var(--switch-size) * 0.25);
+  display: flex;
+  align-items: center;
+  background-color: #49454f;
+  border-radius: calc(var(--switch-size) * 1.5);
+  border: 2px solid #938f99;
+  transition: border-color var(--switch-time), background-color var(--switch-time);
+  cursor: pointer;
+}
+.switch::before {
+  content: "";
+  display: inline-block;
+  width: var(--switch-size);
+  height: var(--switch-size);
+  border-radius: calc(var(--switch-size) * 0.75);
+  background-color: #938f99;
+  transition: width var(--switch-time), background-color var(--switch-time);
+}
+.switch.on {
+  border-color: #d0bcff;
+  background-color: #d0bcff;
+}
+.switch.on::before {
+  background-color: #381e72;
+  width: calc(var(--switch-size) * 1.5);
+  height: calc(var(--switch-size) * 1.5);
+  transform: translateX(calc(var(--switch-size) * 1.25));
+}
+
+/*# sourceMappingURL=switch.css.map */

@@ -30,6 +30,24 @@
             position: relative;
             margin: 0 1rem;
         }
+        &-remind{
+            position: relative;
+            label{
+                width: fit-content;
+                height: fit-content;
+                transform: none;
+                position: static;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                button{
+                    margin-right: 0.5rem;
+                }
+                span{
+                    font-size: 1.25rem;
+                }
+            }
+        }
     }
 
     &-cover {

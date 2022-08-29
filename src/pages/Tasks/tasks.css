@@ -133,6 +133,24 @@
   position: relative;
   margin: 0 1rem;
 }
+.add-task-form-remind {
+  position: relative;
+}
+.add-task-form-remind label {
+  width: fit-content;
+  height: fit-content;
+  transform: none;
+  position: static;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.add-task-form-remind label button {
+  margin-right: 0.5rem;
+}
+.add-task-form-remind label span {
+  font-size: 1.25rem;
+}
 .add-task-cover {
   width: 100vw;
   height: 100vh;

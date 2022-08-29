@@ -49,6 +49,15 @@ const Wrapper = () => {
 	}, [location.pathname, setOpenSideBar, theme]);
 	useEffect(() => {
 		setNetworkStatus(navigator.onLine ? "online" : "offline");
+		if (Notification.permission !== "granted") {
+			Notification.requestPermission().then(() => {
+				if (Notification.permission !== "granted") {
+					alert(
+						"Allow notification for Planner to get notified for Tasks"
+					);
+				}
+			});
+		}
 	});
 	useEffect(() => {
 		verifyUser();
