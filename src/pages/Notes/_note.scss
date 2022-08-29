@@ -1,3 +1,4 @@
+@import "../../config";
 .note {
 	width: 95%;
 	margin: 0.75rem;
@@ -44,6 +45,9 @@
 		margin: 0 0.5rem 0 0;
 		border-radius: 500px;
 		opacity: 0;
+		@include respond(phone){
+			opacity: 1;
+		}
 
 		&:hover {
 			background-color: var(--back-shadow-light);

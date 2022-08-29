@@ -56,6 +56,11 @@
   border-radius: 500px;
   opacity: 0;
 }
+@media (max-width: 672px) {
+  .note-button {
+    opacity: 1;
+  }
+}
 .note-button:hover {
   background-color: var(--back-shadow-light);
 }

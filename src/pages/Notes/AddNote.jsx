@@ -28,6 +28,7 @@ const AddNote = ({ close }) => {
 	const handleSubmit = (e) => {
 		e?.preventDefault();
 		addNewNote(newNote);
+		close();
 	};
 	const handleReset = (e) => {
 		e?.preventDefault();

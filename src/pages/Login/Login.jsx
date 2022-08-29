@@ -57,7 +57,7 @@ const Login = () => {
 			}
 		} catch (error) {
 			setSnack({
-				text: error.response.data.message,
+				text: error?.response?.data?.message,
 				bgColor: "var(--red)",
 				color: "var(--white)",
 			});

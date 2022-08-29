@@ -85,7 +85,6 @@ const NotePopup = ({
 					value={currNote.content}
 					onChange={handleChange}
 					disabled={trashed}
-					autoFocus
 				/>
 				{!trashed && (
 					<>

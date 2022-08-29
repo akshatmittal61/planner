@@ -63,6 +63,7 @@
 }
 @media (max-width: 672px) {
   .task {
+    width: 12.5rem;
     border-radius: 24px;
   }
 }
