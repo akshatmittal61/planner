@@ -25,4 +25,4 @@ yarn-error.log*
 
 # sass files
 *.css.map
-src/resources.js
+src/utils/notification.js

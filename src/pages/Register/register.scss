@@ -6,185 +6,185 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: var(--brown-700);
-	background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
+	background-color: var(--ffe0b2);
+	margin-top: 0;
 
-	&-container {
-		width: 60%;
-		height: 85%;
-		border-radius: 8px;
-		display: flex;
-		justify-content: center;
-		align-content: center;
+	&-mac {
+		width: 95%;
+		height: 90%;
+		border-radius: 16px;
+		background-color: var(--mac-bgcolor);
+		color: var(--bgcolor);
 		overflow: hidden;
-		background: linear-gradient(90deg, #795548, #d7ccc8);
-		position: relative;
 		box-shadow: var(--shadow-3d);
 
-		@media (max-width: 900px) {
-			width: 80%;
-		}
-	}
-
-	&-background {
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		z-index: 0;
-		width: 100%;
-		clip-path: inset(0 0 0 0);
-
-		&-shape {
-			transform: rotate(45deg);
-			position: absolute;
-
-			&__1 {
-				height: 520px;
-				width: 520px;
-				background: var(--back-shadow-light);
-				top: -50px;
-				right: 120px;
-				border-radius: 72px;
-			}
-
-			&__2 {
-				height: 220px;
-				width: 220px;
-				background: var(--brown);
-				top: -172px;
-				right: 0;
-				border-radius: 32px;
-			}
-
-			&__3 {
-				height: 540px;
-				width: 190px;
-				background: linear-gradient(270deg,
-						var(--brown-400),
-						var(--brown-700));
-				top: -24px;
-				right: 0;
-				border-radius: 32px;
-			}
-
-			&__4 {
-				height: 400px;
-				width: 200px;
-				background: var(--brown-400);
-				top: 420px;
-				right: 50px;
-				border-radius: 60px;
-			}
-		}
-	}
-
-	&-content {
-		width: 100%;
-		height: 100%;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		flex-flow: column;
-		z-index: 5;
-	}
-
-	a {
-		color: var(--white);
-		text-decoration: underline;
-		margin: 0 0.35rem;
-		font-size: 0.875rem;
-	}
-
-	&-title {
-		width: 100%;
-		height: 15%;
-		font-size: 2rem;
-		line-height: 2.5rem;
-		color: var(--white);
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		margin: 0.5rem 0;
-		padding: 1rem 1.5rem;
-
-		button {
-			color: var(--white);
-		}
-	}
-
-	&-form {
-		width: 100%;
-		display: flex;
-		justify-content: flex-start;
-		align-items: center;
-		flex-flow: column;
-
-		.row:nth-child(4) {
-			.form-group {
-				width: 95%;
-			}
-		}
-
-		&-group {
-			width: 90%;
+		&-head {
+			width: 100%;
+			height: 2.75rem;
+			background-color: #4d4d4f;
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
-			margin: 1rem 0;
+			padding: 0 0.5rem;
 
-			&:last-child {
+			&-buttons {
+				color: var(--tcolor);
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				margin: 0 0.5rem;
+			}
 
-				button {
-					width: 40%;
-					margin: 0 auto;
+			&__button {
+				border-radius: 500px;
+				width: 0.875rem;
+				height: 0.875rem;
+				margin: 0 0.25rem;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+
+				&:nth-child(1) {
+					background-color: var(--mac-red);
+				}
+
+				&:nth-child(2) {
+					background-color: var(--mac-yellow);
+				}
+
+				&:nth-child(3) {
+					background-color: var(--mac-green);
+				}
+
+				& .material-symbols-outlined {
+					width: 100%;
+					height: 100%;
+					font-size: 0.75rem;
+					opacity: 0;
+					transition: all var(--transition-time) ease-in-out;
+				}
+
+				&:hover .material-symbols-outlined {
+					opacity: 1;
+				}
+			}
+
+			&-title {
+				text-align: center;
+				font-size: 1.25rem;
+			}
+
+			&-switch {
+				width: 5rem;
+			}
+		}
+
+		&-body {
+			width: 100%;
+			height: 95%;
+			position: relative;
+
+			&-buttons {
+				position: absolute;
+				right: 1rem;
+				top: 1rem;
+			}
+
+			&__button {
+				background-color: var(--mac-bgcolor);
+				border: 1px solid rgba(255, 255, 255, 0.2);
+				border-radius: 500px;
+				padding: 0.5rem;
+				margin: 0.25rem 0.5rem;
+				cursor: pointer;
+				transition: all var(--transition-time) ease-in-out;
+
+				&:hover {
+					border: 1px solid rgba(255, 255, 255, 0.5);
+				}
+
+				&:active,
+				&:focus {
+					border: 1px solid rgba(255, 255, 255, 0.5);
+				}
+
+				& .material-symbols-outlined {
+					width: 100%;
+					height: 100%;
+					font-size: 1.25rem;
+				}
+			}
+
+			&-container {
+				width: 100%;
+				height: 100%;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+		}
+
+		form {
+			width: 80%;
+			display: flex;
+			justify-content: space-evenly;
+			align-items: center;
+			flex-flow: column;
+
+			input,
+			textarea {
+				margin: 0.5rem 0;
+
+				&::placeholder {
+					color: rgba(255, 255, 255, 0.8);
+					font-size: 1rem;
+				}
+
+				border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+
+				&:hover {
+					border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+				}
+
+				&:active,
+				&:focus {
+					border-bottom: 2px solid var(--orange-100);
+				}
+
+				&:disabled,
+				&:disabled:active,
+				&:disabled:focus {
+					border-bottom: 2px solid var(--transparent);
+				}
+			}
+
+			label {
+				color: #ffe0b2;
+			}
+
+			&>div {
+				width: 100%;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				margin: 1rem 0;
+
+				a {
+					color: var(--indigo-100);
+				}
+			}
+
+			.col-lg-100 .form-group {
+				width: 95%;
+
+				@include respond(tab) {
+					width: 95%;
+				}
+
+				@include respond(phone) {
+					width: 90%;
 				}
 			}
 		}
-
-		label {
-			color: var(--bgcolor);
-		}
-
-		input {
-			border-bottom: 2px solid rgba(255, 255, 255, 0.25);
-			color: var(--white);
-			margin: 0.5rem 0;
-
-			&:active,
-			&:focus {
-				border-bottom: 2px solid var(--bgcolor);
-			}
-
-			&::placeholder {
-				color: rgba(255, 255, 255, 0.75);
-			}
-		}
-
-		input:active+label,
-		input:focus+label {
-			color: var(--bgcolor-700);
-		}
-	}
-
-	&-bottom {
-		color: var(--white);
-		display: flex;
-		justify-content: center;
-		align-items: flex-end;
-		flex-flow: row;
-		margin: 1rem 0 0 0;
-		padding: 1rem;
-		font-size: 0.875rem;
-	}
-
-	&-right {
-		background-size: cover;
-		background-position: center;
-		display: flex;
-		justify-content: flex-end;
-		align-items: flex-start;
-		padding: 0.5rem;
 	}
 }

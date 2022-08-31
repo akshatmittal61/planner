@@ -52,7 +52,7 @@ const Wrapper = () => {
 		if (Notification.permission !== "granted") {
 			Notification.requestPermission().then(() => {
 				if (Notification.permission !== "granted") {
-					alert(
+					console.log(
 						"Allow notification for Planner to get notified for Tasks"
 					);
 				}
@@ -60,7 +60,7 @@ const Wrapper = () => {
 		}
 	});
 	useEffect(() => {
-		verifyUser();
+		if (JSON.parse(localStorage.getItem("isAuthenticated"))) verifyUser();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 

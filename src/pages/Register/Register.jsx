@@ -73,123 +73,132 @@ const Register = () => {
 		}
 	};
 	return (
-		<section className="register">
-			<div className="register-container" data-aos="zoom-in">
-				<div className="register-content">
-					<div className="register-title">
-						<span>Sign Up</span>
-						<button className="icon" onClick={() => navigate("/")}>
-							<MaterialIcons>close</MaterialIcons>
+		<main className="register">
+			<div className="register-mac" data-aos="zoom-in">
+				<div className="register-mac-head">
+					<div className="register-mac-head-buttons">
+						<button className="register-mac-head__button">
+							<Link to="/">
+								<MaterialIcons>close</MaterialIcons>
+							</Link>
+						</button>
+						<button className="register-mac-head__button">
+							<Link to={-1}>
+								<MaterialIcons>remove</MaterialIcons>
+							</Link>
+						</button>
+						<button className="register-mac-head__button">
+							<MaterialIcons>apps</MaterialIcons>
 						</button>
 					</div>
-					<form className="register-form" onSubmit={handleSubmit}>
-						<Row>
-							<Col lg={50} md={50}>
-								<Input
-									value={registerUser.fname}
-									name="fname"
-									type="text"
-									placeholder="First Name"
-									icon="person"
-									onChange={handleChange}
-									required
+					<div className="register-mac-head-title">
+						<span className="register-mac-head-title__text">
+							Sign Up
+						</span>
+					</div>
+					<div className="register-mac-head-switch"></div>
+				</div>
+				<div className="register-mac-body">
+					<div className="register-mac-body-container">
+						<form className="register-form" onSubmit={handleSubmit}>
+							<Row>
+								<Col lg={50} md={50}>
+									<Input
+										value={registerUser.fname}
+										name="fname"
+										type="text"
+										placeholder="First Name"
+										icon="person"
+										onChange={handleChange}
+										required
+									/>
+								</Col>
+								<Col lg={50} md={50}>
+									<Input
+										value={registerUser.lname}
+										name="lname"
+										type="text"
+										placeholder="Last Name"
+										icon="person"
+										onChange={handleChange}
+										required
+									/>
+								</Col>
+								<Col lg={50} md={50}>
+									<Input
+										value={registerUser.email}
+										name="email"
+										type="email"
+										placeholder="Email"
+										icon="mail"
+										onChange={handleChange}
+										required
+									/>
+								</Col>
+								<Col lg={50} md={50}>
+									<Input
+										value={registerUser.username}
+										name="username"
+										type="text"
+										placeholder="Username"
+										icon="account_circle"
+										onChange={handleChange}
+										required
+									/>
+								</Col>
+								<Col lg={50} md={50}>
+									<Input
+										value={registerUser.password}
+										name="password"
+										type="password"
+										placeholder="Password"
+										icon="key"
+										onChange={handleChange}
+										required
+									/>
+								</Col>
+								<Col lg={50} md={50}>
+									<Input
+										value={registerUser.confirmPassword}
+										name="confirmPassword"
+										type="password"
+										placeholder="Confirm Password"
+										icon="lock"
+										onChange={handleChange}
+										required
+									/>
+								</Col>
+								<Col lg={100} md={100} sm={100}>
+									<Input
+										value={registerUser.avatar}
+										name="avatar"
+										type="url"
+										placeholder="Avatar"
+										icon="photo_camera"
+										onChange={handleChange}
+										style={{
+											width: "100%",
+										}}
+									/>
+								</Col>
+							</Row>
+							<div className="register-form-group">
+								<div className="register-form-group-signin">
+									<span>Already have an account? </span>
+									<Link to="/login"> Log In</Link>
+								</div>
+								<Button
+									text="Sign Up"
+									type="submit"
+									color="green"
+									size="large"
 								/>
-							</Col>
-							<Col lg={50} md={50}>
-								<Input
-									value={registerUser.lname}
-									name="lname"
-									type="text"
-									placeholder="Last Name"
-									icon="person"
-									onChange={handleChange}
-									required
-								/>
-							</Col>
-						</Row>
-						<Row>
-							<Col lg={50} md={50}>
-								<Input
-									value={registerUser.email}
-									name="email"
-									type="email"
-									placeholder="Email"
-									icon="mail"
-									onChange={handleChange}
-									required
-								/>
-							</Col>
-							<Col lg={50} md={50}>
-								<Input
-									value={registerUser.username}
-									name="username"
-									type="text"
-									placeholder="Username"
-									icon="account_circle"
-									onChange={handleChange}
-									required
-								/>
-							</Col>
-						</Row>
-						<Row>
-							<Col lg={50} md={50}>
-								<Input
-									value={registerUser.password}
-									name="password"
-									type="password"
-									placeholder="Password"
-									icon="key"
-									onChange={handleChange}
-									required
-								/>
-							</Col>
-							<Col lg={50} md={50}>
-								<Input
-									value={registerUser.confirmPassword}
-									name="confirmPassword"
-									type="password"
-									placeholder="Confirm Password"
-									icon="lock"
-									onChange={handleChange}
-									required
-								/>
-							</Col>
-						</Row>
-						<Row>
-							<Col lg={100} md={100} sm={100}>
-								<Input
-									value={registerUser.avatar}
-									name="avatar"
-									type="url"
-									placeholder="Avatar"
-									icon="photo_camera"
-									onChange={handleChange}
-									style={{
-										width: "100%",
-									}}
-								/>
-							</Col>
-						</Row>
-						<Button
-							text="Sign Up"
-							type="submit"
-							color="brown"
-							style={{ width: "40%" }}
-						/>
-					</form>
-					<div className="register-bottom">
-						<span>Already have an account?</span>
-						<Link to="/login">Log In</Link>
+							</div>
+						</form>
 					</div>
 				</div>
-				<div className="register-background">
-					<div className="register-background-shape register-background-shape__4"></div>
-					<div className="register-background-shape register-background-shape__3"></div>
-					<div className="register-background-shape register-background-shape__2"></div>
-					<div className="register-background-shape register-background-shape__1"></div>
-				</div>
 			</div>
-		</section>
+		</main>
 	);
 };
 

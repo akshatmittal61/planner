@@ -4,158 +4,163 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--brown-700);
-  background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
+  background-color: var(--ffe0b2);
+  margin-top: 0;
 }
-.register-container {
-  width: 60%;
-  height: 85%;
-  border-radius: 8px;
-  display: flex;
-  justify-content: center;
-  align-content: center;
+.register-mac {
+  width: 95%;
+  height: 90%;
+  border-radius: 16px;
+  background-color: var(--mac-bgcolor);
+  color: var(--bgcolor);
   overflow: hidden;
-  background: linear-gradient(90deg, #795548, #d7ccc8);
-  position: relative;
   box-shadow: var(--shadow-3d);
 }
-@media (max-width: 900px) {
-  .register-container {
-    width: 80%;
-  }
-}
-.register-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 0;
+.register-mac-head {
   width: 100%;
-  clip-path: inset(0 0 0 0);
+  height: 2.75rem;
+  background-color: #4d4d4f;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0.5rem;
 }
-.register-background-shape {
-  transform: rotate(45deg);
+.register-mac-head-buttons {
+  color: var(--tcolor);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 0.5rem;
+}
+.register-mac-head__button {
+  border-radius: 500px;
+  width: 0.875rem;
+  height: 0.875rem;
+  margin: 0 0.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.register-mac-head__button:nth-child(1) {
+  background-color: var(--mac-red);
+}
+.register-mac-head__button:nth-child(2) {
+  background-color: var(--mac-yellow);
+}
+.register-mac-head__button:nth-child(3) {
+  background-color: var(--mac-green);
+}
+.register-mac-head__button .material-symbols-outlined {
+  width: 100%;
+  height: 100%;
+  font-size: 0.75rem;
+  opacity: 0;
+  transition: all var(--transition-time) ease-in-out;
+}
+.register-mac-head__button:hover .material-symbols-outlined {
+  opacity: 1;
+}
+.register-mac-head-title {
+  text-align: center;
+  font-size: 1.25rem;
+}
+.register-mac-head-switch {
+  width: 5rem;
+}
+.register-mac-body {
+  width: 100%;
+  height: 95%;
+  position: relative;
+}
+.register-mac-body-buttons {
   position: absolute;
+  right: 1rem;
+  top: 1rem;
 }
-.register-background-shape__1 {
-  height: 520px;
-  width: 520px;
-  background: var(--back-shadow-light);
-  top: -50px;
-  right: 120px;
-  border-radius: 72px;
+.register-mac-body__button {
+  background-color: var(--mac-bgcolor);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 500px;
+  padding: 0.5rem;
+  margin: 0.25rem 0.5rem;
+  cursor: pointer;
+  transition: all var(--transition-time) ease-in-out;
 }
-.register-background-shape__2 {
-  height: 220px;
-  width: 220px;
-  background: var(--brown);
-  top: -172px;
-  right: 0;
-  border-radius: 32px;
+.register-mac-body__button:hover {
+  border: 1px solid rgba(255, 255, 255, 0.5);
 }
-.register-background-shape__3 {
-  height: 540px;
-  width: 190px;
-  background: linear-gradient(270deg, var(--brown-400), var(--brown-700));
-  top: -24px;
-  right: 0;
-  border-radius: 32px;
+.register-mac-body__button:active, .register-mac-body__button:focus {
+  border: 1px solid rgba(255, 255, 255, 0.5);
 }
-.register-background-shape__4 {
-  height: 400px;
-  width: 200px;
-  background: var(--brown-400);
-  top: 420px;
-  right: 50px;
-  border-radius: 60px;
+.register-mac-body__button .material-symbols-outlined {
+  width: 100%;
+  height: 100%;
+  font-size: 1.25rem;
 }
-.register-content {
+.register-mac-body-container {
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+}
+.register-mac form {
+  width: 80%;
+  display: flex;
+  justify-content: space-evenly;
   align-items: center;
   flex-flow: column;
-  z-index: 5;
 }
-.register a {
-  color: var(--white);
-  text-decoration: underline;
-  margin: 0 0.35rem;
-  font-size: 0.875rem;
-}
-.register-title {
-  width: 100%;
-  height: 15%;
-  font-size: 2rem;
-  line-height: 2.5rem;
-  color: var(--white);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.register-mac form input,
+.register-mac form textarea {
   margin: 0.5rem 0;
-  padding: 1rem 1.5rem;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
 }
-.register-title button {
-  color: var(--white);
+.register-mac form input::placeholder,
+.register-mac form textarea::placeholder {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
 }
-.register-form {
+.register-mac form input:hover,
+.register-mac form textarea:hover {
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+.register-mac form input:active, .register-mac form input:focus,
+.register-mac form textarea:active,
+.register-mac form textarea:focus {
+  border-bottom: 2px solid var(--orange-100);
+}
+.register-mac form input:disabled, .register-mac form input:disabled:active, .register-mac form input:disabled:focus,
+.register-mac form textarea:disabled,
+.register-mac form textarea:disabled:active,
+.register-mac form textarea:disabled:focus {
+  border-bottom: 2px solid var(--transparent);
+}
+.register-mac form label {
+  color: #ffe0b2;
+}
+.register-mac form > div {
   width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-flow: column;
-}
-.register-form .row:nth-child(4) .form-group {
-  width: 95%;
-}
-.register-form-group {
-  width: 90%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 1rem 0;
 }
-.register-form-group:last-child button {
-  width: 40%;
-  margin: 0 auto;
+.register-mac form > div a {
+  color: var(--indigo-100);
 }
-.register-form label {
-  color: var(--bgcolor);
+.register-mac form .col-lg-100 .form-group {
+  width: 95%;
 }
-.register-form input {
-  border-bottom: 2px solid rgba(255, 255, 255, 0.25);
-  color: var(--white);
-  margin: 0.5rem 0;
+@media (max-width: 880px) {
+  .register-mac form .col-lg-100 .form-group {
+    width: 95%;
+  }
 }
-.register-form input:active, .register-form input:focus {
-  border-bottom: 2px solid var(--bgcolor);
-}
-.register-form input::placeholder {
-  color: rgba(255, 255, 255, 0.75);
-}
-.register-form input:active + label,
-.register-form input:focus + label {
-  color: var(--bgcolor-700);
-}
-.register-bottom {
-  color: var(--white);
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  flex-flow: row;
-  margin: 1rem 0 0 0;
-  padding: 1rem;
-  font-size: 0.875rem;
-}
-.register-right {
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-start;
-  padding: 0.5rem;
+@media (max-width: 672px) {
+  .register-mac form .col-lg-100 .form-group {
+    width: 90%;
+  }
 }
 
 /*# sourceMappingURL=register.css.map */
