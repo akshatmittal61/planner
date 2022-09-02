@@ -21,7 +21,8 @@ const Notes = () => {
 
 	return (
 		<main className="notes">
-			{notes.length > 0 ? (
+			{notes.length > 0 &&
+			notes.some((p) => !p.archived && !p.trashed) ? (
 				<section className="notes-body">
 					<Masonry>
 						{notes?.map(

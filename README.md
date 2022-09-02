@@ -1,16 +1,13 @@
 # Planner
 
-<p align="center">
-<img src="./public/images/favicon.png" alt="Planner" width="250" height="250" />
-</p>
-<p align="center">
-Get more done with Planner. 
-<br />
-Manage, capture and edit your daily events, notes and tasks.
-</p>
 <p style="margin: 3rem 0 4rem 0;" align="center">
 <img src="./src/images/planner.png" alt="Planner Home Screen" />
 </p>
+[![Netlify Status](https://api.netlify.com/api/v1/badges/5886829b-1f1f-4ddb-9e2e-991cf1f5ec07/deploy-status)](https://app.netlify.com/sites/planner/deploys)
+
+Get more done with Planner. 
+
+Manage, capture and edit your daily events, notes and tasks.
 
 # Introduction
 
@@ -73,13 +70,13 @@ To switch between different modes, click on theme icon in the header.
 To clone copy the following command in your terminal and start development.
 
 ```sh
-git clone https://github.com/akshatmittal61/Planner.git
+git clone https://github.com/akshatmittal61/planner.git
 ```
 
 cd into the directory
 
 ```sh
-cd Planner
+cd planner
 ```
 
 Install all the dependencies
@@ -106,7 +103,14 @@ npm i nodemon -g
 ```
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
- - **Note:** Don't forget to add [http://localhost:5000](http://localhost:5000) as the baseURL in App.jsx for axios requests during local development.
+
+## Environment Varoables:
+Building the .env
+- **MONGO_CONNECTION_URL:** Create a database in MongoDB cluster and paste the connection string in here
+
+- **PORT:** Assign a PORT to run teh backend server (usually `4000` or `5000`)
+- **JWT_SECRET:** Assign a string for the JWT web token string.
+- **REACT_APP_BACKEND_URL:** Create the backend URL for which React App will send the back end requests to.
 
 # Author
 
@@ -115,7 +119,8 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## References and Libraries Used
 
+-   [Material 3 Designs](https://m3.material.io/)
 -   [Google Keep](https://keep.google.com)
--   [MUI](https://mui.com/)
 -   [AOS](https://github.com/michalsnik/aos)
 -   [Axios](https://axios-http.com/)
+-   [Moment](https://momentjs.com/)

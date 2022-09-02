@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import path from "path";
+import path, { dirname } from "path";
 import { config } from "dotenv";
 import connect from "./db/index.mjs";
 import { PORT } from "./config/index.mjs";
@@ -9,7 +9,10 @@ import apiSettings from "./routes/settings.mjs";
 import apiEvents from "./routes/events.mjs";
 import apiNotes from "./routes/notes.mjs";
 import apiTasks from "./routes/tasks.mjs";
+import { fileURLToPath } from "url";
 
+const __fileName = fileURLToPath(import.meta.url);
+const __dirname = dirname(__fileName);
 config();
 const app = express();
 

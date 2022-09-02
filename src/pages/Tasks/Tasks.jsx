@@ -16,12 +16,13 @@ const Tasks = () => {
 		setSideBarLinks(tasksNavLinks);
 		window.scrollTo(0, 0);
 		getAllTasks();
+		console.log(tasks);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [setSideBarLinks]);
 
 	return (
 		<main className="tasks">
-			{tasks?.length > 0 && tasks.some((p) => !p.done) ? (
+			{tasks?.length > 0 && tasks.some((p) => !p.done && !p.trashed) ? (
 				<>
 					<section className="tasks-head">
 						<span>Tasks</span>
@@ -53,7 +54,7 @@ const Tasks = () => {
 					text="No Task Yet"
 					cta={{
 						text: "Add a task",
-						icon: "add", 
+						icon: "add",
 						action: () => setShowAddTaskBox(true),
 					}}
 				/>
