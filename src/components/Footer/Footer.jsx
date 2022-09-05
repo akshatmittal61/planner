@@ -1,12 +1,10 @@
 import React, { useContext, useState } from "react";
-import wave1 from "../../images/wave1.svg";
-import wave2 from "../../images/wave2.svg";
 import Input, { TextArea } from "../Input/Input";
 import Button from "../Button/Button";
 import "./footer.css";
-import favicon from "../../images/favicon.svg";
 import { GitHub, Linkedin, Mail } from "react-feather";
 import GlobalContext from "../../Context/GlobalContext";
+import favicon, { wave1, wave2 } from "../../utils/images";
 
 const Footer = () => {
 	const { theme, accentColor } = useContext(GlobalContext);

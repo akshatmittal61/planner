@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import IconMask from "../../images/IconMask";
+import { IconMask } from "../../utils/images";
 import "./button.css";
 
 const IconButton = ({

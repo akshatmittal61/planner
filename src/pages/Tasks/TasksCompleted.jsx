@@ -6,7 +6,7 @@ import Task from "./Task";
 import "./tasks.css";
 import Empty from "../../components/Empty/Empty";
 import "./tasks.css";
-import nullTasks from "../../images/nullTasks.svg";
+import { nullTasks } from "../../utils/images";
 
 const TasksCompleted = () => {
 	const { setSideBarLinks, getAllTasks, tasks } = useContext(GlobalContext);

@@ -4,8 +4,8 @@ import Masonry, { MasonryBox } from "../../Layout/Masonry/Masonry";
 import { tasksNavLinks } from "../../utils/navigation";
 import Task from "./Task";
 import "./tasks.css";
-import nullTrash from "../../images/empty-trash.svg";
 import Empty from "../../components/Empty/Empty";
+import { nullTrash } from "../../utils/images";
 
 const TasksTrash = () => {
 	const { setSideBarLinks, tasks, getAllTasks } = useContext(GlobalContext);

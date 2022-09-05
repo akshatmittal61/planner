@@ -5,8 +5,8 @@ import Input, { TextArea } from "../../components/Input/Input";
 import Dialog from "../../Layout/Dialog/Dialog";
 import Row, { Col } from "../../Layout/Responsive";
 import { colors, imageBackgroundUrl } from "../../utils";
-import slash from "../../images/slash.svg";
 import GlobalContext from "../../Context/GlobalContext";
+import { slash } from "../../utils/images";
 
 const NotePopup = ({
 	close,

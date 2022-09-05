@@ -3,11 +3,11 @@ import Fab from "../../components/Button/Fab";
 import Empty from "../../components/Empty/Empty";
 import GlobalContext from "../../Context/GlobalContext";
 import Masonry, { MasonryBox } from "../../Layout/Masonry/Masonry";
+import { nullNotes } from "../../utils/images";
 import { notesNavLinks } from "../../utils/navigation";
 import AddNote from "./AddNote";
 import Note from "./Note";
 import "./notes.css";
-import nullNotes from "../../images/nullNotes.svg";
 
 const Notes = () => {
 	const [showAddNoteBox, setShowAddNoteBox] = useState(false);

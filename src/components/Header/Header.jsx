@@ -4,9 +4,9 @@ import MaterialIcons from "../MaterialIcons";
 import "./header.css";
 import "../Button/button.css";
 import AppBox from "../AppBox/AppBox";
-import userFallBack from "../../images/user.svg";
 import GlobalContext from "../../Context/GlobalContext";
 import UserMenu from "../UserMenu/UserMenu";
+import { userFallBackImg } from "../../utils/images";
 
 const Header = () => {
 	const {
@@ -104,7 +104,7 @@ const Header = () => {
 							src={userImg}
 							alt={user.name}
 							onError={() => {
-								setUserImg(userFallBack);
+								setUserImg(userFallBackImg);
 							}}
 						/>
 					) : (

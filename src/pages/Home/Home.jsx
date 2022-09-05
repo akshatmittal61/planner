@@ -1,12 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./home.css";
-import people from "../../images/people.svg";
-import favicon from "../../images/favicon.svg";
 import MaterialIcons from "../../components/MaterialIcons";
 import LinkButton from "../../components/Button/LinkButton";
 import routes from "../../routes";
 import defaultNavLinks from "../../utils/navigation";
 import GlobalContext from "../../Context/GlobalContext";
+import favicon, { peopleImg } from "../../utils/images";
 
 const Home = () => {
 	const [scrolled, setScrolled] = useState(false);
@@ -50,7 +49,7 @@ const Home = () => {
 							<div
 								className="home-box-image"
 								style={{
-									backgroundImage: `url(${people})`,
+									backgroundImage: `url(${peopleImg})`,
 								}}
 							>
 								<img

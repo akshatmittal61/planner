@@ -1,5 +1,5 @@
 import React from "react";
-import favicon from "../../images/favicon.svg";
+import favicon from "../../utils/images";
 import "./about.css";
 
 const About = () => {
@@ -17,16 +17,31 @@ const About = () => {
 					</span>
 				</div>
 			</section>
-            <section className="about-body">
-                <span>Planner is a web application to help the user to help them record their everyday events, activities and tasks.</span>
-            </section>
-            <section className="about-body">
-                <span>Organize your Calendar, events, notes and tasks with Planner.</span>
-                <span>Add an event to remind you on a birthday, anniversary or your traditional festival etc.</span>
-                <span>Quickly capture what's on your mind and write it down in Notes for seeing it anytime.</span>
-                <span>Share your thoughts easily with your family, friends and colleagues.</span>
-                <span>Capture and write in tasks to remind you later on.</span>
-            </section>
+			<section className="about-body">
+				<span>
+					Planner is a web application to help the user to help them
+					record their everyday events, activities and tasks.
+				</span>
+			</section>
+			<section className="about-body">
+				<span>
+					Organize your Calendar, events, notes and tasks with
+					Planner.
+				</span>
+				<span>
+					Add an event to remind you on a birthday, anniversary or
+					your traditional festival etc.
+				</span>
+				<span>
+					Quickly capture what's on your mind and write it down in
+					Notes for seeing it anytime.
+				</span>
+				<span>
+					Share your thoughts easily with your family, friends and
+					colleagues.
+				</span>
+				<span>Capture and write in tasks to remind you later on.</span>
+			</section>
 		</main>
 	);
 };

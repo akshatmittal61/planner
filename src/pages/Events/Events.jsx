@@ -7,8 +7,8 @@ import Row, { Col } from "../../Layout/Responsive";
 import AddEvent from "./AddEvent";
 import Event from "./Event";
 import "./events.css";
-import nullEvents from "../../images/nullEvents.svg";
 import { eventsNavLinks } from "../../utils/navigation";
+import { nullEvents } from "../../utils/images";
 
 const Events = () => {
 	const { getAllEvents, events, setSideBarLinks } = useContext(GlobalContext);
@@ -16,7 +16,6 @@ const Events = () => {
 	const [showAddEventBox, setShowAddEventBox] = useState(false);
 	useEffect(() => {
 		setSideBarLinks(eventsNavLinks);
-		window.scrollTo(0, 0);
 		getAllEvents();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);

@@ -48,6 +48,9 @@ const Wrapper = () => {
 		document.body.classList = localStorage.getItem("theme");
 	}, [location.pathname, setOpenSideBar, theme]);
 	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, [location.pathname]);
+	useEffect(() => {
 		setNetworkStatus(navigator.onLine ? "online" : "offline");
 		if (Notification.permission !== "granted") {
 			Notification.requestPermission().then(() => {

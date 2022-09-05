@@ -5,8 +5,8 @@ import MaterialIcons from "../../components/MaterialIcons";
 import GlobalContext from "../../Context/GlobalContext";
 import Row, { Col } from "../../Layout/Responsive";
 import "./profile.css";
-import userFallBackImg from "../../images/user.svg";
 import Button from "../../components/Button/Button";
+import { userFallBackImg } from "../../utils/images";
 
 const Profile = () => {
 	const navigate = useNavigate();

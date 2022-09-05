@@ -1,12 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./login.css";
-import loginBg from "../../images/login-bg.jpeg";
-import a from "../../images/brick.svg";
 import Button from "../../components/Button/Button";
 import { Link, useNavigate } from "react-router-dom";
 import GlobalContext from "../../Context/GlobalContext";
 import MaterialIcons from "../../components/MaterialIcons";
 import Input from "../../components/Input/Input";
+import { bricks, loginBg } from "../../utils/images";
 
 const Login = () => {
 	const navigate = useNavigate();
@@ -75,7 +74,7 @@ const Login = () => {
 		<section
 			className="login"
 			style={{
-				backgroundImage: `url(${a})`,
+				backgroundImage: `url(${bricks})`,
 			}}
 		>
 			<div className="login-container" data-aos="zoom-in">

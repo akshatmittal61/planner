@@ -1,14 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Button from "../../components/Button/Button";
-import tourist from "../../images/tourist.png";
-import blueSky from "../../images/blue-sky.png";
+import { blueSky, tourist } from "../../utils/images";
 import "./not-found.css";
 
 const NotFound = () => {
-	useEffect(() => {
-		window.scrollTo(0, 0);
-	}, []);
-
 	return (
 		<main
 			className="not-found"

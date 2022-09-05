@@ -3,11 +3,11 @@ import Fab from "../../components/Button/Fab";
 import Empty from "../../components/Empty/Empty";
 import GlobalContext from "../../Context/GlobalContext";
 import Masonry, { MasonryBox } from "../../Layout/Masonry/Masonry";
+import { nullTasks } from "../../utils/images";
 import { tasksNavLinks } from "../../utils/navigation";
 import AddTask from "./AddTask";
 import Task from "./Task";
 import "./tasks.css";
-import nullTasks from "../../images/nullTasks.svg";
 
 const Tasks = () => {
 	const [showAddTaskBox, setShowAddTaskBox] = useState(false);

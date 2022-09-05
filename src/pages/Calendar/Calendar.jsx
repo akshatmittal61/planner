@@ -1,22 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useContext, useEffect, useState } from "react";
 import _ from "lodash";
-import i1 from "../../images/calendar/1.png";
-import i2 from "../../images/calendar/2.png";
-import i3 from "../../images/calendar/3.png";
-import i4 from "../../images/calendar/4.png";
-import i5 from "../../images/calendar/5.png";
-import i6 from "../../images/calendar/6.png";
-import i7 from "../../images/calendar/7.png";
-import i8 from "../../images/calendar/8.png";
-import i9 from "../../images/calendar/9.png";
-import i10 from "../../images/calendar/10.png";
-import i11 from "../../images/calendar/11.png";
-import i12 from "../../images/calendar/12.png";
 import "./calendar.css";
 import IconButton from "../../components/Button/IconButton";
 import MonthDialogBox from "./MonthDialogBox";
 import GlobalContext from "../../Context/GlobalContext";
+import { calendarImages } from "../../utils/images";
 
 const Calendar = () => {
 	const { theme } = useContext(GlobalContext);
@@ -62,7 +51,7 @@ const Calendar = () => {
 		"cyan",
 		"brown",
 	];
-	const images = [i1, i2, i3, i4, i5, i6, i7, i8, i9, i10, i11, i12];
+	const images = calendarImages;
 	const [month, setMonth] = useState(1);
 	const [year, setYear] = useState(2000);
 	const [datesToDisplay, setDatesToDisplay] = useState(Array(35).fill(null));

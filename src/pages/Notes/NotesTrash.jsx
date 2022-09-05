@@ -2,10 +2,10 @@ import React, { useContext, useEffect } from "react";
 import Empty from "../../components/Empty/Empty";
 import GlobalContext from "../../Context/GlobalContext";
 import Masonry, { MasonryBox } from "../../Layout/Masonry/Masonry";
+import { nullTrash } from "../../utils/images";
 import { notesNavLinks } from "../../utils/navigation";
 import Note from "./Note";
 import "./notes.css";
-import nullTrash from "../../images/empty-trash.svg";
 
 const NotesTrash = () => {
 	const { setSideBarLinks, getAllNotes, notes } = useContext(GlobalContext);
