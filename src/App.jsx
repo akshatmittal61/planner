@@ -43,6 +43,7 @@ const Wrapper = () => {
 		networkStatus,
 		setNetworkStatus,
 		verifyUser,
+		setTheme,
 	} = useContext(GlobalContext);
 	const location = useLocation();
 	useEffect(() => {
@@ -86,6 +87,19 @@ const Wrapper = () => {
 
 	useEffect(() => {
 		if (JSON.parse(localStorage.getItem("isAuthenticated"))) verifyUser();
+		if (!localStorage.getItem("theme")) {
+			let currDate = new Date();
+			let h = currDate.getHours();
+			if (h >= 20 && h < 8) {
+				localStorage.setItem("theme", "dark");
+				setTheme("dark");
+				document.body.classList = "dark";
+			} else {
+				localStorage.setItem("theme", "light");
+				setTheme("light");
+				document.body.classList = "light";
+			}
+		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 

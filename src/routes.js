@@ -1,7 +1,9 @@
-import calendarPoster from "./images/posters/calendar-poster.jpg";
-import eventsPoster from "./images/posters/events-poster.jpg";
-import notesPoster from "./images/posters/notes-poster.jpg";
-import tasksPoster from "./images/posters/tasks-poster.webp";
+import {
+	calendarPoster,
+	eventsPoster,
+	notesPoster,
+	tasksPoster,
+} from "./utils/images";
 
 const routes = [
 	{

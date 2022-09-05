@@ -13,7 +13,7 @@ Manage, capture and edit your daily events, notes and tasks.
 
 Planner is a full stack web application built in MERN stack to keep a track of your activity every month, every day, every hour.
 
--   **Runtime used in backend** - [Node.js](https://nodejs.org/)
+-   **Runtime used for whole application** - [Node.js](https://nodejs.org/)
 -   **Frontend framework** - [React JS](https://reactjs.org/)
 -   **CSS preprocessor** - [SASS](https://sass-lang.com/)
 -   **Backend framework** - [Express](https://expressjs.com/)
@@ -43,9 +43,9 @@ Planner is a full stack web application built in MERN stack to keep a track of y
 <img src="./src/images/help/3/0.png" alt="Noets" style="width: 75%" />
 </p>
 
--   **Help** - To get help on Planner, click on the Help button in the header to visit the help section of the planner.
+-   **Help** - To get help on Planner, click on the Help button in the side bar to visit the help section of the planner.
 
--   **Feedback** - To leave a feedback to the developers, click on the feedback button in the footer of the app. Please be polite in any kind of feedback. Any appreciation of work or a bug report or any other kind of feedback is welcome.
+-   **Feedback** - To leave a feedback to the developers, click on the feedback/report-a-bug button in the side bar of the app. Please be polite in any kind of feedback. Any appreciation of work or a bug report or any other kind of feedback is welcome.
 
 # Themes
 
@@ -95,7 +95,7 @@ Run the backend server
 ```sh
 npm run server
 ```
-This will run the server on port [5000](http://localhost:5000) locally with nodemon to continuously watch every change.
+This will run the server on port [$PORT](http://localhost:5000) locally with nodemon to continuously watch every change.
 
 If you don't have nodemon on your system, run
 ```sh
@@ -104,13 +104,13 @@ npm i nodemon -g
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-## Environment Varoables:
+## Environment Variables:
 Building the .env
 - **MONGO_CONNECTION_URL:** Create a database in MongoDB cluster and paste the connection string in here
 
 - **PORT:** Assign a PORT to run teh backend server (usually `4000` or `5000`)
-- **JWT_SECRET:** Assign a string for the JWT web token string.
-- **REACT_APP_BACKEND_URL:** Create the backend URL for which React App will send the back end requests to.
+- **JWT_SECRET:** Assign a string for the JWT web token or request the [developers](#author) to provide you with the official one.
+- **REACT_APP_BACKEND_URL:** Create the backend URL for which React App will send the server requests to.
 
 # Author
 

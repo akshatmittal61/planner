@@ -8,6 +8,11 @@ import bricks from "../images/brick.svg";
 import wave1 from "../images/wave1.svg";
 import wave2 from "../images/wave2.svg";
 
+import calendarPoster from "../images/posters/calendar-poster.jpg";
+import eventsPoster from "../images/posters/events-poster.jpg";
+import notesPoster from "../images/posters/notes-poster.jpg";
+import tasksPoster from "../images/posters/tasks-poster.webp";
+
 import calendar1 from "../images/calendar/1.png";
 import calendar2 from "../images/calendar/2.png";
 import calendar3 from "../images/calendar/3.png";
@@ -58,6 +63,10 @@ export {
 	bricks,
 	wave1,
 	wave2,
+	calendarPoster,
+	eventsPoster,
+	notesPoster,
+	tasksPoster,
 	calendarImages,
 	nullEvents,
 	nullNotes,
