@@ -763,6 +763,13 @@ export const useContextData = () => {
 		}
 	};
 
+	// Synchronize
+	const synchronize = async () => {
+		getAllEvents();
+		getAllNotes();
+		getAllTasks();
+	};
+
 	// Side Bar
 	const [openSideBar, setOpenSideBar] = useState(false);
 	const [sideBarLinks, setSideBarLinks] = useState(defaultNavLinks);
@@ -855,5 +862,6 @@ export const useContextData = () => {
 		moveTaskToTrash,
 		restoreTaskFromTrash,
 		deleteTask,
+		synchronize,
 	};
 };

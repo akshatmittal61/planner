@@ -15,9 +15,7 @@ const Header = () => {
 		toggleTheme,
 		openSideBar,
 		toggleSideBar,
-		getAllEvents,
-		getAllNotes,
-		getAllTasks,
+		synchronize,
 	} = useContext(GlobalContext);
 	const vh = window.innerHeight / 100;
 	const location = useLocation();
@@ -86,14 +84,7 @@ const Header = () => {
 						{theme === "light" ? "dark_mode" : "light_mode"}
 					</MaterialIcons>
 				</button>
-				<button
-					className="icon"
-					onClick={() => {
-						getAllEvents();
-						getAllNotes();
-						getAllTasks();
-					}}
-				>
+				<button className="icon" onClick={synchronize}>
 					<MaterialIcons>sync</MaterialIcons>
 				</button>
 				<button className="icon">
