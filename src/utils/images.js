@@ -2,6 +2,7 @@ import favicon from "../images/favicon.svg";
 
 import userFallBackImg from "../images/user.svg";
 import peopleImg from "../images/people.svg";
+import registerBg from "../images/register-bg.jpg";
 import loginBg from "../images/login-bg.jpeg";
 import bricks from "../images/brick.svg";
 import wave1 from "../images/wave1.svg";
@@ -52,6 +53,7 @@ export default favicon;
 export {
 	userFallBackImg,
 	peopleImg,
+	registerBg,
 	loginBg,
 	bricks,
 	wave1,

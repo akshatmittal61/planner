@@ -5,6 +5,7 @@ import Input from "../../components/Input/Input";
 import MaterialIcons from "../../components/MaterialIcons";
 import GlobalContext from "../../Context/GlobalContext";
 import Row, { Col } from "../../Layout/Responsive";
+import { bricks, registerBg } from "../../utils/images";
 import "./register.css";
 
 const Register = () => {
@@ -73,34 +74,20 @@ const Register = () => {
 		}
 	};
 	return (
-		<main className="register">
-			<div className="register-mac" data-aos="zoom-in">
-				<div className="register-mac-head">
-					<div className="register-mac-head-buttons">
-						<button className="register-mac-head__button">
-							<Link to="/">
-								<MaterialIcons>close</MaterialIcons>
-							</Link>
-						</button>
-						<button className="register-mac-head__button">
-							<Link to={-1}>
-								<MaterialIcons>remove</MaterialIcons>
-							</Link>
-						</button>
-						<button className="register-mac-head__button">
-							<MaterialIcons>apps</MaterialIcons>
-						</button>
-					</div>
-					<div className="register-mac-head-title">
-						<span className="register-mac-head-title__text">
-							Sign Up
-						</span>
-					</div>
-					<div className="register-mac-head-switch"></div>
-				</div>
-				<div className="register-mac-body">
-					<div className="register-mac-body-container">
-						<form className="register-form" onSubmit={handleSubmit}>
+		<section
+			className="register"
+			style={{
+				backgroundImage: `url(${bricks})`,
+			}}
+		>
+			<div className="register-container" data-aos="zoom-in">
+				<div className="register-left">
+					<div className="legin-left-top">
+						<div className="register-left-title">Sign Up!</div>
+						<form
+							className="register-left-form"
+							onSubmit={handleSubmit}
+						>
 							<Row>
 								<Col lg={50} md={50}>
 									<Input
@@ -182,23 +169,33 @@ const Register = () => {
 									/>
 								</Col>
 							</Row>
-							<div className="register-form-group">
-								<div className="register-form-group-signin">
-									<span>Already have an account? </span>
-									<Link to="/login"> Log In</Link>
-								</div>
+							<div className="register-left-form-group">
+								<span></span>
 								<Button
-									text="Sign Up"
 									type="submit"
-									color="green"
-									size="large"
+									text="Sign Up"
+									color="brown"
 								/>
 							</div>
 						</form>
 					</div>
+					<div className="register-left-bottom">
+						<span>Already have an account? </span>
+						<Link to="/login"> Log In</Link>
+					</div>
+				</div>
+				<div
+					className="register-right"
+					style={{
+						backgroundImage: `url(${registerBg})`,
+					}}
+				>
+					<button className="icon" onClick={() => navigate("/")}>
+						<MaterialIcons>close</MaterialIcons>
+					</button>
 				</div>
 			</div>
-		</main>
+		</section>
 	);
 };
 

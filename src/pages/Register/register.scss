@@ -3,175 +3,74 @@
 .register {
 	width: 100vw;
 	height: 100vh;
+	background-position: center;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: var(--ffe0b2);
-	margin-top: 0;
+	background-repeat: repeat;
 
-	&-mac {
-		width: 95%;
-		height: 90%;
-		border-radius: 16px;
-		background-color: var(--mac-bgcolor);
-		color: var(--bgcolor);
+	&-container {
+		width: 85%;
+		height: 80%;
+		border-radius: 8px;
+		background-color: var(--brown);
+		display: flex;
+		justify-content: center;
+		align-content: center;
 		overflow: hidden;
-		box-shadow: var(--shadow-3d);
 
-		&-head {
+		@include respond(tab) {
+			width: 95vw;
+			height: 70vw;
+		}
+
+		@include respond(phone) {
+			height: 50rem;
+		}
+
+		&>* {
+			width: 50%;
+			height: 100%;
+		}
+	}
+
+	&-left {
+		width: 65%;
+		background-color: var(--brown-100);
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		flex-flow: column;
+
+		@include respond(phone) {
 			width: 100%;
-			height: 2.75rem;
-			background-color: #4d4d4f;
+		}
+
+		a {
+			color: var(--brown-700);
+			text-decoration: underline;
+			margin: 0 0.35rem;
+			font-size: 0.875rem;
+		}
+
+		&>* {
+			width: 100%;
+			height: 80%;
 			display: flex;
-			justify-content: space-between;
+			justify-content: center;
 			align-items: center;
-			padding: 0 0.5rem;
-
-			&-buttons {
-				color: var(--tcolor);
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
-				margin: 0 0.5rem;
-			}
-
-			&__button {
-				border-radius: 500px;
-				width: 0.875rem;
-				height: 0.875rem;
-				margin: 0 0.25rem;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-
-				&:nth-child(1) {
-					background-color: var(--mac-red);
-				}
-
-				&:nth-child(2) {
-					background-color: var(--mac-yellow);
-				}
-
-				&:nth-child(3) {
-					background-color: var(--mac-green);
-				}
-
-				& .material-symbols-outlined {
-					width: 100%;
-					height: 100%;
-					font-size: 0.75rem;
-					opacity: 0;
-					transition: all var(--transition-time) ease-in-out;
-				}
-
-				&:hover .material-symbols-outlined {
-					opacity: 1;
-				}
-			}
-
-			&-title {
-				text-align: center;
-				font-size: 1.25rem;
-			}
-
-			&-switch {
-				width: 5rem;
-			}
+			flex-flow: column;
 		}
 
-		&-body {
+		&-form {
 			width: 100%;
-			height: 95%;
-			position: relative;
-
-			&-buttons {
-				position: absolute;
-				right: 1rem;
-				top: 1rem;
-			}
-
-			&__button {
-				background-color: var(--mac-bgcolor);
-				border: 1px solid rgba(255, 255, 255, 0.2);
-				border-radius: 500px;
-				padding: 0.5rem;
-				margin: 0.25rem 0.5rem;
-				cursor: pointer;
-				transition: all var(--transition-time) ease-in-out;
-
-				&:hover {
-					border: 1px solid rgba(255, 255, 255, 0.5);
-				}
-
-				&:active,
-				&:focus {
-					border: 1px solid rgba(255, 255, 255, 0.5);
-				}
-
-				& .material-symbols-outlined {
-					width: 100%;
-					height: 100%;
-					font-size: 1.25rem;
-				}
-			}
-
-			&-container {
-				width: 100%;
-				height: 100%;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-			}
-		}
-
-		form {
-			width: 80%;
 			display: flex;
 			justify-content: space-evenly;
 			align-items: center;
 			flex-flow: column;
 
-			input,
-			textarea {
-				margin: 0.5rem 0;
-
-				&::placeholder {
-					color: rgba(255, 255, 255, 0.8);
-					font-size: 1rem;
-				}
-
-				border-bottom: 2px solid rgba(255, 255, 255, 0.2);
-
-				&:hover {
-					border-bottom: 2px solid rgba(255, 255, 255, 0.2);
-				}
-
-				&:active,
-				&:focus {
-					border-bottom: 2px solid var(--orange-100);
-				}
-
-				&:disabled,
-				&:disabled:active,
-				&:disabled:focus {
-					border-bottom: 2px solid var(--transparent);
-				}
-			}
-
-			label {
-				color: #ffe0b2;
-			}
-
-			&>div {
-				width: 100%;
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
-				margin: 1rem 0;
-
-				a {
-					color: var(--indigo-100);
-				}
+			.row>div {
+				height: auto;
 			}
 
 			.col-lg-100 .form-group {
@@ -185,6 +84,68 @@
 					width: 90%;
 				}
 			}
+
+			&-group {
+				width: 90%;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				margin: 0.5rem 0;
+			}
+
+			label {
+				color: var(--brown);
+			}
+
+			input {
+
+				&:active,
+				&:focus {
+					border-bottom: 2px solid var(--brown);
+				}
+			}
+
+			input:active+label,
+			input:focus+label {
+				color: var(--brown-700);
+			}
+
+			button {
+				width: 40%;
+			}
+		}
+
+		&-bottom {
+			height: 20%;
+			flex-flow: row;
+			font-size: 0.875rem;
+		}
+
+		&-title {
+			width: 100%;
+			font-size: 2rem;
+			line-height: 2.5rem;
+			color: var(--brown-700);
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			margin: 0.5rem 0;
+			padding: 1rem 1.5rem;
+		}
+	}
+
+	&-right {
+		width: 35%;
+		background-size: cover;
+		background-position: center;
+		display: flex;
+		justify-content: flex-end;
+		align-items: flex-start;
+		padding: 0.5rem;
+
+		@include respond(phone) {
+			width: 0;
+			padding: 0;
 		}
 	}
 }
