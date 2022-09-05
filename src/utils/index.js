@@ -24,7 +24,7 @@ export const colors = [
 ];
 
 export const imageBackgroundUrl = (index) =>
-	`https://raw.githubusercontent.com/snehasharma1111/planner/master/src/images/notes-background/${
+	`https://raw.githubusercontent.com/akshatmittal61/planner/master/src/images/notes-background/${
 		index + 1
 	}.webp`;
 

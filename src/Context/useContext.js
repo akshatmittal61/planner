@@ -54,6 +54,7 @@ export const useContextData = () => {
 			localStorage.setItem("user", JSON.stringify(res.data.user));
 			setIsLoading(false);
 		} catch (error) {
+			// console.log(error.response);
 			setSnack({
 				text: error.response?.data?.message,
 				bgColor: "var(--red)",
@@ -65,6 +66,8 @@ export const useContextData = () => {
 			}, 5000);
 			setIsLoading(false);
 			localStorage.removeItem("token");
+			localStorage.removeItem("user");
+			localStorage.setItem("isAuthenticated", false);
 			setUser(null);
 			setIsAuthenticated(false);
 		}

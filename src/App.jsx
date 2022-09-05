@@ -37,8 +37,10 @@ const Wrapper = () => {
 		setOpenSideBar,
 		isLoading,
 		snack,
+		setSnack,
 		openSnackBar,
 		setOpenSnackBar,
+		networkStatus,
 		setNetworkStatus,
 		verifyUser,
 	} = useContext(GlobalContext);
@@ -62,6 +64,26 @@ const Wrapper = () => {
 			});
 		}
 	});
+	useEffect(() => {
+		if (navigator.onLine) {
+			setSnack({
+				text: `Couldn't connect to any servers`,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+		} else {
+			setSnack({
+				text: `Welcome Back online`,
+				bgColor: "var(--green)",
+				color: "var(--white)",
+			});
+		}
+		setOpenSnackBar(true);
+		setTimeout(() => {
+			setOpenSnackBar(false);
+		}, 5000);
+	}, [networkStatus, setOpenSnackBar, setSnack]);
+
 	useEffect(() => {
 		if (JSON.parse(localStorage.getItem("isAuthenticated"))) verifyUser();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
