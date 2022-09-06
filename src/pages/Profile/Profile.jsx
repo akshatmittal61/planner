@@ -91,14 +91,14 @@ const Profile = () => {
 		}
 	};
 	return (
-		<main className="profile">
-			<section className="profile-container" data-aos="zoom-in">
-				<div className="profile-head">
-					<div className="profile-head-title">My Profile</div>
-					<div className="profile-head-buttons">
+		<>
+			<main className="profile">
+				<form onSubmit={handleSubmit}>
+					<div className="profile-buttons">
 						<button
 							className="icon profile-edit"
-							onClick={() => {
+							onClick={(e) => {
+								e.preventDefault();
 								if (edit) handleSubmit();
 								setEdit((p) => !p);
 							}}
@@ -109,7 +109,8 @@ const Profile = () => {
 						</button>
 						<button
 							className="icon profile-close"
-							onClick={() => {
+							onClick={(e) => {
+								e.preventDefault();
 								if (edit) setEdit((p) => !p);
 								else navigate(-1);
 							}}
@@ -117,113 +118,107 @@ const Profile = () => {
 							<MaterialIcons>close</MaterialIcons>
 						</button>
 					</div>
-				</div>
-				<form onSubmit={handleSubmit}>
-					<Row>
-						<Col lg={50} md={50} sm={100}>
-							<div className="profile-image">
-								<img
-									src={userImage}
-									alt={user?.name}
-									onError={() =>
-										setUserImage(userFallBackImg)
-									}
-								/>
-							</div>
-						</Col>
-						<Col lg={50} md={50} sm={100}>
-							<div className="profile-top">
-								<div className="profile-top-name">
-									<Input
-										type="text"
-										name="name"
-										disabled={!edit}
-										value={
-											profileUser?.fname +
-											" " +
-											profileUser?.lname
-										}
-										onChange={handleChange}
-										placeholder="Your Name"
-										title="Your Name"
-									/>
-								</div>
-								<div className="profile-top-username">
-									<Input
-										type="text"
-										name="username"
-										icon="account_circle"
-										disabled
-										value={profileUser?.username}
-										onChange={handleChange}
-										placeholder="Username"
-										title="Username is not editable"
-									/>
-								</div>
-								<div className="profile-top-bio">
-									<Input
-										type="text"
-										name="bio"
-										icon="tips_and_updates"
-										disabled={!edit}
-										value={profileUser?.bio}
-										onChange={handleChange}
-										placeholder="Short Bio"
-									/>
-								</div>
-							</div>
-						</Col>
-						<Col lg={50} md={50} sm={100}>
-							<Input
-								type="email"
-								name="email"
-								icon="mail"
-								disabled={!edit}
-								value={profileUser?.email}
-								onChange={handleChange}
-								placeholder="Email Address"
+					<div className="profile-head">
+						<div className="profile-head-image">
+							<img
+								src={userImage}
+								alt={user?.name}
+								onError={() => setUserImage(userFallBackImg)}
 							/>
-						</Col>
-						<Col lg={50} md={50} sm={100}>
-							<Input
-								type="tel"
-								name="phone"
-								icon="call"
+						</div>
+						<div className="profile-head-name">
+							<input
+								type="text"
+								name="name"
 								disabled={!edit}
-								value={profileUser?.phone}
+								value={
+									profileUser?.fname +
+									" " +
+									profileUser?.lname
+								}
 								onChange={handleChange}
-								placeholder="Phone No."
+								placeholder="Your Name"
+								title="Your Name"
 							/>
-						</Col>
-						<Col lg={50} md={50} sm={100}>
-							<Input
-								type="url"
-								name="avatar"
-								icon="image"
-								disabled={!edit}
-								value={profileUser?.avatar}
-								onChange={handleChange}
-								placeholder="Avatar"
-							/>
-						</Col>
-						{/*edit && (
+						</div>
+					</div>
+					<div className="profile-body">
+						<Row>
 							<Col lg={50} md={50} sm={100}>
 								<Input
-									type="password"
-									name="password"
-									icon="lock"
-									disabled={!edit}
-									value={profileUser?.password}
+									type="text"
+									name="username"
+									icon="account_circle"
+									disabled
+									value={profileUser?.username}
 									onChange={handleChange}
-									placeholder="Password"
+									placeholder="Username"
+									title="Username is not editable"
 								/>
 							</Col>
-						)*/}
-					</Row>
-					<Button className="dispn" type="submit" />
+							<Col lg={50} md={50} sm={100}>
+								<Input
+									type="text"
+									name="bio"
+									icon="tips_and_updates"
+									disabled={!edit}
+									value={profileUser?.bio}
+									onChange={handleChange}
+									placeholder="Short Bio"
+								/>
+							</Col>
+							<Col lg={50} md={50} sm={100}>
+								<Input
+									type="email"
+									name="email"
+									icon="mail"
+									disabled={!edit}
+									value={profileUser?.email}
+									onChange={handleChange}
+									placeholder="Email Address"
+								/>
+							</Col>
+							<Col lg={50} md={50} sm={100}>
+								<Input
+									type="tel"
+									name="phone"
+									icon="call"
+									disabled={!edit}
+									value={profileUser?.phone}
+									onChange={handleChange}
+									placeholder="Phone No."
+								/>
+							</Col>
+							<Col lg={edit ? 50 : 100} md={50} sm={100}>
+								<Input
+									type="url"
+									name="avatar"
+									icon="image"
+									disabled={!edit}
+									value={profileUser?.avatar}
+									onChange={handleChange}
+									placeholder="Avatar"
+								/>
+							</Col>
+							{edit && (
+								<Col lg={50} md={50} sm={100}>
+									<Input
+										type="password"
+										name="password"
+										icon="lock"
+										disabled={!edit}
+										value={profileUser?.password}
+										onChange={handleChange}
+										placeholder="Password"
+									/>
+								</Col>
+							)}
+						</Row>
+						<Button className="dispn" type="submit" />
+					</div>
 				</form>
-			</section>
-		</main>
+			</main>
+		</>
 	);
 };
 
