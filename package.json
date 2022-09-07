@@ -21,6 +21,7 @@
     "react-feather": "^2.0.10",
     "react-router-dom": "^6.3.0",
     "react-scripts": "4.0.3",
+    "web-push": "^3.5.0",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
