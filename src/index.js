@@ -13,4 +13,4 @@ ReactDOM.render(
 );
 
 register();
-subscribeUser();
+subscribeUser("Test Notification Title", "Test Notification Body");

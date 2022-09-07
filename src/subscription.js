@@ -19,17 +19,28 @@ function urlBase64ToUint8Array(base64String) {
 	return outputArray;
 }
 
-function sendSubscription(subscription) {
-	return fetch(`${process.env.REACT_APP_BACKEND_URL}api/notifications/subscribe`, {
-		method: "POST",
-		body: JSON.stringify(subscription),
-		headers: {
-			"Content-Type": "application/json",
-		},
-	});
+function sendSubscription(
+	subscription,
+	title = "Notification title",
+	body = "Notification body"
+) {
+	return fetch(
+		`${process.env.REACT_APP_BACKEND_URL}api/notifications/subscribe`,
+		{
+			method: "POST",
+			body: JSON.stringify({
+				subscription: subscription,
+				title,
+				body,
+			}),
+			headers: {
+				"Content-Type": "application/json",
+			},
+		}
+	);
 }
 
-export function subscribeUser() {
+export function subscribeUser(title, body) {
 	if ("serviceWorker" in navigator) {
 		navigator.serviceWorker.ready
 			.then(function (registration) {
@@ -52,7 +63,11 @@ export function subscribeUser() {
 								})
 								.then(function (newSubscription) {
 									console.log("New subscription added.");
-									sendSubscription(newSubscription);
+									sendSubscription(
+										newSubscription,
+										title,
+										body
+									);
 								})
 								.catch(function (e) {
 									if (Notification.permission !== "granted") {
@@ -68,7 +83,7 @@ export function subscribeUser() {
 								});
 						} else {
 							console.log("Existed subscription detected.");
-							sendSubscription(existedSubscription);
+							sendSubscription(existedSubscription, title, body);
 						}
 					});
 			})
