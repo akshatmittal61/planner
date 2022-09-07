@@ -9,7 +9,9 @@ import apiSettings from "./routes/settings.mjs";
 import apiEvents from "./routes/events.mjs";
 import apiNotes from "./routes/notes.mjs";
 import apiTasks from "./routes/tasks.mjs";
+import apiNotify from "./routes/notification.mjs";
 import { fileURLToPath } from "url";
+import webPush from "web-push";
 
 const __fileName = fileURLToPath(import.meta.url);
 const __dirname = dirname(__fileName);
@@ -25,6 +27,7 @@ app.use("/api/settings", apiSettings);
 app.use("/api/events", apiEvents);
 app.use("/api/notes", apiNotes);
 app.use("/api/tasks", apiTasks);
+app.use("/api/notifications", apiNotify);
 
 if (process.env.NODE_ENV === "production") {
 	app.use(express.static("build"));
@@ -34,6 +37,11 @@ if (process.env.NODE_ENV === "production") {
 }
 
 app.listen(PORT, () => {
+	webPush.setVapidDetails(
+		process.env.WEB_PUSH_CONTACT,
+		process.env.PUBLIC_VAPID_KEY,
+		process.env.PRIVATE_VAPID_KEY
+	);
 	connect();
 	console.log(`Server started at port ${PORT}`);
 });

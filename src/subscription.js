@@ -20,7 +20,7 @@ function urlBase64ToUint8Array(base64String) {
 }
 
 function sendSubscription(subscription) {
-	return fetch(`${process.env.REACT_APP_API_URL}/notifications/subscribe`, {
+	return fetch(`${process.env.REACT_APP_BACKEND_URL}api/notifications/subscribe`, {
 		method: "POST",
 		body: JSON.stringify(subscription),
 		headers: {
