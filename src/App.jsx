@@ -66,7 +66,7 @@ const Wrapper = () => {
 		}
 	});
 	useEffect(() => {
-		if (navigator.onLine) {
+		if (!navigator.onLine) {
 			setSnack({
 				text: `Couldn't connect to any servers`,
 				bgColor: "var(--red)",
