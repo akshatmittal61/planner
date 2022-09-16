@@ -25,6 +25,7 @@
 }
 @media (max-width: 672px) {
   .register-container {
+    width: 92.5%;
     height: 50rem;
   }
 }

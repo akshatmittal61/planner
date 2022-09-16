@@ -41,7 +41,7 @@ textarea:active,
 textarea:focus,
 select:active,
 select:focus {
-  border-bottom: 2px solid var(--indigo);
+  border-bottom: 2px solid var(--accent-color);
 }
 input:active + label, input:focus + label,
 textarea:active + label,

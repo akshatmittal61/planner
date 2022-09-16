@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { omit } from "../utils";
 import defaultNavLinks from "../utils/navigation";
 
@@ -808,6 +808,12 @@ export const useContextData = () => {
 	mediaQuerySm.addListener(breakpoint);
 	mediaQueryMd.addListener(breakpoint);
 	mediaQueryLg.addListener(breakpoint);
+
+	useEffect(() => {
+		document
+			.querySelector("body")
+			.style.setProperty("--accent-color", accentColor);
+	}, [accentColor]);
 
 	return {
 		theme,

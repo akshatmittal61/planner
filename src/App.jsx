@@ -28,6 +28,7 @@ import Loader from "./components/Loader/Loader";
 import SnackBar from "./components/SnackBar/SnackBar";
 import Logout from "./pages/Logout";
 import EventsTrash from "./pages/Events/EventsTrash";
+import Settings from "./pages/Settings/Settings";
 
 const Wrapper = () => {
 	AOS.init();
@@ -189,6 +190,7 @@ const Wrapper = () => {
 					}
 				/>
 				<Route path="/contact" element={<Contact />} />
+				<Route path="/settings" element={<Settings />} />
 				<Route path="*" element={<NotFound />} />
 			</Routes>
 			{location.pathname !== "/login" &&

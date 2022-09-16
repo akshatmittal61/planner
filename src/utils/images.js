@@ -5,8 +5,6 @@ import peopleImg from "../images/people.svg";
 import registerBg from "../images/register-bg.jpg";
 import loginBg from "../images/login-bg.jpeg";
 import bricks from "../images/brick.svg";
-import wave1 from "../images/wave1.svg";
-import wave2 from "../images/wave2.svg";
 
 import calendarPoster from "../images/posters/calendar-poster.jpg";
 import eventsPoster from "../images/posters/events-poster.jpg";
@@ -38,6 +36,31 @@ import tourist from "../images/tourist.png";
 import blueSky from "../images/blue-sky.png";
 import IconMask from "../images/IconMask";
 
+import waveLightIndigo from "../images/waves/wave-light-indigo.svg";
+import waveDarkIndigo from "../images/waves/wave-dark-indigo.svg";
+import waveLightBlue from "../images/waves/wave-light-blue.svg";
+import waveDarkBlue from "../images/waves/wave-dark-blue.svg";
+import waveLightRed from "../images/waves/wave-light-red.svg";
+import waveDarkRed from "../images/waves/wave-dark-red.svg";
+import waveLightGreen from "../images/waves/wave-light-green.svg";
+import waveDarkGreen from "../images/waves/wave-dark-green.svg";
+import waveLightPink from "../images/waves/wave-light-pink.svg";
+import waveDarkPink from "../images/waves/wave-dark-pink.svg";
+import waveLightBrown from "../images/waves/wave-light-brown.svg";
+import waveDarkBrown from "../images/waves/wave-dark-brown.svg";
+import waveLightOrange from "../images/waves/wave-light-orange.svg";
+import waveDarkOrange from "../images/waves/wave-dark-orange.svg";
+
+const waves = {
+	indigo: [waveLightIndigo, waveDarkIndigo],
+	blue: [waveLightBlue, waveDarkBlue],
+	red: [waveLightRed, waveDarkRed],
+	green: [waveLightGreen, waveDarkGreen],
+	pink: [waveLightPink, waveDarkPink],
+	brown: [waveLightBrown, waveDarkBrown],
+	orange: [waveLightOrange, waveDarkOrange],
+};
+
 const calendarImages = [
 	calendar1,
 	calendar2,
@@ -61,8 +84,7 @@ export {
 	registerBg,
 	loginBg,
 	bricks,
-	wave1,
-	wave2,
+	waves,
 	calendarPoster,
 	eventsPoster,
 	notesPoster,

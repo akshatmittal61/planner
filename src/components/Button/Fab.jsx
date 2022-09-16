@@ -3,15 +3,8 @@ import GlobalContext from "../../Context/GlobalContext";
 import MaterialIcons from "../MaterialIcons";
 import "./button.css";
 
-const Fab = ({
-	onClick,
-	icon,
-	text = "",
-	color = "indigo",
-	className,
-	size = "",
-}) => {
-	const { theme } = useContext(GlobalContext);
+const Fab = ({ onClick, icon, text = "", className, size = "" }) => {
+	const { theme, accentColor } = useContext(GlobalContext);
 	let classes = "fab";
 	if (size === "small") classes += " fab-sm";
 	else if (size === "large") classes += " fab-lg";
@@ -19,7 +12,7 @@ const Fab = ({
 		<button
 			onClick={onClick}
 			style={{
-				backgroundColor: `var(--${color}-${
+				backgroundColor: `var(--${accentColor}-${
 					theme === "light" ? "100" : "700"
 				})`,
 			}}

@@ -1,0 +1,48 @@
+.settings {
+  width: 100%;
+  margin-top: var(--head-height);
+  padding: 2rem 3rem;
+}
+.settings-head {
+  width: 100%;
+}
+.settings-head h1 {
+  font-size: 4rem;
+  line-height: 4.5rem;
+  font-weight: 300;
+}
+.settings-body {
+  width: 100%;
+  margin: 2rem 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.settings-body-theme {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0 1rem;
+}
+.settings-body-theme h3 {
+  font-size: 2rem;
+  line-height: 2.5rem;
+  font-weight: 200;
+}
+.settings-body-theme-colors {
+  width: fit-content;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 1rem;
+}
+.settings-body-theme-colors button {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: block;
+  margin: 0.75rem;
+  border-radius: 500px;
+  border: 2px solid var(--back-shadow-light);
+}
+
+/*# sourceMappingURL=settings.css.map */

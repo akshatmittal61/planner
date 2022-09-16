@@ -4,7 +4,7 @@ import Button from "../Button/Button";
 import "./footer.css";
 import { GitHub, Linkedin, Mail } from "react-feather";
 import GlobalContext from "../../Context/GlobalContext";
-import favicon, { wave1, wave2 } from "../../utils/images";
+import favicon, { waves } from "../../utils/images";
 
 const Footer = () => {
 	const { theme, accentColor } = useContext(GlobalContext);
@@ -81,7 +81,9 @@ const Footer = () => {
 		<footer
 			className="footer"
 			style={{
-				backgroundImage: `url(${theme === "light" ? wave1 : wave2})`,
+				backgroundImage: `url(${
+					waves[accentColor][theme === "light" ? 0 : 1]
+				})`,
 			}}
 		>
 			<div className="footer-left">
@@ -158,7 +160,6 @@ const Footer = () => {
 							<Button
 								text="Cancel"
 								type="reset"
-								variant="outline"
 								color={accentColor}
 							/>
 							<Button

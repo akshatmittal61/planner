@@ -39,7 +39,7 @@ select {
 
 	&:active,
 	&:focus {
-		border-bottom: 2px solid var(--indigo);
+		border-bottom: 2px solid var(--accent-color);
 
 		&+label {
 			color: var(--red-700);

@@ -148,6 +148,8 @@
 	--mac-green: #5ec341;
 	--mac-bgcolor: #3e3e3e;
 	--mac-tcolor: #4fc2ee;
+
+	--accent-color: #3f51b5;
 }
 
 .light {
@@ -308,7 +310,7 @@ select {
 		color: var(--gray-700);
 	}
 
-	&:-webkit-autofill{
+	&:-webkit-autofill {
 		background-color: rgba(0, 0, 0, 0.01);
 		box-shadow: inset;
 	}
