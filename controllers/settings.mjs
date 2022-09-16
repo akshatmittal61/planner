@@ -21,11 +21,17 @@ const editSettings = async (req, res) => {
 	const id = req.user.id;
 	try {
 		const { ...updatedFields } = req.body;
+		console.log(updatedFields);
 		let foundSettings = await Settings.findOne({ user: id });
-		if (!foundSettings)
-			return res
-				.status(404)
-				.json({ massage: "Unable to process your query" });
+		let newSettings;
+		if (!foundSettings) {
+			newSettings = new Settings({
+				accentColor: "indigo",
+				trashDuration: 30,
+				user: id,
+			});
+			newSettings.save();
+		}
 		if (foundSettings.user.toString() !== req.user.id)
 			return res.status(401).json({ message: "User not Authorized" });
 		let updatedSettings = await Settings.findOneAndUpdate(

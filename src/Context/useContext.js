@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { omit } from "../utils";
 import defaultNavLinks from "../utils/navigation";
 
@@ -791,9 +791,46 @@ export const useContextData = () => {
 	};
 
 	// Accent Color (Featured Update)
-	const [accentColor, setAccentColor] = useState("indigo");
-	const handleAccentColor = (color) => {
-		setAccentColor(color);
+	const [accentColor, setAccentColor] = useState(
+		localStorage.getItem("accentColor")
+			? localStorage.getItem("accentColor")
+			: "indigo"
+	);
+	const handleAccentColor = async (color) => {
+		setAccentColor(() => color);
+		document
+			.querySelector("body")
+			.style.setProperty("--accent-color", color);
+		localStorage.setItem("accentColor", color);
+		try {
+			setIsLoading(true);
+			const resp = await axiosInstance.put(`/api/settings/edit`, {
+				accentColor: accentColor,
+			});
+			console.log(resp);
+			setSnack({
+				text: resp.data.message,
+				bgColor: "var(--green)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		} catch (error) {
+			console.log(error);
+			setSnack({
+				text: error.response?.data?.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		}
 	};
 
 	// Media Breakpoints
@@ -808,12 +845,6 @@ export const useContextData = () => {
 	mediaQuerySm.addListener(breakpoint);
 	mediaQueryMd.addListener(breakpoint);
 	mediaQueryLg.addListener(breakpoint);
-
-	useEffect(() => {
-		document
-			.querySelector("body")
-			.style.setProperty("--accent-color", accentColor);
-	}, [accentColor]);
 
 	return {
 		theme,

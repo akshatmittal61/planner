@@ -58,7 +58,7 @@
   position: absolute;
   padding: 0.75rem;
   border-radius: 500px;
-  background-color: var(--indigo);
+  background-color: var(--accent-color);
   display: flex;
   justify-content: center;
   align-items: center;

@@ -12,7 +12,7 @@ const Settings = () => {
 		"brown",
 		"orange",
 	];
-	const { accentColor, setAccentColor } = useContext(GlobalContext);
+	const { accentColor, handleAccentColor } = useContext(GlobalContext);
 	return (
 		<main className="settings">
 			<section className="settings-head">
@@ -35,7 +35,7 @@ const Settings = () => {
 								}}
 								onClick={(e) => {
 									e?.preventDefault();
-									setAccentColor(() => color);
+									handleAccentColor(color);
 								}}
 							></button>
 						))}
