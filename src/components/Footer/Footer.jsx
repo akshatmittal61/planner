@@ -77,6 +77,7 @@ const Footer = () => {
 			message: "",
 		});
 	};
+	console.log(accentColor, theme);
 	return (
 		<footer
 			className="footer"

@@ -21,7 +21,6 @@ const editSettings = async (req, res) => {
 	const id = req.user.id;
 	try {
 		const { ...updatedFields } = req.body;
-		console.log(updatedFields);
 		let foundSettings = await Settings.findOne({ user: id });
 		let newSettings;
 		if (!foundSettings) {

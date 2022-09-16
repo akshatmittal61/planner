@@ -54,7 +54,6 @@ export const useContextData = () => {
 			localStorage.setItem("user", JSON.stringify(res.data.user));
 			setIsLoading(false);
 		} catch (error) {
-			// console.log(error.response);
 			setSnack({
 				text: error.response?.data?.message,
 				bgColor: "var(--red)",
@@ -766,11 +765,38 @@ export const useContextData = () => {
 		}
 	};
 
+	// Settings
+	const getSettings = async () => {
+		try {
+			setIsLoading(true);
+			const resp = await axiosInstance.get(`/api/settings`);
+			if (resp.status === 200) {
+				setAccentColor(() => resp.data.accentColor);
+				document
+					.querySelector("body")
+					.style.setProperty("--accent-color", resp.data.accentColor);
+				localStorage.setItem("accentColor", resp.data.accentColor);
+			}
+		} catch (error) {
+			setSnack({
+				text: error.response?.data?.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		}
+	};
+
 	// Synchronize
 	const synchronize = async () => {
 		getAllEvents();
 		getAllNotes();
 		getAllTasks();
+		getSettings();
 	};
 
 	// Side Bar
@@ -805,9 +831,8 @@ export const useContextData = () => {
 		try {
 			setIsLoading(true);
 			const resp = await axiosInstance.put(`/api/settings/edit`, {
-				accentColor: accentColor,
+				accentColor: color,
 			});
-			console.log(resp);
 			setSnack({
 				text: resp.data.message,
 				bgColor: "var(--green)",
@@ -819,7 +844,6 @@ export const useContextData = () => {
 			}, 5000);
 			setIsLoading(false);
 		} catch (error) {
-			console.log(error);
 			setSnack({
 				text: error.response?.data?.message,
 				bgColor: "var(--red)",
@@ -902,6 +926,7 @@ export const useContextData = () => {
 		moveTaskToTrash,
 		restoreTaskFromTrash,
 		deleteTask,
+		getSettings,
 		synchronize,
 	};
 };

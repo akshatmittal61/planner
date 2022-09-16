@@ -56,6 +56,7 @@ const GlobalContext = createContext({
 	moveTaskToTrash: () => {},
 	restoreTaskFromTrash: () => {},
 	deleteTask: () => {},
+	getSettings: () => {},
 	synchronize: () => {},
 });
 

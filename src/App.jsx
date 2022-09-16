@@ -45,6 +45,7 @@ const Wrapper = () => {
 		setNetworkStatus,
 		verifyUser,
 		setTheme,
+		synchronize,
 	} = useContext(GlobalContext);
 	const location = useLocation();
 	useEffect(() => {
@@ -54,6 +55,11 @@ const Wrapper = () => {
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, [location.pathname]);
+	useEffect(() => {
+		synchronize();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
 	useEffect(() => {
 		setNetworkStatus(navigator.onLine ? "online" : "offline");
 		if (Notification.permission !== "granted") {
