@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { GitHub, Linkedin, Mail, Phone, Twitter } from "react-feather";
+import GlobalContext from "../../Context/GlobalContext";
 
 const Card = ({ name, about, image, socials }) => {
 	const getIcon = (a) => {
@@ -18,8 +19,16 @@ const Card = ({ name, about, image, socials }) => {
 				break;
 		}
 	};
+	const { accentColor, theme } = useContext(GlobalContext);
 	return (
-		<div className="contact-card">
+		<div
+			className="contact-card"
+			style={{
+				backgroundColor: `var(--${accentColor}-${
+					theme === "light" ? 100 : 700
+				})`,
+			}}
+		>
 			<div className="contact-card-content">
 				<div className="contact-card-content__name">{name}</div>
 				<div className="contact-card-content__about">{about}</div>

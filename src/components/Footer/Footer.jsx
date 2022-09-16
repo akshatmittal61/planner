@@ -1,13 +1,15 @@
 import React, { useContext, useState } from "react";
 import Input, { TextArea } from "../Input/Input";
 import Button from "../Button/Button";
+import emailjs from "emailjs-com";
 import "./footer.css";
 import { GitHub, Linkedin, Mail } from "react-feather";
 import GlobalContext from "../../Context/GlobalContext";
 import favicon, { waves } from "../../utils/images";
 
 const Footer = () => {
-	const { theme, accentColor } = useContext(GlobalContext);
+	const { theme, accentColor, setOpenSnackBar, setSnack } =
+		useContext(GlobalContext);
 	const [userMessage, setUserMessage] = useState({
 		name: "",
 		email: "",
@@ -62,7 +64,24 @@ const Footer = () => {
 	};
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log(userMessage);
+		emailjs
+			.sendForm(
+				process.env.REACT_APP_SERVICE,
+				process.env.REACT_APP_TEMPLATE,
+				e.target,
+				process.env.REACT_APP_USER
+			)
+			.then((res) => console.log(res))
+			.catch((err) => console.log(err));
+		setSnack({
+			text: "Your message has been sent",
+			bgColor: "var(--green)",
+			color: "var(--white)",
+		});
+		setOpenSnackBar(true);
+		setTimeout(() => {
+			setOpenSnackBar(false);
+		}, 5000);
 		setUserMessage({
 			name: "",
 			email: "",

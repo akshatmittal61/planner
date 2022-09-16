@@ -20,14 +20,12 @@ const NotFound = () => {
 				<div className="not-found-content__buttons">
 					<Button
 						text="Back to Home"
-						color="indigo"
 						link="/"
 						variant="fill"
 						icon="home"
 					/>
 					<Button
 						text="Send Us a feedback"
-						color="indigo"
 						link="/feedbck"
 						variant="outline"
 						icon="chat"

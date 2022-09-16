@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import GlobalContext from "../../Context/GlobalContext";
 import "./button.css";
 
 const Button = ({
 	text = "Click Me",
-	color = "indigo",
+	color,
 	href = "#",
 	target = "_blank",
 	link,
@@ -17,9 +18,11 @@ const Button = ({
 }) => {
 	const location = useLocation();
 	const navigate = useNavigate();
+	const { accentColor } = useContext(GlobalContext);
 	let classes = "btn ";
 	classes += className;
-	classes += ` btn-${color}`;
+	if (color) classes += ` btn-${color}`;
+	else classes += ` btn-${accentColor}`;
 	if (size === "small") classes += " btn-sm";
 	else if (size === "large") classes += " btn-lg";
 	if (variant === "fill" || variant === "outline")
