@@ -3,6 +3,7 @@
 <p style="margin: 3rem 0 4rem 0;" align="center">
 <img src="./src/images/planner.png" alt="Planner Home Screen" />
 </p>
+
 [![Netlify Status](https://api.netlify.com/api/v1/badges/5886829b-1f1f-4ddb-9e2e-991cf1f5ec07/deploy-status)](https://app.netlify.com/sites/planner/deploys)
 
 Get more done with Planner. 
