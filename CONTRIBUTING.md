@@ -45,6 +45,27 @@ routes/
 server.mjs
 ```
 
+## Local Development
+
+Fork the repository to your own GitHub Profile
+
+After that, follow the steps below: 
+
+1. Clone the forked repository
+2. Enter into the directory
+3. Install all the dependencies
+4. Run the react dev server
+5. Run the backend server
+
+## Environment Variables:
+
+Building the .env
+
+- **MONGO_CONNECTION_URL:** Create a database in MongoDB cluster and paste the connection string in here
+- **PORT:** Assign a PORT to run teh backend server (usually `4000` or `5000`)
+- **JWT_SECRET:** Assign a string for the JWT web token or request the [developers](#author) to provide you with the official one.
+- **REACT_APP_BACKEND_URL:** Create the backend URL for which React App will send the server requests to.
+
 Please ensure that your pull request adheres to the following guidelines:
 
 - Search previous suggestions before making a new one, as yours may be a duplicate.
