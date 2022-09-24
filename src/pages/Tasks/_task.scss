@@ -3,7 +3,7 @@
 .task {
     width: 15rem;
     min-height: 11.5rem;
-    border-radius: 32px;
+    border-radius: 1.5rem;
     position: relative;
     overflow: hidden;
     padding: 1rem;
@@ -11,7 +11,6 @@
 
     @include respond(phone) {
         width: 12.5rem;
-        border-radius: 24px;
     }
 
     &-title {
@@ -45,11 +44,15 @@
             position: absolute;
             top: 1rem;
             right: 0.5rem;
+
+            @include respond(phone) {
+                opacity: 1;
+            }
         }
     }
 
     &:hover {
-        border-radius: 16px;
+        border-radius: 1rem;
     }
 
     &:hover &-controls {

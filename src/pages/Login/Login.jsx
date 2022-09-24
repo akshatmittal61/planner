@@ -17,6 +17,8 @@ const Login = () => {
 		setIsLoading,
 		setSnack,
 		setOpenSnackBar,
+		synchronize,
+		setToken,
 	} = useContext(GlobalContext);
 	const [loginUser, setLoginUser] = useState({
 		username: "",
@@ -46,11 +48,11 @@ const Login = () => {
 				setTimeout(() => {
 					setOpenSnackBar(false);
 				}, 5000);
-				setTimeout(() => {
-					setIsAuthenticated(true);
-				}, 1000);
+				setToken(() => res.data.token);
+				setIsAuthenticated(true);
 				localStorage.setItem("token", res.data.token);
 				localStorage.setItem("isAuthenticated", true);
+				synchronize();
 				updateUser({ ...res.data.user });
 				setIsLoading(false);
 			}

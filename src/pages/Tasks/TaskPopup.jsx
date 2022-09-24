@@ -27,7 +27,6 @@ const TaskPopup = ({
 		time,
 		done,
 	});
-	console.log(currTask);
 	const [openColorBox, setOpenColorBox] = useState(false);
 	const handleChange = (e) => {
 		const { name, value } = e.target;

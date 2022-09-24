@@ -11,14 +11,12 @@ import { eventsNavLinks } from "../../utils/navigation";
 import { nullEvents } from "../../utils/images";
 
 const Events = () => {
-	const { getAllEvents, events, setSideBarLinks } = useContext(GlobalContext);
+	const { events, setSideBarLinks } = useContext(GlobalContext);
 	const [eventsToRender, setEventsToRender] = useState([]);
 	const [showAddEventBox, setShowAddEventBox] = useState(false);
 	useEffect(() => {
 		setSideBarLinks(eventsNavLinks);
-		getAllEvents();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [setSideBarLinks]);
 	useEffect(() => {
 		let allEvents = [...events];
 		let newEvents = allEvents

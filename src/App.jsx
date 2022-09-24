@@ -46,6 +46,7 @@ const Wrapper = () => {
 		verifyUser,
 		setTheme,
 		synchronize,
+		isAuthenticated,
 	} = useContext(GlobalContext);
 	const location = useLocation();
 	useEffect(() => {
@@ -55,10 +56,6 @@ const Wrapper = () => {
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, [location.pathname]);
-	useEffect(() => {
-		synchronize();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
 
 	useEffect(() => {
 		setNetworkStatus(navigator.onLine ? "online" : "offline");
@@ -93,7 +90,7 @@ const Wrapper = () => {
 	}, [networkStatus, setOpenSnackBar, setSnack]);
 
 	useEffect(() => {
-		if (JSON.parse(localStorage.getItem("isAuthenticated"))) verifyUser();
+		if (isAuthenticated) verifyUser();
 		if (!localStorage.getItem("theme")) {
 			let currDate = new Date();
 			let h = currDate.getHours();
@@ -107,6 +104,10 @@ const Wrapper = () => {
 				document.body.classList = "light";
 			}
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+	useEffect(() => {
+		if (isAuthenticated) synchronize();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 

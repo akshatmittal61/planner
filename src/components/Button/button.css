@@ -213,11 +213,14 @@ button {
   right: 0;
   z-index: 5;
   margin: 1.5rem;
-  border-radius: 24px;
+  border-radius: 1.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
   box-shadow: var(--shadow-elevation-2dp);
+}
+.fab .material-symbols-outlined {
+  font-size: 1.5rem;
 }
 .fab:hover {
   border-radius: 16px;

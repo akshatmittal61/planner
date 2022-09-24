@@ -55,7 +55,7 @@
 .task {
   width: 15rem;
   min-height: 11.5rem;
-  border-radius: 32px;
+  border-radius: 1.5rem;
   position: relative;
   overflow: hidden;
   padding: 1rem;
@@ -64,7 +64,6 @@
 @media (max-width: 672px) {
   .task {
     width: 12.5rem;
-    border-radius: 24px;
   }
 }
 .task-title {
@@ -96,8 +95,13 @@
   top: 1rem;
   right: 0.5rem;
 }
+@media (max-width: 672px) {
+  .task-control-done {
+    opacity: 1;
+  }
+}
 .task:hover {
-  border-radius: 16px;
+  border-radius: 1rem;
 }
 .task:hover .task-controls {
   opacity: 1;

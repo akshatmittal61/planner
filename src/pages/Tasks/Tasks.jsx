@@ -11,13 +11,9 @@ import "./tasks.css";
 
 const Tasks = () => {
 	const [showAddTaskBox, setShowAddTaskBox] = useState(false);
-	const { setSideBarLinks, tasks, getAllTasks } = useContext(GlobalContext);
+	const { setSideBarLinks, tasks } = useContext(GlobalContext);
 	useEffect(() => {
 		setSideBarLinks(tasksNavLinks);
-		window.scrollTo(0, 0);
-		getAllTasks();
-		console.log(tasks);
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [setSideBarLinks]);
 
 	return (

@@ -45,7 +45,7 @@ const addNote = async (req, res) => {
 			.status(200)
 			.json({ newNote: note, message: "Added note successfully" });
 	} catch (error) {
-		console.log(error);
+		console.error(error);
 		return res.status(500).json({ message: "Server Error" });
 	}
 };

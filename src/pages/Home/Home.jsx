@@ -12,7 +12,6 @@ const Home = () => {
 	const vh = window.innerHeight / 100;
 	const { theme, setSideBarLinks, breakpoint } = useContext(GlobalContext);
 	useEffect(() => {
-		window.scrollTo(0, 0);
 		document.addEventListener("scroll", () => {
 			if (window.scrollY > 25 * vh) setScrolled(true);
 			else setScrolled(false);

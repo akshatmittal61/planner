@@ -4,15 +4,6 @@ import { omit } from "../utils";
 import defaultNavLinks from "../utils/navigation";
 
 export const useContextData = () => {
-	// Axios Instance Configurations
-	const axiosInstance = axios.create({
-		baseURL: process.env.REACT_APP_BACKEND_URL,
-		headers: {
-			"x-auth-token": localStorage.getItem("token"),
-			"Content-Type": "application/json",
-		},
-	});
-
 	// Network Status
 	const [networkStatus, setNetworkStatus] = useState("offline");
 
@@ -37,6 +28,7 @@ export const useContextData = () => {
 	const [user, setUser] = useState(
 		JSON.parse(localStorage.getItem("user")) || null
 	);
+	const [token, setToken] = useState(localStorage.getItem("token") || null);
 	const updateUser = (newUser) => {
 		localStorage.removeItem("user");
 		setUser(null);
@@ -71,6 +63,15 @@ export const useContextData = () => {
 			setIsAuthenticated(false);
 		}
 	};
+
+	// Axios Instance Configurations
+	const axiosInstance = axios.create({
+		baseURL: process.env.REACT_APP_BACKEND_URL,
+		headers: {
+			"x-auth-token": token,
+			"Content-Type": "application/json",
+		},
+	});
 
 	// Events
 	const [events, setEvents] = useState([]);
@@ -889,7 +890,9 @@ export const useContextData = () => {
 		isAuthenticated,
 		setIsAuthenticated,
 		user,
+		token,
 		setUser,
+		setToken,
 		verifyUser,
 		updateUser,
 		openSideBar,

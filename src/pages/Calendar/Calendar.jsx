@@ -109,7 +109,6 @@ const Calendar = () => {
 	};
 	useEffect(() => {
 		document.title = "Calendar";
-		window.scrollTo(0, 0);
 		let todayDate = new Date();
 		setMonth(() => todayDate.getMonth());
 		setYear(() => todayDate.getFullYear());

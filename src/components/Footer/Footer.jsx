@@ -72,7 +72,7 @@ const Footer = () => {
 				process.env.REACT_APP_USER
 			)
 			.then((res) => console.log(res))
-			.catch((err) => console.log(err));
+			.catch((err) => console.error(err));
 		setSnack({
 			text: "Your message has been sent",
 			bgColor: "var(--green)",
@@ -96,7 +96,6 @@ const Footer = () => {
 			message: "",
 		});
 	};
-	console.log(accentColor, theme);
 	return (
 		<footer
 			className="footer"

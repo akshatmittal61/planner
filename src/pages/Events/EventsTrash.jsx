@@ -9,13 +9,10 @@ import { nullTrash } from "../../utils/images";
 
 const EventsTrash = () => {
 	const [eventsToRender, setEventsToRender] = useState([]);
-	const { setSideBarLinks, events, getAllEvents } = useContext(GlobalContext);
+	const { setSideBarLinks, events } = useContext(GlobalContext);
 	useEffect(() => {
 		setSideBarLinks(eventsNavLinks);
-		window.scrollTo(0, 0);
-		getAllEvents();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [setSideBarLinks]);
 	useEffect(() => {
 		let allEvents = [...events];
 		let newEvents = allEvents

@@ -8,12 +8,9 @@ import Note from "./Note";
 import "./notes.css";
 
 const NotesTrash = () => {
-	const { setSideBarLinks, getAllNotes, notes } = useContext(GlobalContext);
+	const { setSideBarLinks, notes } = useContext(GlobalContext);
 	useEffect(() => {
 		setSideBarLinks(notesNavLinks);
-		window.scrollTo(0, 0);
-		getAllNotes();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [setSideBarLinks]);
 	return (
 		<main className="notes">

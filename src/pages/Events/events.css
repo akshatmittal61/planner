@@ -46,7 +46,7 @@
   padding: 0.25rem;
   margin: 1.5rem 0;
   background-color: var(--bgcolor-100);
-  border-radius: 32px;
+  border-radius: 2rem;
 }
 @media (max-width: 672px) {
   .event {
@@ -71,14 +71,20 @@
   font-size: 1.75rem;
 }
 @media (max-width: 672px) {
-  .event__icon .material-symbols-outlined {
-    font-size: 1.5rem;
+  .event__icon {
+    display: none;
+    width: 0;
   }
 }
 .event-details {
   width: 82.5%;
   flex-flow: column;
   position: relative;
+}
+@media (max-width: 672px) {
+  .event-details {
+    width: 100%;
+  }
 }
 .event-details > * {
   width: 80%;

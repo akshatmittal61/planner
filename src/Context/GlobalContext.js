@@ -20,6 +20,8 @@ const GlobalContext = createContext({
 	setIsAuthenticated: () => {},
 	user: undefined,
 	setUser: () => {},
+	token: undefined,
+	setToken: () => {},
 	verifyUser: () => {},
 	updateUser: () => {},
 	openSideBar: "",

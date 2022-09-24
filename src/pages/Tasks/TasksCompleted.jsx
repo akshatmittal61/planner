@@ -9,12 +9,9 @@ import "./tasks.css";
 import { nullTasks } from "../../utils/images";
 
 const TasksCompleted = () => {
-	const { setSideBarLinks, getAllTasks, tasks } = useContext(GlobalContext);
+	const { setSideBarLinks, tasks } = useContext(GlobalContext);
 	useEffect(() => {
 		setSideBarLinks(tasksNavLinks);
-		window.scrollTo(0, 0);
-		getAllTasks();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [setSideBarLinks]);
 
 	return (

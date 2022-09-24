@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Input from "../../components/Input/Input";
 import MaterialIcons from "../../components/MaterialIcons";
@@ -23,9 +23,6 @@ const Profile = () => {
 	});
 	const [edit, setEdit] = useState(false);
 	const [userImage, setUserImage] = useState(user?.avatar);
-	useEffect(() => {
-		window.scrollTo(0, 0);
-	}, []);
 
 	const handleChange = (e) => {
 		const { name, value } = e?.target;

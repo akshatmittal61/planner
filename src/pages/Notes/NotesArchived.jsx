@@ -7,12 +7,9 @@ import { notesNavLinks } from "../../utils/navigation";
 import Note from "./Note";
 
 const NotesArchived = () => {
-	const { setSideBarLinks, getAllNotes, notes } = useContext(GlobalContext);
+	const { setSideBarLinks, notes } = useContext(GlobalContext);
 	useEffect(() => {
 		setSideBarLinks(notesNavLinks);
-		window.scrollTo(0, 0);
-		getAllNotes();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [setSideBarLinks]);
 	return (
 		<main className="notes">

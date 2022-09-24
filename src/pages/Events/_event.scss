@@ -9,7 +9,7 @@
 	padding: 0.25rem;
 	margin: 1.5rem 0;
 	background-color: var(--bgcolor-100);
-	border-radius: 32px;
+	border-radius: 2rem;
 
 	@include respond(phone) {
 		height: 8rem;
@@ -33,10 +33,11 @@
 
 		& .material-symbols-outlined {
 			font-size: 1.75rem;
+		}
 
-			@include respond(phone) {
-				font-size: 1.5rem;
-			}
+		@include respond(phone) {
+			display: none;
+			width: 0;
 		}
 	}
 
@@ -44,6 +45,10 @@
 		width: 82.5%;
 		flex-flow: column;
 		position: relative;
+
+		@include respond(phone) {
+			width: 100%;
+		}
 
 		&>* {
 			width: 80%;
@@ -75,7 +80,8 @@
 			justify-content: flex-end;
 			align-items: center;
 			display: none;
-			button{
+
+			button {
 				margin-left: 0.75rem;
 			}
 		}
