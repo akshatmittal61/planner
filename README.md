@@ -129,11 +129,11 @@ For EmailJS integration
 
 # Contributing
 
-Read the [contributing guide](./CONTRIBUTING.md) to learn about our development process, how to propose bug fixes and improvements, and how to create an issue and/or raise a PR.
+Read the [contributing guide](https://github.com/akshatmittal61/Planner/blob/master/.github/CONTRIBUTING.md) to learn about our development process, how to propose bug fixes and improvements, and how to create an issue and/or raise a PR.
 
 # License
 
-This project is licensed under the terms of the [MIT License](./LICENSE)
+This project is licensed under the terms of the [MIT License](https://github.com/akshatmittal61/Planner/blob/master/LICENSE)
 
 # Author
 

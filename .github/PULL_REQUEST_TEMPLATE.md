@@ -10,8 +10,8 @@ When in doubt, keep your Pull Requests small. To give a Pull Request the best ch
 2. Clone the fork to your local machine and add upstream remote:
 
 ```
-git clone https://github.com/<your-username>/planner/git
-git remote add upstream
+git clone https://github.com/<your-username>/planner.git
+git remote add upstream https://github.com/akshatmittal61/planner.git
 ```
 
 3. Create a new branch for your feature or bug fix:
@@ -58,8 +58,8 @@ This project and everyone participating in it is governed by the [Planner Code o
 
 # License
 
-This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
-By contributing to [Planner](https://github.com/akshatmittal61/planner) GitHub repository, you agree to license your contribution under the [MIT license](./LICENSE).
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/akshatmittal61/Planner/blob/master/LICENSE) file for details.
+By contributing to [Planner](https://github.com/akshatmittal61/planner) GitHub repository, you agree to license your contribution under the [MIT license](https://github.com/akshatmittal61/Planner/blob/master/LICENSE).
 
 # Acknowledgments
 
