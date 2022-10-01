@@ -1,12 +1,14 @@
-# Planner
-
-<p style="margin: 3rem 0 4rem 0;" align="center">
-<img src="./images/planner-bg.png" alt="Planner Home Screen" />
+<p align="center">
+<img src="./images/favicon-192.png" alt="Planner Home Screen" />
+</p>
+<h1 align="center">Planner</h1>
+<p align="center">
 Get more done with Planner.
 Manage, capture and edit your daily events, notes and tasks.
-
 </p>
 
+	
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mui/material-ui/blob/HEAD/LICENSE)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/5886829b-1f1f-4ddb-9e2e-991cf1f5ec07/deploy-status)](https://app.netlify.com/sites/planner/deploys)
 
 
