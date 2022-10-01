@@ -80,9 +80,9 @@ const Note = ({ title, content, color, image, trashed, archived, ...rest }) => {
 						>
 							<MaterialIcons>content_copy</MaterialIcons>
 						</button>
-						<button className="note-button" title="Add to list">
+						{/* <button className="note-button" title="Add to list">
 							<MaterialIcons>playlist_add</MaterialIcons>
-						</button>
+						</button> */}
 						{archived ? (
 							<button
 								className="note-button"

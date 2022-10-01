@@ -1,14 +1,14 @@
 # Planner
 
 <p style="margin: 3rem 0 4rem 0;" align="center">
-<img src="./src/images/planner.png" alt="Planner Home Screen" />
+<img src="./images/planner-bg.png" alt="Planner Home Screen" />
+Get more done with Planner.
+Manage, capture and edit your daily events, notes and tasks.
+
 </p>
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/5886829b-1f1f-4ddb-9e2e-991cf1f5ec07/deploy-status)](https://app.netlify.com/sites/planner/deploys)
 
-Get more done with Planner. 
-
-Manage, capture and edit your daily events, notes and tasks.
 
 # Introduction
 
@@ -66,52 +66,74 @@ To switch between different modes, click on theme icon in the header.
 
 <img src="./src/images/PlannerNav/2a.png" alt="Light Mode" style="margin: 2rem 7rem" />
 
-# Development
+# Local Development
 
-To clone copy the following command in your terminal and start development.
+- To clone copy the following command in your terminal and start development.
 
 ```sh
 git clone https://github.com/akshatmittal61/planner.git
 ```
 
-cd into the directory
+OR
+
+- Fork the repo to your github account and then,
+
+```sh
+git clone https://github.com/<your-username>/planner.git
+```
+
+- cd into the directory
 
 ```sh
 cd planner
 ```
 
-Install all the dependencies
+- Install all the dependencies
 ```sh
 npm i
 ```
 
-Run the project in development mode
+- Run the project in development mode
 
 ```sh
 npm run react
 ```
 
-Run the backend server
+- Run the backend server
 
 ```sh
 npm run server
 ```
 This will run the server on port [$PORT](http://localhost:5000) locally with nodemon to continuously watch every change.
 
-If you don't have nodemon on your system, run
+- If you don't have nodemon on your system, run
 ```sh
 npm i nodemon -g
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [localhost:3000](http://localhost:3000) or [localhost:5001](http://localhost:5001) to view it in the browser.
 
 ## Environment Variables:
 Building the .env
 - **MONGO_CONNECTION_URL:** Create a database in MongoDB cluster and paste the connection string in here
 
-- **PORT:** Assign a PORT to run teh backend server (usually `4000` or `5000`)
+- **PORT:** Assign a PORT to run the backend server (usually `4000` or `5000`)
 - **JWT_SECRET:** Assign a string for the JWT web token or request the [developers](#author) to provide you with the official one.
 - **REACT_APP_BACKEND_URL:** Create the backend URL for which React App will send the server requests to.
+
+For EmailJS integration
+
+- **REACT_APP_SERVICE:** Service ID provided by EmailJS
+- **REACT_APP_TEMPLATE:** Template ID provided by EmailJS
+- **REACT_APP_USER:** Public Access Token provided by EmailJS
+
+# Contributing
+
+Read the [contributing guide](./CONTRIBUTING.md) to learn about our development process, how to propose bug fixes and improvements, and how to create an issue and/or raise a PR.
+
+# License
+
+This project is licensed under the terms of the [MIT License](./LICENSE)
 
 # Author
 
@@ -125,3 +147,4 @@ Building the .env
 -   [AOS](https://github.com/michalsnik/aos)
 -   [Axios](https://axios-http.com/)
 -   [Moment](https://momentjs.com/)
+-   [EmailJS](https://www.emailjs.com/)

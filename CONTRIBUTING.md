@@ -62,7 +62,7 @@ After that, follow the steps below:
 Building the .env
 
 - **MONGO_CONNECTION_URL:** Create a database in MongoDB cluster and paste the connection string in here
-- **PORT:** Assign a PORT to run teh backend server (usually `4000` or `5000`)
+- **PORT:** Assign a PORT to run the backend server (usually `4000` or `5000`)
 - **JWT_SECRET:** Assign a string for the JWT web token or request the [developers](#author) to provide you with the official one.
 - **REACT_APP_BACKEND_URL:** Create the backend URL for which React App will send the server requests to.
 
