@@ -3,7 +3,8 @@ import Chip from "../../components/Chip/Chip";
 import MaterialIcons from "../../components/MaterialIcons";
 import GlobalContext from "../../Context/GlobalContext";
 import Popup from "../../Layout/Popup/Popup";
-import { copy, imageBackgroundUrl, min } from "../../utils";
+import Row, { Col } from "../../Layout/Responsive";
+import { colors, copy, imageBackgroundUrl, min } from "../../utils";
 import NotePopup from "./NotePopup";
 
 const Note = ({ title, content, color, image, trashed, archived, ...rest }) => {
@@ -14,12 +15,15 @@ const Note = ({ title, content, color, image, trashed, archived, ...rest }) => {
 		moveNoteToTrash,
 		restoreNoteFromTrash,
 		deleteNote,
+		updateOneNote,
 	} = useContext(GlobalContext);
 	let chipText = `${title?.slice(0, min(15, title.length))}${
 		title.length > 15 ? "..." : ""
 	}`;
+	const [noteColor, setNoteColor] = useState(color);
 	const [openNotePopup, setOpenNotePopup] = useState(false);
 	const [openPopup, setOpenPopup] = useState(false);
+	const [openColorBox, setOpenColorBox] = useState(false);
 	const [popupCta, setPopupCta] = useState({
 		text: "Move to Trash",
 		color: "red",
@@ -27,8 +31,9 @@ const Note = ({ title, content, color, image, trashed, archived, ...rest }) => {
 	});
 	const [popupContent, setPopupContent] = useState(
 		<>
-			Move the note <Chip text={chipText} size="small" color={color} /> to
-			Trash Bin?
+			Move the note{" "}
+			<Chip text={chipText} size="small" color={noteColor} /> to Trash
+			Bin?
 		</>
 	);
 	const handleCopy = (e) => {
@@ -37,6 +42,16 @@ const Note = ({ title, content, color, image, trashed, archived, ...rest }) => {
 		if (archived) ans += " \nNote: This Note is in owner's archives";
 		if (trashed) ans += " \nNote: This Note is in owner's bin";
 		copy(ans);
+	};
+
+	const updateNoteColor = (thisColor) => {
+		if (thisColor !== color) {
+			let updatedNote = Note;
+			updatedNote.color = thisColor;
+			updateOneNote(rest._id, updatedNote);
+			setNoteColor(thisColor);
+			setOpenColorBox(false);
+		}
 	};
 	return (
 		<div
@@ -50,7 +65,7 @@ const Note = ({ title, content, color, image, trashed, archived, ...rest }) => {
 				backgroundColor:
 					image >= 0 && image < 24
 						? "rgba(255,255,255,0.65)"
-						: `var(--${color}-${
+						: `var(--${noteColor}-${
 								theme === "light" ? "100" : "700"
 						  })`,
 			}}
@@ -70,6 +85,7 @@ const Note = ({ title, content, color, image, trashed, archived, ...rest }) => {
 						<button
 							className="note-button"
 							title="Background Color"
+							onClick={() => setOpenColorBox(!openColorBox)}
 						>
 							<MaterialIcons>palette</MaterialIcons>
 						</button>
@@ -103,7 +119,7 @@ const Note = ({ title, content, color, image, trashed, archived, ...rest }) => {
 											<Chip
 												text={chipText}
 												size="small"
-												color={color}
+												color={noteColor}
 											/>{" "}
 											?
 										</>
@@ -134,7 +150,7 @@ const Note = ({ title, content, color, image, trashed, archived, ...rest }) => {
 											<Chip
 												text={chipText}
 												size="small"
-												color={color}
+												color={noteColor}
 											/>{" "}
 											?
 										</>
@@ -165,7 +181,7 @@ const Note = ({ title, content, color, image, trashed, archived, ...rest }) => {
 										<Chip
 											text={chipText}
 											size="small"
-											color={color}
+											color={noteColor}
 										/>{" "}
 										to Trash Bin?
 									</>
@@ -198,7 +214,7 @@ const Note = ({ title, content, color, image, trashed, archived, ...rest }) => {
 										<Chip
 											text={chipText}
 											size="small"
-											color={color}
+											color={noteColor}
 										/>{" "}
 										?
 									</>
@@ -228,7 +244,7 @@ const Note = ({ title, content, color, image, trashed, archived, ...rest }) => {
 										<Chip
 											text={chipText}
 											size="small"
-											color={color}
+											color={noteColor}
 										/>{" "}
 										forever? This actions can't be undone.
 									</>
@@ -246,7 +262,7 @@ const Note = ({ title, content, color, image, trashed, archived, ...rest }) => {
 				<NotePopup
 					title={title}
 					content={content}
-					color={color}
+					color={noteColor}
 					image={image}
 					archived={archived}
 					trashed={trashed}
@@ -269,6 +285,36 @@ const Note = ({ title, content, color, image, trashed, archived, ...rest }) => {
 						{popupContent}
 					</span>
 				</Popup>
+			)}
+
+			{openColorBox && (
+				<>
+					<div
+						className="note-color-overlay"
+						onClick={() => setOpenColorBox(false)}
+					></div>
+					<div className="update-note-color-box">
+						<Row>
+							{colors.map((thisColor, index) => (
+								<Col lg={25} md={25} sm={33} key={index}>
+									<button
+										style={{
+											width: "2rem",
+											height: "2rem",
+											backgroundColor: `var(--${thisColor})`,
+											borderRadius: "500px",
+											margin: "0.5rem",
+										}}
+										onClick={(e) => {
+											e.preventDefault();
+											updateNoteColor(thisColor);
+										}}
+									></button>
+								</Col>
+							))}
+						</Row>
+					</div>
+				</>
 			)}
 		</div>
 	);
