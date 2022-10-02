@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import Input from "../../components/Input/Input";
@@ -21,6 +21,13 @@ const Register = () => {
 		confirmPassword: "",
 		avatar: "",
 	});
+
+	useEffect(() => {
+		if (localStorage.getItem("isAuthenticated") === "true") {
+			navigate("/");
+		}
+	});
+
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 		setRegisterUser((prev) => ({
