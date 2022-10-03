@@ -46,7 +46,8 @@ const Note = ({ title, content, color, image, trashed, archived, ...rest }) => {
 
 	const updateNoteColor = (thisColor) => {
 		if (thisColor !== color) {
-			let updatedNote = Note;
+			let updatedNote = {};
+			console.log(updatedNote);
 			updatedNote.color = thisColor;
 			updateOneNote(rest._id, updatedNote);
 			setNoteColor(thisColor);
@@ -293,14 +294,14 @@ const Note = ({ title, content, color, image, trashed, archived, ...rest }) => {
 						className="note-color-overlay"
 						onClick={() => setOpenColorBox(false)}
 					></div>
-					<div className="update-note-color-box">
+					<div className="note-color-update-box">
 						<Row>
 							{colors.map((thisColor, index) => (
 								<Col lg={25} md={25} sm={33} key={index}>
 									<button
 										style={{
-											width: "2rem",
-											height: "2rem",
+											width: "2.5rem",
+											height: "2.5rem",
 											backgroundColor: `var(--${thisColor})`,
 											borderRadius: "500px",
 											margin: "0.5rem",
