@@ -21,7 +21,7 @@ const Settings = () => {
 			<section className="settings-body">
 				<div className="settings-body-theme">
 					<h3>Theme</h3>
-					<div className="settings-body-theme-colors">
+					<div className="settings-body-theme-colors row">
 						{accentColors.map((color, id) => (
 							<button
 								key={id}
