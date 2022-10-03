@@ -118,6 +118,27 @@
   overflow: hidden;
   overflow-y: auto;
 }
+.note-color-overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.2);;
+}
+.update-note-color-box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 15rem;
+  height: fit-content;
+  background-color: var(--bgcolor);
+  box-shadow: var(--shadow-elevation-2dp);
+  border-radius: 8px;
+  overflow: visible;
+}
+
 .add-note-color-box::-webkit-scrollbar, .add-note-image-box::-webkit-scrollbar {
   width: 1px;
   background-color: transparent;
