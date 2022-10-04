@@ -14,7 +14,7 @@ Manage, capture and edit your daily events, notes and tasks.
 
 # Introduction
 
-Planner is a full stack web application built in MERN stack to keep a track of your activity every month, every day, every hour.
+Planner is a full stack web application built using MERN stack to keep a track of your activity. You can track it for every month, day, or even an hour.
 
 -   **Runtime used for whole application** - [Node.js](https://nodejs.org/)
 -   **Frontend framework** - [React JS](https://reactjs.org/)
@@ -24,39 +24,39 @@ Planner is a full stack web application built in MERN stack to keep a track of y
 
 # Navigation
 
--   **Home Page** - Planner Home page contains links to different pages of the web app.
+-   **Home Page** - Planner's Home page contains links for different pages of the web app.
 
--   **Calendar** - Planner contains a calendar to view the days of any month of any year, withour any year limit. Unlike other calendars, it works on an algorithm.
+-   **Calendar** - Planner contains a calendar which helps us visualize the days of any month of any year, withour any year limit. Unlike other calendars, our Planner works on an algorithm.
 <p align="center">
 <img src="./src/images/help/0/0.png" alt="Calendar" style="width: 75%" />
 </p>
 
--   **Events** - In the planner events, you can create, edit and delete an event. For e.g) vreate an event for your best friend's borthday to keep yourself reminded on the big day.
+-   **Events** - In the events section of this Planner, you can create, edit and delete an event. For e.g: Create an event for your best friend's birthday and keep yourself reminded on the big day.
 <p align="center">
 <img src="./src/images/help/1/0.png" alt="Events" style="width: 75%" />
 </p>
 
--   **Notes** - Use planner notes to record every thought that you want to track. Whether it is an article you saw on internet or a blog you want to save for later or a short poem that you just wrote.
+-   **Notes** - Use Planner's notes section to record every thought that you want to track. Whether it is an article you came across on the internet or a blog that you want to save for later or a short poem that you just wrote.
 <p align="center">
 <img src="./src/images/help/2/0.png" alt="Noets" style="width: 75%" />
 </p>
 
--   **Tasks** - Use planner tasks to keep track of your day-to-day activities. Create a task to remind you to buy groceries, prepare for an early test and schedule a meeting with your colleagues.
+-   **Tasks** - Use Planner's tasks section to keep track of your day-to-day activities. Create a task that would remind you to buy groceries, or a task that would prepare for an early test and schedule a meeting with your colleagues.
 <p align="center">
 <img src="./src/images/help/3/0.png" alt="Noets" style="width: 75%" />
 </p>
 
--   **Help** - To get help on Planner, click on the Help button in the side bar to visit the help section of the planner.
+-   **Help** - There is a help section available in the sidebar. Visit this section to understand more about Planner.
 
--   **Feedback** - To leave a feedback to the developers, click on the feedback/report-a-bug button in the side bar of the app. Please be polite in any kind of feedback. Any appreciation of work or a bug report or any other kind of feedback is welcome.
+-   **Feedback** - Any appreciation of work or a bug report or any other kind of feedback is welcome. To drop a feedback for our developers, click on the feedback/report-a-bug button in the sidebar of the app. Please be polite in any kind of feedback. 
 
 # Themes
 
-Planner's color palette has been synchronized and carefully chosen to provide the best user experince.
+Planner's color palette has been synchronized and carefully chosen to provide the best user experience.
 
 The app will switch to dark mode automatically after 8:00 PM and will switch back to light mode at 8:00 AM.
 
-Though the user can still switch between different modes as per their convenience.
+Nevertheless, the user could override this option by switching between different modes as per their convenience.
 
 To switch between different modes, click on theme icon in the header.
 
