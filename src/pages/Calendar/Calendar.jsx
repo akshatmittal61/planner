@@ -8,7 +8,7 @@ import GlobalContext from "../../Context/GlobalContext";
 import { calendarImages } from "../../utils/images";
 
 const Calendar = () => {
-	const { theme } = useContext(GlobalContext);
+	const { theme, breakpoint } = useContext(GlobalContext);
 	const days = [
 		"Monday",
 		"Tuesday",
@@ -143,12 +143,19 @@ const Calendar = () => {
 						}
 						style={{
 							width: `calc(${
-								months[month % 12].length
+								breakpoint("mobile")
+									? 4
+									: months[month % 12].length
 							}ch + 40px)`,
 						}}
 					>
 						<div className="calendar-head-month-current">
-							{months[month % 12]}
+							{months[month % 12].slice(
+								0,
+								breakpoint("mobile")
+									? 3
+									: months[month % 12].length
+							)}
 							<IconButton
 								icon={
 									openMonthDialogBox
