@@ -19,10 +19,6 @@
 		font-size: 2rem;
 		line-height: 2.5rem;
 
-		@include respond(phone) {
-			padding: 0;
-		}
-
 		&>* {
 			display: flex;
 			justify-content: space-evenly;

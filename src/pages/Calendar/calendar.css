@@ -17,11 +17,6 @@
   font-size: 2rem;
   line-height: 2.5rem;
 }
-@media (max-width: 672px) {
-  .calendar-head {
-    padding: 0;
-  }
-}
 .calendar-head > * {
   display: flex;
   justify-content: space-evenly;
