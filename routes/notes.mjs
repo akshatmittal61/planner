@@ -4,7 +4,9 @@ import {
 	archiveNote,
 	deleteNote,
 	editNote,
+	getAllLists,
 	getAllNotes,
+	getList,
 	getNote,
 	moveNoteToTrash,
 	restoreNoteFromTrash,
@@ -16,6 +18,8 @@ const router = Router();
 
 router.use(auth);
 router.get("/", getAllNotes);
+router.get("/lists", getAllLists);
+router.get("/list/:id", getList);
 router.get("/:id", getNote);
 router.post("/add", addNote);
 router.put("/edit/:id", editNote);
