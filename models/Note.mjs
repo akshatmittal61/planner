@@ -29,6 +29,12 @@ const NoteSchema = new mongoose.Schema(
 			type: Number,
 			default: -1,
 		},
+		lists: [
+			{
+				type: mongoose.Schema.Types.ObjectId,
+				ref: "List",
+			},
+		],
 	},
 	{
 		timestamps: true,
