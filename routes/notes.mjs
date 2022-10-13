@@ -1,7 +1,9 @@
 import { Router } from "express";
 import {
 	addNote,
+	addNoteToList,
 	archiveNote,
+	createList,
 	deleteNote,
 	editNote,
 	getAllLists,
@@ -20,6 +22,8 @@ router.use(auth);
 router.get("/", getAllNotes);
 router.get("/lists", getAllLists);
 router.get("/list/:id", getList);
+router.post("/list", createList);
+router.post("/list/:id", addNoteToList);
 router.get("/:id", getNote);
 router.post("/add", addNote);
 router.put("/edit/:id", editNote);

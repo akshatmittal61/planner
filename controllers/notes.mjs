@@ -34,6 +34,24 @@ const getList = async (req, res) => {
 	}
 };
 
+const createList = async (req, res) => {
+	try {
+		const { title, color, description } = req.body;
+		if (!title) return res.status(400).json({ message: "Invalid Data" });
+		const newList = new List({
+			user: req.user.id,
+			title,
+			color,
+			description,
+		});
+		const list = await newList.save();
+		return res.status(201).json({ list: list });
+	} catch (error) {
+		console.error(error);
+		return res.status(500).json({ message: "Server Error" });
+	}
+};
+
 const getNote = async (req, res) => {
 	const id = req.params.id;
 	try {
@@ -92,6 +110,33 @@ const editNote = async (req, res) => {
 			updatedNote: updatedNote,
 			message: "Updated note successfully",
 		});
+	} catch (error) {
+		console.error(error);
+		if (error.kind === "ObjectId")
+			return res.status(404).json({ message: "Note not found" });
+		return res.status(500).json({ message: "Server Error" });
+	}
+};
+
+const addNoteToList = async (req, res) => {
+	const { noteId } = req.body;
+	const listId = req.params.id;
+	try {
+		const list = await List.findById(listId);
+		if (!list) return res.status(404).json({ message: "List not found" });
+		if (list.user.toString() !== req.user.id)
+			return res.status(401).json({ message: "User not authorized" });
+		console.log(12);
+		const note = await Note.findById(noteId);
+		if (!note) return res.status(404).json({ message: "Note not found" });
+		if (note.user.toString() !== req.user.id)
+			return res.status(401).json({ message: "User not authorized" });
+		console.log(23);
+		if (list.notes.includes(noteId))
+			return res.status(400).json({ message: "Note already in list" });
+		list.notes.push(noteId);
+		await list.save();
+		return res.status(200).json({ message: "Added note to list" });
 	} catch (error) {
 		console.error(error);
 		if (error.kind === "ObjectId")
@@ -245,6 +290,8 @@ export {
 	getAllLists,
 	getList,
 	getNote,
+	createList,
+	addNoteToList,
 	addNote,
 	editNote,
 	archiveNote,
