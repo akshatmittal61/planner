@@ -71,7 +71,7 @@ const Footer = () => {
 				e.target,
 				process.env.REACT_APP_USER
 			)
-			.then((res) => console.log(res))
+			.then((res) => console.info(res))
 			.catch((err) => console.error(err));
 		setSnack({
 			text: "Your message has been sent",

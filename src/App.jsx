@@ -64,7 +64,7 @@ const Wrapper = () => {
 		if (Notification.permission !== "granted") {
 			Notification.requestPermission().then(() => {
 				if (Notification.permission !== "granted") {
-					console.log(
+					console.warn(
 						"Allow notification for Planner to get notified for Tasks"
 					);
 				}

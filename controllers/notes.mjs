@@ -1,10 +1,31 @@
 import List from "../models/List.mjs";
 import Note from "../models/Note.mjs";
 
+const getList = async (id) => {
+	let Id = id.toString();
+	try {
+		const foundList = await List.findById(Id);
+		return foundList;
+	} catch (error) {
+		console.error(error);
+		return undefined;
+	}
+};
+
 const getAllNotes = async (req, res) => {
 	try {
 		const allNotes = await Note.find({ user: req.user.id });
-		return res.status(200).json({ allNotes: allNotes });
+		let notesToSend = [];
+		for (let note of allNotes) {
+			let listsToSend = [];
+			for (const list of note?.lists) {
+				const res = await getList(list);
+				listsToSend.push(res);
+			}
+			let noteToPush = { ...note.toObject(), lists: listsToSend };
+			notesToSend.push(noteToPush);
+		}
+		return res.status(200).json({ allNotes: notesToSend });
 	} catch (error) {
 		console.error(error);
 		return res.status(500).json({ message: "Server Error" });
@@ -167,7 +188,17 @@ const getNotesInList = async (req, res) => {
 		if (list.user.toString() !== req.user.id)
 			return res.status(401).json({ message: "User not authorized" });
 		const notes = await Note.find({ _id: { $in: list.notes } });
-		return res.status(200).json({ notes: notes });
+		let notesToSend = [];
+		for (let note of notes) {
+			let listsToSend = [];
+			for (const list of note?.lists) {
+				const res = await getList(list);
+				listsToSend.push(res);
+			}
+			let noteToPush = { ...note.toObject(), lists: listsToSend };
+			notesToSend.push(noteToPush);
+		}
+		return res.status(200).json({ notes: notesToSend });
 	} catch (error) {
 		console.error(error);
 		if (error.kind === "ObjectId")
@@ -184,7 +215,12 @@ const getListsForNote = async (req, res) => {
 		if (note.user.toString() !== req.user.id)
 			return res.status(401).json({ message: "User not authorized" });
 		const lists = await List.find({ _id: { $in: note.lists } });
-		return res.status(200).json({ lists: lists });
+		let listsToSend = [];
+		for (const list of lists) {
+			const res = await getList(list);
+			listsToSend.push(res);
+		}
+		return res.status(200).json({ lists: listsToSend });
 	} catch (error) {
 		console.error(error);
 		if (error.kind === "ObjectId")

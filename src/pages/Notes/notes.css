@@ -15,7 +15,8 @@
   width: 100%;
 }
 
-.note, .list {
+.note,
+.list {
   width: 95%;
   margin: 0.75rem;
   border: 1px solid var(--back-shadow-light);
@@ -27,27 +28,45 @@
   background-repeat: no-repeat;
   background-blend-mode: lighten;
 }
-.note:hover, .list:hover {
+.note:hover,
+.list:hover {
   box-shadow: var(--shadow-elevation-2dp);
 }
-.note-title, .list-title {
+.note-title,
+.list-title {
   font-size: 1.25rem;
   line-height: 1.75rem;
   margin: 0 0 0.5rem 0;
 }
-.note-content, .list-content {
+.note-content,
+.list-content {
   width: 100%;
   max-height: 10rem;
   overflow: hidden;
 }
-.note-buttons, .list-buttons {
+.note-lists,
+.list-lists {
+  width: 100%;
+  margin: 0.75rem 0 0 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.note-lists .chip,
+.list-lists .chip {
+  margin: 0.25rem 0.75rem 0.25rem 0;
+}
+.note-buttons,
+.list-buttons {
   width: 100%;
   height: 2.5rem;
   display: flex;
   justify-content: flex-start;
   align-items: center;
 }
-.note-button, .list-button {
+.note-button,
+.list-button {
   width: 2rem;
   height: 2rem;
   display: flex;
@@ -58,20 +77,27 @@
   opacity: 0;
 }
 @media (max-width: 672px) {
-  .note-button, .list-button {
+  .note-button,
+.list-button {
     opacity: 1;
   }
 }
-.note-button:hover, .list-button:hover {
+.note-button:hover,
+.list-button:hover {
   background-color: var(--back-shadow-light);
 }
-.note-button .material-symbols-outlined, .list-button .material-symbols-outlined {
+.note-button .material-symbols-outlined,
+.list-button .material-symbols-outlined {
   font-size: 1.125rem;
 }
-.note:hover .note-button, .note:hover .list-button, .list:hover .note-button, .list:hover .list-button {
+.note:hover .note-button,
+.note:hover .list-button,
+.list:hover .note-button,
+.list:hover .list-button {
   opacity: 1;
 }
-.note-color-overlay, .list-color-overlay {
+.note-color-overlay,
+.list-color-overlay {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -79,7 +105,8 @@
   right: 0;
   background: rgba(0, 0, 0, 0.2);
 }
-.note-color-update-box, .list-color-update-box {
+.note-color-update-box,
+.list-color-update-box {
   position: fixed;
   top: 50%;
   left: 50%;

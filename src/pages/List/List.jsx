@@ -17,27 +17,29 @@ const List = () => {
 	const [showAddNoteBox, setShowAddNoteBox] = useState(false);
 	const [notesInThisList, setNotesInThisList] = useState([]);
 	const fetchNotesInList = async () => {
-		const notes = await getNotesInList(id);
-		setNotesInThisList(() => notes);
+		setNotesInThisList(await getNotesInList(id));
 	};
 	useEffect(() => {
 		setSideBarLinks(notesNavLinks);
 		getAllLists();
 		fetchNotesInList();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [id]);
 	return (
 		<main className="notes">
 			{notesInThisList.length > 0 &&
 			notesInThisList.some(
-				(p) => !p.trashed && p?.lists?.includes(id)
+				(p) =>
+					!p.trashed &&
+					p?.lists?.filter((l) => l._id === id).length > 0
 			) ? (
 				<section className="notes-body">
 					<Masonry>
 						{notesInThisList?.map(
 							(note, index) =>
 								!note.trashed &&
-								note?.lists?.includes(id) && (
+								note?.lists?.filter((l) => l._id === id)
+									.length > 0 && (
 									<MasonryBox key={index}>
 										<Note {...note} />
 									</MasonryBox>

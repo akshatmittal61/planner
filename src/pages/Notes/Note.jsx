@@ -6,8 +6,18 @@ import Popup from "../../Layout/Popup/Popup";
 import Row, { Col } from "../../Layout/Responsive";
 import { colors, copy, imageBackgroundUrl, min } from "../../utils";
 import NotePopup from "./NotePopup";
+import _ from "lodash";
 
-const Note = ({ title, content, color, image, trashed, archived, ...rest }) => {
+const Note = ({
+	title,
+	content,
+	color,
+	image,
+	lists,
+	trashed,
+	archived,
+	...rest
+}) => {
 	const {
 		theme,
 		archiveNote,
@@ -16,6 +26,8 @@ const Note = ({ title, content, color, image, trashed, archived, ...rest }) => {
 		restoreNoteFromTrash,
 		deleteNote,
 		updateOneNote,
+		setSnack,
+		setOpenSnackBar,
 	} = useContext(GlobalContext);
 	let chipText = `${title?.slice(0, min(15, title.length))}${
 		title.length > 15 ? "..." : ""
@@ -42,16 +54,66 @@ const Note = ({ title, content, color, image, trashed, archived, ...rest }) => {
 		if (archived) ans += " \nNote: This Note is in owner's archives";
 		if (trashed) ans += " \nNote: This Note is in owner's bin";
 		copy(ans);
+		setSnack({
+			text: "Note copied to your clipboard",
+			bgColor: "var(--green)",
+			color: "var(--white)",
+		});
+		setOpenSnackBar(true);
+		setTimeout(() => {
+			setOpenSnackBar(false);
+		}, 5000);
 	};
 
 	const updateNoteColor = (thisColor) => {
 		if (thisColor !== color) {
 			let updatedNote = {};
-			console.log(updatedNote);
 			updatedNote.color = thisColor;
 			updateOneNote(rest._id, updatedNote);
 			setNoteColor(thisColor);
 			setOpenColorBox(false);
+		}
+	};
+	const predictIcon = (text) => {
+		switch (_.kebabCase(text)) {
+			case "home":
+				return "home";
+			case "work":
+				return "work";
+			case "personal":
+				return "person";
+			case "shopping":
+				return "shopping_cart";
+			case "study":
+				return "school";
+			case "travel":
+				return "flight";
+			case "finance":
+				return "attach_money";
+			case "health":
+				return "local_hospital";
+			case "food":
+				return "restaurant";
+			case "write-ups":
+				return "history_edu";
+			case "draw":
+				return "brush";
+			case "music":
+				return "music_note";
+			case "movies":
+				return "movie";
+			case "games":
+				return "sports_esports";
+			case "sports":
+				return "sports";
+			case "books":
+				return "menu_book";
+			case "design":
+				return "draw";
+			case "programming":
+				return "code";
+			default:
+				return "label";
 		}
 	};
 	return (
@@ -80,6 +142,28 @@ const Note = ({ title, content, color, image, trashed, archived, ...rest }) => {
 			>
 				{content}
 			</div>
+			{lists.length > 0 && (
+				<div className="note-lists">
+					{lists
+						.sort((a, b) =>
+							a.title < b.title ? -1 : a.title > b.title ? 1 : 0
+						)
+						.map((list, id) => (
+							<Chip
+								text={list.title}
+								key={id}
+								color={list?.color}
+								size="small"
+								link={`/notes/list/${list._id}`}
+								icon={predictIcon(list.title)}
+								style={{
+									borderColor: `var(--${list?.color}-100)`,
+									boxShadow: "var(--shadow-elevation-2dp)",
+								}}
+							/>
+						))}
+				</div>
+			)}
 			<div className="note-buttons">
 				{!trashed ? (
 					<>
