@@ -8,8 +8,9 @@ import {
 	editNote,
 	getAllLists,
 	getAllNotes,
-	getList,
+	getListsForNote,
 	getNote,
+	getNotesInList,
 	moveNoteToTrash,
 	removeNoteFromList,
 	restoreNoteFromTrash,
@@ -20,13 +21,23 @@ import auth from "../middleware/auth.mjs";
 const router = Router();
 
 router.use(auth);
+
+// Notes
+
 router.get("/", getAllNotes);
+
+// Lists
+
 router.get("/lists", getAllLists);
-router.get("/list/:id", getList);
+router.get("/list/:id", getNotesInList);
 router.post("/list", createList);
 router.post("/list/:id", addNoteToList);
 router.delete("/list/:id", removeNoteFromList);
+
+// Note
+
 router.get("/:id", getNote);
+router.get("/:id/lists", getListsForNote);
 router.post("/add", addNote);
 router.put("/edit/:id", editNote);
 router.put("/archive/:id", archiveNote);
