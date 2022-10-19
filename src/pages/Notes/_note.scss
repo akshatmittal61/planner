@@ -1,6 +1,6 @@
 @import "../../config";
 
-.note {
+.note,.list {
 	width: 95%;
 	margin: 0.75rem;
 	border: 1px solid var(--back-shadow-light);
@@ -13,7 +13,6 @@
 	background-blend-mode: lighten;
 
 	&:hover {
-		border-radius: 12px;
 		box-shadow: var(--shadow-elevation-2dp);
 	}
 

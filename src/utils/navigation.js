@@ -66,6 +66,11 @@ const notesNavLinks = [
 		icon: "notes",
 	},
 	{
+		title: "Lists",
+		route: "/notes/lists",
+		icon: "label",
+	},
+	{
 		title: "Archived",
 		route: "/notes/archive",
 		icon: "archive",
