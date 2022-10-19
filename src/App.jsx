@@ -30,6 +30,7 @@ import Logout from "./pages/Logout";
 import EventsTrash from "./pages/Events/EventsTrash";
 import Settings from "./pages/Settings/Settings";
 import Lists from "./pages/Lists/Lists";
+import List from "./pages/List/List";
 
 const Wrapper = () => {
 	AOS.init();
@@ -162,6 +163,14 @@ const Wrapper = () => {
 					element={
 						<PrivateRoute>
 							<Lists />
+						</PrivateRoute>
+					}
+				/>
+				<Route
+					path="/notes/list/:id"
+					element={
+						<PrivateRoute>
+							<List />
 						</PrivateRoute>
 					}
 				/>
