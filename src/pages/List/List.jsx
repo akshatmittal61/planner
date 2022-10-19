@@ -11,22 +11,24 @@ import Note from "../Notes/Note";
 import "../Notes/notes.css";
 
 const List = () => {
-	const { notes, setSideBarLinks } = useContext(GlobalContext);
+	const { notes, setSideBarLinks, getAllLists } = useContext(GlobalContext);
 	const { id } = useParams();
 	const [showAddNoteBox, setShowAddNoteBox] = useState(false);
 	useEffect(() => {
 		setSideBarLinks(notesNavLinks);
-	}, [setSideBarLinks]);
+		getAllLists();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 	return (
 		<main className="notes">
 			{notes.length > 0 &&
-			notes.some((p) => !p.trashed && p?.lists.includes(id)) ? (
+			notes.some((p) => !p.trashed && p?.lists?.includes(id)) ? (
 				<section className="notes-body">
 					<Masonry>
 						{notes?.map(
 							(note, index) =>
 								!note.trashed &&
-								note?.lists.includes(id)(
+								note?.lists?.includes(id)(
 									<MasonryBox key={index}>
 										<Note {...note} />
 									</MasonryBox>

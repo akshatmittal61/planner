@@ -266,6 +266,7 @@ export const useContextData = () => {
 
 	// Notes
 	const [notes, setNotes] = useState([]);
+	const [lists, setLists] = useState([]);
 	const getAllNotes = async () => {
 		try {
 			setIsLoading(true);
@@ -317,6 +318,27 @@ export const useContextData = () => {
 			setIsLoading(false);
 		}
 	};
+	const getAllLists = async () => {
+		try {
+			setIsLoading(true);
+			const res = await axiosInstance.get("/api/notes/lists");
+			console.log(res.data.lists);
+			setLists(() => res.data.lists);
+			setIsLoading(false);
+		} catch (error) {
+			setSnack({
+				text: error.response?.data?.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		}
+	};
+
 	const updateOneNote = async (id, updatedNote) => {
 		try {
 			setIsLoading(true);
@@ -919,6 +941,9 @@ export const useContextData = () => {
 		moveNoteToTrash,
 		restoreNoteFromTrash,
 		deleteNote,
+		lists,
+		setLists,
+		getAllLists,
 		tasks,
 		setTasks,
 		getAllTasks,

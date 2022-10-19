@@ -10,11 +10,12 @@ import { notesNavLinks } from "../../utils/navigation";
 import GlobalContext from "../../Context/GlobalContext";
 
 const Lists = () => {
-	const lists = [];
-	const { setSideBarLinks } = useContext(GlobalContext);
+	const { setSideBarLinks, lists, getAllLists } = useContext(GlobalContext);
 	useEffect(() => {
 		setSideBarLinks(notesNavLinks);
-	}, [setSideBarLinks]);
+		getAllLists();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 	return (
 		<main className="lists">
 			{lists.length > 0 ? (
