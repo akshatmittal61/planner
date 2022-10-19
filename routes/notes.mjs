@@ -11,6 +11,7 @@ import {
 	getList,
 	getNote,
 	moveNoteToTrash,
+	removeNoteFromList,
 	restoreNoteFromTrash,
 	unArchiveNote,
 } from "../controllers/notes.mjs";
@@ -24,6 +25,7 @@ router.get("/lists", getAllLists);
 router.get("/list/:id", getList);
 router.post("/list", createList);
 router.post("/list/:id", addNoteToList);
+router.delete("/list/:id", removeNoteFromList);
 router.get("/:id", getNote);
 router.post("/add", addNote);
 router.put("/edit/:id", editNote);

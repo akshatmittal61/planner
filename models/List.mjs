@@ -14,6 +14,10 @@ const ListSchema = new mongoose.Schema(
 			type: String,
 			default: "bgcolor",
 		},
+		poster: {
+			type: Number,
+			default: -1,
+		},
 		description: {
 			type: String,
 		},

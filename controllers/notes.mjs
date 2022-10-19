@@ -123,20 +123,59 @@ const addNoteToList = async (req, res) => {
 	const listId = req.params.id;
 	try {
 		const list = await List.findById(listId);
-		if (!list) return res.status(404).json({ message: "List not found" });
+		if (!list) {
+			const newList = new List({
+				user: req.user.id,
+				title: req.body.title,
+				color: req.body.color,
+				description: req.body.description,
+				notes: [noteId],
+			});
+			const savedList = await newList.save();
+			return res
+				.status(200)
+				.json({ message: "Added note to list", list: savedList });
+		}
 		if (list.user.toString() !== req.user.id)
 			return res.status(401).json({ message: "User not authorized" });
-		console.log(12);
 		const note = await Note.findById(noteId);
 		if (!note) return res.status(404).json({ message: "Note not found" });
 		if (note.user.toString() !== req.user.id)
 			return res.status(401).json({ message: "User not authorized" });
-		console.log(23);
-		if (list.notes.includes(noteId))
+		if (list.notes.includes(noteId) || note.lists.includes(listId))
 			return res.status(400).json({ message: "Note already in list" });
 		list.notes.push(noteId);
+		note.lists.push(listId);
 		await list.save();
+		await note.save();
 		return res.status(200).json({ message: "Added note to list" });
+	} catch (error) {
+		console.error(error);
+		if (error.kind === "ObjectId")
+			return res.status(404).json({ message: "Note not found" });
+		return res.status(500).json({ message: "Server Error" });
+	}
+};
+
+const removeNoteFromList = async (req, res) => {
+	const { noteId } = req.body;
+	const listId = req.params.id;
+	try {
+		const list = await List.findById(listId);
+		if (!list) return res.status(404).json({ message: "List not found" });
+		if (list.user.toString() !== req.user.id)
+			return res.status(401).json({ message: "User not authorized" });
+		const note = await Note.findById(noteId);
+		if (!note) return res.status(404).json({ message: "Note not found" });
+		if (note.user.toString() !== req.user.id)
+			return res.status(401).json({ message: "User not authorized" });
+		if (!list.notes.includes(noteId) || !note.lists.includes(listId))
+			return res.status(400).json({ message: "Note not in list" });
+		list.notes = list.notes.filter((note) => note.toString() !== noteId);
+		note.lists = note.lists.filter((list) => list.toString() !== listId);
+		await list.save();
+		await note.save();
+		return res.status(200).json({ message: "Removed note from list" });
 	} catch (error) {
 		console.error(error);
 		if (error.kind === "ObjectId")
@@ -292,6 +331,7 @@ export {
 	getNote,
 	createList,
 	addNoteToList,
+	removeNoteFromList,
 	addNote,
 	editNote,
 	archiveNote,
