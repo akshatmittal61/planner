@@ -51,6 +51,7 @@ const GlobalContext = createContext({
 	lists: [],
 	setLists: () => {},
 	getAllLists: () => {},
+	getNotesInList: () => {},
 	tasks: [],
 	setTasks: () => {},
 	getAllTasks: () => {},

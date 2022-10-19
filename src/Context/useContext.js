@@ -322,9 +322,9 @@ export const useContextData = () => {
 		try {
 			setIsLoading(true);
 			const res = await axiosInstance.get("/api/notes/lists");
-			console.log(res.data.lists);
 			setLists(() => res.data.lists);
 			setIsLoading(false);
+			return res.data.lists;
 		} catch (error) {
 			setSnack({
 				text: error.response?.data?.message,
@@ -336,6 +336,26 @@ export const useContextData = () => {
 				setOpenSnackBar(false);
 			}, 5000);
 			setIsLoading(false);
+		}
+	};
+	const getNotesInList = async (id) => {
+		try {
+			setIsLoading(true);
+			const res = await axiosInstance.get(`/api/notes/list/${id}`);
+			setIsLoading(false);
+			return res.data.notes;
+		} catch (error) {
+			setSnack({
+				text: error.response?.data?.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+			return [];
 		}
 	};
 
@@ -944,6 +964,7 @@ export const useContextData = () => {
 		lists,
 		setLists,
 		getAllLists,
+		getNotesInList,
 		tasks,
 		setTasks,
 		getAllTasks,

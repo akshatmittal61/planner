@@ -11,24 +11,33 @@ import Note from "../Notes/Note";
 import "../Notes/notes.css";
 
 const List = () => {
-	const { notes, setSideBarLinks, getAllLists } = useContext(GlobalContext);
+	const { setSideBarLinks, getAllLists, getNotesInList } =
+		useContext(GlobalContext);
 	const { id } = useParams();
 	const [showAddNoteBox, setShowAddNoteBox] = useState(false);
+	const [notesInThisList, setNotesInThisList] = useState([]);
+	const fetchNotesInList = async () => {
+		const notes = await getNotesInList(id);
+		setNotesInThisList(() => notes);
+	};
 	useEffect(() => {
 		setSideBarLinks(notesNavLinks);
 		getAllLists();
+		fetchNotesInList();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 	return (
 		<main className="notes">
-			{notes.length > 0 &&
-			notes.some((p) => !p.trashed && p?.lists?.includes(id)) ? (
+			{notesInThisList.length > 0 &&
+			notesInThisList.some(
+				(p) => !p.trashed && p?.lists?.includes(id)
+			) ? (
 				<section className="notes-body">
 					<Masonry>
-						{notes?.map(
+						{notesInThisList?.map(
 							(note, index) =>
 								!note.trashed &&
-								note?.lists?.includes(id)(
+								note?.lists?.includes(id) && (
 									<MasonryBox key={index}>
 										<Note {...note} />
 									</MasonryBox>
