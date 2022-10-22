@@ -41,6 +41,7 @@ const GlobalContext = createContext({
 	notes: [],
 	setNotes: () => {},
 	getAllNotes: () => {},
+	getOneNote: () => {},
 	addNewNote: () => {},
 	updateOneNote: () => {},
 	archiveNote: () => {},

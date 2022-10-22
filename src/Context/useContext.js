@@ -286,6 +286,30 @@ export const useContextData = () => {
 			setIsLoading(false);
 		}
 	};
+	const getOneNote = async (id) => {
+		try {
+			setIsLoading(true);
+			const res = await axiosInstance.get(`/api/notes/${id}`);
+			setNotes((prevNotes) => {
+				let newNotes = prevNotes.map((singleNote) =>
+					singleNote._id !== id ? singleNote : res.data
+				);
+				return newNotes;
+			});
+			setIsLoading(false);
+		} catch (error) {
+			setSnack({
+				text: error.response?.data?.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		}
+	};
 	const addNewNote = async (newNote) => {
 		try {
 			setIsLoading(true);
@@ -398,6 +422,7 @@ export const useContextData = () => {
 				noteId,
 			});
 			if (res.status === 200 || res.status === 201) {
+				getOneNote(noteId);
 				setSnack({
 					text: res.data.message,
 					bgColor: "var(--green)",
@@ -428,10 +453,11 @@ export const useContextData = () => {
 			const res = await axiosInstance.delete(
 				`/api/notes/list/${listId}`,
 				{
-					noteId,
+					data: { noteId },
 				}
 			);
 			if (res.status === 200 || res.status === 201) {
+				await getOneNote(noteId);
 				setSnack({
 					text: res.data.message,
 					bgColor: "var(--green)",
@@ -1052,6 +1078,7 @@ export const useContextData = () => {
 		notes,
 		setNotes,
 		getAllNotes,
+		getOneNote,
 		addNewNote,
 		updateOneNote,
 		archiveNote,

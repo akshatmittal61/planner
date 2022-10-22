@@ -36,6 +36,7 @@ const Note = ({
 		lists: allLists,
 		createNewList,
 		addNoteToList,
+		removeNoteFromList,
 	} = useContext(GlobalContext);
 	let chipText = `${title?.slice(0, min(15, title.length))}${
 		title.length > 15 ? "..." : ""
@@ -84,10 +85,6 @@ const Note = ({
 			setNoteColor(thisColor);
 			setOpenColorBox(false);
 		}
-	};
-
-	const updateNoteLists = () => {
-		console.log(lists);
 	};
 
 	const addNewList = async () => {
@@ -190,10 +187,10 @@ const Note = ({
 						</button>
 						<button
 							className="note-button"
-							title="Add to list"
+							title="Manage Lists"
 							onClick={() => setOpenListsBox(true)}
 						>
-							<MaterialIcons>playlist_add</MaterialIcons>
+							<MaterialIcons>list</MaterialIcons>
 						</button>
 						{archived ? (
 							<button
@@ -443,12 +440,12 @@ const Note = ({
 														list.title
 													)}
 													variant="fill"
-													onClick={() => {
-														updateNoteLists(
+													onClick={() =>
+														removeNoteFromList(
+															rest._id,
 															list._id
-														);
-														setOpenListsBox(false);
-													}}
+														)
+													}
 												/>
 											)
 									)}
@@ -472,12 +469,12 @@ const Note = ({
 														list.title
 													)}
 													variant="outline"
-													onClick={() => {
-														updateNoteLists(
+													onClick={() =>
+														addNoteToList(
+															rest._id,
 															list._id
-														);
-														setOpenListsBox(false);
-													}}
+														)
+													}
 												/>
 											)
 									)}

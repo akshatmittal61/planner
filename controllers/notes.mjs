@@ -68,7 +68,13 @@ const getNote = async (req, res) => {
 			return res.status(404).json({ message: "Note not found" });
 		if (foundNote.user.toString() !== req.user.id)
 			return res.status(401).json({ message: "User not authorized" });
-		return res.status(200).json(foundNote);
+		let listsToSend = [];
+		for (const list of foundNote?.lists) {
+			const res = await getList(list);
+			listsToSend.push(res);
+		}
+		let noteToSend = { ...foundNote.toObject(), lists: listsToSend };
+		return res.status(200).json(noteToSend);
 	} catch (error) {
 		console.error(error);
 		if (error.kind === "ObjectId")
@@ -155,7 +161,6 @@ const addNoteToList = async (req, res) => {
 
 const removeNoteFromList = async (req, res) => {
 	const { noteId } = req.body;
-	console.log(noteId);
 	const listId = req.params.id;
 	try {
 		const list = await List.findById(listId);
