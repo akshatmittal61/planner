@@ -838,6 +838,7 @@ export const useContextData = () => {
 	const synchronize = async () => {
 		getAllEvents();
 		getAllNotes();
+		getAllLists();
 		getAllTasks();
 		getSettings();
 	};

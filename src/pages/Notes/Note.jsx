@@ -1,12 +1,18 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Chip from "../../components/Chip/Chip";
+import Input from "../../components/Input/Input";
 import MaterialIcons from "../../components/MaterialIcons";
 import GlobalContext from "../../Context/GlobalContext";
 import Popup from "../../Layout/Popup/Popup";
 import Row, { Col } from "../../Layout/Responsive";
-import { colors, copy, imageBackgroundUrl, min } from "../../utils";
+import {
+	colors,
+	copy,
+	imageBackgroundUrl,
+	min,
+	predictIcon,
+} from "../../utils";
 import NotePopup from "./NotePopup";
-import _ from "lodash";
 
 const Note = ({
 	title,
@@ -28,6 +34,7 @@ const Note = ({
 		updateOneNote,
 		setSnack,
 		setOpenSnackBar,
+		lists: allLists,
 	} = useContext(GlobalContext);
 	let chipText = `${title?.slice(0, min(15, title.length))}${
 		title.length > 15 ? "..." : ""
@@ -36,6 +43,9 @@ const Note = ({
 	const [openNotePopup, setOpenNotePopup] = useState(false);
 	const [openPopup, setOpenPopup] = useState(false);
 	const [openColorBox, setOpenColorBox] = useState(false);
+	const [openListsBox, setOpenListsBox] = useState(false);
+	const [showAddListButton, setshowAddListButton] = useState(false);
+	const [newListTitle, setNewListTitle] = useState("");
 	const [popupCta, setPopupCta] = useState({
 		text: "Move to Trash",
 		color: "red",
@@ -74,48 +84,41 @@ const Note = ({
 			setOpenColorBox(false);
 		}
 	};
-	const predictIcon = (text) => {
-		switch (_.kebabCase(text)) {
-			case "home":
-				return "home";
-			case "work":
-				return "work";
-			case "personal":
-				return "person";
-			case "shopping":
-				return "shopping_cart";
-			case "study":
-				return "school";
-			case "travel":
-				return "flight";
-			case "finance":
-				return "attach_money";
-			case "health":
-				return "local_hospital";
-			case "food":
-				return "restaurant";
-			case "write-ups":
-				return "history_edu";
-			case "draw":
-				return "brush";
-			case "music":
-				return "music_note";
-			case "movies":
-				return "movie";
-			case "games":
-				return "sports_esports";
-			case "sports":
-				return "sports";
-			case "books":
-				return "menu_book";
-			case "design":
-				return "draw";
-			case "programming":
-				return "code";
-			default:
-				return "label";
+
+	const updateNoteLists = () => {
+		console.log(lists);
+	};
+
+	const addNewList = () => {
+		console.log(12);
+		if (newListTitle !== "") {
+			let updatedNote = {};
+			updateOneNote(rest._id, updatedNote);
+			setNewListTitle("");
+			setshowAddListButton(false);
 		}
 	};
+
+	const close = () => {
+		setOpenColorBox(() => false);
+		setOpenListsBox(() => false);
+		setOpenNotePopup(() => false);
+		setOpenPopup(() => false);
+		setOpenSnackBar(() => false);
+	};
+
+	useEffect(() => {
+		document.addEventListener("keydown", (e) => {
+			if (e.key === "Escape") close();
+		});
+		return () => {
+			document.removeEventListener("keydown", (e) => {
+				if (e.key === "Escape") close();
+			});
+		};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
 	return (
 		<div
 			className="note"
@@ -181,9 +184,13 @@ const Note = ({
 						>
 							<MaterialIcons>content_copy</MaterialIcons>
 						</button>
-						{/* <button className="note-button" title="Add to list">
+						<button
+							className="note-button"
+							title="Add to list"
+							onClick={() => setOpenListsBox(true)}
+						>
 							<MaterialIcons>playlist_add</MaterialIcons>
-						</button> */}
+						</button>
 						{archived ? (
 							<button
 								className="note-button"
@@ -398,6 +405,124 @@ const Note = ({
 								</Col>
 							))}
 						</Row>
+					</div>
+				</>
+			)}
+
+			{openListsBox && (
+				<>
+					<div
+						className="note-lists-overlay"
+						onClick={() => setOpenListsBox(false)}
+					></div>
+					<div className="note-lists-update-box">
+						<div className="note-lists-update-box__title">
+							<MaterialIcons>list</MaterialIcons>
+							<span>Lists</span>
+						</div>
+						<div className="note-lists-update-box__body">
+							<div className="note-lists-update-box__body__lists">
+								<h2>Labels</h2>
+								<p>
+									{allLists?.map(
+										(list, index) =>
+											lists?.some(
+												(noteList) =>
+													noteList._id === list._id
+											) && (
+												<Chip
+													key={index}
+													text={list.title}
+													size="small"
+													color={list.color}
+													icon={predictIcon(
+														list.title
+													)}
+													variant="fill"
+													onClick={() => {
+														updateNoteLists(
+															list._id
+														);
+														setOpenListsBox(false);
+													}}
+												/>
+											)
+									)}
+								</p>
+							</div>
+							<div className="note-lists-update-box__body__lists">
+								<h2>Add labels (suggestions)</h2>
+								<p>
+									{allLists?.map(
+										(list, index) =>
+											!lists?.some(
+												(noteList) =>
+													noteList._id === list._id
+											) && (
+												<Chip
+													key={index}
+													text={list.title}
+													size="small"
+													color={list.color}
+													icon={predictIcon(
+														list.title
+													)}
+													variant="outline"
+													onClick={() => {
+														updateNoteLists(
+															list._id
+														);
+														setOpenListsBox(false);
+													}}
+												/>
+											)
+									)}
+									<Chip
+										text={
+											showAddListButton ? (
+												<input
+													placeholder="Create a new list"
+													value={newListTitle}
+													onChange={(e) =>
+														setNewListTitle(
+															e.target.value
+														)
+													}
+													onKeyDown={(e) => {
+														if (e.key === "Enter") {
+															e?.preventDefault();
+															addNewList();
+														}
+													}}
+													style={{
+														all: "unset",
+														textAlign: "left",
+														width: "fit-content",
+														display: "inline-flex",
+													}}
+												/>
+											) : (
+												"Add New List"
+											)
+										}
+										size="small"
+										color={`var(--${noteColor}-100)`}
+										icon="add"
+										style={{
+											borderColor: `var(--${noteColor}-100)`,
+											cursor: showAddListButton
+												? "text"
+												: "pointer",
+										}}
+										onClick={() => {
+											if (!showAddListButton)
+												setshowAddListButton(true);
+										}}
+									/>
+								</p>
+							</div>
+						</div>
+						<div className="note-lists-update-box__buttons"></div>
 					</div>
 				</>
 			)}
