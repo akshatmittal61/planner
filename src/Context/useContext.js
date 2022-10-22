@@ -370,8 +370,39 @@ export const useContextData = () => {
 					bgColor: "var(--green)",
 					color: "var(--white)",
 				});
-				console.log(res.data.list);
 				setLists((prevLists) => [...prevLists, res.data.list]);
+				setOpenSnackBar(true);
+				setTimeout(() => {
+					setOpenSnackBar(false);
+				}, 5000);
+				setIsLoading(false);
+				return res.data.list;
+			}
+		} catch (error) {
+			setSnack({
+				text: error.response?.data?.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		}
+	};
+	const addNoteToList = async (noteId, listId) => {
+		try {
+			setIsLoading(true);
+			const res = await axiosInstance.post(`/api/notes/list/${listId}`, {
+				noteId,
+			});
+			if (res.status === 200 || res.status === 201) {
+				setSnack({
+					text: res.data.message,
+					bgColor: "var(--green)",
+					color: "var(--white)",
+				});
 				setOpenSnackBar(true);
 				setTimeout(() => {
 					setOpenSnackBar(false);
@@ -391,7 +422,40 @@ export const useContextData = () => {
 			setIsLoading(false);
 		}
 	};
-
+	const removeNoteFromList = async (noteId, listId) => {
+		try {
+			setIsLoading(true);
+			const res = await axiosInstance.delete(
+				`/api/notes/list/${listId}`,
+				{
+					noteId,
+				}
+			);
+			if (res.status === 200 || res.status === 201) {
+				setSnack({
+					text: res.data.message,
+					bgColor: "var(--green)",
+					color: "var(--white)",
+				});
+				setOpenSnackBar(true);
+				setTimeout(() => {
+					setOpenSnackBar(false);
+				}, 5000);
+				setIsLoading(false);
+			}
+		} catch (error) {
+			setSnack({
+				text: error.response?.data?.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		}
+	};
 	const updateOneNote = async (id, updatedNote) => {
 		try {
 			setIsLoading(true);
@@ -1000,6 +1064,8 @@ export const useContextData = () => {
 		getAllLists,
 		getNotesInList,
 		createNewList,
+		addNoteToList,
+		removeNoteFromList,
 		tasks,
 		setTasks,
 		getAllTasks,

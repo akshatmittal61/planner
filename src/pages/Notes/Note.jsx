@@ -35,6 +35,7 @@ const Note = ({
 		setOpenSnackBar,
 		lists: allLists,
 		createNewList,
+		addNoteToList,
 	} = useContext(GlobalContext);
 	let chipText = `${title?.slice(0, min(15, title.length))}${
 		title.length > 15 ? "..." : ""
@@ -89,13 +90,14 @@ const Note = ({
 		console.log(lists);
 	};
 
-	const addNewList = () => {
+	const addNewList = async () => {
 		if (newListTitle !== "") {
-			createNewList({
+			const newCreatedList = await createNewList({
 				title: newListTitle,
 				colors: colors[Math.floor(Math.random() * colors.length)],
 				description: "",
 			});
+			addNoteToList(rest._id, newCreatedList._id);
 			setNewListTitle("");
 			setshowAddListButton(false);
 		}

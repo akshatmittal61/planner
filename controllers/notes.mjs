@@ -42,8 +42,7 @@ const getAllLists = async (req, res) => {
 	}
 };
 
-const createList =
- async (req, res) => {
+const createList = async (req, res) => {
 	try {
 		const { title, color, description } = req.body;
 		if (!title) return res.status(400).json({ message: "Invalid Data" });
@@ -156,6 +155,7 @@ const addNoteToList = async (req, res) => {
 
 const removeNoteFromList = async (req, res) => {
 	const { noteId } = req.body;
+	console.log(noteId);
 	const listId = req.params.id;
 	try {
 		const list = await List.findById(listId);
