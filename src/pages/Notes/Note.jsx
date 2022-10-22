@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import Chip from "../../components/Chip/Chip";
-import Input from "../../components/Input/Input";
 import MaterialIcons from "../../components/MaterialIcons";
 import GlobalContext from "../../Context/GlobalContext";
 import Popup from "../../Layout/Popup/Popup";
@@ -35,6 +34,7 @@ const Note = ({
 		setSnack,
 		setOpenSnackBar,
 		lists: allLists,
+		createNewList,
 	} = useContext(GlobalContext);
 	let chipText = `${title?.slice(0, min(15, title.length))}${
 		title.length > 15 ? "..." : ""
@@ -90,10 +90,12 @@ const Note = ({
 	};
 
 	const addNewList = () => {
-		console.log(12);
 		if (newListTitle !== "") {
-			let updatedNote = {};
-			updateOneNote(rest._id, updatedNote);
+			createNewList({
+				title: newListTitle,
+				colors: colors[Math.floor(Math.random() * colors.length)],
+				description: "",
+			});
 			setNewListTitle("");
 			setshowAddListButton(false);
 		}

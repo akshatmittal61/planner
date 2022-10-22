@@ -42,7 +42,8 @@ const getAllLists = async (req, res) => {
 	}
 };
 
-const createList = async (req, res) => {
+const createList =
+ async (req, res) => {
 	try {
 		const { title, color, description } = req.body;
 		if (!title) return res.status(400).json({ message: "Invalid Data" });
