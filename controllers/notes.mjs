@@ -235,6 +235,30 @@ const getListsForNote = async (req, res) => {
 	}
 };
 
+const editList = async (req, res) => {
+	const { ...updatedFields } = req.body;
+	const listId = req.params.id;
+	try {
+		const list = await List.findById(listId);
+		if (!list) return res.status(404).json({ message: "List not found" });
+		if (list.user.toString() !== req.user.id)
+			return res.status(401).json({ message: "User not authorized" });
+		const updatedList = await List.findByIdAndUpdate(
+			listId,
+			{ $set: updatedFields },
+			{ new: true }
+		);
+		return res
+			.status(200)
+			.json({ message: "List updated", list: updatedList });
+	} catch (error) {
+		console.error(error);
+		if (error.kind === "ObjectId")
+			return res.status(404).json({ message: "List not found" });
+		return res.status(500).json({ message: "Server Error" });
+	}
+};
+
 const archiveNote = async (req, res) => {
 	const id = req.params.id;
 	try {
@@ -384,6 +408,7 @@ export {
 	removeNoteFromList,
 	getNotesInList,
 	getListsForNote,
+	editList,
 	addNote,
 	editNote,
 	archiveNote,

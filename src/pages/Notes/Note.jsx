@@ -161,6 +161,7 @@ const Note = ({
 								link={`/notes/list/${list._id}`}
 								icon={predictIcon(list.title)}
 								style={{
+									color: "var(--black)",
 									borderColor: `var(--${list?.color}-100)`,
 									boxShadow: "var(--shadow-elevation-2dp)",
 								}}
@@ -452,6 +453,11 @@ const Note = ({
 															list._id
 														)
 													}
+													style={{
+														backgroundColor: `var(--${list.color}-700)`,
+														color: `var(--white)`,
+														borderColor: `var(--${list.color}-700)`,
+													}}
 												/>
 											)
 									)}
@@ -481,6 +487,14 @@ const Note = ({
 															list._id
 														)
 													}
+													style={{
+														backgroundColor: `transparent`,
+														color:
+															theme === "light"
+																? `var(--black)`
+																: `var(--white)`,
+														borderColor: `var(--${list.color}-700)`,
+													}}
 												/>
 											)
 									)}

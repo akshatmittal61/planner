@@ -3,6 +3,7 @@ import IconButton from "../../components/Button/IconButton";
 import MaterialIcons from "../../components/MaterialIcons";
 import GlobalContext from "../../Context/GlobalContext";
 import { imageBackgroundUrl } from "../../utils";
+import "../Notes/notes.css";
 
 const List = ({ _id, title, description, color, poster }) => {
 	const { theme } = useContext(GlobalContext);
@@ -25,17 +26,30 @@ const List = ({ _id, title, description, color, poster }) => {
 		>
 			<div className="list-head">
 				<span className="list-title list-head-title">{title}</span>
-				<IconButton
-					className="list-header-link"
-					fill={`var(--${color}-${
-						theme === "light" ? "400" : "100"
-					})`}
-					style={{
-						color: "var(--black)",
-					}}
-					icon="north_east"
-					link={`/notes/list/${_id}`}
-				/>
+				<div className="list-title list-head-buttons">
+					<IconButton
+						className="list-header-link"
+						fill={`var(--${color}-${
+							theme === "light" ? "400" : "100"
+						})`}
+						style={{
+							color: "var(--black)",
+						}}
+						icon="edit"
+						link={`/notes/list/${_id}`}
+					/>
+					<IconButton
+						className="list-header-link"
+						fill={`var(--${color}-${
+							theme === "light" ? "400" : "100"
+						})`}
+						style={{
+							color: "var(--black)",
+						}}
+						icon="north_east"
+						link={`/notes/list/${_id}`}
+					/>
+				</div>
 			</div>
 			{description && <div className="list-content">{description}</div>}
 			<div className="list-buttons">

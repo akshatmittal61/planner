@@ -5,6 +5,7 @@ import {
 	archiveNote,
 	createList,
 	deleteNote,
+	editList,
 	editNote,
 	getAllLists,
 	getAllNotes,
@@ -31,6 +32,7 @@ router.get("/", getAllNotes);
 router.get("/lists", getAllLists);
 router.get("/list/:id", getNotesInList);
 router.post("/list", createList);
+router.put("/list/:id", editList);
 router.post("/list/:id", addNoteToList);
 router.delete("/list/:id", removeNoteFromList);
 
