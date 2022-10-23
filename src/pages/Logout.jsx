@@ -26,7 +26,7 @@ const Logout = () => {
 		setTimeout(() => {
 			setOpenSnackBar(false);
 		}, 5000);
-	}, [setIsAuthenticated, setOpenSnackBar, setSnack, setUser]);
+	}, [setIsAuthenticated, setOpenSnackBar, setSnack, setUser, updateUser]);
 
 	return <Navigate to={"/"} />;
 };
