@@ -1,12 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import IconButton from "../../components/Button/IconButton";
 import MaterialIcons from "../../components/MaterialIcons";
 import GlobalContext from "../../Context/GlobalContext";
 import { imageBackgroundUrl } from "../../utils";
 import "../Notes/notes.css";
+import EditList from "./EditList";
 
-const List = ({ _id, title, description, color, poster }) => {
+const List = ({ _id, title, description, color, poster, ...rest }) => {
 	const { theme } = useContext(GlobalContext);
+	const [openListPopup, setOpenListPopup] = useState(false);
 	return (
 		<div
 			className="list"
@@ -36,7 +38,7 @@ const List = ({ _id, title, description, color, poster }) => {
 							color: "var(--black)",
 						}}
 						icon="edit"
-						link={`/notes/list/${_id}`}
+						onClick={() => setOpenListPopup(true)}
 					/>
 					<IconButton
 						className="list-header-link"
@@ -63,6 +65,17 @@ const List = ({ _id, title, description, color, poster }) => {
 					<MaterialIcons>delete</MaterialIcons>
 				</button>
 			</div>
+			{openListPopup && (
+				<EditList
+					title={title}
+					description={description}
+					color={color}
+					poster={poster}
+					close={() => setOpenListPopup(false)}
+					_id={_id}
+					{...rest}
+				/>
+			)}
 		</div>
 	);
 };

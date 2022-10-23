@@ -415,6 +415,44 @@ export const useContextData = () => {
 			setIsLoading(false);
 		}
 	};
+	const editList = async (id, updatedList) => {
+		try {
+			setIsLoading(true);
+			const res = await axiosInstance.put(`/api/notes/list/${id}`, {
+				...updatedList,
+			});
+			if (res.status === 200 || res.status === 201) {
+				setSnack({
+					text: res.data.message,
+					bgColor: "var(--green)",
+					color: "var(--white)",
+				});
+				setLists((prevLists) => {
+					let newLists = prevLists.map((singleList) =>
+						singleList._id !== id ? singleList : res.data.list
+					);
+					return newLists;
+				});
+				setOpenSnackBar(true);
+				setTimeout(() => {
+					setOpenSnackBar(false);
+				}, 5000);
+				setIsLoading(false);
+				return res.data.list;
+			}
+		} catch (error) {
+			setSnack({
+				text: error.response?.data?.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		}
+	};
 	const addNoteToList = async (noteId, listId) => {
 		try {
 			setIsLoading(true);
@@ -1091,6 +1129,7 @@ export const useContextData = () => {
 		getAllLists,
 		getNotesInList,
 		createNewList,
+		editList,
 		addNoteToList,
 		removeNoteFromList,
 		tasks,

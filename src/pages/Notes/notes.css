@@ -168,14 +168,17 @@
   margin: 0.5rem 0;
 }
 
-.add-note-form {
+.add-note-form,
+.edit-list-form {
   width: 90%;
   margin: 2rem auto;
 }
-.add-note-form textarea {
+.add-note-form textarea,
+.edit-list-form textarea {
   height: 50vh;
 }
-.add-note-form .form-group {
+.add-note-form .form-group,
+.edit-list-form .form-group {
   width: 100%;
   margin: 1rem auto;
   position: relative;
@@ -183,19 +186,25 @@
   justify-content: center;
   align-items: center;
 }
-.add-note-form .form-group [name=title] {
+.add-note-form .form-group [name=title],
+.edit-list-form .form-group [name=title] {
   font-size: 1.5rem;
   line-height: 2rem;
 }
-.add-note-form .form-group [name=content] {
+.add-note-form .form-group [name=content],
+.add-note-form .form-group [name=description],
+.edit-list-form .form-group [name=content],
+.edit-list-form .form-group [name=description] {
   font-size: 1.25rem;
   line-height: 1.75rem;
 }
-.add-note-form-group {
+.add-note-form-group,
+.edit-list-form-group {
   position: relative;
   margin: 0 1rem;
 }
-.add-note-cover {
+.add-note-cover,
+.edit-list-cover {
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -203,7 +212,9 @@
   left: 0;
   z-index: 15;
 }
-.add-note-color-box, .add-note-image-box {
+.add-note-color-box, .add-note-image-box,
+.edit-list-color-box,
+.edit-list-image-box {
   position: absolute;
   bottom: 3rem;
   left: 1rem;
@@ -215,21 +226,31 @@
   overflow: hidden;
   overflow-y: auto;
 }
-.add-note-color-box::-webkit-scrollbar, .add-note-image-box::-webkit-scrollbar {
+.add-note-color-box::-webkit-scrollbar, .add-note-image-box::-webkit-scrollbar,
+.edit-list-color-box::-webkit-scrollbar,
+.edit-list-image-box::-webkit-scrollbar {
   width: 1px;
   background-color: transparent;
 }
-.add-note-color-box::-webkit-scrollbar-track, .add-note-image-box::-webkit-scrollbar-track {
+.add-note-color-box::-webkit-scrollbar-track, .add-note-image-box::-webkit-scrollbar-track,
+.edit-list-color-box::-webkit-scrollbar-track,
+.edit-list-image-box::-webkit-scrollbar-track {
   background-color: transparent;
 }
-.add-note-color-box::-webkit-scrollbar-thumb, .add-note-image-box::-webkit-scrollbar-thumb {
+.add-note-color-box::-webkit-scrollbar-thumb, .add-note-image-box::-webkit-scrollbar-thumb,
+.edit-list-color-box::-webkit-scrollbar-thumb,
+.edit-list-image-box::-webkit-scrollbar-thumb {
   background-color: transparent;
   border-radius: 500px;
 }
-.add-note-color-box::-webkit-scrollbar-thumb:hover, .add-note-image-box::-webkit-scrollbar-thumb:hover {
+.add-note-color-box::-webkit-scrollbar-thumb:hover, .add-note-image-box::-webkit-scrollbar-thumb:hover,
+.edit-list-color-box::-webkit-scrollbar-thumb:hover,
+.edit-list-image-box::-webkit-scrollbar-thumb:hover {
   background-color: transparent;
 }
-.add-note-color-box::-webkit-scrollbar-thumb:hover, .add-note-image-box::-webkit-scrollbar-thumb:hover {
+.add-note-color-box::-webkit-scrollbar-thumb:hover, .add-note-image-box::-webkit-scrollbar-thumb:hover,
+.edit-list-color-box::-webkit-scrollbar-thumb:hover,
+.edit-list-image-box::-webkit-scrollbar-thumb:hover {
   background-color: transparent;
 }
 

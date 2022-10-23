@@ -1,4 +1,5 @@
-.add-note {
+.add-note,
+.edit-list {
     &-form {
         width: 90%;
         margin: 2rem auto;
@@ -20,7 +21,8 @@
                 line-height: 2rem;
             }
 
-            [name='content'] {
+            [name='content'],
+            [name='description'] {
                 font-size: 1.25rem;
                 line-height: 1.75rem;
             }
