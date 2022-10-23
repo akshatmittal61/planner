@@ -4,6 +4,7 @@ import {
 	addNoteToList,
 	archiveNote,
 	createList,
+	deleteList,
 	deleteNote,
 	editList,
 	editNote,
@@ -34,7 +35,8 @@ router.get("/list/:id", getNotesInList);
 router.post("/list", createList);
 router.put("/list/:id", editList);
 router.post("/list/:id", addNoteToList);
-router.delete("/list/:id", removeNoteFromList);
+router.put("/list/:id", removeNoteFromList);
+router.delete("/list/:id", deleteList);
 
 // Note
 

@@ -488,12 +488,9 @@ export const useContextData = () => {
 	const removeNoteFromList = async (noteId, listId) => {
 		try {
 			setIsLoading(true);
-			const res = await axiosInstance.delete(
-				`/api/notes/list/${listId}`,
-				{
-					data: { noteId },
-				}
-			);
+			const res = await axiosInstance.put(`/api/notes/list/${listId}`, {
+				data: { noteId },
+			});
 			if (res.status === 200 || res.status === 201) {
 				await getOneNote(noteId);
 				setSnack({
@@ -501,6 +498,43 @@ export const useContextData = () => {
 					bgColor: "var(--green)",
 					color: "var(--white)",
 				});
+				setOpenSnackBar(true);
+				setTimeout(() => {
+					setOpenSnackBar(false);
+				}, 5000);
+				setIsLoading(false);
+			}
+		} catch (error) {
+			setSnack({
+				text: error.response?.data?.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		}
+	};
+	const deleteList = async (id) => {
+		try {
+			setIsLoading(true);
+			const res = await axiosInstance.delete(`/api/notes/list/${id}`);
+			if (res.status === 200) {
+				setSnack({
+					text: res.data.message,
+					bgColor: "var(--green)",
+					color: "var(--white)",
+				});
+				setLists((prevLists) => {
+					let newLists = prevLists.filter(
+						(singleList) => singleList._id !== id
+					);
+					return newLists;
+				});
+				getAllNotes();
+				getAllLists();
 				setOpenSnackBar(true);
 				setTimeout(() => {
 					setOpenSnackBar(false);
@@ -1132,6 +1166,7 @@ export const useContextData = () => {
 		editList,
 		addNoteToList,
 		removeNoteFromList,
+		deleteList,
 		tasks,
 		setTasks,
 		getAllTasks,

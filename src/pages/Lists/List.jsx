@@ -1,14 +1,17 @@
 import React, { useContext, useState } from "react";
 import IconButton from "../../components/Button/IconButton";
+import Chip from "../../components/Chip/Chip";
 import MaterialIcons from "../../components/MaterialIcons";
 import GlobalContext from "../../Context/GlobalContext";
-import { imageBackgroundUrl } from "../../utils";
+import Popup from "../../Layout/Popup/Popup";
+import { imageBackgroundUrl, min } from "../../utils";
 import "../Notes/notes.css";
 import EditList from "./EditList";
 
 const List = ({ _id, title, description, color, poster, ...rest }) => {
-	const { theme } = useContext(GlobalContext);
+	const { theme, deleteList } = useContext(GlobalContext);
 	const [openListPopup, setOpenListPopup] = useState(false);
+	const [openPopup, setOpenPopup] = useState(false);
 	return (
 		<div
 			className="list"
@@ -61,7 +64,11 @@ const List = ({ _id, title, description, color, poster, ...rest }) => {
 				<button className="list-button" title="Background Image">
 					<MaterialIcons>image</MaterialIcons>
 				</button>
-				<button className="list-button" title="Delete List">
+				<button
+					className="list-button"
+					title="Delete List"
+					onClick={() => setOpenPopup(true)}
+				>
 					<MaterialIcons>delete</MaterialIcons>
 				</button>
 			</div>
@@ -75,6 +82,48 @@ const List = ({ _id, title, description, color, poster, ...rest }) => {
 					_id={_id}
 					{...rest}
 				/>
+			)}
+			{openPopup && (
+				<Popup
+					width="50%"
+					height="fit-content"
+					breakpoints={{
+						tab: ["60%", "fit-content"],
+						mobile: ["90%", "fit-content"],
+					}}
+					cta={{
+						text: "Delete forever",
+						color: "red",
+						icon: "delete",
+						onClick: () => {
+							deleteList(_id);
+							setOpenPopup(false);
+						},
+					}}
+					close={() => setOpenPopup(false)}
+				>
+					<span style={{ fontSize: "1.25rem", lineHeight: "1.5rem" }}>
+						Delete list{" "}
+						<Chip
+							text={`${title?.slice(0, min(15, title.length))}${
+								title.length > 15 ? "..." : ""
+							}`}
+							size="small"
+							color={color}
+						/>{" "}
+						forever? This action can't be undone.
+					</span>
+					<span
+						style={{
+							fontSize: "0.875rem",
+							lineHeight: "1.5rem",
+							color: "var(--gray-500)",
+						}}
+					>
+						<br />
+						Note: Deleting a list does not delete the notes in it.
+					</span>
+				</Popup>
 			)}
 		</div>
 	);

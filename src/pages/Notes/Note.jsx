@@ -340,7 +340,7 @@ const Note = ({
 											size="small"
 											color={noteColor}
 										/>{" "}
-										forever? This actions can't be undone.
+										forever? This action can't be undone.
 									</>
 								));
 								setOpenNotePopup(false);
@@ -429,40 +429,43 @@ const Note = ({
 							<span>Lists</span>
 						</div>
 						<div className="note-lists-update-box__body">
-							<div className="note-lists-update-box__body__lists">
-								<h2>Labels</h2>
-								<p>
-									{allLists?.map(
-										(list, index) =>
-											lists?.some(
-												(noteList) =>
-													noteList._id === list._id
-											) && (
-												<Chip
-													key={index}
-													text={list.title}
-													size="small"
-													color={list.color}
-													icon={predictIcon(
-														list.title
-													)}
-													variant="fill"
-													onClick={() =>
-														removeNoteFromList(
-															rest._id,
-															list._id
-														)
-													}
-													style={{
-														backgroundColor: `var(--${list.color}-700)`,
-														color: `var(--white)`,
-														borderColor: `var(--${list.color}-700)`,
-													}}
-												/>
-											)
-									)}
-								</p>
-							</div>
+							{lists.length > 0 && (
+								<div className="note-lists-update-box__body__lists">
+									<h2>Labels</h2>
+									<p>
+										{allLists?.map(
+											(list, index) =>
+												lists?.some(
+													(noteList) =>
+														noteList._id ===
+														list._id
+												) && (
+													<Chip
+														key={index}
+														text={list.title}
+														size="small"
+														color={list.color}
+														icon={predictIcon(
+															list.title
+														)}
+														variant="fill"
+														onClick={() =>
+															removeNoteFromList(
+																rest._id,
+																list._id
+															)
+														}
+														style={{
+															backgroundColor: `var(--${list.color}-700)`,
+															color: `var(--white)`,
+															borderColor: `var(--${list.color}-700)`,
+														}}
+													/>
+												)
+										)}
+									</p>
+								</div>
+							)}
 							<div className="note-lists-update-box__body__lists">
 								<h2>Add labels (suggestions)</h2>
 								<p>
@@ -543,7 +546,6 @@ const Note = ({
 								</p>
 							</div>
 						</div>
-						<div className="note-lists-update-box__buttons"></div>
 					</div>
 				</>
 			)}

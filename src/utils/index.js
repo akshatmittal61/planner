@@ -58,6 +58,10 @@ export const predictIcon = (text) => {
 			return "music_note";
 		case "movies":
 			return "movie";
+		case "shows":
+			return "tv";
+		case "web-series":
+			return "subscriptions";
 		case "games":
 			return "sports_esports";
 		case "sports":
