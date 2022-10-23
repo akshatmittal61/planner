@@ -6,9 +6,10 @@ import IconButton from "../../components/Button/IconButton";
 import MonthDialogBox from "./MonthDialogBox";
 import GlobalContext from "../../Context/GlobalContext";
 import { calendarImages } from "../../utils/images";
+import defaultNavLinks from "../../utils/navigation";
 
 const Calendar = () => {
-	const { theme, breakpoint } = useContext(GlobalContext);
+	const { theme, breakpoint, setSideBarLinks } = useContext(GlobalContext);
 	const days = [
 		"Monday",
 		"Tuesday",
@@ -122,6 +123,9 @@ const Calendar = () => {
 	useEffect(() => {
 		setDatesToDisplay(handleDatesToDisplay(month + 1, year));
 	}, [month, year]);
+	useEffect(() => {
+		setSideBarLinks(defaultNavLinks);
+	}, []);
 
 	const [openMonthDialogBox, setOpenMonthDialogBox] = useState(false);
 

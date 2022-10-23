@@ -1,26 +1,36 @@
 .chip {
-  position: relative;
-  user-select: none;
-  appearance: none;
-  width: fit-content;
-  font-size: 0.9rem;
+  font-size: 1.25rem;
+  line-height: 2rem;
   display: inline-flex;
-  align-items: center;
   justify-content: center;
-  height: 32px;
-  color: rgba(0, 0, 0, 0.87);
-  background-color: rgba(0, 0, 0, 0.08);
-  border-radius: 16px;
+  align-items: center;
+  border-radius: 500px;
+  margin: 0.25rem 0.75rem;
+  padding: 0.5rem 1.15rem;
+  border: 2.5px solid var(--green);
+  outline: 0px solid transparent;
+  width: fit-content;
   white-space: nowrap;
-  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  cursor: default;
-  outline: 0px;
-  text-decoration: none;
-  border: 0px;
-  padding: 0px;
-  vertical-align: middle;
-  padding: 0 0.65rem;
-  box-sizing: border-box;
+  transition: all 0.1s ease-in-out;
+  color: inherit;
+  cursor: pointer;
+}
+.chip .material-symbols-outlined {
+  font-size: inherit;
+  margin-right: 0.5rem;
+}
+.chip-sm {
+  padding: 0.1rem 0.75rem;
+  font-size: 0.95rem;
+  border-width: 2px;
+}
+.chip-sm .material-symbols-outlined {
+  margin-right: 0.25rem;
+}
+.chip-lg {
+  padding: 0.75rem 1.5rem;
+  font-size: 1.125rem;
+  border-width: 3px;
 }
 
 /*# sourceMappingURL=chip.css.map */

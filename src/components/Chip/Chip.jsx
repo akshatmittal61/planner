@@ -1,4 +1,5 @@
 import React from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./chip.css";
 
 const Chip = ({
@@ -7,13 +8,21 @@ const Chip = ({
 	color = "indigo",
 	variant = "fill",
 	style,
+	onClick,
+	icon = "",
+	link,
+	href = "#",
+	target = "_blank",
 	...rest
 }) => {
+	const location = useLocation();
+	const navigate = useNavigate();
+	let classes = "chip ";
+	if (size === "small") classes += " chip-sm";
+	else if (size === "large") classes += " chip-lg";
 	return (
 		<button
-			className={`chip 
-			${size === "large" && "chip-lg"} 
-			${size === "small" && "chip-sm"}`}
+			className={classes}
 			style={{
 				borderColor: `var(--${color})`,
 				outlineColor: `var(--${color})`,
@@ -21,8 +30,18 @@ const Chip = ({
 					variant === "fill" ? `var(--${color}-100)` : "transparent",
 				...style,
 			}}
+			onClick={
+				href !== "" && href !== "#"
+					? () => window.open(href, target)
+					: link !== location.pathname && link !== undefined
+					? () => navigate(link)
+					: onClick
+			}
 			{...rest}
 		>
+			{icon !== "" && (
+				<span className="material-symbols-outlined">{icon}</span>
+			)}
 			{text}
 		</button>
 	);

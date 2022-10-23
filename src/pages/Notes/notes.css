@@ -1,4 +1,5 @@
-.notes {
+.notes,
+.lists {
   margin: 0 auto;
   margin-top: var(--head-height);
   width: 99%;
@@ -9,11 +10,13 @@
   flex-flow: column;
   font-family: "Chococooky", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
-.notes-body {
+.notes-body,
+.lists-body {
   width: 100%;
 }
 
-.note {
+.note,
+.list {
   width: 95%;
   margin: 0.75rem;
   border: 1px solid var(--back-shadow-light);
@@ -25,28 +28,45 @@
   background-repeat: no-repeat;
   background-blend-mode: lighten;
 }
-.note:hover {
-  border-radius: 12px;
+.note:hover,
+.list:hover {
   box-shadow: var(--shadow-elevation-2dp);
 }
-.note-title {
+.note-title,
+.list-title {
   font-size: 1.25rem;
   line-height: 1.75rem;
   margin: 0 0 0.5rem 0;
 }
-.note-content {
+.note-content,
+.list-content {
   width: 100%;
   max-height: 10rem;
   overflow: hidden;
 }
-.note-buttons {
+.note-lists,
+.list-lists {
+  width: 100%;
+  margin: 0.75rem 0 0 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.note-lists .chip,
+.list-lists .chip {
+  margin: 0.25rem 0.75rem 0.25rem 0;
+}
+.note-buttons,
+.list-buttons {
   width: 100%;
   height: 2.5rem;
   display: flex;
   justify-content: flex-start;
   align-items: center;
 }
-.note-button {
+.note-button,
+.list-button {
   width: 2rem;
   height: 2rem;
   display: flex;
@@ -57,31 +77,43 @@
   opacity: 0;
 }
 @media (max-width: 672px) {
-  .note-button {
+  .note-button,
+.list-button {
     opacity: 1;
   }
 }
-.note-button:hover {
+.note-button:hover,
+.list-button:hover {
   background-color: var(--back-shadow-light);
 }
-.note-button .material-symbols-outlined {
+.note-button .material-symbols-outlined,
+.list-button .material-symbols-outlined {
   font-size: 1.125rem;
 }
-.note:hover .note-button {
+.note:hover .note-button,
+.note:hover .list-button,
+.list:hover .note-button,
+.list:hover .list-button {
   opacity: 1;
 }
-.note-color-overlay {
+.note-color-overlay, .note-lists-overlay,
+.list-color-overlay,
+.list-lists-overlay {
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
   background: rgba(0, 0, 0, 0.2);
+  user-select: none;
 }
-.note-color-update-box {
+.note-color-update-box, .note-lists-update-box,
+.list-color-update-box,
+.list-lists-update-box {
   position: fixed;
   top: 50%;
   left: 50%;
+  z-index: 5;
   transform: translate(-50%, -50%);
   width: 20rem;
   padding: 1rem 0;
@@ -91,15 +123,62 @@
   border-radius: 8px;
   overflow: visible;
 }
+.note-lists-update-box,
+.list-lists-update-box {
+  padding: 1rem 0.75rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.note-lists-update-box__close,
+.list-lists-update-box__close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+}
+.note-lists-update-box__title,
+.list-lists-update-box__title {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.note-lists-update-box__title .material-symbols-outlined,
+.list-lists-update-box__title .material-symbols-outlined {
+  margin-right: 0.5rem;
+}
+.note-lists-update-box__body,
+.list-lists-update-box__body {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 1rem 0 0 0;
+}
+.note-lists-update-box__body__lists,
+.list-lists-update-box__body__lists {
+  margin: 0.5rem 0;
+}
+.note-lists-update-box__body__lists h2,
+.list-lists-update-box__body__lists h2 {
+  font-size: 1.25rem;
+  font-weight: 300;
+  margin: 0.5rem 0;
+}
 
-.add-note-form {
+.add-note-form,
+.edit-list-form {
   width: 90%;
   margin: 2rem auto;
 }
-.add-note-form textarea {
+.add-note-form textarea,
+.edit-list-form textarea {
   height: 50vh;
 }
-.add-note-form .form-group {
+.add-note-form .form-group,
+.edit-list-form .form-group {
   width: 100%;
   margin: 1rem auto;
   position: relative;
@@ -107,19 +186,25 @@
   justify-content: center;
   align-items: center;
 }
-.add-note-form .form-group [name=title] {
+.add-note-form .form-group [name=title],
+.edit-list-form .form-group [name=title] {
   font-size: 1.5rem;
   line-height: 2rem;
 }
-.add-note-form .form-group [name=content] {
+.add-note-form .form-group [name=content],
+.add-note-form .form-group [name=description],
+.edit-list-form .form-group [name=content],
+.edit-list-form .form-group [name=description] {
   font-size: 1.25rem;
   line-height: 1.75rem;
 }
-.add-note-form-group {
+.add-note-form-group,
+.edit-list-form-group {
   position: relative;
   margin: 0 1rem;
 }
-.add-note-cover {
+.add-note-cover,
+.edit-list-cover {
   width: 100vw;
   height: 100vh;
   position: fixed;
@@ -127,7 +212,9 @@
   left: 0;
   z-index: 15;
 }
-.add-note-color-box, .add-note-image-box {
+.add-note-color-box, .add-note-image-box,
+.edit-list-color-box,
+.edit-list-image-box {
   position: absolute;
   bottom: 3rem;
   left: 1rem;
@@ -139,21 +226,31 @@
   overflow: hidden;
   overflow-y: auto;
 }
-.add-note-color-box::-webkit-scrollbar, .add-note-image-box::-webkit-scrollbar {
+.add-note-color-box::-webkit-scrollbar, .add-note-image-box::-webkit-scrollbar,
+.edit-list-color-box::-webkit-scrollbar,
+.edit-list-image-box::-webkit-scrollbar {
   width: 1px;
   background-color: transparent;
 }
-.add-note-color-box::-webkit-scrollbar-track, .add-note-image-box::-webkit-scrollbar-track {
+.add-note-color-box::-webkit-scrollbar-track, .add-note-image-box::-webkit-scrollbar-track,
+.edit-list-color-box::-webkit-scrollbar-track,
+.edit-list-image-box::-webkit-scrollbar-track {
   background-color: transparent;
 }
-.add-note-color-box::-webkit-scrollbar-thumb, .add-note-image-box::-webkit-scrollbar-thumb {
+.add-note-color-box::-webkit-scrollbar-thumb, .add-note-image-box::-webkit-scrollbar-thumb,
+.edit-list-color-box::-webkit-scrollbar-thumb,
+.edit-list-image-box::-webkit-scrollbar-thumb {
   background-color: transparent;
   border-radius: 500px;
 }
-.add-note-color-box::-webkit-scrollbar-thumb:hover, .add-note-image-box::-webkit-scrollbar-thumb:hover {
+.add-note-color-box::-webkit-scrollbar-thumb:hover, .add-note-image-box::-webkit-scrollbar-thumb:hover,
+.edit-list-color-box::-webkit-scrollbar-thumb:hover,
+.edit-list-image-box::-webkit-scrollbar-thumb:hover {
   background-color: transparent;
 }
-.add-note-color-box::-webkit-scrollbar-thumb:hover, .add-note-image-box::-webkit-scrollbar-thumb:hover {
+.add-note-color-box::-webkit-scrollbar-thumb:hover, .add-note-image-box::-webkit-scrollbar-thumb:hover,
+.edit-list-color-box::-webkit-scrollbar-thumb:hover,
+.edit-list-image-box::-webkit-scrollbar-thumb:hover {
   background-color: transparent;
 }
 

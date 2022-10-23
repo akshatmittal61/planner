@@ -1,0 +1,23 @@
+.list {
+  background-color: var(--bgcolor);
+  border-radius: 8px;
+}
+.list-head {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.list-head-title {
+  font-size: 1.5rem;
+}
+.list-head-buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.list-head-buttons > * {
+  margin-left: 1rem;
+}
+
+/*# sourceMappingURL=lists.css.map */

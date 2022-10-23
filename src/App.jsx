@@ -29,6 +29,8 @@ import SnackBar from "./components/SnackBar/SnackBar";
 import Logout from "./pages/Logout";
 import EventsTrash from "./pages/Events/EventsTrash";
 import Settings from "./pages/Settings/Settings";
+import Lists from "./pages/Lists/Lists";
+import List from "./pages/List/List";
 
 const Wrapper = () => {
 	AOS.init();
@@ -62,7 +64,7 @@ const Wrapper = () => {
 		if (Notification.permission !== "granted") {
 			Notification.requestPermission().then(() => {
 				if (Notification.permission !== "granted") {
-					console.log(
+					console.warn(
 						"Allow notification for Planner to get notified for Tasks"
 					);
 				}
@@ -153,6 +155,22 @@ const Wrapper = () => {
 					element={
 						<PrivateRoute>
 							<Notes />
+						</PrivateRoute>
+					}
+				/>
+				<Route
+					path="/notes/lists"
+					element={
+						<PrivateRoute>
+							<Lists />
+						</PrivateRoute>
+					}
+				/>
+				<Route
+					path="/notes/list/:id"
+					element={
+						<PrivateRoute>
+							<List />
 						</PrivateRoute>
 					}
 				/>

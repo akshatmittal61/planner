@@ -1,13 +1,28 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Chip from "../../components/Chip/Chip";
 import MaterialIcons from "../../components/MaterialIcons";
 import GlobalContext from "../../Context/GlobalContext";
 import Popup from "../../Layout/Popup/Popup";
 import Row, { Col } from "../../Layout/Responsive";
-import { colors, copy, imageBackgroundUrl, min } from "../../utils";
+import {
+	colors,
+	copy,
+	imageBackgroundUrl,
+	min,
+	predictIcon,
+} from "../../utils";
 import NotePopup from "./NotePopup";
 
-const Note = ({ title, content, color, image, trashed, archived, ...rest }) => {
+const Note = ({
+	title,
+	content,
+	color,
+	image,
+	lists,
+	trashed,
+	archived,
+	...rest
+}) => {
 	const {
 		theme,
 		archiveNote,
@@ -16,6 +31,12 @@ const Note = ({ title, content, color, image, trashed, archived, ...rest }) => {
 		restoreNoteFromTrash,
 		deleteNote,
 		updateOneNote,
+		setSnack,
+		setOpenSnackBar,
+		lists: allLists,
+		createNewList,
+		addNoteToList,
+		removeNoteFromList,
 	} = useContext(GlobalContext);
 	let chipText = `${title?.slice(0, min(15, title.length))}${
 		title.length > 15 ? "..." : ""
@@ -24,6 +45,9 @@ const Note = ({ title, content, color, image, trashed, archived, ...rest }) => {
 	const [openNotePopup, setOpenNotePopup] = useState(false);
 	const [openPopup, setOpenPopup] = useState(false);
 	const [openColorBox, setOpenColorBox] = useState(false);
+	const [openListsBox, setOpenListsBox] = useState(false);
+	const [showAddListButton, setshowAddListButton] = useState(false);
+	const [newListTitle, setNewListTitle] = useState("");
 	const [popupCta, setPopupCta] = useState({
 		text: "Move to Trash",
 		color: "red",
@@ -42,18 +66,60 @@ const Note = ({ title, content, color, image, trashed, archived, ...rest }) => {
 		if (archived) ans += " \nNote: This Note is in owner's archives";
 		if (trashed) ans += " \nNote: This Note is in owner's bin";
 		copy(ans);
+		setSnack({
+			text: "Note copied to your clipboard",
+			bgColor: "var(--green)",
+			color: "var(--white)",
+		});
+		setOpenSnackBar(true);
+		setTimeout(() => {
+			setOpenSnackBar(false);
+		}, 5000);
 	};
 
 	const updateNoteColor = (thisColor) => {
 		if (thisColor !== color) {
 			let updatedNote = {};
-			console.log(updatedNote);
 			updatedNote.color = thisColor;
 			updateOneNote(rest._id, updatedNote);
 			setNoteColor(thisColor);
 			setOpenColorBox(false);
 		}
 	};
+
+	const addNewList = async () => {
+		if (newListTitle !== "") {
+			const newCreatedList = await createNewList({
+				title: newListTitle,
+				colors: colors[Math.floor(Math.random() * colors.length)],
+				description: "",
+			});
+			addNoteToList(rest._id, newCreatedList._id);
+			setNewListTitle("");
+			setshowAddListButton(false);
+		}
+	};
+
+	const close = () => {
+		setOpenColorBox(() => false);
+		setOpenListsBox(() => false);
+		setOpenNotePopup(() => false);
+		setOpenPopup(() => false);
+		setOpenSnackBar(() => false);
+	};
+
+	useEffect(() => {
+		document.addEventListener("keydown", (e) => {
+			if (e.key === "Escape") close();
+		});
+		return () => {
+			document.removeEventListener("keydown", (e) => {
+				if (e.key === "Escape") close();
+			});
+		};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
 	return (
 		<div
 			className="note"
@@ -80,6 +146,29 @@ const Note = ({ title, content, color, image, trashed, archived, ...rest }) => {
 			>
 				{content}
 			</div>
+			{lists.length > 0 && (
+				<div className="note-lists">
+					{lists
+						.sort((a, b) =>
+							a.title < b.title ? -1 : a.title > b.title ? 1 : 0
+						)
+						.map((list, id) => (
+							<Chip
+								text={list.title}
+								key={id}
+								color={list?.color}
+								size="small"
+								link={`/notes/list/${list._id}`}
+								icon={predictIcon(list.title)}
+								style={{
+									color: "var(--black)",
+									borderColor: `var(--${list?.color}-100)`,
+									boxShadow: "var(--shadow-elevation-2dp)",
+								}}
+							/>
+						))}
+				</div>
+			)}
 			<div className="note-buttons">
 				{!trashed ? (
 					<>
@@ -97,9 +186,13 @@ const Note = ({ title, content, color, image, trashed, archived, ...rest }) => {
 						>
 							<MaterialIcons>content_copy</MaterialIcons>
 						</button>
-						{/* <button className="note-button" title="Add to list">
-							<MaterialIcons>playlist_add</MaterialIcons>
-						</button> */}
+						<button
+							className="note-button"
+							title="Manage Lists"
+							onClick={() => setOpenListsBox(true)}
+						>
+							<MaterialIcons>sort</MaterialIcons>
+						</button>
 						{archived ? (
 							<button
 								className="note-button"
@@ -247,7 +340,7 @@ const Note = ({ title, content, color, image, trashed, archived, ...rest }) => {
 											size="small"
 											color={noteColor}
 										/>{" "}
-										forever? This actions can't be undone.
+										forever? This action can't be undone.
 									</>
 								));
 								setOpenNotePopup(false);
@@ -314,6 +407,145 @@ const Note = ({ title, content, color, image, trashed, archived, ...rest }) => {
 								</Col>
 							))}
 						</Row>
+					</div>
+				</>
+			)}
+
+			{openListsBox && (
+				<>
+					<div
+						className="note-lists-overlay"
+						onClick={() => setOpenListsBox(false)}
+					></div>
+					<div className="note-lists-update-box">
+						<button
+							className="icon note-lists-update-box__close"
+							onClick={() => setOpenListsBox(false)}
+						>
+							<MaterialIcons>close</MaterialIcons>
+						</button>
+						<div className="note-lists-update-box__title">
+							<MaterialIcons>list</MaterialIcons>
+							<span>Lists</span>
+						</div>
+						<div className="note-lists-update-box__body">
+							{lists.length > 0 && (
+								<div className="note-lists-update-box__body__lists">
+									<h2>Labels</h2>
+									<p>
+										{allLists?.map(
+											(list, index) =>
+												lists?.some(
+													(noteList) =>
+														noteList._id ===
+														list._id
+												) && (
+													<Chip
+														key={index}
+														text={list.title}
+														size="small"
+														color={list.color}
+														icon={predictIcon(
+															list.title
+														)}
+														variant="fill"
+														onClick={() =>
+															removeNoteFromList(
+																rest._id,
+																list._id
+															)
+														}
+														style={{
+															backgroundColor: `var(--${list.color}-700)`,
+															color: `var(--white)`,
+															borderColor: `var(--${list.color}-700)`,
+														}}
+													/>
+												)
+										)}
+									</p>
+								</div>
+							)}
+							<div className="note-lists-update-box__body__lists">
+								<h2>Add labels (suggestions)</h2>
+								<p>
+									{allLists?.map(
+										(list, index) =>
+											!lists?.some(
+												(noteList) =>
+													noteList._id === list._id
+											) && (
+												<Chip
+													key={index}
+													text={list.title}
+													size="small"
+													color={list.color}
+													icon={predictIcon(
+														list.title
+													)}
+													variant="outline"
+													onClick={() =>
+														addNoteToList(
+															rest._id,
+															list._id
+														)
+													}
+													style={{
+														backgroundColor: `transparent`,
+														color:
+															theme === "light"
+																? `var(--black)`
+																: `var(--white)`,
+														borderColor: `var(--${list.color}-700)`,
+													}}
+												/>
+											)
+									)}
+									<Chip
+										text={
+											showAddListButton ? (
+												<input
+													placeholder="Create a new list"
+													value={newListTitle}
+													onChange={(e) =>
+														setNewListTitle(
+															e.target.value
+														)
+													}
+													onKeyDown={(e) => {
+														if (e.key === "Enter") {
+															e?.preventDefault();
+															addNewList();
+														}
+													}}
+													style={{
+														all: "unset",
+														textAlign: "left",
+														width: "fit-content",
+														display: "inline-flex",
+													}}
+												/>
+											) : (
+												"Add New List"
+											)
+										}
+										size="small"
+										color={`var(--${noteColor}-100)`}
+										icon="add"
+										style={{
+											borderColor: `var(--${noteColor}-100)`,
+											cursor: showAddListButton
+												? "text"
+												: "pointer",
+										}}
+										onClick={() => {
+											if (!showAddListButton)
+												setshowAddListButton(true);
+										}}
+									/>
+								</p>
+							</div>
+						</div>
 					</div>
 				</>
 			)}

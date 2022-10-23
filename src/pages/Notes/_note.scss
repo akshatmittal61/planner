@@ -1,6 +1,7 @@
 @import "../../config";
 
-.note {
+.note,
+.list {
 	width: 95%;
 	margin: 0.75rem;
 	border: 1px solid var(--back-shadow-light);
@@ -13,7 +14,6 @@
 	background-blend-mode: lighten;
 
 	&:hover {
-		border-radius: 12px;
 		box-shadow: var(--shadow-elevation-2dp);
 	}
 
@@ -27,6 +27,19 @@
 		width: 100%;
 		max-height: 10rem;
 		overflow: hidden;
+	}
+
+	&-lists {
+		width: 100%;
+		margin: 0.75rem 0 0 0;
+		display: flex;
+		justify-content: flex-start;
+		align-items: flex-start;
+		flex-wrap: wrap;
+
+		.chip {
+			margin: 0.25rem 0.75rem 0.25rem 0;
+		}
 	}
 
 	&-buttons {
@@ -64,7 +77,8 @@
 		opacity: 1;
 	}
 
-	&-color {
+	&-color,
+	&-lists {
 		&-overlay {
 			position: fixed;
 			top: 0;
@@ -72,20 +86,72 @@
 			left: 0;
 			right: 0;
 			background: rgba(0, 0, 0, 0.2);
+			user-select: none;
 		}
 
-		&-update-box {
-			position: fixed;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			width: 20rem;
-			padding: 1rem 0;
-			height: fit-content;
-			background-color: var(--bgcolor);
-			box-shadow: var(--shadow-elevation-2dp);
-			border-radius: 8px;
-			overflow: visible;
+		&-update {
+			&-box {
+				position: fixed;
+				top: 50%;
+				left: 50%;
+				z-index: 5;
+				transform: translate(-50%, -50%);
+				width: 20rem;
+				padding: 1rem 0;
+				height: fit-content;
+				background-color: var(--bgcolor);
+				box-shadow: var(--shadow-elevation-2dp);
+				border-radius: 8px;
+				overflow: visible;
+			}
+		}
+	}
+
+	&-lists {
+		&-update {
+			&-box {
+				padding: 1rem 0.75rem;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex-direction: column;
+
+				&__close {
+					position: absolute;
+					top: 0.5rem;
+					right: 0.5rem;
+				}
+
+				&__title {
+					width: 100%;
+					display: flex;
+					justify-content: flex-start;
+					align-items: center;
+
+					.material-symbols-outlined {
+						margin-right: 0.5rem;
+					}
+				}
+
+				&__body {
+					width: 100%;
+					display: flex;
+					justify-content: flex-start;
+					align-items: center;
+					flex-wrap: wrap;
+					margin: 1rem 0 0 0;
+
+					&__lists {
+						margin: 0.5rem 0;
+
+						h2 {
+							font-size: 1.25rem;
+							font-weight: 300;
+							margin: 0.5rem 0;
+						}
+					}
+				}
+			}
 		}
 	}
 }

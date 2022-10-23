@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const NoteSchema = new mongoose.Schema(
+const ListSchema = new mongoose.Schema(
 	{
 		user: {
 			type: mongoose.Schema.Types.ObjectId,
@@ -8,31 +8,23 @@ const NoteSchema = new mongoose.Schema(
 		},
 		title: {
 			type: String,
-		},
-		content: {
-			type: String,
 			required: true,
 		},
 		color: {
 			type: String,
 			default: "bgcolor",
 		},
-		archived: {
-			type: Boolean,
-			default: false,
-		},
-		trashed: {
-			type: Boolean,
-			default: false,
-		},
-		image: {
+		poster: {
 			type: Number,
 			default: -1,
 		},
-		lists: [
+		description: {
+			type: String,
+		},
+		notes: [
 			{
 				type: mongoose.Schema.Types.ObjectId,
-				ref: "List",
+				ref: "Note",
 			},
 		],
 	},
@@ -41,5 +33,5 @@ const NoteSchema = new mongoose.Schema(
 	}
 );
 
-const Note = mongoose.model("note", NoteSchema);
-export default Note;
+const List = mongoose.model("list", ListSchema);
+export default List;

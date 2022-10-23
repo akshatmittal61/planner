@@ -266,11 +266,36 @@ export const useContextData = () => {
 
 	// Notes
 	const [notes, setNotes] = useState([]);
+	const [lists, setLists] = useState([]);
 	const getAllNotes = async () => {
 		try {
 			setIsLoading(true);
 			const res = await axiosInstance.get("/api/notes");
 			setNotes(() => res.data.allNotes);
+			setIsLoading(false);
+		} catch (error) {
+			setSnack({
+				text: error.response?.data?.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		}
+	};
+	const getOneNote = async (id) => {
+		try {
+			setIsLoading(true);
+			const res = await axiosInstance.get(`/api/notes/${id}`);
+			setNotes((prevNotes) => {
+				let newNotes = prevNotes.map((singleNote) =>
+					singleNote._id !== id ? singleNote : res.data
+				);
+				return newNotes;
+			});
 			setIsLoading(false);
 		} catch (error) {
 			setSnack({
@@ -298,6 +323,218 @@ export const useContextData = () => {
 					color: "var(--white)",
 				});
 				setNotes((prevNotes) => [...prevNotes, res.data.newNote]);
+				setOpenSnackBar(true);
+				setTimeout(() => {
+					setOpenSnackBar(false);
+				}, 5000);
+				setIsLoading(false);
+			}
+		} catch (error) {
+			setSnack({
+				text: error.response?.data?.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		}
+	};
+	const getAllLists = async () => {
+		try {
+			setIsLoading(true);
+			const res = await axiosInstance.get("/api/notes/lists");
+			setLists(() => res.data.lists);
+			setIsLoading(false);
+			return res.data.lists;
+		} catch (error) {
+			setSnack({
+				text: error.response?.data?.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		}
+	};
+	const getNotesInList = async (id) => {
+		try {
+			setIsLoading(true);
+			const res = await axiosInstance.get(`/api/notes/list/${id}`);
+			setIsLoading(false);
+			return res.data.notes;
+		} catch (error) {
+			setSnack({
+				text: error.response?.data?.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+			return [];
+		}
+	};
+	const createNewList = async (newList) => {
+		try {
+			setIsLoading(true);
+			const res = await axiosInstance.post("/api/notes/list", {
+				...newList,
+			});
+			if (res.status === 200 || res.status === 201) {
+				setSnack({
+					text: res.data.message,
+					bgColor: "var(--green)",
+					color: "var(--white)",
+				});
+				setLists((prevLists) => [...prevLists, res.data.list]);
+				setOpenSnackBar(true);
+				setTimeout(() => {
+					setOpenSnackBar(false);
+				}, 5000);
+				setIsLoading(false);
+				return res.data.list;
+			}
+		} catch (error) {
+			setSnack({
+				text: error.response?.data?.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		}
+	};
+	const editList = async (id, updatedList) => {
+		try {
+			setIsLoading(true);
+			const res = await axiosInstance.put(`/api/notes/list/${id}`, {
+				...updatedList,
+			});
+			if (res.status === 200 || res.status === 201) {
+				setSnack({
+					text: res.data.message,
+					bgColor: "var(--green)",
+					color: "var(--white)",
+				});
+				setLists((prevLists) => {
+					let newLists = prevLists.map((singleList) =>
+						singleList._id !== id ? singleList : res.data.list
+					);
+					return newLists;
+				});
+				setOpenSnackBar(true);
+				setTimeout(() => {
+					setOpenSnackBar(false);
+				}, 5000);
+				setIsLoading(false);
+				return res.data.list;
+			}
+		} catch (error) {
+			setSnack({
+				text: error.response?.data?.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		}
+	};
+	const addNoteToList = async (noteId, listId) => {
+		try {
+			setIsLoading(true);
+			const res = await axiosInstance.post(`/api/notes/list/${listId}`, {
+				noteId,
+			});
+			if (res.status === 200 || res.status === 201) {
+				getOneNote(noteId);
+				setSnack({
+					text: res.data.message,
+					bgColor: "var(--green)",
+					color: "var(--white)",
+				});
+				setOpenSnackBar(true);
+				setTimeout(() => {
+					setOpenSnackBar(false);
+				}, 5000);
+				setIsLoading(false);
+			}
+		} catch (error) {
+			setSnack({
+				text: error.response?.data?.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		}
+	};
+	const removeNoteFromList = async (noteId, listId) => {
+		try {
+			setIsLoading(true);
+			const res = await axiosInstance.put(`/api/notes/list/${listId}`, {
+				data: { noteId },
+			});
+			if (res.status === 200 || res.status === 201) {
+				await getOneNote(noteId);
+				setSnack({
+					text: res.data.message,
+					bgColor: "var(--green)",
+					color: "var(--white)",
+				});
+				setOpenSnackBar(true);
+				setTimeout(() => {
+					setOpenSnackBar(false);
+				}, 5000);
+				setIsLoading(false);
+			}
+		} catch (error) {
+			setSnack({
+				text: error.response?.data?.message,
+				bgColor: "var(--red)",
+				color: "var(--white)",
+			});
+			setOpenSnackBar(true);
+			setTimeout(() => {
+				setOpenSnackBar(false);
+			}, 5000);
+			setIsLoading(false);
+		}
+	};
+	const deleteList = async (id) => {
+		try {
+			setIsLoading(true);
+			const res = await axiosInstance.delete(`/api/notes/list/${id}`);
+			if (res.status === 200) {
+				setSnack({
+					text: res.data.message,
+					bgColor: "var(--green)",
+					color: "var(--white)",
+				});
+				setLists((prevLists) => {
+					let newLists = prevLists.filter(
+						(singleList) => singleList._id !== id
+					);
+					return newLists;
+				});
+				getAllNotes();
+				getAllLists();
 				setOpenSnackBar(true);
 				setTimeout(() => {
 					setOpenSnackBar(false);
@@ -796,6 +1033,7 @@ export const useContextData = () => {
 	const synchronize = async () => {
 		getAllEvents();
 		getAllNotes();
+		getAllLists();
 		getAllTasks();
 		getSettings();
 	};
@@ -912,6 +1150,7 @@ export const useContextData = () => {
 		notes,
 		setNotes,
 		getAllNotes,
+		getOneNote,
 		addNewNote,
 		updateOneNote,
 		archiveNote,
@@ -919,6 +1158,15 @@ export const useContextData = () => {
 		moveNoteToTrash,
 		restoreNoteFromTrash,
 		deleteNote,
+		lists,
+		setLists,
+		getAllLists,
+		getNotesInList,
+		createNewList,
+		editList,
+		addNoteToList,
+		removeNoteFromList,
+		deleteList,
 		tasks,
 		setTasks,
 		getAllTasks,

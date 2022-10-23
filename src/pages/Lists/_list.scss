@@ -1,0 +1,25 @@
+.list {
+    background-color: var(--bgcolor);
+    border-radius: 8px;
+
+    &-head {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &-title {
+            font-size: 1.5rem;
+        }
+
+        &-buttons {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+
+            &>* {
+                margin-left: 1rem;
+            }
+        }
+    }
+}

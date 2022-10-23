@@ -3,11 +3,17 @@ import { Navigate } from "react-router-dom";
 import GlobalContext from "../Context/GlobalContext";
 
 const Logout = () => {
-	const { setIsAuthenticated, setUser, setSnack, setOpenSnackBar } =
-		useContext(GlobalContext);
+	const {
+		setIsAuthenticated,
+		setUser,
+		setSnack,
+		setOpenSnackBar,
+		updateUser,
+	} = useContext(GlobalContext);
 	useEffect(() => {
 		setIsAuthenticated(false);
 		setUser(null);
+		updateUser(null);
 		localStorage.setItem("isAuthenticated", false);
 		localStorage.setItem("user", null);
 		localStorage.setItem("token", null);
@@ -20,7 +26,7 @@ const Logout = () => {
 		setTimeout(() => {
 			setOpenSnackBar(false);
 		}, 5000);
-	}, [setIsAuthenticated, setOpenSnackBar, setSnack, setUser]);
+	}, [setIsAuthenticated, setOpenSnackBar, setSnack, setUser, updateUser]);
 
 	return <Navigate to={"/"} />;
 };

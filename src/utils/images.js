@@ -29,6 +29,7 @@ import nullNotes from "../images/nullNotes.svg";
 import nullTasks from "../images/nullTasks.svg";
 import nullArchive from "../images/nullArchive.svg";
 import nullTrash from "../images/empty-trash.svg";
+import nullLists from "../images/nullLists.svg";
 import slash from "../images/slash.svg";
 
 import contactUsBanner from "../images/contact-us-banner.png";
@@ -95,6 +96,7 @@ export {
 	nullTasks,
 	nullArchive,
 	nullTrash,
+	nullLists,
 	slash,
 	contactUsBanner,
 	tourist,
