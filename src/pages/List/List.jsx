@@ -4,6 +4,7 @@ import Fab from "../../components/Button/Fab";
 import Empty from "../../components/Empty/Empty";
 import GlobalContext from "../../Context/GlobalContext";
 import Masonry, { MasonryBox } from "../../Layout/Masonry/Masonry";
+import { imageBackgroundUrl } from "../../utils";
 import { nullNotes } from "../../utils/images";
 import { notesNavLinks } from "../../utils/navigation";
 import AddNote from "../Notes/AddNote";
@@ -11,8 +12,10 @@ import Note from "../Notes/Note";
 import "../Notes/notes.css";
 
 const List = () => {
-	const { setSideBarLinks, getAllLists, notes } = useContext(GlobalContext);
+	const { setSideBarLinks, getAllLists, notes, lists } =
+		useContext(GlobalContext);
 	const { id } = useParams();
+	const [list, setList] = useState(null);
 	const [showAddNoteBox, setShowAddNoteBox] = useState(false);
 	const [notesInThisList, setNotesInThisList] = useState([]);
 	const fetchNotesInList = async () => {
@@ -25,11 +28,35 @@ const List = () => {
 	useEffect(() => {
 		setSideBarLinks(notesNavLinks);
 		getAllLists();
+		setList(lists.find((list) => list._id === id));
 		fetchNotesInList();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [id, notes]);
 	return (
-		<main className="notes">
+		<main
+			className="notes"
+			style={{
+				width: "100%",
+				backgroundImage:
+					list?.poster >= 0 && list?.poster < 24
+						? `url(${imageBackgroundUrl(list?.poster)})`
+						: "none",
+				backgroundSize: "cover",
+				backgroundPosition: "center",
+				backgroundRepeat: "no-repeat",
+				color:
+					list?.color === "bgcolor"
+						? "var(--tcolor)"
+						: "var(--black)",
+				backgroundBlendMode:
+					list?.poster >= 0 && list?.poster < 24 ? "lighten" : "none",
+				backgroundColor:
+					list?.poster >= 0 && list?.poster < 24
+						? "rgba(255,255,255,0.65)"
+						: `var(--${list?.color}-100)`,
+				backgroundAttachment: "fixed",
+			}}
+		>
 			{notesInThisList.length > 0 &&
 			notesInThisList.some(
 				(p) =>
