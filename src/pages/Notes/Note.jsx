@@ -190,7 +190,7 @@ const Note = ({
 							title="Manage Lists"
 							onClick={() => setOpenListsBox(true)}
 						>
-							<MaterialIcons>list</MaterialIcons>
+							<MaterialIcons>sort</MaterialIcons>
 						</button>
 						{archived ? (
 							<button
@@ -417,6 +417,12 @@ const Note = ({
 						onClick={() => setOpenListsBox(false)}
 					></div>
 					<div className="note-lists-update-box">
+						<button
+							className="icon note-lists-update-box__close"
+							onClick={() => setOpenListsBox(false)}
+						>
+							<MaterialIcons>close</MaterialIcons>
+						</button>
 						<div className="note-lists-update-box__title">
 							<MaterialIcons>list</MaterialIcons>
 							<span>Lists</span>

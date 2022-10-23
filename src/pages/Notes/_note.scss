@@ -116,6 +116,12 @@
 				align-items: center;
 				flex-direction: column;
 
+				&__close {
+					position: absolute;
+					top: 0.5rem;
+					right: 0.5rem;
+				}
+
 				&__title {
 					width: 100%;
 					display: flex;

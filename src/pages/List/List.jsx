@@ -11,20 +11,23 @@ import Note from "../Notes/Note";
 import "../Notes/notes.css";
 
 const List = () => {
-	const { setSideBarLinks, getAllLists, getNotesInList } =
-		useContext(GlobalContext);
+	const { setSideBarLinks, getAllLists, notes } = useContext(GlobalContext);
 	const { id } = useParams();
 	const [showAddNoteBox, setShowAddNoteBox] = useState(false);
 	const [notesInThisList, setNotesInThisList] = useState([]);
 	const fetchNotesInList = async () => {
-		setNotesInThisList(await getNotesInList(id));
+		setNotesInThisList(() => []);
+		for (let note of notes) {
+			if (note.lists.find((list) => list._id === id))
+				setNotesInThisList((prev) => [...prev, note]);
+		}
 	};
 	useEffect(() => {
 		setSideBarLinks(notesNavLinks);
 		getAllLists();
 		fetchNotesInList();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [id]);
+	}, [id, notes]);
 	return (
 		<main className="notes">
 			{notesInThisList.length > 0 &&

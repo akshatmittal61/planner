@@ -131,6 +131,12 @@
   align-items: center;
   flex-direction: column;
 }
+.note-lists-update-box__close,
+.list-lists-update-box__close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+}
 .note-lists-update-box__title,
 .list-lists-update-box__title {
   width: 100%;
