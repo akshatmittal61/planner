@@ -121,7 +121,7 @@ Building the .env
 
 - **PORT:** Assign a PORT to run the backend server (usually `4000` or `5000`)
 - **JWT_SECRET:** Assign a string for the JWT web token or request the [developers](#author) to provide you with the official one.
-- **REACT_APP_BACKEND_URL:** Create the backend URL for which React App will send the server requests to.
+- **REACT_APP_BACKEND_URL:** Create the backend URL for which React App will send the server requests to. (depends on **PORT**) -> `http://localhost:${PORT}`
 
 For EmailJS integration
 
